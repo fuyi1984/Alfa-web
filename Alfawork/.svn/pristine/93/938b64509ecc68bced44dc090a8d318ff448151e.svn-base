@@ -1,0 +1,12 @@
+package com.alfa.web;
+
+/**
+ * Created by Administrator on 2017/4/17.
+ */
+public class SimpleService
+{
+     public static String getServiceDescription()
+     {
+         return "Test";
+     }
+}

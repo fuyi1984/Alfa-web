@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.alfa.web</groupId>
+    <artifactId>alfa-web</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>alfa-service</module>
+        <module>alfa-platform</module>
+        <module>alfa-ws</module>
+        <module>alfa-timer</module>
+        <module>alfa-service</module>
+    </modules>
+    
+</project>
