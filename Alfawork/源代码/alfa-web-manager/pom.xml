@@ -17,6 +17,10 @@
         <module>alfa-ws</module>
         <module>alfa-mobile-ws</module>
         <module>alfa-timer</module>
+        <module>alfa-pay-service</module>
+        <module>alfa-pay-ws</module>
+        <module>alfa-message-service</module>
+        <module>alfa-message-ws</module>
     </modules>
 
     <properties>
@@ -181,6 +185,51 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${org.slf4j-version}</version>
+            </dependency>
+            <!-- Jackson dependencies -->
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>1.9.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>1.9.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-jaxrs</artifactId>
+                <version>1.9.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-xc</artifactId>
+                <version>1.9.11</version>
+            </dependency>
+
+            <dependency>
+                <groupId>eu.medsea.mimeutil</groupId>
+                <artifactId>mime-util</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>log4j</artifactId>
+                        <groupId>log4j</groupId>
+                    </exclusion>
+                </exclusions>
+                <version>2.1.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lowagie</groupId>
+                <artifactId>itext</artifactId>
+                <version>4.2.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>2.2.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
