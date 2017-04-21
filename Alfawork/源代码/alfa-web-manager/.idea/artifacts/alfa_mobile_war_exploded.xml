@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="alfa-ws:war exploded">
-    <output-path>$PROJECT_DIR$/alfa-ws/target/alfa-ws</output-path>
+  <artifact type="exploded-war" name="alfa-mobile:war exploded">
+    <output-path>$PROJECT_DIR$/alfa-mobile/target/alfa-mobile</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="alfa-ws" />
+          <element id="module-output" name="alfa-mobile" />
         </element>
         <element id="directory" name="lib">
           <element id="archive" name="alfa-service-1.0.jar">
@@ -78,9 +78,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/alfa-ws/target/alfa-ws/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/alfa-mobile/target/alfa-mobile/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="alfa-ws/web/Web" />
+      <element id="javaee-facet-resources" facet="alfa-mobile/web/Web" />
     </root>
   </artifact>
 </component>

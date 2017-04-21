@@ -16,6 +16,11 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <dependency>
+            <groupId>com.alfa.web.manager</groupId>
+            <artifactId>alfa-core</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- Springframework dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -38,6 +43,15 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.directwebremoting</groupId>
+            <artifactId>dwr</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jna</groupId>
+            <artifactId>jna</artifactId>
         </dependency>
 
         <!-- AspectJ dependencies -->
@@ -129,6 +143,7 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
@@ -156,10 +171,18 @@
             <artifactId>jackson-xc</artifactId>
         </dependency>
 
+
         <dependency>
-            <groupId>com.lowagie</groupId>
-            <artifactId>itext</artifactId>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        </dependency>
+
+
 
 
     </dependencies>
