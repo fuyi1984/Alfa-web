@@ -21,6 +21,7 @@
             <artifactId>alfa-core</artifactId>
             <version>1.0</version>
         </dependency>
+
         <!-- Springframework dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -182,7 +183,18 @@
             <artifactId>cxf-rt-frontend-jaxrs</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 
 
     </dependencies>
