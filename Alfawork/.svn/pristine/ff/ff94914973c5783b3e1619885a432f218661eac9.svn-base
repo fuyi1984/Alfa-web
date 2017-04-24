@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="alfa-core" />
+        <module name="alfa-message-service" />
+        <module name="alfa-message-ws" />
+        <module name="alfa-mobile" />
+        <module name="alfa-mobile-ws" />
+        <module name="alfa-pay-service" />
+        <module name="alfa-pay-ws" />
+        <module name="alfa-platform" />
+        <module name="alfa-service" />
+        <module name="alfa-timer" />
+        <module name="alfa-ws" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="alfa-core" target="1.6" />
+      <module name="alfa-message-service" target="1.6" />
+      <module name="alfa-message-ws" target="1.6" />
+      <module name="alfa-mobile" target="1.6" />
+      <module name="alfa-mobile-ws" target="1.6" />
+      <module name="alfa-pay-service" target="1.6" />
+      <module name="alfa-pay-ws" target="1.6" />
+      <module name="alfa-platform" target="1.6" />
+      <module name="alfa-service" target="1.6" />
+      <module name="alfa-timer" target="1.6" />
+      <module name="alfa-web-manager" target="1.5" />
+      <module name="alfa-ws" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
