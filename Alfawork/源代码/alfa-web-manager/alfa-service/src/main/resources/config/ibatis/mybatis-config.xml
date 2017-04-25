@@ -10,6 +10,9 @@
 		</plugin>
 	</plugins>
 		-->
+	<!--<typeAliases>
+		<package name="com.alfa.web.pojo"/>
+	</typeAliases>-->
 	<mappers>
 		<mapper resource="config/ibatis/common_SqlMap.xml" />
 	</mappers>

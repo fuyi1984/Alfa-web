@@ -8,6 +8,16 @@ import java.util.Date;
  */
 public class Role extends Entity implements Serializable {
 
+    public Role() {
+    }
+
+    public Role(String role_name, int types, int status, Date create_date) {
+        this.role_name = role_name;
+        this.types = types;
+        this.status = status;
+        this.create_date = create_date;
+    }
+
     private String role_name;
 
     private int types;

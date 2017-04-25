@@ -31,6 +31,6 @@ public class TestBase {
 
     @Test
     public void testSpring() {
-        Assert.assertEquals(5, ds.getInitialSize());
+        Assert.assertEquals(1, ds.getInitialSize());
     }
 }

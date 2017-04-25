@@ -9,4 +9,8 @@
         insert into role(role_name,types,status,create_date,bycreater_id)
         value(#{role_name},#{types},#{status},#{create_date},#{bycreater_id})
     </insert>
+
+    <select id="findRole" resultType="com.alfa.web.pojo.Role">
+        SELECT * FROM role
+    </select>
 </mapper>
