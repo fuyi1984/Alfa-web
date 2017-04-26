@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/4/26 10:31:54                           */
+/* Created on:     2017/4/26 11:55:12                           */
 /*==============================================================*/
 
 
@@ -111,8 +111,8 @@ create table SysModuleElement
    Script               varchar(500) not null,
    Icon                 varchar(255) not null,
    Classs               varchar(255) not null,
-   Remark               varchar(200) not null,
-   Sort                 int not null,
+   Remark               varchar(200),
+   SortNo               int not null,
    ModuleId             bigint not null,
    primary key (Id)
 );
@@ -128,10 +128,10 @@ create table SysModules
    CascadeId            varchar(255) not null,
    Name                 varchar(255) not null,
    Url                  varchar(255) not null,
-   IsLeaf               bit not null,
-   IsAutoExpand         bit not null,
+   IsLeaf               varchar(100) not null,
+   IsAutoExpand         varchar(100) not null,
    IconName             varchar(255) not null,
-   Status               int not null,
+   Status               varchar(100) not null,
    ParentName           varchar(255) not null,
    Vector               varchar(255) not null,
    SortNo               int not null,
@@ -158,13 +158,15 @@ create table SysOrg
    bycreater_id         bigint not null,
    ParentName           varchar(255) not null,
    ParentId             bigint,
-   IsLeaf               bit not null,
-   IsAutoExpand         bit not null,
+   IsLeaf               varchar(100) not null,
+   IsAutoExpand         varchar(100) not null,
    IconName             varchar(255) not null,
    sortno               int not null,
    version              bigint not null,
    updatedBy            bigint,
    updatedDt            datetime,
+   statusname           varchar(255) not null,
+   typesname            varchar(255) not null,
    primary key (Id)
 );
 
