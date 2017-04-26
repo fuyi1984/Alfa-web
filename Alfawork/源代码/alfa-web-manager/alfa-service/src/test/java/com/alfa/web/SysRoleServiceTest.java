@@ -1,8 +1,6 @@
 package com.alfa.web;
 
 
-import com.alfa.web.pojo.Role;
-import com.alfa.web.service.Impl.SysRoleServiceImpl;
 import com.alfa.web.service.SysRoleService;
 import org.apache.log4j.Logger;
 import org.junit.Assert;

@@ -1,7 +1,5 @@
 package com.alfa.web.dao;
 
-import com.alfa.web.pojo.Role;
-
 import java.util.List;
 
 /**

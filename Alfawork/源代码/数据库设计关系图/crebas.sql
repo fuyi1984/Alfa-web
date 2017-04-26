@@ -1,31 +1,59 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/4/14 12:59:31                           */
+/* Created on:     2017/4/26 10:31:54                           */
 /*==============================================================*/
 
 
-drop table if exists Category;
+drop table if exists SysAccount;
 
-drop table if exists DicDetail;
+drop table if exists SysCategory;
 
-drop table if exists DicIndex;
+drop table if exists SysDicDetail;
 
-drop table if exists ModuleElement;
+drop table if exists SysDicIndex;
 
-drop table if exists Modules;
+drop table if exists SysModuleElement;
 
-drop table if exists Org;
+drop table if exists SysModules;
 
-drop table if exists Relevance;
+drop table if exists SysOrg;
 
-drop table if exists Role;
+drop table if exists SysRelevance;
 
-drop table if exists Users;
+drop table if exists SysRole;
+
+drop table if exists SysUsers;
 
 /*==============================================================*/
-/* Table: Category                                              */
+/* Table: SysAccount                                            */
 /*==============================================================*/
-create table Category
+create table SysAccount
+(
+   Id                   bigint not null,
+   Account_name         varchar(255) not null,
+   Account_type         varchar(100) not null,
+   Account_typename     varchar(255) not null,
+   UsableCredit         bigint not null,
+   accountBalance       varchar(255) not null,
+   accountdeposit       varchar(255) not null,
+   version              bigint not null,
+   status               varchar(100) not null,
+   statusName           varchar(255) not null,
+   description          varchar(255),
+   createdBy            bigint,
+   createdDt            datetime,
+   updatedBy            bigint,
+   updatedDt            datetime,
+   userId               bigint not null,
+   primary key (Id)
+);
+
+alter table SysAccount comment '账户表';
+
+/*==============================================================*/
+/* Table: SysCategory                                           */
+/*==============================================================*/
+create table SysCategory
 (
    Id                   bigint not null auto_increment,
    Name                 varchar(255) not null,
@@ -35,12 +63,12 @@ create table Category
    primary key (Id)
 );
 
-alter table Category comment '分类表';
+alter table SysCategory comment '分类表';
 
 /*==============================================================*/
-/* Table: DicDetail                                             */
+/* Table: SysDicDetail                                          */
 /*==============================================================*/
-create table DicDetail
+create table SysDicDetail
 (
    Id                   bigint not null auto_increment,
    Val                  varchar(255) not null,
@@ -52,12 +80,12 @@ create table DicDetail
    primary key (Id)
 );
 
-alter table DicDetail comment '数据字典详情';
+alter table SysDicDetail comment '数据字典详情';
 
 /*==============================================================*/
-/* Table: DicIndex                                              */
+/* Table: SysDicIndex                                           */
 /*==============================================================*/
-create table DicIndex
+create table SysDicIndex
 (
    Id                   bigint not null auto_increment,
    Name                 varchar(255) not null,
@@ -68,12 +96,12 @@ create table DicIndex
    primary key (Id)
 );
 
-alter table DicIndex comment '数据字典';
+alter table SysDicIndex comment '数据字典';
 
 /*==============================================================*/
-/* Table: ModuleElement                                         */
+/* Table: SysModuleElement                                      */
 /*==============================================================*/
-create table ModuleElement
+create table SysModuleElement
 (
    Id                   bigint not null,
    DomId                varchar(255) not null,
@@ -89,12 +117,12 @@ create table ModuleElement
    primary key (Id)
 );
 
-alter table ModuleElement comment '模块元素表(需要权限控制的按钮)';
+alter table SysModuleElement comment '模块元素表(需要权限控制的按钮)';
 
 /*==============================================================*/
-/* Table: Modules                                               */
+/* Table: SysModules                                            */
 /*==============================================================*/
-create table Modules
+create table SysModules
 (
    Id                   bigint not null auto_increment,
    CascadeId            varchar(255) not null,
@@ -111,21 +139,21 @@ create table Modules
    primary key (Id)
 );
 
-alter table Modules comment '功能模块表';
+alter table SysModules comment '功能模块表';
 
 /*==============================================================*/
-/* Table: Org                                                   */
+/* Table: SysOrg                                                */
 /*==============================================================*/
-create table Org
+create table SysOrg
 (
-   Id                   bigint not null auto_increment,
    CascadeId            varchar(255) not null,
    depart_fullname      varchar(255) not null,
+   Id                   bigint not null auto_increment,
    depart_name          varchar(255),
    depart_name_e        varchar(255),
    depart_code          varchar(100),
-   status               int not null,
-   types                int not null,
+   status               varchar(100) not null,
+   types                varchar(100) not null,
    create_date          datetime not null,
    bycreater_id         bigint not null,
    ParentName           varchar(255) not null,
@@ -134,70 +162,88 @@ create table Org
    IsAutoExpand         bit not null,
    IconName             varchar(255) not null,
    sortno               int not null,
+   version              bigint not null,
+   updatedBy            bigint,
+   updatedDt            datetime,
    primary key (Id)
 );
 
-alter table Org comment '机构表';
+alter table SysOrg comment '机构表';
 
 /*==============================================================*/
-/* Table: Relevance                                             */
+/* Table: SysRelevance                                          */
 /*==============================================================*/
-create table Relevance
+create table SysRelevance
 (
    Id                   bigint not null auto_increment,
    Description          varchar(255) not null,
    MappKey              varchar(255) not null,
-   Status               int not null,
+   Status               varchar(100) not null,
    OperatorTime         datetime not null,
    OperatorId           int not null,
    FirstId              bigint not null,
    SecondId             bigint not null,
+   Statusname           varchar(255) not null,
    primary key (Id)
 );
 
-alter table Relevance comment '多对多关系集中映射';
+alter table SysRelevance comment '多对多关系集中映射';
 
 /*==============================================================*/
-/* Table: Role                                                  */
+/* Table: SysRole                                               */
 /*==============================================================*/
-create table Role
+create table SysRole
 (
    Id                   bigint not null auto_increment,
    role_name            varchar(255) not null,
-   types                int not null,
-   status               int not null,
+   types                varchar(100) not null,
+   status               varchar(100) not null,
    create_date          datetime not null,
    bycreater_id         bigint not null,
+   version              bigint not null,
+   updatedBy            bigint,
+   updatedDt            datetime,
+   typesname            varchar(255) not null,
+   statusname           varchar(255) not null,
+   roleDesc             varchar(255),
    primary key (Id)
 );
 
-alter table Role comment '角色表';
+alter table SysRole comment '角色表';
 
 /*==============================================================*/
-/* Table: Users                                                 */
+/* Table: SysUsers                                              */
 /*==============================================================*/
-create table Users
+create table SysUsers
 (
+   updatedBy            bigint,
    Id                   bigint not null auto_increment,
    username             varchar(255) not null,
    password             varchar(255) not null,
    phone                varchar(255) not null,
-   sex                  int not null,
-   status               int not null,
-   types                int not null,
+   sexname              varchar(255) not null,
+   sex                  varchar(100) not null,
+   statusname           varchar(255) not null,
+   status               varchar(100) not null,
+   typesname            varchar(255) not null,
+   types                varchar(100) not null,
    address              varchar(255),
    remarks              varchar(255),
    token                varchar(255) not null,
    create_date          datetime not null,
    bycreater_id         bigint not null,
+   version              bigint not null,
+   updatedDt            datetime,
+   errorCount           int,
+   LoginIp              varchar(255) not null,
    primary key (Id)
 );
 
-alter table Users comment '用户表';
+alter table SysUsers comment '用户表';
 
-alter table DicDetail add constraint FK_RF_DICDETAI_DICINDEX foreign key (DicId)
-      references DicIndex (Id) on delete restrict on update restrict;
+alter table SysDicDetail add constraint FK_RF_DICDETAI_DICINDEX foreign key (DicId)
+      references SysDicIndex (Id) on delete restrict on update restrict;
 
-alter table ModuleElement add constraint FK_FK_PAGEELEM_REFERENCE_MODULE foreign key (ModuleId)
-      references Modules (Id) on delete restrict on update restrict;
+alter table SysModuleElement add constraint FK_FK_PAGEELEM_REFERENCE_MODULE foreign key (ModuleId)
+      references SysModules (Id) on delete restrict on update restrict;
 

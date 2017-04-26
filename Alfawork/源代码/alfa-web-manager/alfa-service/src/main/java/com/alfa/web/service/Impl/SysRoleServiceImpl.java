@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
 import com.alfa.web.dao.SysRoleMapper;
-import com.alfa.web.pojo.Role;
 import com.alfa.web.service.SysRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
