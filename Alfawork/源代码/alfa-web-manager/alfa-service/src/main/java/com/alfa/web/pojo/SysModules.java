@@ -1,6 +1,7 @@
 package com.alfa.web.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/26.
@@ -54,12 +55,17 @@ public class SysModules extends Entity implements Serializable {
     /**
      * 排序号
      */
-    private int Sortno;
+    private int SortNo;
 
     /**
      * 父节点ID
      */
     private Long ParentId;
+
+    /**
+     * 模块元素列表(需要权限控制的按钮)
+     */
+    private List<SysModuleElement> SysModuleElementLst;
 
     public String getCascadeId() {
         return CascadeId;
@@ -133,19 +139,27 @@ public class SysModules extends Entity implements Serializable {
         Vector = vector;
     }
 
-    public int getSortno() {
-        return Sortno;
-    }
-
-    public void setSortno(int sortno) {
-        Sortno = sortno;
-    }
-
     public Long getParentId() {
         return ParentId;
     }
 
     public void setParentId(Long parentId) {
         ParentId = parentId;
+    }
+
+    public int getSortNo() {
+        return SortNo;
+    }
+
+    public void setSortNo(int sortNo) {
+        SortNo = sortNo;
+    }
+
+    public List<SysModuleElement> getSysModuleElementLst() {
+        return SysModuleElementLst;
+    }
+
+    public void setSysModuleElementLst(List<SysModuleElement> sysModuleElementLst) {
+        SysModuleElementLst = sysModuleElementLst;
     }
 }
