@@ -1,5 +1,6 @@
 package com.alfa.web.dao;
 
+import com.alfa.web.common.pojo.Criteria;
 import com.alfa.web.pojo.SysConfig;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,12 +14,12 @@ public interface SysConfigMapper {
     /**
      * 根据条件查询记录总数
      */
-    //int countByParams(Criteria example);
+    int countByParams(Criteria example);
 
     /**
      * 根据条件删除记录
      */
-    //int deleteByParams(Criteria example);
+    int deleteByParams(Criteria example);
 
     /**
      * 根据主键删除记录
@@ -38,7 +39,7 @@ public interface SysConfigMapper {
     /**
      * 根据条件查询记录集
      */
-    //List<SysConfig> selectByParams(Criteria example);
+    List<SysConfig> selectByParams(Criteria example);
 
     /**
      * 根据主键查询记录

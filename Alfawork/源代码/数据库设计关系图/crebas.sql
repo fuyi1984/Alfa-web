@@ -1,12 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/4/26 11:55:12                           */
+/* Created on:     2017/4/26 17:02:02                           */
 /*==============================================================*/
 
 
 drop table if exists SysAccount;
 
 drop table if exists SysCategory;
+
+drop table if exists SysConfig;
 
 drop table if exists SysDicDetail;
 
@@ -40,9 +42,9 @@ create table SysAccount
    status               varchar(100) not null,
    statusName           varchar(255) not null,
    description          varchar(255),
-   createdBy            bigint,
-   createdDt            datetime,
-   updatedBy            bigint,
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
    updatedDt            datetime,
    userId               bigint not null,
    primary key (Id)
@@ -64,6 +66,26 @@ create table SysCategory
 );
 
 alter table SysCategory comment '分类表';
+
+/*==============================================================*/
+/* Table: SysConfig                                             */
+/*==============================================================*/
+create table SysConfig
+(
+   Id                   bigint not null,
+   configName           varchar(255) not null,
+   configKey            varchar(255) not null,
+   configValue          varchar(255) not null,
+   description          varchar(300),
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
+   updatedDt            datetime,
+   version              bigint not null,
+   primary key (Id)
+);
+
+alter table SysConfig comment '系统配置表';
 
 /*==============================================================*/
 /* Table: SysDicDetail                                          */
@@ -154,8 +176,8 @@ create table SysOrg
    depart_code          varchar(100),
    status               varchar(100) not null,
    types                varchar(100) not null,
-   create_date          datetime not null,
-   bycreater_id         bigint not null,
+   createdDt            datetime not null,
+   createdBy            varchar(255) not null,
    ParentName           varchar(255) not null,
    ParentId             bigint,
    IsLeaf               varchar(100) not null,
@@ -163,7 +185,7 @@ create table SysOrg
    IconName             varchar(255) not null,
    sortno               int not null,
    version              bigint not null,
-   updatedBy            bigint,
+   updatedBy            varchar(255),
    updatedDt            datetime,
    statusname           varchar(255) not null,
    typesname            varchar(255) not null,
@@ -182,7 +204,7 @@ create table SysRelevance
    MappKey              varchar(255) not null,
    Status               varchar(100) not null,
    OperatorTime         datetime not null,
-   OperatorId           int not null,
+   OperatorId           varchar(255) not null,
    FirstId              bigint not null,
    SecondId             bigint not null,
    Statusname           varchar(255) not null,
@@ -200,10 +222,10 @@ create table SysRole
    role_name            varchar(255) not null,
    types                varchar(100) not null,
    status               varchar(100) not null,
-   create_date          datetime not null,
-   bycreater_id         bigint not null,
+   createdDt            datetime not null,
+   createdBy            varchar(255) not null,
    version              bigint not null,
-   updatedBy            bigint,
+   updatedBy            varchar(255),
    updatedDt            datetime,
    typesname            varchar(255) not null,
    statusname           varchar(255) not null,
@@ -218,7 +240,7 @@ alter table SysRole comment '角色表';
 /*==============================================================*/
 create table SysUsers
 (
-   updatedBy            bigint,
+   updatedBy            varchar(255),
    Id                   bigint not null auto_increment,
    username             varchar(255) not null,
    password             varchar(255) not null,
@@ -232,8 +254,8 @@ create table SysUsers
    address              varchar(255),
    remarks              varchar(255),
    token                varchar(255) not null,
-   create_date          datetime not null,
-   bycreater_id         bigint not null,
+   createdDt            datetime not null,
+   createdBy            varchar(255) not null,
    version              bigint not null,
    updatedDt            datetime,
    errorCount           int,

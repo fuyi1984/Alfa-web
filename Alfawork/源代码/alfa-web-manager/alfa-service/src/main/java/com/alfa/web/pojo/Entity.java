@@ -13,32 +13,32 @@ public class Entity {
     /**
      * 创建时间
      */
-    private Date create_date;
+    private Date createdDt;
 
     /**
-     * 创建人ID
+     * 创建人
      */
-    private Long bycreater_id;
+    private String createdBy;
 
     /**
      * 版本号
      */
     private Long version;
 
-    public Date getCreate_date() {
-        return create_date;
+    public Date getCreatedDt() {
+        return createdDt;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setCreatedDt(Date createdDt) {
+        this.createdDt = createdDt;
     }
 
-    public Long getBycreater_id() {
-        return bycreater_id;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setBycreater_id(Long bycreater_id) {
-        this.bycreater_id = bycreater_id;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Long getVersion() {
@@ -57,11 +57,11 @@ public class Entity {
         this.updatedDt = updatedDt;
     }
 
-    public Long getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(Long updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -71,9 +71,9 @@ public class Entity {
     private Date updatedDt;
 
     /**
-     * 更新人ID
+     * 更新人
      */
-    private Long updatedBy;
+    private String updatedBy;
 
     public Long getId() {
         return id;

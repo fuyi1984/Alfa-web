@@ -1,6 +1,7 @@
 package com.alfa.web;
 
 
+import com.alfa.web.pojo.SysRole;
 import com.alfa.web.service.SysRoleService;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -21,12 +22,12 @@ public class SysRoleServiceTest extends TestBase{
 
     @Test
     public void InsertRole(){
-        Role role=new Role();
+        SysRole role = new SysRole();
         role.setRole_name("管理员");
-        role.setTypes(1);
-        role.setStatus(1);
-        role.setCreate_date(new Date());
-        role.setBycreater_id(1L);
+        role.setTypes("1");
+        role.setStatus("1");
+        role.setCreatedDt(new Date());
+        role.setCreatedBy("XXXX");
         Assert.assertEquals(1, sysRoleService.insertRole(role));
     }
 

@@ -1,12 +1,14 @@
 package com.alfa.web.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/4/26.
  * 系统配置表
  */
 public class SysConfig extends Entity implements Serializable {
+
     /**
      * 配置名称
      */
@@ -59,13 +61,4 @@ public class SysConfig extends Entity implements Serializable {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "SysConfig{" +
-                "configName='" + configName + '\'' +
-                ", configKey='" + configKey + '\'' +
-                ", configValue='" + configValue + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
