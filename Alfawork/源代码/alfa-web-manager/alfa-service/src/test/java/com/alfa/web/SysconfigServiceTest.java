@@ -19,7 +19,7 @@ public class SysconfigServiceTest extends TestBase {
     private SysconfigService sysConfigService;
 
     @Test
-    public void Insert() {
+    public void InsertSysconfig() {
         SysConfig sysConfig = new SysConfig();
         sysConfig.setConfigKey("1");
         sysConfig.setConfigName("1");
