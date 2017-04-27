@@ -1,7 +1,11 @@
 package com.alfa.ws.Impl;
 
+import com.alfa.web.common.constant.WebConstants;
+import com.alfa.web.common.pojo.RestResult;
+import com.alfa.web.common.utils.JsonUtil;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;
+import com.alfa.web.util.LicenseUtil;
 import com.alfa.ws.rest.SysconfigRest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,8 +55,24 @@ public class SysconfigRestImpl implements SysconfigRest {
         return null;
     }
 
+    /**
+     * 验证License是否过期
+     *
+     * @return return response
+     */
     @Override
     public Response licenseValid() {
-        return null;
+        if (LicenseUtil.isDateValid()) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(new RestResult(RestResult.SUCCESS))
+            ).build();
+        } else {
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(
+                            RestResult.FAILURE,
+                            WebUtil.getMessage(WebConstants.MsgCd.ERROR_LICENSE_INVALID),
+                            null))).build();
+        }
     }
 }
