@@ -13,6 +13,8 @@
     <jaxrs:server id="restServer" address="/" staticSubresourceResolution="true">
         <jaxrs:serviceBeans>
             <bean class="com.alfa.ws.Impl.TestRestImpl" />
+            <bean class="com.alfa.ws.Impl.SysconfigRestImpl"/>
+            <bean class="com.alfa.ws.Impl.SysRoleRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

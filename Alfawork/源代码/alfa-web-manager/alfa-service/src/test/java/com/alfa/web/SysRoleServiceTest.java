@@ -28,11 +28,10 @@ public class SysRoleServiceTest extends TestBase{
         role.setStatus("1");
         role.setCreatedDt(new Date());
         role.setCreatedBy("XXXX");
+        role.setVersion(1L);
+        role.setTypesname("111");
+        role.setStatusname("222");
         Assert.assertEquals(1, sysRoleService.insertRole(role));
     }
 
-    @Test
-    public void findRole(){
-        Assert.assertEquals(0,sysRoleService.findRole().size());
-    }
 }

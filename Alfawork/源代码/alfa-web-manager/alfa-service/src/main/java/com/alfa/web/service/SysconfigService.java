@@ -28,7 +28,7 @@ public interface SysconfigService {
 
     int updateByParams(SysConfig record, Criteria example);
 
-    int insert(SysConfig record);
+    int insertSysConfig(SysConfig record);
 
     int insertSelective(SysConfig record);
 }

@@ -16,7 +16,7 @@
     </resultMap>
 
 
-    <insert id="insert" parameterType="com.alfa.web.pojo.SysConfig">
+    <insert id="insertSysConfig" parameterType="com.alfa.web.pojo.SysConfig">
         <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>

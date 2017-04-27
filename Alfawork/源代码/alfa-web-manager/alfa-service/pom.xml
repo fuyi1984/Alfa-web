@@ -84,25 +84,6 @@
             <artifactId>dom4j</artifactId>
         </dependency>
 
-        <!-- Jackson dependencies -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-jaxrs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-xc</artifactId>
-        </dependency>
-
-
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
@@ -154,9 +135,9 @@
                 <configuration>
                     <includes>
                         <include>**/*MailTest.java</include>
+                        <inlcude>**/*ServiceTest.java</inlcude>
                     </includes>
                     <excludes>
-                        <exclude>**/*ServiceTest.java</exclude>
                         <exclude>**/TempDaoTest.java</exclude>
                     </excludes>
                 </configuration>

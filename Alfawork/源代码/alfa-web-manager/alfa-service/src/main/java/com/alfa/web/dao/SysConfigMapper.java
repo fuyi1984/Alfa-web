@@ -29,7 +29,7 @@ public interface SysConfigMapper {
     /**
      * 保存记录,不管记录里面的属性是否为空
      */
-    int insert(SysConfig record);
+    int insertSysConfig(SysConfig record);
 
     /**
      * 保存属性不为空的记录

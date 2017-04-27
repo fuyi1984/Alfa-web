@@ -31,6 +31,6 @@ public class SysconfigServiceTest extends TestBase {
         sysConfig.setUpdatedDt(new Date());
         sysConfig.setVersion(1L);
 
-        Assert.assertEquals(1, sysConfigService.insert(sysConfig));
+        Assert.assertEquals(1, sysConfigService.insertSysConfig(sysConfig));
     }
 }

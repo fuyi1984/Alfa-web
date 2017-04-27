@@ -70,8 +70,8 @@ public class SysconfigServiceImpl implements SysconfigService {
     }
 
     @Override
-    public int insert(SysConfig record) {
-        return this.sysConfigMapper.insert(record);
+    public int insertSysConfig(SysConfig record) {
+        return this.sysConfigMapper.insertSysConfig(record);
     }
 
     @Override

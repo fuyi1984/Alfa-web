@@ -6,11 +6,11 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into role(role_name,types,status,create_date,bycreater_id)
-        value(#{role_name},#{types},#{status},#{create_date},#{bycreater_id})
+        insert into sysrole(role_name,types,status,createdDt,createdBy,version,typesname,statusname)
+        value(#{role_name},#{types},#{status},#{createdDt},#{createdBy},#{version},#{typesname},#{statusname})
     </insert>
 
     <select id="findRole" resultType="com.alfa.web.pojo.SysRole">
-        SELECT * FROM role
+        SELECT * FROM sysrole
     </select>
 </mapper>
