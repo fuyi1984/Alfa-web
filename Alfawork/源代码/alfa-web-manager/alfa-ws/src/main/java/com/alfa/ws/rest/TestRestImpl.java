@@ -1,6 +1,5 @@
-package com.alfa.ws.Impl;
+package com.alfa.ws.rest;
 
-import com.alfa.ws.rest.TestRest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

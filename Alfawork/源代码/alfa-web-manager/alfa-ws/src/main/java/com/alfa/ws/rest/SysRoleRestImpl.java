@@ -1,4 +1,4 @@
-package com.alfa.ws.Impl;
+package com.alfa.ws.rest;
 
 import com.alfa.ws.rest.SysRoleRest;
 

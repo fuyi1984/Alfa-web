@@ -1,4 +1,4 @@
-package com.alfa.ws.Impl;
+package com.alfa.ws.rest;
 
 import com.alfa.web.common.constant.WebConstants;
 import com.alfa.web.common.pojo.RestResult;
@@ -6,11 +6,16 @@ import com.alfa.web.common.utils.JsonUtil;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;
 import com.alfa.web.util.LicenseUtil;
+import com.alfa.web.util.WebUtil;
 import com.alfa.ws.rest.SysconfigRest;
 
+import javax.jws.WebMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,12 +72,16 @@ public class SysconfigRestImpl implements SysconfigRest {
                     JsonUtil.toJson(new RestResult(RestResult.SUCCESS))
             ).build();
         } else {
-            return Response
+            /*return Response
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(
                             RestResult.FAILURE,
                             WebUtil.getMessage(WebConstants.MsgCd.ERROR_LICENSE_INVALID),
-                            null))).build();
+                            null))).build();*/
+            log.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE)));
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(new RestResult(RestResult.FAILURE))
+            ).build();
         }
     }
 }

@@ -87,7 +87,9 @@ public interface SysconfigRest {
      *
      * @return return response
      */
+    @WebMethod
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/licenseValid")
     public Response licenseValid();
 }

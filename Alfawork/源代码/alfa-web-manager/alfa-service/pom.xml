@@ -140,6 +140,7 @@
                     <excludes>
                         <exclude>**/TempDaoTest.java</exclude>
                     </excludes>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
             <plugin>
