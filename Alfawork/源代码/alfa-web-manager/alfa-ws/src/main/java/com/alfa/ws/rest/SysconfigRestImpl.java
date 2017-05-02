@@ -78,7 +78,7 @@ public class SysconfigRestImpl implements SysconfigRest {
                             RestResult.FAILURE,
                             WebUtil.getMessage(WebConstants.MsgCd.ERROR_LICENSE_INVALID),
                             null))).build();*/
-            log.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE)));
+            log.debug(JsonUtil.toJson(new RestResult(RestResult.FAILURE)));
             return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(new RestResult(RestResult.FAILURE))
             ).build();
