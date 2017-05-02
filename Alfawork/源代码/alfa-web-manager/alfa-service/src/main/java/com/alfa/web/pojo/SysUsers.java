@@ -54,17 +54,41 @@ public class SysUsers extends Entity implements Serializable{
      */
     private String remarks;
     /**
-     * Web服务身份验证码
+     * 网页端Web服务身份验证码
      */
     private String token;
+    /**
+     * 手机端Web服务身份验证码
+     */
+    private String mobiletoken;
     /**
      * 密码输入错误次数
      */
     private int errorCount;
     /**
+     * 手机端密码输入错误次数
+     */
+    private int errorCountformobile;
+    /**
      * 登录IP地址
      */
     private String LoginIp;
+
+    public String getMobiletoken() {
+        return mobiletoken;
+    }
+
+    public void setMobiletoken(String mobiletoken) {
+        this.mobiletoken = mobiletoken;
+    }
+
+    public int getErrorCountformobile() {
+        return errorCountformobile;
+    }
+
+    public void setErrorCountformobile(int errorCountformobile) {
+        this.errorCountformobile = errorCountformobile;
+    }
 
     public String getUsername() {
         return username;
@@ -193,7 +217,9 @@ public class SysUsers extends Entity implements Serializable{
                 ", address='" + address + '\'' +
                 ", remarks='" + remarks + '\'' +
                 ", token='" + token + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
                 ", errorCount=" + errorCount +
+                ", errorCountformobile=" + errorCountformobile +
                 ", LoginIp='" + LoginIp + '\'' +
                 '}';
     }

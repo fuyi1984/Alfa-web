@@ -1,6 +1,7 @@
 package com.alfa.web.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/26.
@@ -47,6 +48,19 @@ public class SysAccount extends Entity implements Serializable {
      * 用户ID
      */
     private Long userId;
+
+    /**
+     * 账户关联的支付日志记录
+     */
+    private List<LogForPay> logForPayList;
+
+    public List<LogForPay> getLogForPayList() {
+        return logForPayList;
+    }
+
+    public void setLogForPayList(List<LogForPay> logForPayList) {
+        this.logForPayList = logForPayList;
+    }
 
     public String getAccount_name() {
         return Account_name;
@@ -141,6 +155,7 @@ public class SysAccount extends Entity implements Serializable {
                 ", statusName='" + statusName + '\'' +
                 ", description='" + description + '\'' +
                 ", userId=" + userId +
+                ", logForPayList=" + logForPayList +
                 '}';
     }
 }
