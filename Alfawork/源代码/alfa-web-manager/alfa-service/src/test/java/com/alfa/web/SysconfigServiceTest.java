@@ -33,4 +33,16 @@ public class SysconfigServiceTest extends TestBase {
 
         Assert.assertEquals(1, sysConfigService.insertSysConfig(sysConfig));
     }
+
+    @Test
+    public void insertSelective() {
+        SysConfig sysConfig = new SysConfig();
+        sysConfig.setConfigKey("mail.smtp.host");
+        sysConfig.setConfigName("mail");
+        sysConfig.setConfigValue("smtp.exmail.qq.com");
+        sysConfig.setDescription("smtp");
+        sysConfig.setCreatedBy("fuyi");
+        sysConfig.setCreatedDt(new Date());
+        Assert.assertEquals(1, sysConfigService.insertSelective(sysConfig));
+    }
 }
