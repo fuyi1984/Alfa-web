@@ -1,8 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/4/26 17:02:02                           */
+/* Created on:     2017/5/3 16:35:41                            */
 /*==============================================================*/
 
+
+drop table if exists Companyinfo;
+
+drop table if exists LogForLogin;
+
+drop table if exists LogForPay;
 
 drop table if exists SysAccount;
 
@@ -26,19 +32,90 @@ drop table if exists SysRole;
 
 drop table if exists SysUsers;
 
+drop table if exists fileinfo;
+
+/*==============================================================*/
+/* Table: Companyinfo                                           */
+/*==============================================================*/
+create table Companyinfo
+(
+   Id                   bigint not null auto_increment,
+   company_name         varchar(255) not null,
+   company_code         varchar(300) not null,
+   company_eng          varchar(255),
+   company_typecode     varchar(255) not null,
+   company_type         varchar(255),
+   address              varchar(255) not null,
+   addr_lon             varchar(255) not null,
+   addr_lat             varchar(255) not null,
+   corporate            varchar(255) not null,
+   contacts             varchar(255),
+   phone                varchar(255) not null,
+   remark               varchar(500),
+   status               varchar(10) not null,
+   fileid               bigint,
+   checkstatus          varchar(10),
+   license_fileid       bigint,
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
+   updatedDt            datetime,
+   version              bigint,
+   primary key (Id)
+);
+
+alter table Companyinfo comment '企业信息表';
+
+/*==============================================================*/
+/* Table: LogForLogin                                           */
+/*==============================================================*/
+create table LogForLogin
+(
+   Id                   bigint not null auto_increment,
+   username             varchar(255) not null,
+   description          varchar(300) not null,
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
+   updatedDt            datetime,
+   version              bigint,
+   primary key (Id)
+);
+
+alter table LogForLogin comment '登录日志表';
+
+/*==============================================================*/
+/* Table: LogForPay                                             */
+/*==============================================================*/
+create table LogForPay
+(
+   Id                   bigint not null auto_increment,
+   accountBalance       varchar(255) not null,
+   description          varchar(300) not null,
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
+   updatedDt            datetime,
+   version              bigint,
+   accountId            bigint not null,
+   primary key (Id)
+);
+
+alter table LogForPay comment '支付日志表';
+
 /*==============================================================*/
 /* Table: SysAccount                                            */
 /*==============================================================*/
 create table SysAccount
 (
-   Id                   bigint not null,
+   Id                   bigint not null auto_increment,
    Account_name         varchar(255) not null,
    Account_type         varchar(100) not null,
    Account_typename     varchar(255) not null,
    UsableCredit         bigint not null,
    accountBalance       varchar(255) not null,
    accountdeposit       varchar(255) not null,
-   version              bigint not null,
+   version              bigint,
    status               varchar(100) not null,
    statusName           varchar(255) not null,
    description          varchar(255),
@@ -72,7 +149,7 @@ alter table SysCategory comment '分类表';
 /*==============================================================*/
 create table SysConfig
 (
-   Id                   bigint not null,
+   Id                   bigint not null auto_increment,
    configName           varchar(255) not null,
    configKey            varchar(255) not null,
    configValue          varchar(255) not null,
@@ -81,7 +158,7 @@ create table SysConfig
    createdDt            datetime not null,
    updatedBy            varchar(255),
    updatedDt            datetime,
-   version              bigint not null,
+   version              bigint,
    primary key (Id)
 );
 
@@ -184,7 +261,7 @@ create table SysOrg
    IsAutoExpand         varchar(100) not null,
    IconName             varchar(255) not null,
    sortno               int not null,
-   version              bigint not null,
+   version              bigint,
    updatedBy            varchar(255),
    updatedDt            datetime,
    statusname           varchar(255) not null,
@@ -224,7 +301,7 @@ create table SysRole
    status               varchar(100) not null,
    createdDt            datetime not null,
    createdBy            varchar(255) not null,
-   version              bigint not null,
+   version              bigint,
    updatedBy            varchar(255),
    updatedDt            datetime,
    typesname            varchar(255) not null,
@@ -253,17 +330,41 @@ create table SysUsers
    types                varchar(100) not null,
    address              varchar(255),
    remarks              varchar(255),
-   token                varchar(255) not null,
+   token                varchar(255),
    createdDt            datetime not null,
    createdBy            varchar(255) not null,
-   version              bigint not null,
+   version              bigint,
    updatedDt            datetime,
    errorCount           int,
    LoginIp              varchar(255) not null,
+   mobiletoken          varchar(255),
+   errorCountformobile  int,
    primary key (Id)
 );
 
 alter table SysUsers comment '用户表';
+
+/*==============================================================*/
+/* Table: fileinfo                                              */
+/*==============================================================*/
+create table fileinfo
+(
+   Id                   bigint not null auto_increment,
+   file_name            varchar(300) not null,
+   url                  varchar(500) not null,
+   type                 varchar(20) not null,
+   createdBy            varchar(255) not null,
+   createdDt            datetime not null,
+   updatedBy            varchar(255),
+   updatedDt            datetime,
+   version              bigint,
+   primary key (Id)
+);
+
+alter table fileinfo comment '文件信息表';
+
+alter table LogForPay add constraint FK_RF_ACCOUNT_LOGFORPAY foreign key (accountId)
+      references SysAccount (Id) on delete restrict on update restrict;
 
 alter table SysDicDetail add constraint FK_RF_DICDETAI_DICINDEX foreign key (DicId)
       references SysDicIndex (Id) on delete restrict on update restrict;
