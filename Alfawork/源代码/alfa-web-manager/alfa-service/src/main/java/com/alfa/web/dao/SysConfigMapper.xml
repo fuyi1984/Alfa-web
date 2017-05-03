@@ -52,7 +52,7 @@
         UPDATED_BY, UPDATED_DT, VERSION
     </sql>
 
-    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.common.pojo.Criteria">
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
         select
         <if test="distinct">
             distinct
@@ -80,7 +80,7 @@
         where id = #{id}
     </delete>
 
-    <delete id="deleteByParams" parameterType="com.alfa.web.common.pojo.Criteria">
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from sysconfig
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -164,7 +164,7 @@
         </trim>
     </insert>
 
-    <select id="countByParams" parameterType="com.alfa.web.common.pojo.Criteria" resultType="java.lang.Integer">
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
         select count(*) from sysconfig
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>

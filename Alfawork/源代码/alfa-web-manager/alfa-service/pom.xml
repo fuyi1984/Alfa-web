@@ -267,7 +267,7 @@
                     <excludes>
                         <exclude>**/TempDaoTest.java</exclude>
                     </excludes>
-                    <skip>true</skip>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
             <plugin>

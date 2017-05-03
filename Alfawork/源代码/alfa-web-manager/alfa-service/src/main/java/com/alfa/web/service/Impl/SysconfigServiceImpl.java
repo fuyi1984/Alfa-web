@@ -1,5 +1,7 @@
 package com.alfa.web.service.Impl;
 
+import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.exception.ServiceException;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.dao.SysConfigMapper;
 import com.alfa.web.pojo.SysConfig;
@@ -70,7 +72,7 @@ public class SysconfigServiceImpl implements SysconfigService {
     }
 
     @Override
-    public int insertSysConfig(SysConfig record) {
+    public int insert(SysConfig record) {
         return this.sysConfigMapper.insertSysConfig(record);
     }
 
@@ -78,4 +80,41 @@ public class SysconfigServiceImpl implements SysconfigService {
     public int insertSelective(SysConfig record) {
         return this.sysConfigMapper.insertSelective(record);
     }
+
+    @Override
+    public boolean insertSysConfig(SysConfig record) {
+        boolean result = false;
+
+        //WebUtil.prepareInsertParams(record);
+        int levelResult = this.sysConfigMapper.insertSelective(record);
+
+        if (levelResult == 1) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean deleteSysConfig(Long configSid) {
+        boolean result = false;
+
+        SysConfig sysconfig = this.sysConfigMapper.selectByPrimaryKey(configSid);
+
+        Criteria condition = new Criteria();
+        condition.put("congfigSid", sysconfig.getId());
+
+        int configResult = this.sysConfigMapper.deleteByPrimaryKey(configSid);
+
+        if (configResult == 0) {
+            result = false;
+        } else {
+            result = true;
+        }
+
+        return result;
+    }
+
+
 }

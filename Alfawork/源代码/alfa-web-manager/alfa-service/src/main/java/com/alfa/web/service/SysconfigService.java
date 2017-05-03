@@ -28,7 +28,23 @@ public interface SysconfigService {
 
     int updateByParams(SysConfig record, Criteria example);
 
-    int insertSysConfig(SysConfig record);
+    int insert(SysConfig record);
 
     int insertSelective(SysConfig record);
+
+    /**
+     * 新增配置
+     *
+     * @param record
+     * @return
+     */
+    boolean insertSysConfig(SysConfig record);
+
+    /**
+     * 删除配置
+     *
+     * @param record
+     * @return
+     */
+    boolean deleteSysConfig(Long configSid);
 }
