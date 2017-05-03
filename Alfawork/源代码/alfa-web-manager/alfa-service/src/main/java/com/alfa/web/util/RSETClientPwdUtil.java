@@ -1,22 +1,17 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
-import java.io.IOException;
-
+import com.alfa.web.util.pojo.RESTHttpResponse;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.methods.DeleteMethod;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.PutMethod;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.alfa.web.common.pojo.RESTHttpResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2017/4/26.

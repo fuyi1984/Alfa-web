@@ -1,6 +1,6 @@
 package com.alfa.web.util;
 
-import com.alfa.web.common.utils.StringUtil;
+import com.alfa.web.util.StringUtil;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

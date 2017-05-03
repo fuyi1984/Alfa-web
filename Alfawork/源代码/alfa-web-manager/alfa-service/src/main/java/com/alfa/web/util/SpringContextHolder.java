@@ -1,4 +1,4 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
 /**
  * Created by Administrator on 2017/4/24.

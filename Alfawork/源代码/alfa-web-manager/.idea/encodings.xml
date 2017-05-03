@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/alfa-core" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/alfa-core/src/main/java/com/alfa/web/common/pojo/RESTHttpResponse.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/alfa-core/src/main/java/com/alfa/web/common/pojo/RestResult.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/alfa-core/src/main/java/com/alfa/web/common/utils/HttpClientUtil.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/alfa-core/src/main/java/com/alfa/web/common/utils/RSETClientPwdUtil.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/alfa-core/src/main/java/com/alfa/web/common/utils/RSETClientUtil.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/alfa-log4j" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/alfa-log4j/src/main/resources/log4j.properties" charset="GBK" />
     <file url="file://$PROJECT_DIR$/alfa-message-ws" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/alfa-mobile" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/alfa-mobile-ws" charset="UTF-8" />
@@ -17,7 +9,13 @@
     <file url="file://$PROJECT_DIR$/alfa-platform" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/alfa-platform/src/main/webapp/WEB-INF/lib/upacp_sdk-1.0.0.jar" charset="GBK" />
     <file url="file://$PROJECT_DIR$/alfa-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/RSETClientPwdUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/RSETClientUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/pojo/RESTHttpResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/pojo/RestResult.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/alfa-timer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/alfa-ws" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

@@ -24,7 +24,7 @@ import javax.activation.DataHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alfa.web.common.utils.StringUtil;
+import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.pojo.UserManager;
 import com.alfa.web.util.pojo.UserSession;
 import org.apache.commons.codec.binary.Base64;
@@ -36,7 +36,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alfa.web.util.pojo.BasePager;
-import com.alfa.web.common.pojo.Criteria;
+import com.alfa.web.util.pojo.Criteria;
 
 /**
  * Created by Administrator on 2017/4/27.

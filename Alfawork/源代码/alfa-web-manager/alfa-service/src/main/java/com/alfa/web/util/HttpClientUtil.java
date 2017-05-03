@@ -1,19 +1,14 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Proxy.Type;
 import java.net.URL;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Created by Administrator on 2017/4/26.
@@ -31,7 +26,7 @@ public class HttpClientUtil {
 
     private String proxyUrl = "web-proxy.corp.hp.com";
     private int proxyPort = 8080;
-    private Type proxyType = Proxy.Type.HTTP;
+    private Type proxyType = Type.HTTP;
 
     /**
      * 调用url，将结果以字符串形式返回

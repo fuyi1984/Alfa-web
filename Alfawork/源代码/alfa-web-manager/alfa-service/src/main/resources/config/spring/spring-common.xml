@@ -33,7 +33,7 @@
 
     <!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring
         bean对象 -->
-    <bean class="com.alfa.web.common.utils.SpringContextHolder" id="applicationContext"
+    <bean class="com.alfa.web.util.SpringContextHolder" id="applicationContext"
           lazy-init="false"/>
 
     <!-- mybatis接口 -->
@@ -58,7 +58,7 @@
         <property name="cacheName" value="myEhcache"/>
     </bean>
 
-    <bean id="cacheControler" class="com.alfa.web.service.CacheController">
+    <bean id="cacheControler" class="com.alfa.web.util.Cache.CacheController">
         <property name="cache">
             <ref local="simpleCache"/>
         </property>

@@ -1,6 +1,6 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
-import com.alfa.web.common.pojo.RESTHttpResponse;
+import com.alfa.web.util.pojo.RESTHttpResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -10,7 +10,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
-import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
@@ -32,13 +31,13 @@ public class RSETClientUtil {
     private static long endTime = 0L;
 
     /**
-     * POST调用WebService方法
+     * POST����WebService����
      *
      * @param url
-     *            WebService地址
+     *            WebService��ַ
      * @param paramters
-     *            JSON格式的参数
-     * @return 调用结果
+     *            JSON��ʽ�Ĳ���
+     * @return ���ý��
      * @throws JSONException
      * @throws IOException
      */
@@ -47,7 +46,7 @@ public class RSETClientUtil {
         RESTHttpResponse result = new RESTHttpResponse();
 
         try {
-            logger.debug("调用WebService接口开始。Url：" + url);
+            logger.debug("����WebService�ӿڿ�ʼ��Url��" + url);
 
             Object jsonObj = null;
             try{
@@ -75,18 +74,18 @@ public class RSETClientUtil {
             HttpResponse response = client.execute(httpPost);
             StatusLine sl = response.getStatusLine();
             int statusCode = sl.getStatusCode();
-            // 设置返回状态码
+            // ���÷���״̬��
             result.setStatus(statusCode);
 
-            // 获取返回内容
+            // ��ȡ��������
             InputStream ins = response.getEntity().getContent();
             StringWriter writer = new StringWriter();
             IOUtils.copy(ins, writer, "UTF-8");
             result.setContent(writer.toString());
 
-            logger.debug("调用WebService接口结束。响应状态：" + statusCode + "，响应内容" + writer.toString());
+            logger.debug("����WebService�ӿڽ�������Ӧ״̬��" + statusCode + "����Ӧ����" + writer.toString());
         } catch (IOException ex) {
-            // 发生网络异常
+            // ���������쳣
             logger.error(ExceptionUtils.getStackTrace(ex));
             throw ex;
         }
@@ -95,15 +94,15 @@ public class RSETClientUtil {
     }
 
     /**
-     * POST调用WebService方法
+     * POST����WebService����
      *
      * @param url
-     *            WebService地址
+     *            WebService��ַ
      * @param paramters
-     *            JSON格式的参数
+     *            JSON��ʽ�Ĳ���
      * @param contentType default "application/json"
      * @param method (post/put/delete/get)
-     * @return 调用结果
+     * @return ���ý��
      * @throws JSONException
      * @throws IOException
      */
@@ -115,7 +114,7 @@ public class RSETClientUtil {
         RESTHttpResponse result = new RESTHttpResponse();
 
         try {
-            logger.debug("调用WebService接口开始。Url：" + url);
+            logger.debug("����WebService�ӿڿ�ʼ��Url��" + url);
 
             Object jsonObj = null;
             if(paramters != null && paramters.startsWith("["))
@@ -139,7 +138,7 @@ public class RSETClientUtil {
             }else if("get".equals((""+method).toLowerCase())) {
                 String finalUrl = ""+url;
                 if(paramters!= null && paramters.contains("=")) {
-                    //将paramters添加到url后面
+                    //��paramters��ӵ�url����
                     if (url != null && url.contains("&"))
                         finalUrl = finalUrl + "&" + paramters;
                     else if (url != null && url.contains("?"))
@@ -150,7 +149,7 @@ public class RSETClientUtil {
             }else if("delete".equals((""+method).toLowerCase())) {
                 String finalUrl = ""+url;
                 if(paramters!= null && paramters.contains("=")) {
-                    //将paramters添加到url后面
+                    //��paramters��ӵ�url����
                     if (url != null && url.contains("&"))
                         finalUrl = finalUrl + "&" + paramters;
                     else if (url != null && url.contains("?"))
@@ -165,22 +164,22 @@ public class RSETClientUtil {
             HttpResponse response = client.execute(httpRequest);
             StatusLine sl = response.getStatusLine();
             int statusCode = sl.getStatusCode();
-            // 设置返回状态码
+            // ���÷���״̬��
             result.setStatus(statusCode);
 
-            // 获取返回内容
+            // ��ȡ��������
             InputStream ins = response.getEntity().getContent();
             StringWriter writer = new StringWriter();
             IOUtils.copy(ins, writer, "UTF-8");
             result.setContent(writer.toString());
 
-            logger.debug("调用WebService接口结束。响应状态：" + statusCode + "，响应内容" + writer.toString());
+            logger.debug("����WebService�ӿڽ�������Ӧ״̬��" + statusCode + "����Ӧ����" + writer.toString());
         } catch (JSONException ex) {
-            // JSON出错
+            // JSON����
             logger.error(ExceptionUtils.getStackTrace(ex));
             throw ex;
         } catch (IOException ex) {
-            // 发生网络异常
+            // ���������쳣
             logger.error(ExceptionUtils.getStackTrace(ex));
             throw ex;
         }
@@ -189,11 +188,11 @@ public class RSETClientUtil {
     }
 
     /**
-     * get调用WebService方法
+     * get����WebService����
      *
      * @param url
-     *            WebService地址
-     * @return 调用结果
+     *            WebService��ַ
+     * @return ���ý��
      * @throws IOException
      */
     public static RESTHttpResponse get(String url) throws IOException {
@@ -201,63 +200,63 @@ public class RSETClientUtil {
         RESTHttpResponse result = new RESTHttpResponse();
 
         try {
-            logger.debug("调用WebService接口开始。Url：" + url);
+            logger.debug("����WebService�ӿڿ�ʼ��Url��" + url);
             HttpGet httpGet = new HttpGet(url);
             httpGet.addHeader("Content-Type", "application/json; charset=" + HTTP.UTF_8);
             HttpClient client = new DefaultHttpClient();
             HttpResponse response = client.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
-            // 设置返回状态码
+            // ���÷���״̬��
             result.setStatus(statusCode);
             logger.info("statusCode:" + statusCode);
 
-            // 获取返回内容
+            // ��ȡ��������
             InputStream ins = response.getEntity().getContent();
             StringWriter writer = new StringWriter();
             IOUtils.copy(ins, writer, "UTF-8");
             result.setContent(writer.toString());
             logger.debug("Response Infromation:" + writer.toString());
         } catch (IOException e) {
-            // 发生网络异常
+            // ���������쳣
             logger.error("exception occurred!\n" + ExceptionUtils.getFullStackTrace(e));
             throw e;
-            // 网络错误
+            // �������
         }
 
         return result;
     }
 
     /**
-     * delete调用WebService方法
+     * delete����WebService����
      *
      * @param url
-     *            WebService地址
-     * @return 调用结果
+     *            WebService��ַ
+     * @return ���ý��
      */
     public static RESTHttpResponse delete(String url) {
 
         RESTHttpResponse result = new RESTHttpResponse();
 
         try {
-            logger.debug("调用WebService接口开始。Url：" + url);
+            logger.debug("����WebService�ӿڿ�ʼ��Url��" + url);
             HttpDelete httpDelete = new HttpDelete(url);
             httpDelete.addHeader("Content-Type", "application/json; charset=" + HTTP.UTF_8);
             HttpClient client = new DefaultHttpClient();
             HttpResponse response = client.execute(httpDelete);
             int statusCode = response.getStatusLine().getStatusCode();
-            // 设置返回状态码
+            // ���÷���״̬��
             result.setStatus(statusCode);
 
-            // 获取返回内容
+            // ��ȡ��������
             InputStream ins = response.getEntity().getContent();
             StringWriter writer = new StringWriter();
             IOUtils.copy(ins, writer, "UTF-8");
             result.setContent(writer.toString());
             logger.debug("Response Infromation:" + writer.toString());
         } catch (IOException e) {
-            // 发生网络异常
+            // ���������쳣
             logger.error("exception occurred!\n" + ExceptionUtils.getFullStackTrace(e));
-            // 网络错误
+            // �������
         }
         return result;
     }

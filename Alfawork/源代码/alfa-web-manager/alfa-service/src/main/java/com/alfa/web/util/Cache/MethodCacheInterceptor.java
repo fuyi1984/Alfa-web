@@ -1,4 +1,4 @@
-package com.alfa.web.service;
+package com.alfa.web.util.Cache;
 
 import net.sf.ehcache.Cache;
 import org.aopalliance.intercept.MethodInterceptor;

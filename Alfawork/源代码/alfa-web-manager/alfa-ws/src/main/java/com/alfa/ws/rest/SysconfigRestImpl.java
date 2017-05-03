@@ -1,8 +1,8 @@
 package com.alfa.ws.rest;
 
-import com.alfa.web.common.constant.WebConstants;
-import com.alfa.web.common.pojo.RestResult;
-import com.alfa.web.common.utils.JsonUtil;
+import com.alfa.web.util.constant.WebConstants;
+import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.util.JsonUtil;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;
 import com.alfa.web.util.LicenseUtil;

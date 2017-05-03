@@ -1,10 +1,4 @@
-package com.alfa.web.common.utils;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package com.alfa.web.util;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
@@ -13,6 +7,12 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * JSON的工具类

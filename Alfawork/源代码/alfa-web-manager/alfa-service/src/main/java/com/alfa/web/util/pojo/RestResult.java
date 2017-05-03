@@ -1,4 +1,4 @@
-package com.alfa.web.common.pojo;
+package com.alfa.web.util.pojo;
 
 /**
  * RestAPI返回对象

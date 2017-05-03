@@ -1,4 +1,6 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
+
+import org.jfree.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -13,8 +15,6 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.jfree.util.Log;
 
 /**
  * Created by Administrator on 2017/4/26.

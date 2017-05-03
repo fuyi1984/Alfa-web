@@ -1,6 +1,6 @@
 package com.alfa.web.util;
 
-import com.alfa.web.common.constant.WebConstants;
+import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.util.pojo.UserSession;

@@ -1,6 +1,6 @@
 package com.alfa.web.util.pojo;
 
-import com.alfa.web.common.constant.WebConstants;
+import com.alfa.web.util.constant.WebConstants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.request.RequestContextHolder;

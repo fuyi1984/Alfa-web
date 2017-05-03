@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.common.pojo.Criteria;
+import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.dao.SysConfigMapper;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;

@@ -1,20 +1,16 @@
-package com.alfa.web.common.utils;
-
-import java.beans.PropertyDescriptor;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
+package com.alfa.web.util;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.beans.PropertyDescriptor;
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/4/27.
@@ -60,6 +56,7 @@ public class BeanUtil {
      */
     public static Map<String, Object> collectProperties(Object orig)
             throws IllegalAccessException, InvocationTargetException {
+
         if (orig == null) {
             throw new IllegalArgumentException("No accountin bean specified");
         }

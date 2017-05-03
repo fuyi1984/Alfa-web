@@ -1,4 +1,4 @@
-package com.alfa.web.common.exception;
+package com.alfa.web.util.exception;
 
 /**
  * Created by Administrator on 2017/4/24.

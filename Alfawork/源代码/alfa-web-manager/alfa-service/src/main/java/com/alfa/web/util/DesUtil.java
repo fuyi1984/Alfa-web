@@ -1,15 +1,13 @@
-package com.alfa.web.common.utils;
+package com.alfa.web.util;
 
-import java.io.IOException;
-import java.security.SecureRandom;
-import java.util.UUID;
+import org.apache.commons.net.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
-
-import org.apache.commons.net.util.Base64;
+import java.io.IOException;
+import java.security.SecureRandom;
 
 /**
  * Created by Administrator on 2017/4/27.

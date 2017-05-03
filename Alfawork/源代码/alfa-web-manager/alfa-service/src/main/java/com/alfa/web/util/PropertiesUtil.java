@@ -1,8 +1,8 @@
 package com.alfa.web.util;
 
-import com.alfa.web.common.pojo.Criteria;
-import com.alfa.web.common.utils.ClassLoaderUtil;
-import com.alfa.web.common.utils.SpringContextHolder;
+import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.ClassLoaderUtil;
+import com.alfa.web.util.SpringContextHolder;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;
 
