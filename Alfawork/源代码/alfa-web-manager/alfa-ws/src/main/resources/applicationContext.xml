@@ -12,6 +12,9 @@
     <!-- 加载dashBoard系统Spring配置 -->
     <import resource="classpath:/config/spring/spring-common.xml"/>
 
+    <!-- job -->
+    <import resource="spring-schedule.xml"/>
+
     <!-- 加载WebService服务配置信息-->
     <import resource="rest-services.xml"/>
 

@@ -16,23 +16,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="alfa-message-schedule" />
         <module name="alfa-message-ws" />
         <module name="alfa-mobile" />
         <module name="alfa-mobile-ws" />
+        <module name="alfa-pay-schedule" />
         <module name="alfa-pay-ws" />
         <module name="alfa-platform" />
         <module name="alfa-service" />
-        <module name="alfa-timer" />
         <module name="alfa-ws" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="alfa-core" target="1.6" />
       <module name="alfa-log4j" target="1.6" />
+      <module name="alfa-message-schedule" target="1.6" />
       <module name="alfa-message-service" target="1.6" />
       <module name="alfa-message-ws" target="1.6" />
       <module name="alfa-mobile" target="1.6" />
       <module name="alfa-mobile-ws" target="1.6" />
+      <module name="alfa-pay-schedule" target="1.6" />
       <module name="alfa-pay-service" target="1.6" />
       <module name="alfa-pay-ws" target="1.6" />
       <module name="alfa-platform" target="1.6" />

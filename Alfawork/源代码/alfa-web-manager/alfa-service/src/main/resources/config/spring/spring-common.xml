@@ -16,9 +16,17 @@
 	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd"
        default-lazy-init="true">
 
-  <!--  <http-conf:conduit name="*.http-conduit">
+    <http-conf:conduit name="*.http-conduit">
         <http-conf:client ReceiveTimeout="0"/>
-    </http-conf:conduit>-->
+    </http-conf:conduit>
+
+    <!-- dwr 配置-->
+    <bean id="doActionManager" class="com.alfa.web.dwr.DoActionManager">
+        <dwr:remote javascript="DoActionManager">
+            <dwr:include method="initialize"/>
+            <dwr:include method="checkAndReleaseBalance"/>
+        </dwr:remote>
+    </bean>
 
     <!-- 自动扫描组件 -->
     <context:component-scan base-package="com.alfa.web"/>
@@ -29,7 +37,7 @@
     <!-- service层的属性和配置文件读入 ,多个用逗号隔开 -->
     <!-- controller层的属性和配置文件读入 ,多个用逗号隔开 -->
     <context:property-placeholder
-            location="classpath:/config/ibatis/jdbc.properties"/>
+            location="classpath:/config/ibatis/jdbc.properties,classpath:/config/others/config.properties"/>
 
     <!-- 用于持有ApplicationContext,可以使用SpringContextHolder.getBean('xxxx')的静态方法得到spring
         bean对象 -->
