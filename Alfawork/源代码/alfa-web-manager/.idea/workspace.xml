@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/aspect/TraceAspect.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/aspect/UserLog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dwr/DoActionManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dwr/DwrScriptSessionManagerUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dwr/RealTimeManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/RequestByXml.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/alfa-timer/alfa-timer.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/pom.xml" afterPath="$PROJECT_DIR$/alfa-service/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/resources/config/spring/spring-common.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/resources/config/spring/spring-common.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-timer/pom.xml" afterPath="$PROJECT_DIR$/alfa-timer/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/resources/applicationContext.xml" afterPath="$PROJECT_DIR$/alfa-ws/src/main/resources/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/alfa-ws/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -1069,7 +1050,7 @@
       <workItem from="1493859952161" duration="409000" />
       <workItem from="1493860527059" duration="16581000" />
       <workItem from="1493946728629" duration="3980000" />
-      <workItem from="1493951440487" duration="1952000" />
+      <workItem from="1493951440487" duration="2390000" />
     </task>
     <task id="LOCAL-00001">
       <created>1492567046145</created>
@@ -1316,7 +1297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493800713439</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="2017-5-5">
+      <created>1493953843904</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1493953843904</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1352,7 +1340,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225415000" />
+    <option name="totallyTimeSpent" value="225853000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1472,7 +1460,8 @@
     <MESSAGE value="2017-4-27" />
     <MESSAGE value="2017-5-2" />
     <MESSAGE value="2017-5-3" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017-5-3" />
+    <MESSAGE value="2017-5-5" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017-5-5" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1674,6 +1663,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1681,6 +1671,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1688,6 +1679,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1695,6 +1687,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1710,6 +1703,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1726,8 +1720,8 @@
         <state relative-caret-position="200">
           <caret line="8" column="55" lean-forward="false" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
           <folding>
-            <element signature="e#134#135#0" expanded="true" />
-            <element signature="e#196#197#0" expanded="true" />
+            <element signature="e#134#135#0" expanded="false" />
+            <element signature="e#196#197#0" expanded="false" />
           </folding>
         </state>
       </provider>
