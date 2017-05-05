@@ -21,12 +21,12 @@
     </http-conf:conduit>
 
     <!-- dwr 配置-->
-    <bean id="doActionManager" class="com.alfa.web.dwr.DoActionManager">
+    <!--<bean id="doActionManager" class="com.alfa.web.dwr.DoActionManager">
         <dwr:remote javascript="DoActionManager">
             <dwr:include method="initialize"/>
             <dwr:include method="checkAndReleaseBalance"/>
         </dwr:remote>
-    </bean>
+    </bean>-->
 
     <!-- 自动扫描组件 -->
     <context:component-scan base-package="com.alfa.web"/>

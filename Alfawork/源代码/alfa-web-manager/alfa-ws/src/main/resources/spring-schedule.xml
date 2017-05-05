@@ -17,4 +17,18 @@
         <property name="cronExpression" value="*/30 * * * * ?"/>
     </bean>
 
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="waitForJobsToCompleteOnShutdown" value="true"/>
+        <property name="triggers">
+            <list>
+                <!--<ref bean="cronTrigger"/>-->
+            </list>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+            </props>
+        </property>
+    </bean>
+
 </beans>
