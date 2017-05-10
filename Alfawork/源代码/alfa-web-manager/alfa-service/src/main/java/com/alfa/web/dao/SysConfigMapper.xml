@@ -20,6 +20,14 @@
             <if test="condition.configName != null">
                 and configName = #{condition.configName}
             </if>
+            <if test="condition.configNameLike != null">
+                and configName like concat('%',
+                #{condition.configNameLike}, '%')
+            </if>
+            <if test="condition.configKeyLike != null">
+                and configKey like concat('%',
+                #{condition.configKeyLike}, '%')
+            </if>
             <if test="condition.configKey != null">
                 and configKey = #{condition.configKey}
             </if>
@@ -48,8 +56,8 @@
     </sql>
 
     <sql id="Base_Column_List">
-        ID, CONFIG_NAME, CONFIG_KEY, CONFIG_VALUE, DESCRIPTION, CREATED_BY, CREATED_DT,
-        UPDATED_BY, UPDATED_DT, VERSION
+        Id, configName, configKey, configValue, description,createdBy, createdDt,
+        updatedBy, updatedDt, version
     </sql>
 
     <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">

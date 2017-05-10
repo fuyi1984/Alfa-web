@@ -82,6 +82,16 @@ public interface WebConstants {
         String ADMINISTRATION = "03";
     }
 
+    /** 调用北向接口返回结果状态 */
+    public interface ResultStatus {
+
+        /** success 成功 */
+        String SUCCESS = "success";
+
+        /** failure 失败 */
+        String FAILURE = "failure";
+    }
+
     /**
      * 消息代码
      */

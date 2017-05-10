@@ -311,13 +311,17 @@ public class WebUtil {
      *
      * @param obj
      */
-    /*public static <T> void prepareInsertParams(T obj) {
-        if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
+    public static <T> void prepareInsertParams(T obj) {
+        /*if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
             // 创建人
             invokeSet(obj, "createdBy", AuthUtil.getAuthUser().getAccount());
             // 更新人
             invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
-        }
+        }*/
+
+        invokeSet(obj,"createdBy","test");
+        invokeSet(obj,"updatedBy","test");
+
         Date date = new Date();
         // 更新时间
         invokeSet(obj, "createdDt", date);
@@ -325,7 +329,7 @@ public class WebUtil {
         invokeSet(obj, "updatedDt", date);
         // 初始版本号
         invokeSet(obj, "version", 1L);
-    }*/
+    }
 
     /**
      * 新增时添加用户以及当前时间信息(For Activiti)
@@ -373,15 +377,17 @@ public class WebUtil {
      *
      * @param obj
      */
-   /* public static <T> void prepareUpdateParams(T obj) {
-        if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
+   public static <T> void prepareUpdateParams(T obj) {
+        /*if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
             // 更新人
             invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
         }
+        */
+       invokeSet(obj, "updatedBy", "test");
         // 更新时间
         Date date = new Date();
         invokeSet(obj, "updatedDt", date);
-    }*/
+    }
 
     /**
      * 更新时添加用户以及当前时间信息

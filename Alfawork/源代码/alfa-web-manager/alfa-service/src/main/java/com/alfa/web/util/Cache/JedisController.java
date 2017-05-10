@@ -35,4 +35,5 @@ public class JedisController {
     public JedisCluster getJedisCluster() {
         return jedisCluster;
     }
+
 }

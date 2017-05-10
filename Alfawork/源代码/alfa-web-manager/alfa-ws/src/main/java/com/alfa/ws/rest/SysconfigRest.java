@@ -36,6 +36,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insertConfig")
     public Response insertConfig(SysConfig config);
 
@@ -47,6 +49,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/updateConfig")
     public Response updateConfig(SysConfig config);
 

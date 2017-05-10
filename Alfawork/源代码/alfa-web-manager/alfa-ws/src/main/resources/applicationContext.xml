@@ -11,6 +11,7 @@
 
     <!-- 加载dashBoard系统Spring配置 -->
     <import resource="classpath:/config/spring/spring-common.xml"/>
+    <import resource="classpath:/config/redis/spring-redis.xml"/>
 
     <!-- job -->
     <import resource="spring-schedule.xml"/>

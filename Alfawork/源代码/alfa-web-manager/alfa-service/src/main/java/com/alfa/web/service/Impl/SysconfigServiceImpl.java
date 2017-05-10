@@ -85,7 +85,7 @@ public class SysconfigServiceImpl implements SysconfigService {
     public boolean insertSysConfig(SysConfig record) {
         boolean result = false;
 
-        //WebUtil.prepareInsertParams(record);
+        WebUtil.prepareInsertParams(record);
         int levelResult = this.sysConfigMapper.insertSelective(record);
 
         if (levelResult == 1) {

@@ -2,6 +2,7 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.SysconfigService;
+import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
@@ -44,5 +45,34 @@ public class SysconfigServiceTest extends TestBase {
         sysConfig.setCreatedBy("fuyi");
         sysConfig.setCreatedDt(new Date());
         Assert.assertEquals(1, sysConfigService.insertSelective(sysConfig));
+    }
+
+    @Test
+    public void selectByParams(){
+
+        Criteria criteria = new Criteria();
+        criteria.put("configName", "Test");
+
+        Assert.assertEquals(1,sysConfigService.selectByParams(criteria).size());
+    }
+
+    @Test
+    public void selectByPrimaryKey(){
+        SysConfig sysConfig=sysConfigService.selectByPrimaryKey(2L);
+        Assert.assertNotNull(sysConfig);
+    }
+
+    @Test
+    public void countByParams(){
+        Criteria criteria = new Criteria();
+        criteria.put("configNameLike", "Test");
+        criteria.put("configKeyLike","Test");
+        Assert.assertEquals(0,sysConfigService.countByParams(criteria));
+    }
+
+    @Test
+    public void deleteByPrimaryKey(){
+        int count=sysConfigService.deleteByPrimaryKey(1L);
+        Assert.assertEquals(1,count);
     }
 }
