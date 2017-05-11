@@ -78,14 +78,14 @@ public class SysconfigRestImpl implements SysconfigRest {
         List<SysConfig> configList = this.sysconfigService.selectByParams(criteria);
 
         if (configList.size() > 0) {
-            return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "配置已经存在", null))).build();
+            return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Configuration_Exists_Success, null))).build();
         } else {
             boolean result = this.sysconfigService.insertSysConfig(config);
             if(result){
                 //json= InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS,null);
-                return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "添加成功", null))).build();
+                return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Configuration_Insert_Success, null))).build();
             }else{
-                return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "添加失败", null))).build();
+                return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Configuration_Insert_Failtrue, null))).build();
             }
         }
 
@@ -102,9 +102,9 @@ public class SysconfigRestImpl implements SysconfigRest {
         int result=this.sysconfigService.updateByPrimaryKeySelective(config);
 
         if(result==1){
-             Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.INFO_UPDATE_SUCCESS,null));
+             Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Configuration_Update_Success,null));
         }else{
-            Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.ERROR_UPDATE_FAILURE,null));
+            Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Configuration_Update_Failtrue,null));
         }
 
         return Response.status(Status.OK).entity(Json).build();
@@ -119,10 +119,10 @@ public class SysconfigRestImpl implements SysconfigRest {
         boolean result=this.sysconfigService.deleteSysConfig(config.getId());
 
         if(result){
-            json = InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS, null);
+            json= JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Configuration_Delete_Success,null));
             return Response.status(Status.OK).entity(json).build();
         }else{
-            json = InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS, null);
+            json= JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Configuration_Delete_Failtrue,null));
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(json).build();
         }
 
