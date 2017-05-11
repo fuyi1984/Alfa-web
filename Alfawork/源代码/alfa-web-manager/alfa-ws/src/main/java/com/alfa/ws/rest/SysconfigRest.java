@@ -62,6 +62,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/deleteConfig")
     public Response deleteConfig(SysConfig config);
 

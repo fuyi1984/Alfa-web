@@ -91,6 +91,9 @@ public class SysconfigRestImpl implements SysconfigRest {
 
     }
 
+    /**
+     * 更新配置
+     */
     @Override
     public Response updateConfig(SysConfig config) {
         String Json="";
@@ -107,6 +110,9 @@ public class SysconfigRestImpl implements SysconfigRest {
         return Response.status(Status.OK).entity(Json).build();
     }
 
+    /**
+     * 删除配置
+     */
     @Override
     public Response deleteConfig(SysConfig config) {
         String json="";

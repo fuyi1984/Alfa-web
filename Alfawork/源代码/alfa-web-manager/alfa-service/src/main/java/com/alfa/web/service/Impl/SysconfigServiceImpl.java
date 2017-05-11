@@ -103,7 +103,7 @@ public class SysconfigServiceImpl implements SysconfigService {
         SysConfig sysconfig = this.sysConfigMapper.selectByPrimaryKey(configSid);
 
         Criteria condition = new Criteria();
-        condition.put("congfigSid", sysconfig.getId());
+        condition.put("id", sysconfig.getId());
 
         int configResult = this.sysConfigMapper.deleteByPrimaryKey(configSid);
 
