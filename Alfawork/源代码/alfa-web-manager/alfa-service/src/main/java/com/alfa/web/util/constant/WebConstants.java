@@ -137,6 +137,16 @@ public interface WebConstants {
          */
         String Configuration_Exists_Failtrue = "Configuration.Exists.Failture";
 
+        /**
+         * 配置查询成功。
+         */
+        String Configuration_Select_Success = "Configuration.Select.Success";
+
+        /**
+         * 配置查询失败。
+         */
+        String Configuration_Select_Failtrue = "Configuration.Select.Failture";
+
     }
 
 }

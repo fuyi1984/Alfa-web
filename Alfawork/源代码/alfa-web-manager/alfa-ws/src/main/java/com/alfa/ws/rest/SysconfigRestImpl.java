@@ -2,6 +2,7 @@ package com.alfa.ws.rest;
 
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.constant.WebConstants;
+import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.InterfaceResult;
 import com.alfa.web.util.pojo.RestResult;
@@ -24,7 +25,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/4/27.
@@ -58,6 +61,8 @@ public class SysconfigRestImpl implements SysconfigRest {
 
         List<SysConfig> list=this.sysconfigService.selectByParams(example);
         String json=JsonUtil.toJson(list);
+
+        //return Response.status(Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Configuration_Select_Success,json))).build();
 
         return Response.status(Status.OK).entity(json).build();
     }
@@ -130,7 +135,45 @@ public class SysconfigRestImpl implements SysconfigRest {
 
     @Override
     public Response findConfig(String param, HttpServletRequest request, HttpServletResponse response) {
-        return null;
+
+        Map map=WebUtil.getParamsMap(param,"utf-8");
+        //分页排序处理
+        BasePager pager=new BasePager();
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
+        }
+        if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
+            pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
+        }
+        if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
+            pager.setSortField(map.get("sortdatafield").toString());
+        }
+        if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
+            pager.setSortOrder(map.get("sortorder").toString());
+        }
+
+        //过滤
+        Criteria criteria = new Criteria();
+        if (!StringUtil.isNullOrEmpty(map.get("configName"))) {
+            criteria.put("configNameLike",  map.get("configName").toString());
+        }
+        if (!StringUtil.isNullOrEmpty(map.get("configKey"))) {
+            criteria.put("configKeyLike",  map.get("configKey").toString());
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+
+        List<SysConfig> configList = this.sysconfigService.selectByParams(criteria);
+        int count = this.sysconfigService.countByParams(criteria);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("TotalRows", count);
+        data.put("Rows", configList);
+
+        String json = JsonUtil.toJson(data);
+
+        return Response.status(Status.OK).entity(json).build();
     }
 
     @Override
