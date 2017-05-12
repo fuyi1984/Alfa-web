@@ -66,6 +66,100 @@
         <include refid="common.Mysql_Pagination_Limit" />
     </select>
 
-    
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
+        delete from SysRelevance
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysRelevance" >
+        insert into SysRelevance
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="Description != null" >
+                Description,
+            </if>
+            <if test="MappKey != null" >
+                MappKey,
+            </if>
+            <if test="Status != null" >
+                Status,
+            </if>
+            <if test="Statusname != null" >
+                Statusname,
+            </if>
+            <if test="OperatorTime != null" >
+                OperatorTime,
+            </if>
+            <if test="OperatorId != null" >
+                OperatorId,
+            </if>
+            <if test="FirstId != null" >
+                FirstId,
+            </if>
+            <if test="SecondId != null" >
+                SecondId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="Description != null" >
+                #{Description},
+            </if>
+            <if test="MappKey != null" >
+                #{MappKey},
+            </if>
+            <if test="Status != null" >
+                #{Status},
+            </if>
+            <if test="Statusname != null" >
+                #{Statusname},
+            </if>
+            <if test="OperatorTime != null" >
+                #{OperatorTime},
+            </if>
+            <if test="OperatorId != null" >
+                #{OperatorId},
+            </if>
+            <if test="FirstId != null" >
+                #{FirstId},
+            </if>
+            <if test="SecondId != null" >
+                #{SecondId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByParamsSelective" parameterType="map" >
+        update SysRelevance
+        <set >
+            <if test="Description != null" >
+                Description=#{Description},
+            </if>
+            <if test="MappKey != null" >
+                MappKey=#{MappKey},
+            </if>
+            <if test="Status != null" >
+                Status=#{Status},
+            </if>
+            <if test="Statusname != null" >
+                Statusname=#{Statusname},
+            </if>
+            <if test="OperatorTime != null" >
+                OperatorTime=#{OperatorTime},
+            </if>
+            <if test="OperatorId != null" >
+                OperatorId=#{OperatorId},
+            </if>
+            <if test="FirstId != null" >
+                FirstId=#{FirstId},
+            </if>
+            <if test="SecondId != null" >
+                SecondId=#{SecondId},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
 
 </mapper>
