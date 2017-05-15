@@ -104,12 +104,160 @@
         </trim>
     </sql>
 
-
     <sql id="Base_Column_List">
         A.Id, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
+    
+    <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into sysusers (username, password, phone, sexname,sex,statusname,status,typesname,types,
+        address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
+        createdBy, createdDt, updatedBy, updatedDt, version)
+        values (#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
+        #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into sysusers
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test=" phone != null">
+                phone,
+            </if>
+            <if test="sexname != null">
+                sexname,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="statusname != null">
+                statusname,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="typesname != null">
+                typesname,
+            </if>
+            <if test="types != null">
+                types,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="remark != null">
+                remarks,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="mobiletoken != null">
+                mobiletoken,
+            </if>
+            <if test="errorCount != null">
+                errorCount,
+            </if>
+            <if test="errorCountformobile != null">
+                errorCountformobile,
+            </if>
+            <if test="LoginIp != null">
+                LoginIp,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test=" phone != null">
+                #{phone},
+            </if>
+            <if test="sexname != null">
+                #{sexname},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="statusname != null">
+                #{statusname},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="typesname != null">
+                #{typesname},
+            </if>
+            <if test="types != null">
+                #{types},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="remark != null">
+                #{remarks},
+            </if>
+            <if test="token != null">
+                #{token},
+            </if>
+            <if test="mobiletoken != null">
+                #{mobiletoken},
+            </if>
+            <if test="errorCount != null">
+                #{errorCount},
+            </if>
+            <if test="errorCountformobile != null">
+                #{errorCountformobile},
+            </if>
+            <if test="LoginIp != null">
+                #{LoginIp},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+        </trim>
+    </insert>
 
 </mapper>
