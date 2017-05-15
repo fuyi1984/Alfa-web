@@ -29,8 +29,87 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
-
+            <if test="condition.Id != null">
+                and A.Id = #{condition.Id}
+            </if>
+            <if test="condition.username != null">
+                and A.username = #{condition.username}
+            </if>
+            <if test="condition.password != null">
+                and A.password = #{condition.password}
+            </if>
+            <if test="condition.phone != null">
+                and A.phone = #{condition.phone}
+            </if>
+            <if test="condition.sexname != null">
+                and A.sexname = #{condition.sexname}
+            </if>
+            <if test="condition.sex != null">
+                and A.sex = #{condition.sex}
+            </if>
+            <if test="condition.statusname != null">
+                and A.statusname = #{condition.statusname}
+            </if>
+            <if test="condition.status != null">
+                and A.status = #{condition.status}
+            </if>
+            <if test="condition.typesname != null">
+                and A.typesname = #{condition.typesname}
+            </if>
+            <if test="condition.types != null">
+                and A.types = #{condition.types}
+            </if>
+            <if test="condition.address != null">
+                and A.address = #{condition.address}
+            </if>
+            <if test="condition.remarks != null">
+                and A.remarks = #{condition.remarks}
+            </if>
+            <if test="condition.token != null">
+                and A.token = #{condition.token}
+            </if>
+            <if test="condition.mobiletoken != null">
+                and A.mobiletoken = #{condition.mobiletoken}
+            </if>
+            <if test="condition.errorCount != null">
+                and A.errorCount = #{condition.errorCount}
+            </if>
+            <if test="condition.errorCountformobile != null">
+                and A.errorCountformobile = #{condition.errorCountformobile}
+            </if>
+            <if test="condition.LoginIp != null">
+                and A.LoginIp = #{condition.LoginIp}
+            </if>
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+            <if test="condition.createDtFrom != null" >
+                and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null" >
+                and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
         </trim>
+    </sql>
+
+
+    <sql id="Base_Column_List">
+        A.Id, A.username, A.password, A.phone, A.sexname, A.sex,
+        A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
+        A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
 
 </mapper>
