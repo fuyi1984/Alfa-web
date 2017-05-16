@@ -169,21 +169,24 @@
             distinct
         </if>
         <include refid="Base_Column_List" />
-        ,group_concat(CAST(C.MODULE_SID as char)) as MODULE_IDS
-        from sys_m_role A
-        <if test="condition.userSid != null" >
-            inner join SYS_M_USER_ROLE B
-            on A.ROLE_SID = B.ROLE_SID and B.USER_SID = #{condition.userSid:DECIMAL}
+        from SysRole A
+
+        <if test="condition.userSid != null and condition.MappKey != null">
+            inner join SysRelevance B
+            on A.Id = B.SecondId and B.MappKey = #{condition.MappKey} and B.FirstId = #{condition.userSid:DECIMAL}
         </if>
-        LEFT JOIN sys_m_role_module C ON C.ROLE_SID=A.ROLE_SID
+
+        LEFT JOIN SysRelevance C ON C.SecondId = A.Id
+
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
-        GROUP BY A.ROLE_SID
+        GROUP BY A.Id
         <if test="orderByClause != null" >
             order by ${orderByClause}
         </if>
         <include refid="common.Mysql_Pagination_Limit" />
+
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
