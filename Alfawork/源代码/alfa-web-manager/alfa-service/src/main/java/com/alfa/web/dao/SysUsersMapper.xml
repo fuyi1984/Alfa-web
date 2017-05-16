@@ -138,7 +138,6 @@
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version})
     </insert>
-
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
@@ -327,6 +326,43 @@
         <include refid="common.Mysql_Pagination_Limit" />
 
     </select>
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+        select count(*) from SysUsers A
+
+        <if test="condition.roleSid != null">
+            INNER JOIN SysRelevance F ON(A.Id= F.FirstId and F.SecondId = #{condition.roleSid})
+        </if>
+
+        <if test="condition.accountNameLike != null">
+            LEFT JOIN SysAccount B ON(B.Id=A.ACCOUNT_SID)
+        </if>
+
+        <if test="condition.accountType != null">
+            INNER JOIN SysAccount G ON(A.ACCOUNT_SID = G.ACCOUNT_SID and G.ACCOUNT_TYPE = #{condition.accountType})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from
+        SysUsers A
+        left join SysRelevance B on(B.FirstId = A.Id and B.MappKey = 'UserRole')
+        left join SysRole C on(C.Id = B.SecondId)
+
+        left join SysRelevance D on(D.FirstId = A.Id and D.MappKey = 'UserAccount')
+        left join SysAccount E on(E.Id = D.SecondId)
+        where A.Id =
+        #{Id}
+    </select>
+
+
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from
@@ -340,22 +376,6 @@
         </if>
     </delete>
 
-    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
-            resultType="java.lang.Integer">
-        select count(*) from SysUsers A
-        <if test="condition.accountNameLike != null">
-            LEFT JOIN SysAccount B ON(B.Id=A.ACCOUNT_SID)
-        </if>
-        <if test="condition.roleSid != null">
-            INNER JOIN SysRelevance F ON(A.USER_SID = F.USER_SID and F.ROLE_SID = #{condition.roleSid})
-        </if>
-        <if test="condition.accountType != null">
-            INNER JOIN SysAccount G ON(A.ACCOUNT_SID = G.ACCOUNT_SID and G.ACCOUNT_TYPE = #{condition.accountType})
-        </if>
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
-        </if>
-    </select>
 
 
 </mapper>
