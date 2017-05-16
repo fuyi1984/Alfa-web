@@ -2,6 +2,7 @@ package com.alfa.web.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/25.
@@ -73,6 +74,33 @@ public class SysUsers extends Entity implements Serializable{
      * 登录IP地址
      */
     private String LoginIp;
+
+    /**
+     * 用户关联角色列表
+     */
+    private List<SysRole> roles;
+
+    /**
+     * 用户关联账户列表
+     */
+    private List<SysAccount> accountObj;
+
+
+    public List<SysAccount> getAccountObj() {
+        return accountObj;
+    }
+
+    public void setAccountObj(List<SysAccount> accountObj) {
+        this.accountObj = accountObj;
+    }
+
+    public List<SysRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SysRole> roles) {
+        this.roles = roles;
+    }
 
     public String getMobiletoken() {
         return mobiletoken;

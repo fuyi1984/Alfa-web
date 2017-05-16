@@ -25,6 +25,22 @@
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
+
+        <collection property="SysRole" ofType="com.alfa.web.pojo.SysRole">
+            <id column="Id" property="Id" jdbcType="BIGINT" />
+            <result column="role_name" property="role_name" jdbcType="VARCHAR" />
+            <result column="types" property="types" jdbcType="VARCHAR" />
+            <result column="typesname" property="typesname" jdbcType="VARCHAR" />
+            <result column="status" property="status" jdbcType="VARCHAR"/>
+            <result column="statusname" property="statusname" jdbcType="VARCHAR"/>
+            <result column="roleDesc" property="roleDesc" jdbcType="VARCHAR"/>
+            <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
+            <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP" />
+            <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
+            <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
+            <result column="version" property="version" jdbcType="BIGINT" />
+        </collection>
+
     </resultMap>
 
     <sql id="Example_Where_Clause">
@@ -259,5 +275,87 @@
             </if>
         </trim>
     </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List" />
+
+        from SysUsers A
+
+        left join SysRelevance B on(B.FirstId = A.Id and B.MappKey = 'UserRole')
+        left join SysRole C on(C.Id = B.SecondId)
+
+        left join SysRelevance D on(D.FirstId = A.Id and D.MappKey = 'UserAccount')
+        left join SysAccount E on(E.Id = D.SecondId)
+
+        <if test="condition.roleSid != null">
+            INNER JOIN SYS_M_USER_ROLE F ON(A.USER_SID = F.USER_SID and F.ROLE_SID = #{condition.roleSid})
+        </if>
+
+        <if test="condition.roleSidIn != null">
+            INNER JOIN SYS_M_USER_ROLE F ON(
+            A.USER_SID = F.USER_SID
+            and F.ROLE_SID in
+
+            <foreach item="item" index="index" collection="condition.roleSidIn" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+
+            )
+        </if>
+
+        <if test="condition.accountLeavel != null">
+            INNER JOIN SYS_M_ACCOUNT AC ON(A.ACCOUNT_SID = AC.ACCOUNT_SID and AC.ACCOUNT_LEVEL_SID = #{condition.accountLeavel})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+
+        GROUP BY A.Id
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit" />
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from
+        SysUsers
+        where Id = #{Id}
+    </delete>
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from SysUsers A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+        select count(*) from SysUsers A
+        <if test="condition.accountNameLike != null">
+            LEFT JOIN SysAccount B ON(B.Id=A.ACCOUNT_SID)
+        </if>
+        <if test="condition.roleSid != null">
+            INNER JOIN SysRelevance F ON(A.USER_SID = F.USER_SID and F.ROLE_SID = #{condition.roleSid})
+        </if>
+        <if test="condition.accountType != null">
+            INNER JOIN SysAccount G ON(A.ACCOUNT_SID = G.ACCOUNT_SID and G.ACCOUNT_TYPE = #{condition.accountType})
+        </if>
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
 
 </mapper>

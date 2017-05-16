@@ -171,12 +171,12 @@
         <include refid="Base_Column_List" />
         from SysRole A
 
-        <if test="condition.userSid != null and condition.MappKey != null">
+        <if test="condition.userSid != null" >
             inner join SysRelevance B
-            on A.Id = B.SecondId and B.MappKey = #{condition.MappKey} and B.FirstId = #{condition.userSid:DECIMAL}
+            on A.Id = B.SecondId and B.MappKey = 'UserRole' and B.FirstId = #{condition.userSid:DECIMAL}
         </if>
 
-        LEFT JOIN SysRelevance C ON C.SecondId = A.Id
+        LEFT JOIN SysRelevance C ON C.SecondId = A.Id and C.MappKey = 'RoleModule'
 
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
