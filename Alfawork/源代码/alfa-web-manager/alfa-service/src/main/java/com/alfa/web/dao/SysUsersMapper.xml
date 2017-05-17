@@ -361,9 +361,6 @@
         #{Id}
     </select>
 
-
-
-
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from
         SysUsers
@@ -375,7 +372,5 @@
             <include refid="Example_Where_Clause" />
         </if>
     </delete>
-
-
 
 </mapper>

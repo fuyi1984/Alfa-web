@@ -2,4 +2,511 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.SysAccountMapper">
 
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysAccount" >
+
+        <id column="Id" property="Id" jdbcType="BIGINT" />
+
+        <result column="Account_name" property="Account_name" jdbcType="VARCHAR" />
+
+        <result column="Account_type" property="Account_type" jdbcType="VARCHAR" />
+
+        <result column="UsableCredit" property="UsableCredit" jdbcType="BIGINT" />
+
+        <result column="accountBalance" property="accountBalance" jdbcType="VARCHAR" />
+
+        <result column="accountdeposit" property="accountdeposit" jdbcType="VARCHAR" />
+
+        <result column="status" property="status" jdbcType="VARCHAR" />
+
+        <result column="statusName" property="statusName" jdbcType="VARCHAR" />
+
+        <result column="description" property="description" jdbcType="VARCHAR" />
+
+        <result column="userId" property="userId" jdbcType="BIGINT" />
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP" />
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
+        <result column="version" property="version" jdbcType="BIGINT" />
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+
+        <trim prefix="where" prefixOverrides="and|or" >
+
+            <if test="condition.Id != null" >
+                and Id = #{condition.Id}
+            </if>
+            <if test="condition.Account_name != null" >
+                and Account_name = #{condition.Account_name}
+            </if>
+            <if test="condition.Account_type != null" >
+                and Account_type = #{condition.Account_type}
+            </if>
+            <if test="condition.accountNameLike != null">
+                and Account_name like concat('%', #{condition.accountNameLike}, '%')
+            </if>
+            <if test="condition.Account_typename != null" >
+                and Account_typename = #{condition.Account_typename}
+            </if>
+            <if test="condition.UsableCredit != null" >
+                and UsableCredit = #{condition.UsableCredit}
+            </if>
+            <if test="condition.accountBalance != null" >
+                and accountBalance = #{condition.accountBalance}
+            </if>
+            <if test="condition.accountdeposit != null" >
+                and accountdeposit = #{condition.accountdeposit}
+            </if>
+            <if test="condition.status != null" >
+                and status = #{condition.status}
+            </if>
+            <if test="condition.statusName != null" >
+                and statusName = #{condition.statusName}
+            </if>
+            <if test="condition.description != null" >
+                and description = #{condition.description}
+            </if>
+            <if test="condition.userId != null" >
+                and userId = #{condition.userId}
+            </if>
+
+            <if test="condition.createdBy != null" >
+                and createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and version = #{condition.version}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+       AC.Id,AC.Account_name,AC.Account_type,AC.Account_typename,AC.UsableCredit,AC.accountBalance,AC.accountdeposit
+       ,AC.status,AC.statusName,AC.description,AC.userId, A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
+    </sql>
+
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.xrender.cloud.common.pojo.Criteria" >
+        SELECT
+        <if test="distinct" >
+            DISTINCT
+        </if>
+        <include refid="Base_Column_List" />
+        , S1.CODE_DISPLAY ACCOUNT_TYPE_NAME, S2.CODE_DISPLAY ACCOUNT_IND_NAME,S3.CODE_DISPLAY STATUS_NAME, L.LEVEL_NAME ACCOUNT_LEVEL_NAME
+        FROM SYS_M_ACCOUNT AC
+        LEFT JOIN SYS_M_CODE S1 ON (S1.CODE_CATEGORY='ACOUNT_TYPE' AND S1.CODE_VALUE=AC.ACCOUNT_TYPE)
+        LEFT JOIN SYS_M_CODE S2 ON (S2.CODE_CATEGORY='INDUSTRY' AND S2.CODE_VALUE=AC.ACCOUNT_IND)
+        LEFT JOIN SYS_M_CODE S3 ON (S3.CODE_CATEGORY='ACOUNT_STATUS' AND S3.CODE_VALUE=AC.`STATUS`)
+        LEFT JOIN SYS_M_ACCOUNT_LEVEL L ON L.LEVEL_SID=AC.ACCOUNT_LEVEL_SID
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+        <include refid="common.Mysql_Pagination_Limit" />
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        ,L.LEVEL_NAME ACCOUNT_LEVEL_NAME
+        from SysAccount AC
+        where AC.Id = #{Id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from SysAccount
+        where Id = #{Id}
+    </delete>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
+        delete from SysAccount
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.xrender.cloud.sys.pojo.Account" >
+        <selectKey resultType="java.lang.Long" keyProperty="accountSid" order="BEFORE" >
+            SELECT NEXTVAL('SEQ_SYS_M_ACCOUNT')
+        </selectKey>
+        insert into sys_m_account (ACCOUNT_SID, ACCOUNT_LEVEL_SID, ACCOUNT_NAME, ACCOUNT_TYPE, ACCOUNT_IND,
+        OVERDRAFT_LIMIT, ACCOUNT_BALANCE, DEFAULT_SPACE, ORDER_SPACE, CONTACT_PHONE,
+        STATUS, DESCRIPTION, USABLE_CREDIT,CREATED_BY, CREATED_DT, UPDATED_BY, UPDATED_DT,
+        VERSION, COMPANY_NAME, CONTACT, CONTACT_ADDRESS, GIFT_BALANCE)
+        values (#{accountSid}, #{accountLevelSid}, #{accountName}, #{accountType}, #{accountInd},
+        #{overdraftLimit}, #{accountBalance}, #{defaultSpace}, #{orderSpace}, #{contactPhone},
+        #{status}, #{description},#{usableCredit}, #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt},
+        #{version}, #{companyName}, #{contact}, #{contactAddress}, #{accountGiftBalance})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xrender.cloud.sys.pojo.Account" >
+        <selectKey resultType="java.lang.Long" keyProperty="accountSid" order="BEFORE" >
+            SELECT NEXTVAL('SEQ_SYS_M_ACCOUNT')
+        </selectKey>
+        insert into sys_m_account
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            ACCOUNT_SID,
+            <if test="accountLevelSid != null" >
+                ACCOUNT_LEVEL_SID,
+            </if>
+            <if test="accountName != null" >
+                ACCOUNT_NAME,
+            </if>
+            <if test="accountType != null" >
+                ACCOUNT_TYPE,
+            </if>
+            <if test="accountInd != null" >
+                ACCOUNT_IND,
+            </if>
+            <if test="overdraftLimit != null" >
+                OVERDRAFT_LIMIT,
+            </if>
+            <if test="accountBalance != null" >
+                ACCOUNT_BALANCE,
+            </if>
+            <if test="defaultSpace != null" >
+                DEFAULT_SPACE,
+            </if>
+            <if test="orderSpace != null" >
+                ORDER_SPACE,
+            </if>
+            <if test="contactPhone != null" >
+                CONTACT_PHONE,
+            </if>
+            <if test="status != null" >
+                STATUS,
+            </if>
+            <if test="description != null" >
+                DESCRIPTION,
+            </if>
+            <if test="usableCredit != null" >
+                USABLE_CREDIT,
+            </if>
+            <if test="createdBy != null" >
+                CREATED_BY,
+            </if>
+            <if test="createdDt != null" >
+                CREATED_DT,
+            </if>
+            <if test="updatedBy != null" >
+                UPDATED_BY,
+            </if>
+            <if test="updatedDt != null" >
+                UPDATED_DT,
+            </if>
+            <if test="version != null" >
+                VERSION,
+            </if>
+            <if test="companyName != null" >
+                COMPANY_NAME,
+            </if>
+            <if test="contact != null" >
+                CONTACT,
+            </if>
+            <if test="contactAddress != null" >
+                CONTACT_ADDRESS,
+            </if>
+            <if test="accountGiftBalance != null" >
+                GIFT_BALANCE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{accountSid},
+            <if test="accountLevelSid != null" >
+                #{accountLevelSid},
+            </if>
+            <if test="accountName != null" >
+                #{accountName},
+            </if>
+            <if test="accountType != null" >
+                #{accountType},
+            </if>
+            <if test="accountInd != null" >
+                #{accountInd},
+            </if>
+            <if test="overdraftLimit != null" >
+                #{overdraftLimit},
+            </if>
+            <if test="accountBalance != null" >
+                #{accountBalance},
+            </if>
+            <if test="defaultSpace != null" >
+                #{defaultSpace},
+            </if>
+            <if test="orderSpace != null" >
+                #{orderSpace},
+            </if>
+            <if test="contactPhone != null" >
+                #{contactPhone},
+            </if>
+            <if test="status != null" >
+                #{status},
+            </if>
+            <if test="description != null" >
+                #{description},
+            </if>
+            <if test="usableCredit != null" >
+                #{usableCredit},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+            <if test="companyName != null" >
+                #{companyName},
+            </if>
+            <if test="contact != null" >
+                #{contact},
+            </if>
+            <if test="contactAddress != null" >
+                #{contactAddress},
+            </if>
+            <if test="accountGiftBalance != null" >
+                #{accountGiftBalance},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByParams" parameterType="com.xrender.cloud.common.pojo.Criteria" resultType="java.lang.Integer" >
+        select count(*) from sys_m_account
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByParamsSelective" parameterType="map" >
+        update sys_m_account
+        <set >
+            <if test="record.accountSid != null" >
+                ACCOUNT_SID = #{record.accountSid},
+            </if>
+            <if test="record.accountLevelSid != null" >
+                ACCOUNT_LEVEL_SID = #{record.accountLevelSid},
+            </if>
+            <if test="record.accountName != null" >
+                ACCOUNT_NAME = #{record.accountName},
+            </if>
+            <if test="record.accountType != null" >
+                ACCOUNT_TYPE = #{record.accountType},
+            </if>
+            <if test="record.accountInd != null" >
+                ACCOUNT_IND = #{record.accountInd},
+            </if>
+            <if test="record.overdraftLimit != null" >
+                OVERDRAFT_LIMIT = #{record.overdraftLimit},
+            </if>
+            <if test="record.accountBalance != null" >
+                ACCOUNT_BALANCE = #{record.accountBalance},
+            </if>
+            <if test="record.defaultSpace != null" >
+                DEFAULT_SPACE = #{record.defaultSpace},
+            </if>
+            <if test="record.orderSpace != null" >
+                ORDER_SPACE = #{record.orderSpace},
+            </if>
+            <if test="record.contactPhone != null" >
+                CONTACT_PHONE = #{record.contactPhone},
+            </if>
+            <if test="record.status != null" >
+                STATUS = #{record.status},
+            </if>
+            <if test="record.description != null" >
+                DESCRIPTION = #{record.description},
+            </if>
+            <if test="record.usableCredit != null" >
+                USABLE_CREDIT = #{record.usableCredit},
+            </if>
+            <if test="record.createdBy != null" >
+                CREATED_BY = #{record.createdBy},
+            </if>
+            <if test="record.createdDt != null" >
+                CREATED_DT = #{record.createdDt},
+            </if>
+            <if test="record.updatedBy != null" >
+                UPDATED_BY = #{record.updatedBy},
+            </if>
+            <if test="record.updatedDt != null" >
+                UPDATED_DT = #{record.updatedDt},
+            </if>
+            <if test="record.version != null" >
+                VERSION = #{record.version},
+            </if>
+            <if test="record.companyName != null" >
+                COMPANY_NAME = #{record.companyName},
+            </if>
+            <if test="record.contact != null" >
+                CONTACT = #{record.contact},
+            </if>
+            <if test="record.contactAddress != null" >
+                CONTACT_ADDRESS = #{record.contactAddress},
+            </if>
+            <if test="record.accountGiftBalance != null" >
+                GIFT_BALANCE = #{record.accountGiftBalance},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByParams" parameterType="map" >
+        update sys_m_account
+        set ACCOUNT_SID = #{record.accountSid},
+        ACCOUNT_LEVEL_SID = #{record.accountLevelSid},
+        ACCOUNT_NAME = #{record.accountName},
+        ACCOUNT_TYPE = #{record.accountType},
+        ACCOUNT_IND = #{record.accountInd},
+        OVERDRAFT_LIMIT = #{record.overdraftLimit},
+        ACCOUNT_BALANCE = #{record.accountBalance},
+        DEFAULT_SPACE = #{record.defaultSpace},
+        ORDER_SPACE = #{record.orderSpace},
+        CONTACT_PHONE = #{record.contactPhone},
+        STATUS = #{record.status},
+        DESCRIPTION = #{record.description},
+        USABLE_CREDIT = #{record.usableCredit},
+        CREATED_BY = #{record.createdBy},
+        CREATED_DT = #{record.createdDt},
+        UPDATED_BY = #{record.updatedBy},
+        UPDATED_DT = #{record.updatedDt},
+        VERSION = #{record.version},
+        COMPANY_NAME = #{record.companyName},
+        CONTACT = #{record.contact},
+        CONTACT_ADDRESS = #{record.contactAddress},
+        GIFT_BALANCE = #{record.accountGiftBalance}
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xrender.cloud.sys.pojo.Account" >
+        update sys_m_account
+        <set >
+            <if test="accountLevelSid != null" >
+                ACCOUNT_LEVEL_SID = #{accountLevelSid},
+            </if>
+            <if test="accountName != null" >
+                ACCOUNT_NAME = #{accountName},
+            </if>
+            <if test="accountType != null" >
+                ACCOUNT_TYPE = #{accountType},
+            </if>
+            <if test="accountInd != null" >
+                ACCOUNT_IND = #{accountInd},
+            </if>
+            <if test="overdraftLimit != null" >
+                OVERDRAFT_LIMIT = #{overdraftLimit},
+            </if>
+            <if test="accountBalance != null" >
+                ACCOUNT_BALANCE = #{accountBalance},
+            </if>
+            <if test="defaultSpace != null" >
+                DEFAULT_SPACE = #{defaultSpace},
+            </if>
+            <if test="orderSpace != null" >
+                ORDER_SPACE = #{orderSpace},
+            </if>
+            <if test="contactPhone != null" >
+                CONTACT_PHONE = #{contactPhone},
+            </if>
+            <if test="status != null" >
+                STATUS = #{status},
+            </if>
+            <if test="description != null" >
+                DESCRIPTION = #{description},
+            </if>
+            <if test="usableCredit != null" >
+                USABLE_CREDIT = #{usableCredit},
+            </if>
+            <if test="createdBy != null" >
+                CREATED_BY = #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                CREATED_DT = #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                UPDATED_BY = #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                UPDATED_DT = #{updatedDt},
+            </if>
+            <if test="version != null" >
+                VERSION = #{version},
+            </if>
+            <if test="companyName != null" >
+                COMPANY_NAME = #{companyName},
+            </if>
+            <if test="contact != null" >
+                CONTACT = #{contact},
+            </if>
+            <if test="contactAddress != null" >
+                CONTACT_ADDRESS = #{contactAddress},
+            </if>
+            <if test="accountGiftBalance != null" >
+                GIFT_BALANCE = #{accountGiftBalance},
+            </if>
+        </set>
+        where ACCOUNT_SID = #{accountSid}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.xrender.cloud.sys.pojo.Account" >
+        update sys_m_account
+        set ACCOUNT_LEVEL_SID = #{accountLevelSid},
+        ACCOUNT_NAME = #{accountName},
+        ACCOUNT_TYPE = #{accountType},
+        ACCOUNT_IND = #{accountInd},
+        OVERDRAFT_LIMIT = #{overdraftLimit},
+        ACCOUNT_BALANCE = #{accountBalance},
+        DEFAULT_SPACE = #{defaultSpace},
+        ORDER_SPACE = #{orderSpace},
+        CONTACT_PHONE = #{contactPhone},
+        STATUS = #{status},
+        DESCRIPTION = #{description},
+        USABLE_CREDIT = #{usableCredit},
+        CREATED_BY = #{createdBy},
+        CREATED_DT = #{createdDt},
+        UPDATED_BY = #{updatedBy},
+        UPDATED_DT = #{updatedDt},
+        VERSION = #{version},
+        COMPANY_NAME = #{companyName},
+        CONTACT = #{contact},
+        CONTACT_ADDRESS = #{contactAddress},
+        GIFT_BALANCE = #{accountGiftBalance}
+        where ACCOUNT_SID = #{accountSid}
+    </update>
+
+
+    <update id="batchUpdateBalanceOverLimit" parameterType="com.xrender.cloud.sys.pojo.Account">
+        update sys_m_account
+        set  OVERDRAFT_LIMIT = OVERDRAFT_LIMIT+(#{increaseOverdraftLimit}),
+        ACCOUNT_BALANCE = ACCOUNT_BALANCE+(#{increaseBalance})
+        where account_sid in
+        <foreach item="item" index="index" collection="accountSids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
 </mapper>
