@@ -142,7 +142,7 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into sysusers
+        insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null">
                 username,

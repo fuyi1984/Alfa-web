@@ -76,7 +76,6 @@
         #{updatedBy}, #{updatedDt}, #{version})
     </insert>
 
-
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysRole" >
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
