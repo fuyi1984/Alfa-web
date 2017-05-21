@@ -6,6 +6,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="alfa-platform-easyui" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.thetransactioncompany:cors-filter:2.1.2" />
+          <element id="library" level="project" name="Maven: com.thetransactioncompany:java-property-utils:1.9.1" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/alfa-platform-easyui/target/alfa-platform-easyui/META-INF/MANIFEST.MF" />

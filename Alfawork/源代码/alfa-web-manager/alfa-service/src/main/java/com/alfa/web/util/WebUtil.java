@@ -133,6 +133,7 @@ public class WebUtil {
         Map map = WebUtil.getParamsMap(param, "utf-8");
         //分页排序处理
         BasePager pager = new BasePager();
+
         if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
             pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
         }

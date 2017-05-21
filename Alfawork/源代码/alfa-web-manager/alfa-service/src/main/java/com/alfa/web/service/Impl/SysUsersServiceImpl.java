@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUsersServiceImpl implements SysUsersService {
 
-    @Autowired
+   /* @Autowired
     private SysUsersMapper sysUsersMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(SysUsersServiceImpl.class);
@@ -34,4 +34,5 @@ public class SysUsersServiceImpl implements SysUsersService {
     public int insertSelective(SysUsers record) {
         return this.sysUsersMapper.insertSelective(record);
     }
+*/
 }

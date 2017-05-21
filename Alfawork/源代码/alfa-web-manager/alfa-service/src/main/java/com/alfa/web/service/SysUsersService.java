@@ -13,22 +13,22 @@ public interface SysUsersService {
      *
      * @param example 查询条件
      * @return 行数
-     */
+     *//*
     int countByParams(Criteria example);
 
-    /**
+    *//**
      * 插入用户信息
      *
      * @param record 用户信息
      * @return 执行条数
-     */
+     *//*
     int insert(SysUsers record);
 
-    /**
+    *//**
      * 选择性插入用户信息
      *
      * @param record 用户信息
      * @return 执行条数
-     */
-    int insertSelective(SysUsers record);
+     *//*
+    int insertSelective(SysUsers record);*/
 }

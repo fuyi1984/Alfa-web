@@ -72,6 +72,7 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/findlist")
     public Response findConfig(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);

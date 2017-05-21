@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.SysUsersMapper">
 
-    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysUsers">
+   <!-- <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysUsers">
         <id column="Id" property="Id" jdbcType="BIGINT"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
@@ -26,7 +26,7 @@
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
 
-        <collection property="SysRole" ofType="com.alfa.web.pojo.SysRole">
+        &lt;!&ndash;<collection property="SysRole" ofType="com.alfa.web.pojo.SysRole">
             <id column="Id" property="Id" jdbcType="BIGINT" />
             <result column="role_name" property="role_name" jdbcType="VARCHAR" />
             <result column="types" property="types" jdbcType="VARCHAR" />
@@ -39,7 +39,7 @@
             <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
             <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
             <result column="version" property="version" jdbcType="BIGINT" />
-        </collection>
+        </collection>&ndash;&gt;
 
     </resultMap>
 
@@ -371,6 +371,6 @@
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
         </if>
-    </delete>
+    </delete>-->
 
 </mapper>

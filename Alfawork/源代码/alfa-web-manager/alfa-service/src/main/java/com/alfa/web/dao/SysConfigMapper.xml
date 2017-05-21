@@ -4,15 +4,15 @@
 
     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysConfig">
         <id column="ID" property="id" jdbcType="BIGINT"/>
-        <result column="CONFIG_NAME" property="configName" jdbcType="VARCHAR"/>
-        <result column="CONFIG_KEY" property="configKey" jdbcType="VARCHAR"/>
-        <result column="CONFIG_VALUE" property="configValue" jdbcType="VARCHAR"/>
-        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
-        <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR"/>
-        <result column="CREATED_DT" property="createdDt" jdbcType="TIMESTAMP"/>
-        <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR"/>
-        <result column="UPDATED_DT" property="updatedDt" jdbcType="TIMESTAMP"/>
-        <result column="VERSION" property="version" jdbcType="BIGINT"/>
+        <result column="configName" property="configName" jdbcType="VARCHAR"/>
+        <result column="configKey" property="configKey" jdbcType="VARCHAR"/>
+        <result column="configValue" property="configValue" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">

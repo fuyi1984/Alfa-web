@@ -16,24 +16,10 @@ import java.util.List;
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
 
-    @Autowired
+  /*  @Autowired
     private SysRoleMapper sysRoleMapper;
 
-    private static final Logger logger = LoggerFactory.getLogger(SysRoleServiceImpl.class);
-
-    @Override
-    public int insertRole(SysRole role) {
-        int count=this.sysRoleMapper.insertRole(role);
-        logger.debug("count:{}",count);
-        return count;
-    }
-
-    @Override
-    public List<SysRole> findRole() {
-        List<SysRole> list= this.sysRoleMapper.findRole();
-        logger.debug("count:{}",list.size());
-        return list;
-    }
+    private static final Logger logger = LoggerFactory.getLogger(SysRoleServiceImpl.class);*/
 
 
 }

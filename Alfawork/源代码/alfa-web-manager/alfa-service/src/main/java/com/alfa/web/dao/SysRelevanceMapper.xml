@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.SysRelevanceMapper">
 
-     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysRelevance">
+    <!-- <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysRelevance">
          <id column="Id" property="Id" jdbcType="BIGINT"/>
          <result column="Description" property="Description" jdbcType="VARCHAR"/>
          <result column="MappKey" property="MappKey" jdbcType="VARCHAR"/>
          <result column="Status" property="Status" jdbcType="VARCHAR"/>
          <result column="Statusname" property="Statusname" jdbcType="VARCHAR"/>
          <result column="OperatorTime" property="OperatorTime" jdbcType="TIMESTAMP"/>
-         <result column="OperatorId" property="OperatorId" jdbcType="INT"/>
          <result column="FirstId" property="FirstId" jdbcType="BIGINT"/>
          <result column="SecondId" property="SecondId" jdbcType="BIGINT"/>
      </resultMap>
@@ -161,5 +160,5 @@
             <include refid="Example_Where_Clause" />
         </if>
     </update>
-
+-->
 </mapper>

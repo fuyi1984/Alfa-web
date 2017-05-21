@@ -136,22 +136,49 @@ public class SysconfigRestImpl implements SysconfigRest {
     @Override
     public Response findConfig(String param, HttpServletRequest request, HttpServletResponse response) {
 
+      /*  String sortName=request.getParameter("sortName");
+        log.debug("sortName:"+sortName);*/
+
         Map map=WebUtil.getParamsMap(param,"utf-8");
+
         //分页排序处理
         BasePager pager=new BasePager();
 
         if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
             pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
         }
+
+       /* if (!StringUtil.isNullOrEmpty(map.get("page"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("page").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("rows"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("rows").toString()));
+        }*/
+
         if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
             pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
         }
+
         if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
             pager.setSortField(map.get("sortdatafield").toString());
         }
+
+       /* if (!StringUtil.isNullOrEmpty(map.get("sort"))) {
+            pager.setSortField(map.get("sort").toString());
+        }*/
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortName"))) {
+            pager.setSortField(map.get("sortName").toString());
+        }
+
         if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
             pager.setSortOrder(map.get("sortorder").toString());
         }
+
+        /*if (!StringUtil.isNullOrEmpty(map.get("order"))) {
+            pager.setSortOrder(map.get("order").toString());
+        }*/
 
         //过滤
         Criteria criteria = new Criteria();
@@ -168,8 +195,12 @@ public class SysconfigRestImpl implements SysconfigRest {
         int count = this.sysconfigService.countByParams(criteria);
 
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("TotalRows", count);
-        data.put("Rows", configList);
+
+        /*data.put("TotalRows", count);
+        data.put("Rows", configList);*/
+
+        data.put("total", count);
+        data.put("rows", configList);
 
         String json = JsonUtil.toJson(data);
 

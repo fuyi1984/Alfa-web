@@ -3,36 +3,37 @@
  */
 
 $(function () {
+
     $('#grid').datagrid({
-        title: '用户信息',
+        title: '系统配置 ',
         iconCls: 'icon-save',
         nowrap: false,
         striped: true,
-        url: '/UserInfo/LoadAllByPage/',
-        sortName: 'CreateTime',
+        loader:ajaxfindlist,
+        sortName: 'createdDt',
         sortOrder: 'desc',
         remoteSort: true,
         fitColumns: true,
         fit: true,
-        idField: 'ID',
+
+        idField: 'Id',
+
         frozenColumns: [[
-            {field: 'ID', checkbox: true}
+            {field: 'Id', checkbox: true}
         ]],
 
         columns: [[
-            {field: 'Name', title: '姓名', width: 80},
-            {field: 'Account', title: '账号', width: 80, align: 'right'},
+            {field: 'configName', title: '配置名称', width: 80,align:'center'},
+            {field: 'configKey', title: ' 配置Key', width: 80,align:'center'},
+            {field: 'configValue', title: ' 配置值', width: 80,align:'center'},
+            {field: 'description', title: ' 配置描述', width: 80,align:'center'},
+            {field: 'createdBy', title: '创建人', width: 80,align:'center'},
             {
-                field: 'IsEnabled', title: '状态', width: 80, align: 'right',
-                formatter: function (value, rec) {
-                    return value ? '激活' : '禁用';
-                }
+                field: 'createdDt', title: '创建时间', width: 100,align:'center'
             },
+            {field: 'updatedBy', title: '更新人', width: 80,align:'center'},
             {
-                field: 'CreateTime', title: '建立日期', width: 100,
-                formatter: function (value, rec) {
-                    return eval("new " + value.substr(1, value.length - 2)).toLocaleDateString();
-                }
+                field: 'updatedDt', title: '更新时间', width: 100,align:'center',
             }
         ]],
         pagination: true,
@@ -42,7 +43,7 @@ $(function () {
             text: '添加',
             iconCls: 'icon-add',
             handler: function () {
-                window.location.href = "/UserInfo/View/";
+                window.location.href = "/";
             }
         }, '-', {
             id: 'btnUpdate',
@@ -105,4 +106,22 @@ $(function () {
             }
         }, '-']
     });
+
+    function ajaxfindlist(param,success,error){
+        console.log(param);
+        $.ajax({
+            url:'/alfa-ws/rest/Sysconfig/findlist',
+            type:"post",
+            contentType:'application/json;charset=UTF-8',
+            success: function(data){
+                console.log(data);
+                success(data);
+            },
+            error:function (xhr) {
+                console.log(xhr);
+                error(xhr.responseText);
+            }
+        })
+    }
+
 });
