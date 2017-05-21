@@ -43,7 +43,10 @@ $(function () {
             text: '添加',
             iconCls: 'icon-add',
             handler: function () {
+                /**
                 window.location.href = "/";
+                 */
+                $('#grid').edatagrid('addRow');
             }
         }, '-', {
             id: 'btnUpdate',
