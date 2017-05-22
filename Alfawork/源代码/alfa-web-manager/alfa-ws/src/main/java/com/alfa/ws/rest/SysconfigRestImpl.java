@@ -199,6 +199,9 @@ public class SysconfigRestImpl implements SysconfigRest {
         /*data.put("TotalRows", count);
         data.put("Rows", configList);*/
 
+        /**
+         * easyui
+         */
         data.put("total", count);
         data.put("rows", configList);
 
