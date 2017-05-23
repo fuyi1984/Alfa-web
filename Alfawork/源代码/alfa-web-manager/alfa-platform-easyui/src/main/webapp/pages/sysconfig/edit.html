@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>index</title>
+    <title>edit</title>
 
     <link href="../../easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
@@ -10,20 +10,56 @@
     <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
     <script src="../../easyui/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
-    <script src="../../js/sysconfig/init.js" type="text/javascript"></script>
-    <script src="../../js/sysconfig/add.js" type="text/javascript"></script>
-</head>
-<body class="easyui-layout">
-<div region="center" style="padding: 5px;" border="false">
-    <table id="grid">
-    </table>
-</div>
-<div id="add" class="easyui-window" title="添加配置信息"
-     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
-     style="width:400px;height:350px;padding:10px;">
-    <form id="form1">
-        <div style="padding: 15px 10px 10px 25px;">
+    <script type="text/javascript">
+        function submitForm() {
+            /*var params = {
+             configName: $("#configName").val(),
+             configKey: $("#configKey").val(),
+             configValue: $("#configValue").val(),
+             description: $("#description").val()
+             };
 
+             alert(params);
+             console.log(params);*/
+
+            var v = $('#form1').serializeObject();
+
+            console.log(v);
+
+            /*$.ajax({
+             url: '/alfa-ws/rest/Sysconfig/insertConfig',
+             type: 'post',
+             dataType:'json',
+             data: JSON.stringify(v),
+             contentType: 'application/json;charset=UTF-8',
+             success: function (data) {
+             console.log(data);
+             },
+             error: function (xhr) {
+             console.log(xhr);
+             }
+             })*/
+
+            $.post("/alfa-ws/rest/Sysconfig/insertConfig",
+                {
+                    configName: $("#configName").val(),
+                    configKey: $("#configKey").val(),
+                    configValue: $("#configValue").val(),
+                    description: $("#description").val()
+                }, function (data, status) {
+                    alert("数据: \n" + data + "\n状态: " + status);
+                });
+        }
+    </script>
+
+</head>
+<body>
+<form id="form1">
+    <div class="easyui-panel" title="添加配置信息" style="width: auto" data-options="collapsible:true,border:true">
+        <div style="padding: 10px 0 10px 100px;">
+            <!--<input style="width: 130px; display:none" class="easyui-validatebox" type="text"
+                   data-options="required:true"
+                   name="Id" id="Id"/>-->
             <table style="text-align: center; width: auto" cellpadding="2px">
                 <tr>
                     <td>
@@ -32,7 +68,7 @@
                     <td>
                         <input style="width: 250px;"
                                class="easyui-textbox" type="text" data-options="required:true"
-                               name="configNames" id="configNames"/>
+                               name="configName" id="configName"/>
                     </td>
                 </tr>
                 <tr>
@@ -41,7 +77,7 @@
                     </td>
                     <td>
                         <input style="width: 250px;" class="easyui-textbox" type="text"
-                               data-options="required:true" name="configKeys" id="configKeys"/>
+                               data-options="required:true" name="configKey" id="configKey"/>
                     </td>
                 </tr>
                 <tr>
@@ -51,7 +87,7 @@
                     <td>
                         <input style="width: 250px;" class="easyui-textbox" type="text"
                                data-options="required:true"
-                               name="configValues" id="configValues"/>
+                               name="configValue" id="configValue"/>
                     </td>
                 </tr>
                 <tr>
@@ -60,7 +96,7 @@
                     </td>
                     <td>
                         <input class="easyui-textbox" data-options="multiline:true"
-                               style=" width:250px;height:100px" name="descriptions" id="descriptions">
+                               style=" width:250px;height:100px" name="description" id="description">
                     </td>
                 </tr>
             </table>
@@ -73,7 +109,7 @@
                                              iconcls="icon-cancel">返回</a>
 
         </div>
-    </form>
-</div>
+    </div>
+</form>
 </body>
 </html>
