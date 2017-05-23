@@ -4,6 +4,9 @@
 
 $(function () {
 
+    $('#add').window('close');
+    $('#update').window('close');
+
     $('#grid').datagrid({
         title: '系统配置 ',
         singleSelect: true,
@@ -24,10 +27,10 @@ $(function () {
         ]],
 
         columns: [[
-            {field: 'configName', title: '配置名称', width: 80, align: 'center'},
-            {field: 'configKey', title: ' 配置Key', width: 80, align: 'center'},
-            {field: 'configValue', title: ' 配置值', width: 80, align: 'center'},
-            {field: 'description', title: ' 配置描述', width: 80, align: 'center'},
+            {field: 'configName', title: '配置项名称', width: 80, align: 'center'},
+            {field: 'configKey', title: ' 配置项代码', width: 80, align: 'center'},
+            {field: 'configValue', title: ' 配置项值', width: 80, align: 'center'},
+            {field: 'description', title: ' 配置项描述', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
@@ -60,14 +63,24 @@ $(function () {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#grid').datagrid('getSelected');
-                if (row) {
-                    window.location.href = "/UserInfo/View/" + row.ID;
-                }
-                else {
-                    $.messager.alert('提示', '请选择要修改的数据');
-                    return;
-                }
+                 var row = $('#grid').datagrid('getSelected');
+
+                 console.log(row);
+
+                 if (row) {
+
+                    //window.location.href = "/UserInfo/View/" + row.ID;
+
+                     $('#form2').form('load',{Idu:row.id,configNameu:row.configName,configKeyu:row.configKey,configValueu:row.configValue,descriptionu:row.description});
+                     $('#update').window('open');
+
+                 }
+                 else {
+                     $.messager.alert('提示', '请选择要修改的数据');
+                     return;
+                 }
+
+                //$('#update').window('open');
 
             }
         }, '-', {

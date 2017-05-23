@@ -12,13 +12,14 @@
     <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
     <script src="../../js/sysconfig/init.js" type="text/javascript"></script>
     <script src="../../js/sysconfig/add.js" type="text/javascript"></script>
+    <script src="../../js/sysconfig/update.js" type="text/javascript"></script>
 </head>
 <body class="easyui-layout">
 <div region="center" style="padding: 5px;" border="false">
     <table id="grid">
     </table>
 </div>
-<div id="add" class="easyui-window" title="添加配置信息"
+<div id="add" class="easyui-window" title="添加配置项信息"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
      style="width:400px;height:350px;padding:10px;">
     <form id="form1">
@@ -69,6 +70,64 @@
 
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
                iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="location.href = document.referrer;"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+<div id="update" class="easyui-window" title="修改配置项信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+     style="width:400px;height:350px;padding:10px;">
+    <form id="form2">
+        <div style="padding: 15px 10px 10px 25px;">
+            <input style="width: 250px; display:none" class="easyui-validatebox" type="text" data-options="required:true"
+                   name="Idu" id="Idu" />
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        配置项名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               name="configNameu" id="configNameu"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        配置项代码:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true" name="configKeyu" id="configKeyu"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        配置项值:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true"
+                               name="configValueu" id="configValueu"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        描述:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="multiline:true"
+                               style=" width:250px;height:100px" name="descriptionu" id="descriptionu">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:updateForm()" id="updateForm"
+               iconcls="icon-save">修改</a> <a href="javascript:void(0)" class="easyui-linkbutton"
                                              onclick="location.href = document.referrer;"
                                              iconcls="icon-cancel">返回</a>
 

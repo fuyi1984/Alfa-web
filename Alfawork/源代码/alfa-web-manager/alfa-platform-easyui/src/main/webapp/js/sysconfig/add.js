@@ -53,4 +53,4 @@ function submitForm(){
             console.log(xhr);
         }
     });
-};
+}
