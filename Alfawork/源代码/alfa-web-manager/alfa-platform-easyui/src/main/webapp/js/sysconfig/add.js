@@ -5,10 +5,10 @@
 function submitForm(){
 
     var params={
-        "configName": $('#configNames').val(),
-        "configKey": $('#configKeys').val(),
-        "configValue": $('#configValues').val(),
-        "description": $('#descriptions').val()
+        "configName": $('#configName_add').val(),
+        "configKey": $('#configKey_add').val(),
+        "configValue": $('#configValue_add').val(),
+        "description": $('#description_add').val()
     }
 
     console.log(params);
