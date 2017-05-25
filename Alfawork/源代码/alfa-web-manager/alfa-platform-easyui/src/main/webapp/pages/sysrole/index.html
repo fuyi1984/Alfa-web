@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+
+    <link href="../../easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
+
+    <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
+    <script src="../../easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../../js/sysrole/init.js" type="text/javascript"></script>
+    <script src="../../js/sysrole/add.js" type="text/javascript"></script>
+    <script src="../../js/sysrole/update.js" type="text/javascript"></script>
+    <script src="../../js/sysrole/search.js" type="text/javascript"></script>
+</head>
+<body class="easyui-layout">
+<div region="center" style="padding: 5px;" border="false">
+    <table id="grid">
+    </table>
+</div>
+<div id="add" class="easyui-window" title="添加角色信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
+     style="width:400px;height:350px;padding:10px;">
+    <form id="form1">
+        <div style="padding: 15px 10px 10px 25px;">
+
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        角色名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               name="role_name_add" id="role_name_add"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        角色状态:
+                    </td>
+                    <td>
+                        <!--<input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true" name="statusname_add" id="statusname_add"/>-->
+                        <input style="width: 250px;" class="easyui-combobox"
+                               data-options="required:true,url:'combobox_data.json',method:'get',
+					           valueField:'id',textField:'text',panelHeight:'auto'"
+                               name="statusname_add" id="statusname_add"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        菜单路径:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true"
+                               name="menuitem_add" id="menuitem_add"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        描述:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="multiline:true"
+                               style=" width:250px;height:100px" name="roleDesc_add" id="roleDesc_add">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
+               iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="location.href = document.referrer;"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+<div id="update" class="easyui-window" title="修改配置项信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+     style="width:400px;height:350px;padding:10px;">
+    <form id="form2">
+        <div style="padding: 15px 10px 10px 25px;">
+            <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
+                   data-options="required:true"
+                   name="Id_update" id="Id_update"/>
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        配置项名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               name="configName_update" id="configName_update"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        配置项代码:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true" name="configKey_update" id="configKey_update"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        配置项值:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true"
+                               name="configValue_update" id="configValue_update"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        描述:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="multiline:true"
+                               style=" width:250px;height:100px" name="description_update" id="description_update">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:updateform()" id="updateForm"
+               iconcls="icon-save">修改</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="location.href = document.referrer;"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+<div id="search" class="easyui-window" title="查询配置项信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-search'"
+     style="width:450px;height:180px;padding:10px;">
+    <form id="form3">
+        <div style="padding: 15px 10px 10px 25px;">
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        配置项名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text"
+                               name="configName_search" id="configName_search"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        配置项代码:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               name="configKey_search" id="configKey_search"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:searchform()"
+               iconcls="icon-search">查询</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                               onclick="location.href = document.referrer;"
+                                               iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

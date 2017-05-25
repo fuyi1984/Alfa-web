@@ -172,7 +172,7 @@
         </if>
     </select>
 
-    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.xrender.cloud.common.pojo.Criteria" >
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
         select
         <if test="distinct" >
             distinct
@@ -180,12 +180,12 @@
         <include refid="Base_Column_List" />
         from SysRole A
 
-        <if test="condition.userSid != null" >
+        <!--<if test="condition.userSid != null" >
             inner join SysRelevance B
             on A.Id = B.SecondId and B.MappKey = 'UserRole' and B.FirstId = #{condition.userSid:DECIMAL}
         </if>
 
-        LEFT JOIN SysRelevance C ON C.SecondId = A.Id and C.MappKey = 'RoleModule'
+        LEFT JOIN SysRelevance C ON C.SecondId = A.Id and C.MappKey = 'RoleModule'-->
 
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />

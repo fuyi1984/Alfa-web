@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/5/3 16:35:41                            */
+/* Created on:     2017/5/25 13:09:27                           */
 /*==============================================================*/
 
 
@@ -89,7 +89,7 @@ alter table LogForLogin comment '登录日志表';
 /*==============================================================*/
 create table LogForPay
 (
-   Id                   bigint not null auto_increment,
+   PayId                bigint not null auto_increment,
    accountBalance       varchar(255) not null,
    description          varchar(300) not null,
    createdBy            varchar(255) not null,
@@ -98,7 +98,7 @@ create table LogForPay
    updatedDt            datetime,
    version              bigint,
    accountId            bigint not null,
-   primary key (Id)
+   primary key (PayId)
 );
 
 alter table LogForPay comment '支付日志表';
@@ -108,7 +108,7 @@ alter table LogForPay comment '支付日志表';
 /*==============================================================*/
 create table SysAccount
 (
-   Id                   bigint not null auto_increment,
+   accountId            bigint not null auto_increment,
    Account_name         varchar(255) not null,
    Account_type         varchar(100) not null,
    Account_typename     varchar(255) not null,
@@ -124,7 +124,7 @@ create table SysAccount
    updatedBy            varchar(255),
    updatedDt            datetime,
    userId               bigint not null,
-   primary key (Id)
+   primary key (accountId)
 );
 
 alter table SysAccount comment '账户表';
@@ -202,7 +202,7 @@ alter table SysDicIndex comment '数据字典';
 /*==============================================================*/
 create table SysModuleElement
 (
-   Id                   bigint not null,
+   ElementId            bigint not null,
    DomId                varchar(255) not null,
    Name                 varchar(255) not null,
    Types                varchar(100) not null,
@@ -213,7 +213,7 @@ create table SysModuleElement
    Remark               varchar(200),
    SortNo               int not null,
    ModuleId             bigint not null,
-   primary key (Id)
+   primary key (ElementId)
 );
 
 alter table SysModuleElement comment '模块元素表(需要权限控制的按钮)';
@@ -223,7 +223,7 @@ alter table SysModuleElement comment '模块元素表(需要权限控制的按钮)';
 /*==============================================================*/
 create table SysModules
 (
-   Id                   bigint not null auto_increment,
+   ModulesId            bigint not null auto_increment,
    CascadeId            varchar(255) not null,
    Name                 varchar(255) not null,
    Url                  varchar(255) not null,
@@ -235,7 +235,7 @@ create table SysModules
    Vector               varchar(255) not null,
    SortNo               int not null,
    ParentId             bigint,
-   primary key (Id)
+   primary key (ModulesId)
 );
 
 alter table SysModules comment '功能模块表';
@@ -276,7 +276,7 @@ alter table SysOrg comment '机构表';
 /*==============================================================*/
 create table SysRelevance
 (
-   Id                   bigint not null auto_increment,
+   RelevanceId          bigint not null auto_increment,
    Description          varchar(255) not null,
    MappKey              varchar(255) not null,
    Status               varchar(100) not null,
@@ -285,7 +285,7 @@ create table SysRelevance
    FirstId              bigint not null,
    SecondId             bigint not null,
    Statusname           varchar(255) not null,
-   primary key (Id)
+   primary key (RelevanceId)
 );
 
 alter table SysRelevance comment '多对多关系集中映射';
@@ -295,7 +295,7 @@ alter table SysRelevance comment '多对多关系集中映射';
 /*==============================================================*/
 create table SysRole
 (
-   Id                   bigint not null auto_increment,
+   roleId               bigint not null auto_increment,
    role_name            varchar(255) not null,
    types                varchar(100) not null,
    status               varchar(100) not null,
@@ -307,7 +307,8 @@ create table SysRole
    typesname            varchar(255) not null,
    statusname           varchar(255) not null,
    roleDesc             varchar(255),
-   primary key (Id)
+   menuitem             varchar(255),
+   primary key (roleId)
 );
 
 alter table SysRole comment '角色表';
@@ -318,7 +319,7 @@ alter table SysRole comment '角色表';
 create table SysUsers
 (
    updatedBy            varchar(255),
-   Id                   bigint not null auto_increment,
+   userId               bigint not null auto_increment,
    username             varchar(255) not null,
    password             varchar(255) not null,
    phone                varchar(255) not null,
@@ -339,7 +340,7 @@ create table SysUsers
    LoginIp              varchar(255) not null,
    mobiletoken          varchar(255),
    errorCountformobile  int,
-   primary key (Id)
+   primary key (userId)
 );
 
 alter table SysUsers comment '用户表';
@@ -364,11 +365,11 @@ create table fileinfo
 alter table fileinfo comment '文件信息表';
 
 alter table LogForPay add constraint FK_RF_ACCOUNT_LOGFORPAY foreign key (accountId)
-      references SysAccount (Id) on delete restrict on update restrict;
+      references SysAccount (accountId) on delete restrict on update restrict;
 
 alter table SysDicDetail add constraint FK_RF_DICDETAI_DICINDEX foreign key (DicId)
       references SysDicIndex (Id) on delete restrict on update restrict;
 
 alter table SysModuleElement add constraint FK_FK_PAGEELEM_REFERENCE_MODULE foreign key (ModuleId)
-      references SysModules (Id) on delete restrict on update restrict;
+      references SysModules (ModulesId) on delete restrict on update restrict;
 
