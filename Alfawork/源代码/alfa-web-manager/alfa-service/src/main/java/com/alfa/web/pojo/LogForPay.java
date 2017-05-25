@@ -8,6 +8,16 @@ import java.io.Serializable;
  */
 public class LogForPay extends Entity implements Serializable {
 
+    private Long PayId;
+
+    public Long getPayId() {
+        return PayId;
+    }
+
+    public void setPayId(Long payId) {
+        PayId = payId;
+    }
+
     /**
      * 支付金额
      */

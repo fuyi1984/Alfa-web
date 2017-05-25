@@ -8,6 +8,20 @@ import java.util.List;
  * 账户表
  */
 public class SysAccount extends Entity implements Serializable {
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    /**
+     * 账户ID
+
+     */
+    private Long accountId;
     /**
      * 账户名
      */

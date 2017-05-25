@@ -8,6 +8,20 @@ import java.util.List;
  * 功能模块表
  */
 public class SysModules extends Entity implements Serializable {
+
+    public Long getModulesId() {
+        return ModulesId;
+    }
+
+    public void setModulesId(Long modulesId) {
+        ModulesId = modulesId;
+    }
+
+    /**
+     * 模块ID
+
+     */
+    private Long ModulesId;
     /**
      * 节点ID
      */

@@ -147,6 +147,41 @@ public interface WebConstants {
          */
         String Configuration_Select_Failtrue = "Configuration.Select.Failture";
 
+        /**
+         * 角色已经存在
+         */
+        String ERROR_ROLES_EXISTS="ERROR_ROLES_EXISTS";
+
+        /**
+         * 角色添加成功
+         */
+        String ROLES_ADD_SUCCESS="ROLES_ADD_SUCCESS";
+
+        /**
+         * 角色添加失败
+         */
+        String ROLES_ADD_FAILURE="ROLES_ADD_FAILURE";
+
+        /**
+         * 角色编辑失败
+         */
+        String ROLES_EDIT_FAILURE="ROLES_EDIT_FAILURE";
+
+        /**
+         * 角色编辑成功
+         */
+        String ROLES_EDIT_SUCCESS="ROLES_EDIT_SUCCESS";
+
+        /**
+         * 角色删除成功
+         */
+        String ROLES_DELETE_SUCCESS="ROLES_DELETE_SUCCESS";
+
+        /**
+         * 角色删除失败
+         */
+        String ROLES_DELETE_FAILURE="ROLES_DELETE_FAILURE";
+
     }
 
 }

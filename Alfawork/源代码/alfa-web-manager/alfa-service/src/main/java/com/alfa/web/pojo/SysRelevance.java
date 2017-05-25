@@ -8,6 +8,17 @@ import java.util.Date;
  * 多对多关系集中映射
  */
 public class SysRelevance extends Entity implements Serializable {
+
+    private Long RelevanceId;
+
+    public Long getRelevanceId() {
+        return RelevanceId;
+    }
+
+    public void setRelevanceId(Long relevanceId) {
+        RelevanceId = relevanceId;
+    }
+
     /**
      * 描述
      */

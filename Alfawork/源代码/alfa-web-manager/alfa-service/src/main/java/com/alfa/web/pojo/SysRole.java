@@ -7,9 +7,24 @@ import java.io.Serializable;
  * 角色表
  */
 public class SysRole extends Entity implements Serializable {
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
     /**
      * 角色名称
      */
+
     private String role_name;
     /**
      * 角色类型
@@ -28,10 +43,36 @@ public class SysRole extends Entity implements Serializable {
      */
     private String statusname;
 
+    public String getMenuitem() {
+        return menuitem;
+    }
+
+    public void setMenuitem(String menuitem) {
+        this.menuitem = menuitem;
+    }
+
     /**
      * 角色描述
      */
     private String roleDesc;
+
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "role_name='" + role_name + '\'' +
+                ", types='" + types + '\'' +
+                ", typesname='" + typesname + '\'' +
+                ", status='" + status + '\'' +
+                ", statusname='" + statusname + '\'' +
+                ", roleDesc='" + roleDesc + '\'' +
+                ", menuitem='" + menuitem + '\'' +
+                '}';
+    }
+
+    /**
+     * 菜单路径
+     */
+    private String menuitem;
 
     public String getRole_name() {
         return role_name;
@@ -81,15 +122,4 @@ public class SysRole extends Entity implements Serializable {
         this.roleDesc = roleDesc;
     }
 
-    @Override
-    public String toString() {
-        return "SysRole{" +
-                "role_name='" + role_name + '\'' +
-                ", types='" + types + '\'' +
-                ", typesname='" + typesname + '\'' +
-                ", status='" + status + '\'' +
-                ", statusname='" + statusname + '\'' +
-                ", roleDesc='" + roleDesc + '\'' +
-                '}';
-    }
 }

@@ -10,6 +10,19 @@ import java.util.List;
  */
 public class SysUsers extends Entity implements Serializable{
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * 用户Id
+     */
+
+    private Long userId;
     /**
      * 用户名
      */

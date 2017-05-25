@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.SysRoleMapper">
 
-   <!-- <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysRole" >
-        <id column="Id" property="Id" jdbcType="BIGINT" />
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysRole" >
+        <id column="roleId" property="roleId" jdbcType="BIGINT" />
         <result column="role_name" property="role_name" jdbcType="VARCHAR" />
         <result column="types" property="types" jdbcType="VARCHAR" />
         <result column="typesname" property="typesname" jdbcType="VARCHAR" />
@@ -15,12 +15,13 @@
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
         <result column="version" property="version" jdbcType="BIGINT" />
+        <result column="menuitem" property="menuitem" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause" >
         <trim prefix="where" prefixOverrides="and|or" >
-            <if test="condition.Id != null" >
-                and A.Id in (${condition.Id})
+            <if test="condition.roleId != null" >
+                and A.roleId in (${condition.roleId})
             </if>
             <if test="condition.role_name != null" >
                 and A.role_name != ${condition.role_name}
@@ -58,12 +59,15 @@
             <if test="condition.version != null" >
                 and A.version = #{condition.version}
             </if>
+            <if test="condition.menuitem!=null">
+                and A.menuitem=#{condition.menuitem}
+            </if>
         </trim>
     </sql>
 
     <sql id="Base_Column_List" >
-        A.Id, A.role_name,A.types,A.typesname,A.status,A.statusname,A.roleDesc, A.createdBy, A.createdDt, A.updatedBy, A.updatedDt,
-        A.version
+        A.roleId, A.role_name,A.types,A.typesname,A.status,A.statusname,A.roleDesc, A.createdBy, A.createdDt, A.updatedBy, A.updatedDt,
+        A.version,A.menuitem
     </sql>
 
     <insert id="insert" parameterType="com.alfa.web.pojo.SysRole" >
@@ -71,9 +75,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into SysRole(role_name, types, typesname,status,statusname,roleDesc,createdBy, createdDt,
-        updatedBy, updatedDt, version)
+        updatedBy, updatedDt, version,menuitem)
         values (#{role_name}, #{types}, #{typesname},#{status},#{statusname},#{roleDesc}, #{createdBy}, #{createdDt},
-        #{updatedBy}, #{updatedDt}, #{version})
+        #{updatedBy}, #{updatedDt}, #{version},#{menuitem})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysRole" >
@@ -116,6 +120,9 @@
             <if test="version != null" >
                 version,
             </if>
+            <if test="menuitem!=null">
+               menuitem,
+            </if>
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -152,6 +159,9 @@
             <if test="version != null" >
                 #{version},
             </if>
+           <if test="menuitem!=null">
+              #{menuitem},
+           </if>
         </trim>
     </insert>
 
@@ -180,7 +190,7 @@
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
-        GROUP BY A.Id
+        GROUP BY A.roleId
         <if test="orderByClause != null" >
             order by ${orderByClause}
         </if>
@@ -192,12 +202,12 @@
         select
         <include refid="Base_Column_List" />
         from SysRole A
-        where A.Id = #{Id}
+        where A.roleId = #{roleId}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from SysRole
-        where Id = #{Id}
+        where roleId = #{roleId}
     </delete>
 
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
@@ -210,9 +220,6 @@
     <update id="updateByParamsSelective" parameterType="map" >
         update SysRole A
         <set >
-            <if test="record.Id != null" >
-                Id = #{record.Id},
-            </if>
             <if test="record.role_name != null" >
                 role_name = #{record.role_name},
             </if>
@@ -246,6 +253,9 @@
             <if test="record.version != null" >
                 version = #{record.version},
             </if>
+            <if test="record.menuitem != null">
+                menuitem=#{record.menuitem}
+            </if>
         </set>
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
@@ -266,6 +276,7 @@
         updatedBy = #{record.updatedBy},
         updatedDt = #{record.updatedDt},
         version = #{record.version}
+        menuitem=#{record.menuitem}
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
@@ -274,9 +285,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysRole" >
         update SysRole
         <set >
-            <if test="record.Id != null" >
-                Id = #{record.Id},
-            </if>
             <if test="role_name != null" >
                 role_name = #{role_name},
             </if>
@@ -310,8 +318,11 @@
             <if test="version != null" >
                 version = #{version},
             </if>
+            <if test="menuitem!=null">
+               menuitem=#{menuitem}
+            </if>
         </set>
-        where Id = #{Id}
+        where roleId = #{roleId}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.alfa.web.pojo.SysRole" >
@@ -326,8 +337,9 @@
         createdDt = #{createdDt},
         updatedBy = #{updatedBy},
         updatedDt = #{updatedDt},
-        version = #{version}
-        where Id = #{Id}
-    </update>-->
+        version = #{version},
+        menuitem=#{menuitem}
+        where roleId = #{roleId}
+    </update>
 
 </mapper>

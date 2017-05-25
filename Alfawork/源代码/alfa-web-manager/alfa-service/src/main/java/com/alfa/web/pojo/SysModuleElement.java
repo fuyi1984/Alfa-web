@@ -7,7 +7,19 @@ import java.io.Serializable;
  * 模块元素表(需要权限控制的按钮)
  */
 public class SysModuleElement extends Entity implements Serializable {
+
+    private Long ElementId;
+
+    public Long getElementId() {
+        return ElementId;
+    }
+
+    public void setElementId(Long elementId) {
+        ElementId = elementId;
+    }
+
     /**
+
      * DOM ID
      */
     private String DomId;
