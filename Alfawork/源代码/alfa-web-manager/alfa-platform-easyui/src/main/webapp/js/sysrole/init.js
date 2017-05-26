@@ -202,7 +202,7 @@ function initdatagrid()
 
         columns: [[
             {field: 'role_name', title: '角色名称', width: 80, align: 'center'},
-            {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},
+           /* {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},*/
             {field: 'menuitem', title: ' 菜单路径', width: 80, align: 'center'},
             {field: 'roleDesc', title: ' 角色描述', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
@@ -245,7 +245,12 @@ function initdatagrid()
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
-                    $('#form2').form('load',{Id_update:row.id,configName_update:row.configName,configKey_update:row.configKey,configValue_update:row.configValue,description_update:row.description});
+                    $('#form2').form('load',{roleId_update:row.roleId,
+                        role_name_update:row.role_name,
+                        /*statusname_update:row.statusname,*/
+                        menuitem_update:row.menuitem,
+                        roleDesc_update:row.roleDesc});
+
                     $('#update').window('open');
 
                 }
@@ -317,7 +322,16 @@ function initdatagrid()
             handler: function () {
                 $('#search').window('open');
             }
-        }, '-']
+        }, '-'],
+		
+		/*onClickRow:function(rowIndex,rowData){
+            if(isChecked(rowData)){
+                $("#grid").datagrid("unselectRow", rowIndex);
+            }else{
+				$("#grid").datagrid("unselectRow", rowIndex);
+			}
+        }*/
+
     });
 
     function ajaxfindlist(param, success, error) {
@@ -332,7 +346,7 @@ function initdatagrid()
         $.ajax({
             url: '/alfa-ws/rest/roles/findlist',
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName=',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName='+$('#role_name_search').val()+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -346,4 +360,5 @@ function initdatagrid()
             }
         });
     }
+
 }

@@ -317,7 +317,16 @@ function initdatagrid()
             handler: function () {
                 $('#search').window('open');
             }
-        }, '-']
+        }, '-'],
+
+        /*onClickRow:function(rowIndex,rowData){
+            if(isChecked(rowData)){
+                $("#grid").datagrid("unselectRow", rowIndex);
+            }else{
+				$("#grid").datagrid("unselectRow", rowIndex);
+			}
+        }*/
+
     });
 
     function ajaxfindlist(param, success, error) {

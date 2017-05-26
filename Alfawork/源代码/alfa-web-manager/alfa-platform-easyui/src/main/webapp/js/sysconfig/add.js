@@ -13,6 +13,24 @@ function submitForm(){
 
     console.log(params);
 
+    if(params.configName=="")
+    {
+        $.messager.alert('提示', '配置项名称不能为空');
+        return;
+    }
+
+    if(params.configKey=="")
+    {
+        $.messager.alert('提示', '配置项代码不能为空');
+        return;
+    }
+
+    if(params.configValue=="")
+    {
+        $.messager.alert('提示', '配置项值不能为空');
+        return;
+    }
+
     $.ajax({
         url: '/alfa-ws/rest/Sysconfig/insertConfig',
         contentType: 'application/json;charset=UTF-8',

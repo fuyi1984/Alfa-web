@@ -13,6 +13,24 @@ function updateform(){
 
     console.log(params);
 
+    if(params.configName=="")
+    {
+        $.messager.alert('提示', '配置项名称不能为空');
+        return;
+    }
+
+    if(params.configKey=="")
+    {
+        $.messager.alert('提示', '配置项代码不能为空');
+        return;
+    }
+
+    if(params.configValue=="")
+    {
+        $.messager.alert('提示', '配置项值不能为空');
+        return;
+    }
+
     $.ajax({
         url: '/alfa-ws/rest/Sysconfig/updateConfig',
         contentType: 'application/json;charset=UTF-8',
@@ -28,7 +46,7 @@ function updateform(){
             $('#form2').form('clear');
 
             if(data.status=='success'){
-                $.messager.alert('提示', '添加成功！', 'info', function () {
+                $.messager.alert('提示', '修改成功！', 'info', function () {
                     //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                     $('#update').window('close');
                     $('#grid').datagrid("clearSelections");
@@ -36,7 +54,7 @@ function updateform(){
                 });
             }else if(data.status=='failure'){
 
-                    $.messager.alert('提示', '添加失败！', 'error', function () {
+                    $.messager.alert('提示', '修改失败！', 'error', function () {
                         //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                         $('#update').window('close');
                         $('#grid').datagrid("clearSelections");

@@ -4,13 +4,25 @@
 
 function submitForm(){
 
-    alert($('#statusname_add').combobox('getValue'));
+    //alert($('#statusname_add').combobox('getValue'));
     var params={
         "role_name": $('#role_name_add').val(),
-        "status":$('#statusname_add').combobox('getValue'),
-        "statusname": $('#statusname_add').combobox('getText'),
+       /* "status":$('#statusname_add').combobox('getValue'),
+        "statusname": $('#statusname_add').combobox('getText'),*/
         "menuitem": $('#menuitem_add').val(),
         "roleDesc": $('#roleDesc_add').val()
+    }
+
+    if(params.role_name=="")
+    {
+        $.messager.alert('提示', '角色名称不能为空');
+        return;
+    }
+
+    if(params.menuitem=="")
+    {
+        $.messager.alert('提示', '菜单路径不能为空');
+        return;
     }
 
     console.log(params);
@@ -36,7 +48,7 @@ function submitForm(){
 					 $('#grid').datagrid("reload");
                 });
             }else if(data.status=='failure'){
-				 if(data.message=='Configuration.Exists.Success'){
+				 if(data.message=='ERROR_ROLES_EXISTS'){
 					 $.messager.alert('提示', '数据已经存在,添加失败！', 'warning', function () {
 						//this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
 						 $('#add').window('close');

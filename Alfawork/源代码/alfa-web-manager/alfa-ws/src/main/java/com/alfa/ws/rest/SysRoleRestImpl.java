@@ -71,20 +71,16 @@ public class SysRoleRestImpl implements SysRoleRest {
 
     @Override
     public Response editRole(SysRole role) {
-        Criteria criteria = new Criteria();
-        criteria.put("roleName", role.getRole_name());
-        criteria.put("unRoleSid", role.getRoleId());
-        List<SysRole> roleList = this.sysRoleService.selectByParams(criteria);
-        if (roleList.size() > 0) {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_ROLES_EXISTS, null))).build();
+
+        WebUtil.prepareUpdateParams(role);
+
+        int result = this.sysRoleService.updateByPrimaryKeySelective(role);
+        if (result == 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.ROLES_EDIT_SUCCESS, null))).build();
         } else {
-            int result = this.sysRoleService.updateByPrimaryKeySelective(role);
-            if (result == 1) {
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.ROLES_EDIT_SUCCESS, null))).build();
-            } else {
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ROLES_EDIT_FAILURE, null))).build();
-            }
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ROLES_EDIT_FAILURE, null))).build();
         }
+
     }
 
     @Override
