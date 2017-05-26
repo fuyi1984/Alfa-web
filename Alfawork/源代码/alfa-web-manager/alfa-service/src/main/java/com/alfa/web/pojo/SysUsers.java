@@ -89,6 +89,19 @@ public class SysUsers extends Entity implements Serializable{
     private String LoginIp;
 
     /**
+     * 角色ID
+     */
+    private Long roleId;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    /**
      * 用户关联角色列表
      */
     private List<SysRole> roles;

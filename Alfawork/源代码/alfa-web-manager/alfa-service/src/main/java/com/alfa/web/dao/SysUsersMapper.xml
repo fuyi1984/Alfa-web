@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.SysUsersMapper">
 
-   <!-- <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysUsers">
-        <id column="Id" property="Id" jdbcType="BIGINT"/>
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysUsers">
+
+        <id column="userId" property="userId" jdbcType="BIGINT"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
@@ -25,28 +26,14 @@
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
-
-        &lt;!&ndash;<collection property="SysRole" ofType="com.alfa.web.pojo.SysRole">
-            <id column="Id" property="Id" jdbcType="BIGINT" />
-            <result column="role_name" property="role_name" jdbcType="VARCHAR" />
-            <result column="types" property="types" jdbcType="VARCHAR" />
-            <result column="typesname" property="typesname" jdbcType="VARCHAR" />
-            <result column="status" property="status" jdbcType="VARCHAR"/>
-            <result column="statusname" property="statusname" jdbcType="VARCHAR"/>
-            <result column="roleDesc" property="roleDesc" jdbcType="VARCHAR"/>
-            <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
-            <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP" />
-            <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
-            <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
-            <result column="version" property="version" jdbcType="BIGINT" />
-        </collection>&ndash;&gt;
-
+        <result column="roleId" property="roleId" jdbcType="BIGINT"/>
+        <result column="role_name" property="role_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
-            <if test="condition.Id != null">
-                and A.Id = #{condition.Id}
+            <if test="condition.userId != null">
+                and A.userId = #{condition.userId}
             </if>
             <if test="condition.username != null">
                 and A.username = #{condition.username}
@@ -121,14 +108,14 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.Id, A.username, A.password, A.phone, A.sexname, A.sex,
+        A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,B.roleId,B.role_name
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+        <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into sysusers (username, password, phone, sexname,sex,statusname,status,typesname,types,
@@ -138,8 +125,9 @@
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version})
     </insert>
+
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+        <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into SysUsers
@@ -287,37 +275,17 @@
 
         from SysUsers A
 
-        left join SysRelevance B on(B.FirstId = A.Id and B.MappKey = 'UserRole')
-        left join SysRole C on(C.Id = B.SecondId)
+        left join SysRole B on(B.roleId = B.roleId)
 
-        left join SysRelevance D on(D.FirstId = A.Id and D.MappKey = 'UserAccount')
-        left join SysAccount E on(E.Id = D.SecondId)
-
-        <if test="condition.roleSid != null">
-            INNER JOIN SYS_M_USER_ROLE F ON(A.USER_SID = F.USER_SID and F.ROLE_SID = #{condition.roleSid})
-        </if>
-
-        <if test="condition.roleSidIn != null">
-            INNER JOIN SYS_M_USER_ROLE F ON(
-            A.USER_SID = F.USER_SID
-            and F.ROLE_SID in
-
-            <foreach item="item" index="index" collection="condition.roleSidIn" open="(" separator="," close=")">
-                #{item}
-            </foreach>
-
-            )
-        </if>
-
-        <if test="condition.accountLeavel != null">
-            INNER JOIN SYS_M_ACCOUNT AC ON(A.ACCOUNT_SID = AC.ACCOUNT_SID and AC.ACCOUNT_LEVEL_SID = #{condition.accountLeavel})
+        <if test="condition.roleId != null">
+            INNER JOIN SysRole C ON(C.roleId = A.roleId and C.roleId = #{condition.roleId})
         </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
         </if>
 
-        GROUP BY A.Id
+        GROUP BY A.userId
 
         <if test="orderByClause != null">
             order by ${orderByClause}
@@ -330,47 +298,37 @@
             resultType="java.lang.Integer">
         select count(*) from SysUsers A
 
-        <if test="condition.roleSid != null">
-            INNER JOIN SysRelevance F ON(A.Id= F.FirstId and F.SecondId = #{condition.roleSid})
-        </if>
-
-        <if test="condition.accountNameLike != null">
-            LEFT JOIN SysAccount B ON(B.Id=A.ACCOUNT_SID)
-        </if>
-
-        <if test="condition.accountType != null">
-            INNER JOIN SysAccount G ON(A.ACCOUNT_SID = G.ACCOUNT_SID and G.ACCOUNT_TYPE = #{condition.accountType})
+        <if test="condition.roleId != null">
+            INNER JOIN SysRole B ON(B.roleId = A.roleId and B.roleId = #{condition.roleId})
         </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
         </if>
     </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
             parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List" />
         from
         SysUsers A
-        left join SysRelevance B on(B.FirstId = A.Id and B.MappKey = 'UserRole')
-        left join SysRole C on(C.Id = B.SecondId)
-
-        left join SysRelevance D on(D.FirstId = A.Id and D.MappKey = 'UserAccount')
-        left join SysAccount E on(E.Id = D.SecondId)
-        where A.Id =
-        #{Id}
+        left join SysRole B on(B.roleId = A.roleId )
+        where A.userId =
+        #{userId}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from
         SysUsers
-        where Id = #{Id}
+        where userId = #{userId}
     </delete>
+
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from SysUsers A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
         </if>
-    </delete>-->
+    </delete>
 
 </mapper>
