@@ -89,6 +89,19 @@ public class SysUsers extends Entity implements Serializable{
     private String LoginIp;
 
     /**
+     * 手机验证码
+     */
+    private String VerifyCode;
+
+    public String getVerifyCode() {
+        return VerifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        VerifyCode = verifyCode;
+    }
+
+    /**
      * 角色ID
      */
     private Long roleId;
@@ -99,6 +112,48 @@ public class SysUsers extends Entity implements Serializable{
 
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
+    }
+
+    /**
+     * 角色名称
+     */
+
+    private String role_name;
+
+    @Override
+    public String toString() {
+        return "SysUsers{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sexname='" + sexname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", statusname='" + statusname + '\'' +
+                ", status='" + status + '\'' +
+                ", typesname='" + typesname + '\'' +
+                ", types='" + types + '\'' +
+                ", address='" + address + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", token='" + token + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
+                ", errorCount=" + errorCount +
+                ", errorCountformobile=" + errorCountformobile +
+                ", LoginIp='" + LoginIp + '\'' +
+                ", VerifyCode='" + VerifyCode + '\'' +
+                ", roleId=" + roleId +
+                ", role_name='" + role_name + '\'' +
+                ", roles=" + roles +
+                ", accountObj=" + accountObj +
+                '}';
+    }
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 
     /**
@@ -256,25 +311,4 @@ public class SysUsers extends Entity implements Serializable{
         LoginIp = loginIp;
     }
 
-    @Override
-    public String toString() {
-        return "SysUsers{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sexname='" + sexname + '\'' +
-                ", sex='" + sex + '\'' +
-                ", statusname='" + statusname + '\'' +
-                ", status='" + status + '\'' +
-                ", typesname='" + typesname + '\'' +
-                ", types='" + types + '\'' +
-                ", address='" + address + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", token='" + token + '\'' +
-                ", mobiletoken='" + mobiletoken + '\'' +
-                ", errorCount=" + errorCount +
-                ", errorCountformobile=" + errorCountformobile +
-                ", LoginIp='" + LoginIp + '\'' +
-                '}';
-    }
 }

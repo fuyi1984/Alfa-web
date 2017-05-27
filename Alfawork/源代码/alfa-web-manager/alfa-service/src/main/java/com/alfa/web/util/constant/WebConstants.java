@@ -182,6 +182,22 @@ public interface WebConstants {
          */
         String ROLES_DELETE_FAILURE="ROLES_DELETE_FAILURE";
 
+        /**
+         * 用户已经存在
+         */
+        String USER_EXIST_SUCCESS="USER_EXIST_SUCCESS";
+
+        /**
+         * 用户添加成功
+         */
+        String USER_ADD_SUCCESS="USER_EXIST_SUCCESS";
+
+        /**
+         * 用户添加失败
+         */
+        String USER_ADD_FAILURE="USER_EXIST_FAILURE";
+
+
     }
 
 }

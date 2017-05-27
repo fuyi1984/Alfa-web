@@ -18,20 +18,24 @@
         <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
         <result column="token" property="token" jdbcType="VARCHAR"/>
         <result column="mobiletoken" property="mobiletoken" jdbcType="VARCHAR"/>
-        <result column="errorCount" property="errorCount" jdbcType="INT"/>
-        <result column="errorCountformobile" property="errorCountformobile" jdbcType="INT"/>
+        <result column="errorCount" property="errorCount" jdbcType="BIGINT"/>
+        <result column="errorCountformobile" property="errorCountformobile" jdbcType="BIGINT"/>
         <result column="LoginIp" property="LoginIp" jdbcType="VARCHAR"/>
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
+        <result column="VerifyCode" property="VerifyCode" jdbcType="VARCHAR"/>
         <result column="roleId" property="roleId" jdbcType="BIGINT"/>
         <result column="role_name" property="role_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.VerifyCode != null">
+                and A.VerifyCode = #{condition.VerifyCode}
+            </if>
             <if test="condition.userId != null">
                 and A.userId = #{condition.userId}
             </if>
@@ -111,7 +115,7 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,B.roleId,B.role_name
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
@@ -132,6 +136,9 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="VerifyCode != null">
+                VerifyCode,
+            </if>
             <if test="username != null">
                 username,
             </if>
@@ -197,6 +204,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="VerifyCode != null">
+                #{VerifyCode},
+            </if>
             <if test="username != null">
                 #{username},
             </if>
@@ -272,7 +282,7 @@
         </if>
 
         <include refid="Base_Column_List" />
-
+        ,B.roleId,B.role_name
         from SysUsers A
 
         left join SysRole B on(B.roleId = B.roleId)

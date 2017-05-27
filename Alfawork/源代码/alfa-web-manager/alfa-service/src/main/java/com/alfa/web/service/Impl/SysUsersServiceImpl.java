@@ -45,12 +45,14 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public List<SysUsers> selectByParams(Criteria example) {
-        return null;
+        List<SysUsers> users=this.sysUsersMapper.selectByParams(example);
+        return users;
     }
 
     @Override
     public List<SysUsers> selectByParamsNew(Criteria example) {
-        return null;
+        List<SysUsers> users=this.sysUsersMapper.selectByParams(example);
+        return users;
     }
 
     @Override
