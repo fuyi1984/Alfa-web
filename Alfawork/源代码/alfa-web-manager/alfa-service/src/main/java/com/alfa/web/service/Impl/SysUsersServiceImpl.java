@@ -82,7 +82,8 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public int insertSelective(SysUsers record) {
-        return 0;
+        int result=this.sysUsersMapper.insertSelective(record);
+        return result;
     }
 
     @Override

@@ -209,6 +209,7 @@ function initcombobox(){
             method:'get',
             valueField:'roleId',
             textField:'role_name',
+            value:"0"
         }
     )
 }

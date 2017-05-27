@@ -4,28 +4,55 @@
 
 function submitForm(){
 
+    var username=$('#phone_add').val();
+    var phone=$('#phone_add').val();
+    var password=$('#password_add').val();
+    var repassword=$('#repassword').val();
+    var sex=$('#sex_add').combobox('getValue');
+    var role=$('#rolelist').combobox('getValue');
+    var address=$('#address_add').val();
+    var realname=$('#realname_add').val();
+
+    if(username==""||phone=="")
+    {
+        $.messager.alert('提示', '手机号不能为空!');
+        return;
+    }
+
+    if(password.length>5 && password.length<32){
+        $.messager.alert('提示', '密码长度大于4小于32!');
+        return;
+    }
+
+    if(repassword.length>5 && repassword.length<32){
+        $.messager.alert('提示', '确认密码长度大于4小于32!');
+        return;
+    }
+
+    if(repassword == password){
+        $.messager.alert('提示', '密码和确认密码不相等!');
+        return;
+    }
+
+    if(realname==""){
+        $.messager.alert('提示', '真实姓名不能为空!');
+        return;
+    }
+
     var params={
-        "role_name": $('#role_name_add').val(),
-        "menuitem": $('#menuitem_add').val(),
-        "roleDesc": $('#roleDesc_add').val()
+        "username": username,
+        "phone": phone,
+        "password": password,
+        "sex":sex,
+        "roleId":role,
+        "address":address,
+        "realname":realname
     };
-
-    if(params.role_name=="")
-    {
-        $.messager.alert('提示', '角色名称不能为空');
-        return;
-    }
-
-    if(params.menuitem=="")
-    {
-        $.messager.alert('提示', '菜单路径不能为空');
-        return;
-    }
 
     console.log(params);
 
     $.ajax({
-        url: '/alfa-ws/rest/roles/addrole',
+        url: '/alfa-ws/rest/user/insertUser',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

@@ -52,6 +52,8 @@ public class SysUserRestImpl implements SysUserRest{
         criteria.put("username", user.getUsername());
         List<SysUsers> UsersList = this.sysUsersService.selectByParams(criteria);
 
+        log.info("UsersList Size:"+UsersList.size());
+
         if (UsersList.size() > 0) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EXIST_SUCCESS, null))).build();
         } else {
