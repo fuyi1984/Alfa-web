@@ -50,4 +50,15 @@ public interface SysUserRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insertUser")
     public Response insertUser(SysUsers user);
+
+    /**
+     * 查询分页用户
+     */
+    @WebMethod
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/findlist")
+    public Response findUserlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
 }

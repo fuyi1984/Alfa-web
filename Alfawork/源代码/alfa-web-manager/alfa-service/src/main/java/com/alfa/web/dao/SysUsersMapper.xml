@@ -29,6 +29,7 @@
         <result column="VerifyCode" property="VerifyCode" jdbcType="VARCHAR"/>
         <result column="roleId" property="roleId" jdbcType="BIGINT"/>
         <result column="role_name" property="role_name" jdbcType="VARCHAR"/>
+        <result column="menuitem" property="menuitem" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
@@ -41,6 +42,9 @@
             </if>
             <if test="condition.username != null">
                 and A.username = #{condition.username}
+            </if>
+            <if test="condition.usernameLike != null">
+                and A.username like concat('%', #{condition.usernameLike}, '%')
             </if>
             <if test="condition.password != null">
                 and A.password = #{condition.password}
@@ -124,10 +128,10 @@
         </selectKey>
         insert into sysusers (username, password, phone, sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
-        createdBy, createdDt, updatedBy, updatedDt, version)
+        createdBy, createdDt, updatedBy, updatedDt, version,roleId)
         values (#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
-        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version})
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
@@ -136,6 +140,9 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                roleId,
+            </if>
             <if test="VerifyCode != null">
                 VerifyCode,
             </if>
@@ -204,6 +211,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId},
+            </if>
             <if test="VerifyCode != null">
                 #{VerifyCode},
             </if>
@@ -282,7 +292,7 @@
         </if>
 
         <include refid="Base_Column_List" />
-        ,B.roleId,B.role_name
+        ,B.roleId,B.role_name,B.menuitem
         from SysUsers A
 
         left join SysRole B on(B.roleId = B.roleId)

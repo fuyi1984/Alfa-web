@@ -120,6 +120,19 @@ public class SysUsers extends Entity implements Serializable{
 
     private String role_name;
 
+    /**
+     * 菜单路径
+     */
+    private String menuitem;
+
+    public String getMenuitem() {
+        return menuitem;
+    }
+
+    public void setMenuitem(String menuitem) {
+        this.menuitem = menuitem;
+    }
+
     @Override
     public String toString() {
         return "SysUsers{" +
