@@ -4,14 +4,11 @@
 
 function submitForm(){
 
-    //alert($('#statusname_add').combobox('getValue'));
     var params={
         "role_name": $('#role_name_add').val(),
-       /* "status":$('#statusname_add').combobox('getValue'),
-        "statusname": $('#statusname_add').combobox('getText'),*/
         "menuitem": $('#menuitem_add').val(),
         "roleDesc": $('#roleDesc_add').val()
-    }
+    };
 
     if(params.role_name=="")
     {
@@ -38,7 +35,7 @@ function submitForm(){
 
             console.log(data.status);
             console.log(data.message);
-			
+
             $('#form1').form('clear');
 
             if(data.status=='success'){

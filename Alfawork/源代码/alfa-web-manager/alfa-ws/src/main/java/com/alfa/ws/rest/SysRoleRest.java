@@ -64,7 +64,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @GET
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/findAllRole")
     public Response findAllRole();
 

@@ -4,11 +4,8 @@
 
 function submitForm(){
 
-    //alert($('#statusname_add').combobox('getValue'));
     var params={
         "role_name": $('#role_name_add').val(),
-       /* "status":$('#statusname_add').combobox('getValue'),
-        "statusname": $('#statusname_add').combobox('getText'),*/
         "menuitem": $('#menuitem_add').val(),
         "roleDesc": $('#roleDesc_add').val()
     }

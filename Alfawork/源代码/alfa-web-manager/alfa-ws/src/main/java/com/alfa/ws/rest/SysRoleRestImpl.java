@@ -105,8 +105,8 @@ public class SysRoleRestImpl implements SysRoleRest {
     @Override
     public Response findAllRole() {
         Criteria example = new Criteria();
-        example.put("status", "0");
-        example.setOrderByClause("SORT ASC");
+        /*example.put("status", "0");
+        example.setOrderByClause("SORT ASC");*/
         List<SysRole> list = this.sysRoleService.selectByParams(example);
         String json = JsonUtil.toJson(list);
         return Response.status(Response.Status.OK).entity(json).build();

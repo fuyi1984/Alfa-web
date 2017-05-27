@@ -4,19 +4,9 @@
 
 function updateform(){
 
-    /*var params={
-        "id":$('#Id_update').val(),
-        "configName": $('#configName_update').val(),
-        "configKey": $('#configKey_update').val(),
-        "configValue": $('#configValue_update').val(),
-        "description": $('#description_update').val()
-    }*/
-
     var params={
         "roleId":$('#roleId_update').val(),
         "role_name": $('#role_name_update').val(),
-       /* "status":$('#statusname_update').combobox('getValue'),
-        "statusname": $('#statusname_update').combobox('getText'),*/
         "menuitem": $('#menuitem_update').val(),
         "roleDesc": $('#roleDesc_update').val()
     }

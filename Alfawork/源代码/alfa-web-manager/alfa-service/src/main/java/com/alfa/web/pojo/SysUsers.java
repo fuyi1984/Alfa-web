@@ -115,22 +115,16 @@ public class SysUsers extends Entity implements Serializable{
     }
 
     /**
-     * 角色名称
+     * 真实姓名
      */
+    private String realname;
 
-    private String role_name;
-
-    /**
-     * 菜单路径
-     */
-    private String menuitem;
-
-    public String getMenuitem() {
-        return menuitem;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setMenuitem(String menuitem) {
-        this.menuitem = menuitem;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     @Override
@@ -155,10 +149,31 @@ public class SysUsers extends Entity implements Serializable{
                 ", LoginIp='" + LoginIp + '\'' +
                 ", VerifyCode='" + VerifyCode + '\'' +
                 ", roleId=" + roleId +
+                ", realname='" + realname + '\'' +
                 ", role_name='" + role_name + '\'' +
+                ", menuitem='" + menuitem + '\'' +
                 ", roles=" + roles +
                 ", accountObj=" + accountObj +
                 '}';
+    }
+
+    /**
+     * 角色名称
+     */
+
+    private String role_name;
+
+    /**
+     * 菜单路径
+     */
+    private String menuitem;
+
+    public String getMenuitem() {
+        return menuitem;
+    }
+
+    public void setMenuitem(String menuitem) {
+        this.menuitem = menuitem;
     }
 
     public String getRole_name() {

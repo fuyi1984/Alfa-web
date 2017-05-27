@@ -30,10 +30,14 @@
         <result column="roleId" property="roleId" jdbcType="BIGINT"/>
         <result column="role_name" property="role_name" jdbcType="VARCHAR"/>
         <result column="menuitem" property="menuitem" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.realname!=null">
+                and A.realname=#{condition.realname}
+            </if>
             <if test="condition.VerifyCode != null">
                 and A.VerifyCode = #{condition.VerifyCode}
             </if>
@@ -119,17 +123,17 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
         <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into sysusers (username, password, phone, sexname,sex,statusname,status,typesname,types,
+        insert into sysusers (realname,username, password, phone, sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
         createdBy, createdDt, updatedBy, updatedDt, version,roleId)
-        values (#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
+        values (#{realname},#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId})
     </insert>
@@ -140,6 +144,9 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="realname!=null">
+                realname,
+            </if>
             <if test="roleId != null">
                 roleId,
             </if>
@@ -211,6 +218,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="realname!=null">
+                #{realname}
+            </if>
             <if test="roleId != null">
                 #{roleId},
             </if>
