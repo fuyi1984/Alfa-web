@@ -3,6 +3,7 @@ package com.alfa.web.service.Impl;
 import com.alfa.web.dao.SysUsersMapper;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.exception.ServiceException;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.UserSession;
@@ -35,7 +36,9 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public int countByParams(Criteria example) {
-        return 0;
+        int count=this.sysUsersMapper.countByParams(example);
+        logger.debug("count:{}",count);
+        return count;
     }
 
     @Override
@@ -82,8 +85,7 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public int insertSelective(SysUsers record) {
-        int result=this.sysUsersMapper.insertSelective(record);
-        return result;
+        return this.sysUsersMapper.insertSelective(record);
     }
 
     @Override
@@ -103,7 +105,17 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public boolean insertUser(SysUsers user) throws Exception {
-        return false;
+        boolean result = false;
+
+        WebUtil.prepareInsertParams(user);
+        int levelResult = this.sysUsersMapper.insertSelective(user);
+
+        if (levelResult == 1) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
     }
 
     @Override

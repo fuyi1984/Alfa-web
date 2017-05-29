@@ -42,8 +42,7 @@ function initdatagrid()
             {field: 'realname', title: '真实姓名', width:80, align:'center'},
             {field: 'role_name', title: '角色', width: 80, align: 'center'},
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
-            {field: 'sexname', title: '性别', width: 80, align: 'center'},
-            {field: 'address', title: '地址', width: 80, align: 'center'},
+            {field: 'address', title: '地址', width: 120, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
@@ -208,8 +207,14 @@ function initcombobox(){
             url: '/alfa-ws/rest/roles/findAllRole',
             method:'get',
             valueField:'roleId',
-            textField:'role_name',
-            value:"0"
+            textField:'role_name'
         }
     )
+
+    /*$('#sexlist').combobox({
+        url: 'combobox_data.json',
+        method:'get',
+        valueField:'id',
+        textField:'text'
+    })*/
 }

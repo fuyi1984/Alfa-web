@@ -190,7 +190,7 @@ public interface WebConstants {
         /**
          * 用户添加成功
          */
-        String USER_ADD_SUCCESS="USER_EXIST_SUCCESS";
+        String USER_ADD_SUCCESS="USER_ADD_SUCCESS";
 
         /**
          * 用户添加失败

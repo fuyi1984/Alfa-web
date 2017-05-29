@@ -4,11 +4,12 @@
 
 function submitForm(){
 
+    //alert($('#sexlist').combobox('getValue'));
     var username=$('#phone_add').val();
     var phone=$('#phone_add').val();
     var password=$('#password_add').val();
     var repassword=$('#repassword').val();
-    var sex=$('#sex_add').combobox('getValue');
+    //var sex=$('#sexlist').combobox('getValue');
     var role=$('#rolelist').combobox('getValue');
     var address=$('#address_add').val();
     var realname=$('#realname_add').val();
@@ -19,17 +20,17 @@ function submitForm(){
         return;
     }
 
-    if(password.length>5 && password.length<32){
-        $.messager.alert('提示', '密码长度大于4小于32!');
+    if(password.length<5 && password.length>32){
+        $.messager.alert('提示', '密码长度大于5小于32!');
         return;
     }
 
-    if(repassword.length>5 && repassword.length<32){
-        $.messager.alert('提示', '确认密码长度大于4小于32!');
+    if(repassword.length<5 && repassword.length>32){
+        $.messager.alert('提示', '确认密码长度大于5小于32!');
         return;
     }
 
-    if(repassword == password){
+    if(repassword != password){
         $.messager.alert('提示', '密码和确认密码不相等!');
         return;
     }
@@ -39,11 +40,21 @@ function submitForm(){
         return;
     }
 
+    /*if(sex==""){
+        $.messager.alert('提示', '性别不能为空!');
+        return;
+    }*/
+
+    if(role==""){
+        $.messager.alert('提示', '角色不能为空!');
+        return;
+    }
+
     var params={
         "username": username,
         "phone": phone,
         "password": password,
-        "sex":sex,
+        /*"sex":sex,*/
         "roleId":role,
         "address":address,
         "realname":realname
@@ -72,7 +83,7 @@ function submitForm(){
 					 $('#grid').datagrid("reload");
                 });
             }else if(data.status=='failure'){
-				 if(data.message=='ERROR_ROLES_EXISTS'){
+				 if(data.message=='USER_EXIST_SUCCESS'){
 					 $.messager.alert('提示', '数据已经存在,添加失败！', 'warning', function () {
 						//this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
 						 $('#add').window('close');

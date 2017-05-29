@@ -49,7 +49,7 @@ public interface SysUserRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insertUser")
-    public Response insertUser(SysUsers user);
+    public Response insertUser(SysUsers user) throws Exception;
 
     /**
      * 查询分页用户

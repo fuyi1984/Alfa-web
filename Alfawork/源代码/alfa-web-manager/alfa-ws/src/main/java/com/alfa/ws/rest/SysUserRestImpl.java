@@ -46,7 +46,7 @@ public class SysUserRestImpl implements SysUserRest{
     }
 
     @Override
-    public Response insertUser(SysUsers user) {
+    public Response insertUser(SysUsers user) throws Exception {
 
         Criteria criteria = new Criteria();
         criteria.put("username", user.getUsername());
@@ -57,10 +57,11 @@ public class SysUserRestImpl implements SysUserRest{
         if (UsersList.size() > 0) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EXIST_SUCCESS, null))).build();
         } else {
-            user.setSexname(user.getSex()=="0"?"男":"女");
+            //log.info("user.getSex:"+user.getSex());
+            //user.setSexname(user.getSex().equals("0")?"男":"女");
             user.setPassword(WebUtil.encrypt(user.getPassword(),user.getUsername()));
-            int result = this.sysUsersService.insertSelective(user);
-            if(result==1){
+            boolean result = this.sysUsersService.insertUser(user);
+            if(result){
                 //json= InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS,null);
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_ADD_SUCCESS, null))).build();
             }else{

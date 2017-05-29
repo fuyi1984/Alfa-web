@@ -27,7 +27,7 @@ public class SysUserServiceTest extends TestBase {
     private SysUsersService sysUsersService;
 
     @Test
-    public void InsertUser(){
+    public void InsertUser() throws Exception {
 
         SysUsers user=new SysUsers();
         user.setUsername("12345");
@@ -48,8 +48,8 @@ public class SysUserServiceTest extends TestBase {
         } else {
             user.setSexname(user.getSex()=="0"?"男":"女");
             user.setPassword(WebUtil.encrypt(user.getPassword(),user.getUsername()));
-            int result = this.sysUsersService.insertSelective(user);
-            if(result==1){
+            boolean result = this.sysUsersService.insertUser(user);
+            if(result){
                 //json= InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS,null);
                 logger.info(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_ADD_SUCCESS, null)));
             }else{

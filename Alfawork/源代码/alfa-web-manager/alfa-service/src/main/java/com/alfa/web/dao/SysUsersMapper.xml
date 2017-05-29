@@ -183,7 +183,7 @@
             <if test="address != null">
                 address,
             </if>
-            <if test="remark != null">
+            <if test="remarks != null">
                 remarks,
             </if>
             <if test="token != null">
@@ -219,7 +219,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="realname!=null">
-                #{realname}
+                #{realname},
             </if>
             <if test="roleId != null">
                 #{roleId},
@@ -257,7 +257,7 @@
             <if test="address != null">
                 #{address},
             </if>
-            <if test="remark != null">
+            <if test="remarks != null">
                 #{remarks},
             </if>
             <if test="token != null">

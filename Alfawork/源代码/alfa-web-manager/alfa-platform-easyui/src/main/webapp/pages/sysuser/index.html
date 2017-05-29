@@ -57,7 +57,7 @@
                         <!--<input style="width: 250px;" class="easyui-password" type="text"
                                data-options="required:true" name="password_add" id="password_add"/>-->
                         <input style="width: 250px;" id="password_add" name="password_add"
-                               validType="length[4,32]" class="easyui-textbox"
+                               validType="length[5,32]" class="easyui-textbox"
                                required="true" type="password"/>
                     </td>
                 </tr>
@@ -75,24 +75,27 @@
                                invalidMessage="两次输入密码不匹配"/>
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td>
                         性别:
                     </td>
                     <td>
-                        <select id="sex_add" class="easyui-combobox" name="sex_add" style="width:250px;">
-                            <option value="0" selected="selected">男</option>
+                      <select id="sex_add" class="easyui-combobox" name="sex_add" style="width:250px;" required="true">
+                            <option value="0">男</option>
                             <option value="1">女</option>
                         </select>
+
+                        <input class="easyui-combobox" data-options="panelHeight:'auto'"
+                               style="width: 250px" name="sexlist" id="sexlist" required="true"/>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>
                         角色:
                     </td>
                     <td>
                         <input class="easyui-combobox" data-options="panelHeight:'auto'"
-                               style="width: 250px" name="rolelist" id="rolelist"/>
+                               style="width: 250px" name="rolelist" id="rolelist" required="true"/>
                     </td>
                 </tr>
                 <tr>
