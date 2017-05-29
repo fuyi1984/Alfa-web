@@ -4,29 +4,45 @@
 
 function updateform(){
 
+    //alert($('#sexlist').combobox('getValue'));
+    var userId=$('#userId_update').val();
+    var username=$('#phone_update').val();
+    var phone=$('#phone_update').val();
+    var role=$('#rolelist_update').combobox('getValue');
+    var address=$('#address_update').val();
+    var realname=$('#realname_update').val();
+
     var params={
-        "roleId":$('#roleId_update').val(),
-        "role_name": $('#role_name_update').val(),
-        "menuitem": $('#menuitem_update').val(),
-        "roleDesc": $('#roleDesc_update').val()
+        "userId":userId,
+        "username":username,
+        "phone":phone,
+        "roleId": role,
+        "address":address,
+        "realname":realname
     }
 
     console.log(params);
 
-    if(params.role_name=="")
+    if(phone=="")
     {
-        $.messager.alert('提示', '角色名称不能为空');
+        $.messager.alert('提示', '联系电话不能为空');
         return;
     }
 
-    if(params.menuitem=="")
+    if(realname=="")
     {
-        $.messager.alert('提示', '菜单路径不能为空');
+        $.messager.alert('提示', '真实姓名不能为空');
+        return;
+    }
+
+    if(role=="")
+    {
+        $.messager.alert('提示', '角色不能为空');
         return;
     }
 
     $.ajax({
-        url: '/alfa-ws/rest/roles/editrole',
+        url: '/alfa-ws/rest/user/editUser',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

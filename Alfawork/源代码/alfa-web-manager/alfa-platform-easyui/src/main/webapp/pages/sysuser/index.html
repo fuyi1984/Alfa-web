@@ -35,7 +35,7 @@
                     </td>
                     <td>
                         <input style="width: 250px" class="easyui-textbox" type="text" data-options="required:true"
-                               name="realname_add" id="realname_add"/>
+                               name="realname" id="realname_add"/>
                     </td>
                 </tr>
                 <tr>
@@ -120,56 +120,52 @@
         </div>
     </form>
 </div>
-<div id="update" class="easyui-window" title="修改角色信息"
+<div id="update" class="easyui-window" title="修改用户信息"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
-     style="width:400px;height:350px;padding:10px;">
+     style="width:430px;height:280px;padding:10px;">
     <form id="form2">
         <div style="padding: 15px 10px 10px 25px;">
             <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
                    data-options="required:true"
-                   name="roleId_update" id="roleId_update"/>
+                   name="userId_update" id="userId_update"/>
             <table style="text-align: center; width: auto" cellpadding="2px">
                 <tr>
                     <td>
-                        角色名称:
+                        真实姓名:
+                    </td>
+                    <td>
+                        <input style="width: 250px" class="easyui-textbox" type="text" data-options="required:true"
+                               name="realname_update" id="realname_update"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        手机号:
                     </td>
                     <td>
                         <input style="width: 250px;"
                                class="easyui-textbox" type="text" data-options="required:true"
-                               name="role_name_update" id="role_name_update"/>
-                    </td>
-                </tr>
-                <!--<tr>
-                    <td>
-                        角色状态:
-                    </td>
-                    <td>
-                        &lt;!&ndash;<input style="width: 250px;" class="easyui-textbox" type="text"
-                               data-options="required:true" name="statusname_add" id="statusname_add"/>&ndash;&gt;
-                        <input style="width: 250px;" class="easyui-combobox"
-                               data-options="required:true,url:'combobox_data.json',method:'get',
-					           valueField:'id',textField:'text',panelHeight:'auto'"
-                               name="statusname_update" id="statusname_update"/>
+                               name="phone_update" id="phone_update"/>
 
                     </td>
-                </tr>-->
+                </tr>
                 <tr>
                     <td>
-                        菜单路径:
+                        角色:
                     </td>
                     <td>
-                        <input style="width: 250px;" class="easyui-textbox" type="text"
-                               data-options="required:true"
-                               name="menuitem_update" id="menuitem_update"/>
+                        <input class="easyui-combobox" data-options="panelHeight:'auto'"
+                               style="width: 250px" name="rolelist_update" id="rolelist_update" required="true"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        描述:
+                        地址:
                     </td>
                     <td>
-                        <input class="easyui-textbox" data-options="multiline:true"
-                               style=" width:250px;height:100px" name="roleDesc_update" id="roleDesc_update">
+                        <input class="easyui-textbox"
+                               style=" width:250px;" name="address_update" id="address_update"/>
                     </td>
                 </tr>
             </table>

@@ -30,10 +30,9 @@ public class SysUserServiceTest extends TestBase {
     public void InsertUser() throws Exception {
 
         SysUsers user=new SysUsers();
-        user.setUsername("12345");
-        user.setPhone("12345");
-        user.setSex("0");
-        user.setRoleId(6L);
+        user.setUsername("9999");
+        user.setPhone("9999");
+        user.setRoleId(5L);
         user.setAddress("12345");
         user.setRealname("12345");
 
@@ -46,7 +45,7 @@ public class SysUserServiceTest extends TestBase {
         if (UsersList.size() > 0) {
             logger.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EXIST_SUCCESS, null)));
         } else {
-            user.setSexname(user.getSex()=="0"?"男":"女");
+            //user.setSexname(user.getSex()=="0"?"男":"女");
             user.setPassword(WebUtil.encrypt(user.getPassword(),user.getUsername()));
             boolean result = this.sysUsersService.insertUser(user);
             if(result){

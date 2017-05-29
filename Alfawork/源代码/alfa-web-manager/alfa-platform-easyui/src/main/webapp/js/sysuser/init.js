@@ -67,6 +67,7 @@ function initdatagrid()
                  */
 
                 //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
+
                 $('#add').window('open');
             }
         }, '-', {
@@ -83,11 +84,11 @@ function initdatagrid()
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
-                    $('#form2').form('load',{roleId_update:row.roleId,
-                        role_name_update:row.role_name,
-                        /*statusname_update:row.statusname,*/
-                        menuitem_update:row.menuitem,
-                        roleDesc_update:row.roleDesc});
+                    $('#form2').form('load',{userId_update:row.userId,
+                        realname_update:row.realname,
+                        rolelist_update:row.roleId,
+						phone_update:row.username,
+                        address_update:row.address});
 
                     $('#update').window('open');
 
@@ -114,9 +115,9 @@ function initdatagrid()
                 }
 
                 console.log(rows);
-                console.log(rows[0].roleId);
+                console.log(rows[0].userId);
 
-                var parm={"roleId": rows[0].roleId};
+                var parm={"userId": rows[0].userId};
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -128,7 +129,7 @@ function initdatagrid()
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: '/alfa-ws/rest/roles/deleterole',
+                        url: '/alfa-ws/rest/user/deleteUser',
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status=='success') {
@@ -203,7 +204,7 @@ function initdatagrid()
 
 
 function initcombobox(){
-    $('#rolelist').combobox({
+    $('#rolelist,#rolelist_update').combobox({
             url: '/alfa-ws/rest/roles/findAllRole',
             method:'get',
             valueField:'roleId',

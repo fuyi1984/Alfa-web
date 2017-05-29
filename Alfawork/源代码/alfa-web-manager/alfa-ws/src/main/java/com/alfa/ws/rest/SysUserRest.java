@@ -1,5 +1,6 @@
 package com.alfa.ws.rest;
 
+import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
 import org.springframework.context.annotation.Scope;
 
@@ -50,6 +51,26 @@ public interface SysUserRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insertUser")
     public Response insertUser(SysUsers user) throws Exception;
+
+    /**
+     * 删除用户
+     */
+    @WebMethod
+    @POST
+    @Produces({ MediaType.APPLICATION_JSON })
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Path("/deleteUser")
+    public Response deleteUser(SysUsers user);
+
+    /**
+     * 编辑角色
+     */
+    @WebMethod
+    @POST
+    @Produces({ MediaType.APPLICATION_JSON })
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Path("/editUser")
+    public Response editUser(SysUsers user);
 
     /**
      * 查询分页用户

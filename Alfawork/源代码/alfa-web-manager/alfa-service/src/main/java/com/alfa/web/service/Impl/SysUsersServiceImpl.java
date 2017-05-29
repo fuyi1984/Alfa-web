@@ -65,12 +65,12 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public int deleteByPrimaryKey(Long userSid) {
-        return 0;
+        return this.sysUsersMapper.deleteByPrimaryKey(userSid);
     }
 
     @Override
     public int updateByPrimaryKeySelective(SysUsers record) {
-        return 0;
+        return this.sysUsersMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override

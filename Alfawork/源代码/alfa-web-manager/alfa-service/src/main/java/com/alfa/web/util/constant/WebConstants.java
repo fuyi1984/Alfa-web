@@ -197,6 +197,26 @@ public interface WebConstants {
          */
         String USER_ADD_FAILURE="USER_EXIST_FAILURE";
 
+        /**
+         * 用户删除成功
+         */
+        String USER_DELETE_SUCCESS="USER_DELETE_SUCCESS";
+
+        /**
+         * 用户删除失败
+         */
+        String USER_DELETE_FAILURE="USER_DELETE_FAILURE";
+
+        /**
+         * 用户编辑失败
+         */
+        String USER_EDIT_FAILURE="USER_EDIT_FAILURE";
+
+        /**
+         * 用户编辑成功
+         */
+        String USER_EDIT_SUCCESS="USER_EDIT_SUCCESS";
+
 
     }
 

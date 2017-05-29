@@ -72,7 +72,7 @@ public class SysRoleRestImpl implements SysRoleRest {
     @Override
     public Response editRole(SysRole role) {
 
-        WebUtil.prepareUpdateParams(role);
+        //WebUtil.prepareUpdateParams(role);
 
         int result = this.sysRoleService.updateByPrimaryKeySelective(role);
         if (result == 1) {

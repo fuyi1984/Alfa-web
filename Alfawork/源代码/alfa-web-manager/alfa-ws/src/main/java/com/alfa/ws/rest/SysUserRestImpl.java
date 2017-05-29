@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/5/26.
  */
-public class SysUserRestImpl implements SysUserRest{
+public class SysUserRestImpl implements SysUserRest {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
@@ -52,30 +52,58 @@ public class SysUserRestImpl implements SysUserRest{
         criteria.put("username", user.getUsername());
         List<SysUsers> UsersList = this.sysUsersService.selectByParams(criteria);
 
-        log.info("UsersList Size:"+UsersList.size());
+        log.info("UsersList Size:" + UsersList.size());
 
         if (UsersList.size() > 0) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EXIST_SUCCESS, null))).build();
         } else {
             //log.info("user.getSex:"+user.getSex());
             //user.setSexname(user.getSex().equals("0")?"男":"女");
-            user.setPassword(WebUtil.encrypt(user.getPassword(),user.getUsername()));
+            user.setPassword(WebUtil.encrypt(user.getPassword(), user.getUsername()));
             boolean result = this.sysUsersService.insertUser(user);
-            if(result){
+            if (result) {
                 //json= InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS,null);
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_ADD_SUCCESS, null))).build();
-            }else{
+            } else {
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_ADD_FAILURE, null))).build();
             }
         }
     }
 
     @Override
+    public Response deleteUser(SysUsers user) {
+        int result = 0;
+        if (!StringUtil.isNullOrEmpty(user.getUserId())) {
+            Criteria criteria = new Criteria();
+            criteria.put("userId", user.getUserId());
+            result = this.sysUsersService.deleteByPrimaryKey(user.getUserId());
+        }
+        if (result == 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_DELETE_SUCCESS, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_DELETE_FAILURE, null))).build();
+        }
+    }
+
+    @Override
+    public Response editUser(SysUsers user) {
+
+        WebUtil.prepareUpdateParams(user);
+
+        int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+        if (result == 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+        }
+    }
+
+    @Override
     public Response findUserlist(String param, HttpServletRequest request, HttpServletResponse response) {
 
-        Map map= WebUtil.getParamsMap(param,"utf-8");
+        Map map = WebUtil.getParamsMap(param, "utf-8");
         //分页排序处理
-        BasePager pager=new BasePager();
+        BasePager pager = new BasePager();
 
         if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
             pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
@@ -117,7 +145,7 @@ public class SysUserRestImpl implements SysUserRest{
         Criteria criteria = new Criteria();
 
         if (!StringUtil.isNullOrEmpty(map.get("username"))) {
-            criteria.put("usernameLike",  map.get("username").toString());
+            criteria.put("usernameLike", map.get("username").toString());
         }
        /* if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
             criteria.put("roleId",  map.get("roleId").toString());
@@ -139,4 +167,6 @@ public class SysUserRestImpl implements SysUserRest{
         return Response.status(Response.Status.OK).entity(json).build();
 
     }
+
+
 }

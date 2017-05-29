@@ -305,7 +305,7 @@
         ,B.roleId,B.role_name,B.menuitem
         from SysUsers A
 
-        left join SysRole B on(B.roleId = B.roleId)
+        left join SysRole B on(A.roleId = B.roleId)
 
         <if test="condition.roleId != null">
             INNER JOIN SysRole C ON(C.roleId = A.roleId and C.roleId = #{condition.roleId})
@@ -360,5 +360,88 @@
             <include refid="Example_Where_Clause" />
         </if>
     </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysUsers">
+        update SysUsers
+        <set>
+            <if test="realname!=null">
+                realname=#{realname},
+            </if>
+            <if test="roleId != null">
+                roleId=#{roleId},
+            </if>
+            <if test="VerifyCode != null">
+                VerifyCode=#{VerifyCode},
+            </if>
+            <if test="username != null">
+                username=#{username},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+            <if test=" phone != null">
+                phone=#{phone},
+            </if>
+            <if test="sexname != null">
+                sexname=#{sexname},
+            </if>
+            <if test="sex != null">
+                sex=#{sex},
+            </if>
+            <if test="statusname != null">
+                statusname=#{statusname},
+            </if>
+            <if test="status != null">
+                status=#{status},
+            </if>
+            <if test="typesname != null">
+                typesname=#{typesname},
+            </if>
+            <if test="types != null">
+                types=#{types},
+            </if>
+            <if test="address != null">
+                address=#{address},
+            </if>
+            <if test="remarks != null">
+                remarks=#{remarks},
+            </if>
+            <if test="token != null">
+                token=#{token},
+            </if>
+            <if test="mobiletoken != null">
+                mobiletoken=#{mobiletoken},
+            </if>
+            <if test="errorCount != null">
+                errorCount=#{errorCount},
+            </if>
+            <if test="errorCountformobile != null">
+                errorCountformobile=#{errorCountformobile},
+            </if>
+            <if test="LoginIp != null">
+                LoginIp=#{LoginIp},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version}
+            </if>
+        </set>
+        where userId =
+        #{userId}
+        <if test="version!=null">
+            and version=#{version}
+        </if>
+    </update>
 
 </mapper>
