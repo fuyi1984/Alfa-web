@@ -185,7 +185,9 @@ function initdatagrid()
         $.ajax({
             url: '/alfa-ws/rest/user/findlist',
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&username=',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
+                   + pagesize + '&recordstartindex=' + recordstartindex
+                   + '&recordendindex=' + recordendindex + '&username='+$('#username_search').val()+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
