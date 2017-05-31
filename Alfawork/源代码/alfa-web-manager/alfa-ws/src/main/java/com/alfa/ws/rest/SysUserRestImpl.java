@@ -99,6 +99,16 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
+    public Response logoutUser(HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+        return null;
+    }
+
+    @Override
+    public Response verifyUser(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+        return null;
+    }
+
+    @Override
     public Response findUserlist(String param, HttpServletRequest request, HttpServletResponse response) {
 
         Map map = WebUtil.getParamsMap(param, "utf-8");

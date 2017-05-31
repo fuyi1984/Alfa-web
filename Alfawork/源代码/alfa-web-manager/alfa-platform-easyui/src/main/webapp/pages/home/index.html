@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阿尔发营业管理系统</title>
+    <link href="../../easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
+
+    <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
+    <script src="../../easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../../js/home/init.js" type="text/javascript"></script>
+    <style type="text/css">
+        td.amrow
+        {
+            padding-right: 3px;
+            padding-left: 3px;
+            background: #f7f7f7;
+            padding-bottom: 3px;
+            padding-top: 3px;
+        }
+        a
+        {
+            color: #000000;
+            text-decoration: none;
+        }
+        a:hover
+        {
+            color: #93B4E6;
+            text-decoration: none;
+        }
+        .title
+        {
+            background-image: url(../../images/bg_bottom.jpg);
+            background-color: #99ABCC;
+            color: White;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="easyui-layout" style="overflow-y:hidden" scroll="no">
+<div region="west" hide="true" split="true" title="导航菜单" style="width: 180px;" id="west">
+    <div id="nav" class="easyui-accordion" fit="true" border="false">
+        <!--  导航内容 -->
+    </div>
+</div>
+<div id="mainPanle" region="center" style="background: #eee; overflow-y: hidden">
+    <div id="tabs" class="easyui-tabs" fit="true" border="false">
+        <div title="欢迎使用" style="padding: 20px; overflow: hidden; color: red;">
+        </div>
+    </div>
+</div>
+<div region="south" border="false" style="height: 20px; background: #A9FACD; text-align: center;
+        line-height: 20px; background-image: url(../../images/bg_bottom.gif);">
+    Copy Right ®2017-2031
+</div>
+<div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
+        background: url(../../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        line-height: 20px; color: #fff; font-family: Verdana, 微软雅黑,黑体">
+        <span style="float: right; padding-right: 20px;" class="head">欢迎 @ViewBag.User
+            <a href="#" id="editpass" onclick="showChangePasswordWin();">修改密码</a>
+            <a href="/Home/LogOut/" id="loginOut"
+               onclick="if (!window.confirm('您确认要注消当前登录用户吗？')){return false;}">
+                安全退出</a></span>
+    <span style="padding-left: 10px; font-size: 16px;">
+            <img src="../../images/logo.png" width="20" height="20" align="absmiddle"/>
+            阿尔发营业管理系统</span>
+</div>
+<div id="winPassword" class="easyui-window" closed="true" modal="true" title="修改密码"
+     style="width: 250px; height: 180px;" collapsible="false" minimizable="false"
+     maximizable="false" resizable="false">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+            <table>
+                <tr>
+                    <td>
+                        旧密码：
+                    </td>
+                    <td>
+                        <input type="password" id="iptOldPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        新密码：
+                    </td>
+                    <td>
+                        <input type="password" id="iptPassword" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        确认密码：
+                    </td>
+                    <td>
+                        <input type="password" id="iptNewPassword" />
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: right;">
+                <a class="easyui-linkbutton" iconcls="icon-ok" href="javascript:void(0)" onclick="changePassword()">
+                    确定</a> <a class="easyui-linkbutton" iconcls="icon-cancel" href="javascript:void(0)"
+                              onclick="$('#winPassword').window('close');">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

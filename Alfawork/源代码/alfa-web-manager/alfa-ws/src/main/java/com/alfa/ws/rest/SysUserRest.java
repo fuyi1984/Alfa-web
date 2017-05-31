@@ -63,7 +63,7 @@ public interface SysUserRest {
     public Response deleteUser(SysUsers user);
 
     /**
-     * 编辑角色
+     * 编辑用户
      */
     @WebMethod
     @POST
@@ -71,6 +71,25 @@ public interface SysUserRest {
     @Consumes({ MediaType.APPLICATION_JSON })
     @Path("/editUser")
     public Response editUser(SysUsers user);
+
+    /**
+     * 退出用户
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/logout")
+    public Response logoutUser(@Context HttpServletRequest servletRequest,
+                               @Context HttpServletResponse servletResponse);
+
+    /**
+     * 用户登录
+     */
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/verify")
+    public Response verifyUser(SysUsers user,
+                               @Context HttpServletRequest servletRequest,
+                               @Context HttpServletResponse servletResponse);
 
     /**
      * 查询分页用户
