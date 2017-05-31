@@ -79,6 +79,7 @@ function loginValidator(inputId){
         if($("#txtAccount").val()==""){
             $("#msg").html("用户账号不能为空");
             isSub = false;
+            return isSub;
         }else{
             $("#msg").html("");
         }
@@ -87,6 +88,7 @@ function loginValidator(inputId){
         if($("#txtPassword").val()==""){
             $("#msg").html("用户密码不能为空");
             isSub = false;
+            return isSub;
         }else{
             $("#msg").html("");
         }
@@ -95,9 +97,11 @@ function loginValidator(inputId){
         if($("#txtCode").val()==""){
             $("#msg").html("验证码不能为空");
             isSub = false;
+            return isSub;
         }else if($("#txtCode").val().toUpperCase()!=logCode){
             $("#msg").html("验证码输入有误");
             isSub = false;
+            return isSub;
         }else{
             $("#msg").html("");
         }
