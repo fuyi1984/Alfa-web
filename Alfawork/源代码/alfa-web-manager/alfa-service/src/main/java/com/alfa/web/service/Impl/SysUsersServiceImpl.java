@@ -150,6 +150,7 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public UserSession createSession(HttpServletRequest servletRequest, HttpServletResponse servletResponse, String currentPlatformUser, SysUsers currentUser) {
+
         return null;
     }
 

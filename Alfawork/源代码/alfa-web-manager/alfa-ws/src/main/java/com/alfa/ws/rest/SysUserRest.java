@@ -2,6 +2,7 @@ package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.util.pojo.UserSession;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -100,5 +101,6 @@ public interface SysUserRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/findlist")
     public Response findUserlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
 
 }

@@ -217,6 +217,11 @@ public interface WebConstants {
          */
         String USER_EDIT_SUCCESS="USER_EDIT_SUCCESS";
 
+        /***
+         * 用户名密码为空
+         */
+        String error_users_name_isempty="error.users.name.isempty";
+
 
     }
 

@@ -27,44 +27,86 @@ function createCode(){
 
 //登录
 function logOn() {
-    var div = $("#msg");
-    var account = $("#txtAccount").val();
-    var password = $("#txtPassword").val();
-    var code = $("#txtCode").val();
 
-    if (account == "" || password == "" || code == "") {
-        div.html("请输入用户名，密码和验证码");
-        return;
-    }
+    if(loginValidator()) {
+
+        var div = $("#msg");
+        var account = $("#txtAccount").val();
+        var password = $("#txtPassword").val();
+        var code = $("#txtCode").val();
+
+        if (account == "" || password == "" || code == "") {
+            div.html("请输入用户名，密码和验证码");
+            return;
+        }
 
 
-    var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='/Images/loading.gif' />";
-    div.html(loading + "载入中，请稍候...");
-    var params = { account: account, password: password, code: code };
+        var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='/Images/loading.gif' />";
+        div.html(loading + "载入中，请稍候...");
+        var params = {account: account, password: password, code: code};
 
-    $.ajax({
-        type: "POST",
-        url: "/Home/LogOnByAndPassword/",
-        data: $.param(params),
-        success: function (msg) {
-            if (msg) {
-                if (msg.IsSuccess) {
-                    div.html("登陆成功");
-                    var href = unescape(request("ReturnUrl"));
-                    if (href == "/" || href == "") {
-                        href = "/Home/Index/";
+        $.ajax({
+            type: "POST",
+            url: "/Home/LogOnByAndPassword/",
+            data: $.param(params),
+            success: function (msg) {
+                if (msg) {
+                    if (msg.IsSuccess) {
+                        div.html("登陆成功");
+                        var href = unescape(request("ReturnUrl"));
+                        if (href == "/" || href == "") {
+                            href = "/Home/Index/";
+                        }
+
+                        window.location.href = href;
                     }
-
-                    window.location.href = href;
+                    else {
+                        div.html(msg.Message);
+                    }
                 }
                 else {
-                    div.html(msg.Message);
+                    div.html("为载入相关数据，请重试");
                 }
             }
-            else {
-                div.html("为载入相关数据，请重试");
-            }
-        }
-    });
+        });
+    }
+}
 
+function loginValidator(inputId){
+    var isSub = true;
+    inputId = inputId === undefined ? "" : inputId;
+    if(inputId=="" || inputId=="txtAccount"){
+        if($("#txtAccount").val()==""){
+            $("#msg").html("用户账号不能为空");
+            isSub = false;
+        }else{
+            $("#msg").html("");
+        }
+    }
+    if(inputId=="" || inputId=="txtPassword"){
+        if($("#txtPassword").val()==""){
+            $("#msg").html("用户密码不能为空");
+            isSub = false;
+        }else{
+            $("#msg").html("");
+        }
+    }
+    if(inputId=="" || inputId=="txtCode"){
+        if($("#txtCode").val()==""){
+            $("#msg").html("验证码不能为空");
+            isSub = false;
+        }else if($("#txtCode").val().toUpperCase()!=logCode){
+            $("#msg").html("验证码输入有误");
+            isSub = false;
+        }else{
+            $("#msg").html("");
+        }
+    }
+    return isSub;
+}
+
+function keySub(event){
+    if(event.keyCode == 13){
+        userLoginSubmit();
+    }
 }

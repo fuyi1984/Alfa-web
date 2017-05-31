@@ -13,11 +13,13 @@ import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.util.pojo.UserSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +107,62 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response verifyUser(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
-        return null;
+
+        Response response = Response.status(500)
+                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
+
+        HttpSession session=servletRequest.getSession();
+
+        String platform=servletRequest.getHeader("PLATFORM");
+
+        //获取用户名和密码
+
+        String account=user.getUsername().trim();
+        String password=user.getPassword().trim();
+
+        //用户名密码为空返回提示
+        if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {
+            return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_name_isempty, null))).build();
+        }
+
+        log.info("verifyUser---account="+account);
+
+        Criteria criteria = new Criteria();
+        criteria.put("_username", account);
+        criteria.put("_phone", account);
+
+        // 根据用户名密码查询用户信息
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        if (users.size() > 0 && users.size() == 1) {
+
+            SysUsers currentUser = users.get(0);
+
+            String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
+
+            log.info("User Login: "+passwordEncrypt+"@"+currentUser.getPassword()+"@"+password);
+
+            if(currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)){
+                if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
+                    currentUser.setToken(StringUtil.getUUID());
+                    sysUsersService.updateByPrimaryKey(currentUser);
+                }
+
+                // 保存Session和Cookie
+                String json = JsonUtil.toJson(sysUsersService.createSession(servletRequest, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+                response = Response.status(Response.Status.OK).entity(json).build();
+            }else{
+                response = Response.status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebUtil.getMessage("error.users.wrong.password"), null))).build();
+            }
+        }else{
+            response = Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebUtil.getMessage("error.users.name.notexist"), null))).build();
+
+        }
+
+        return response;
     }
 
     @Override
@@ -177,6 +234,4 @@ public class SysUserRestImpl implements SysUserRest {
         return Response.status(Response.Status.OK).entity(json).build();
 
     }
-
-
 }
