@@ -1,9 +1,13 @@
 package com.alfa.web.service.Impl;
 
+import com.alfa.web.dao.SysRoleMapper;
 import com.alfa.web.dao.SysUsersMapper;
+import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.exception.ServiceException;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.UserSession;
@@ -25,6 +29,9 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Autowired
     private SysUsersMapper sysUsersMapper;
+
+    @Autowired
+    private SysRoleMapper sysRoleMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(SysUsersServiceImpl.class);
 
@@ -149,9 +156,36 @@ public class SysUsersServiceImpl implements SysUsersService {
     }
 
     @Override
-    public UserSession createSession(HttpServletRequest servletRequest, HttpServletResponse servletResponse, String currentPlatformUser, SysUsers currentUser) {
+    public UserSession createSession(HttpServletRequest servletRequest,
+                                     HttpServletResponse servletResponse,
+                                     String currentPlatformUser,
+                                     SysUsers currentUser) {
 
-        return null;
+        HttpSession session=servletRequest.getSession();
+
+        //存在则删除重建session
+        UserSession userSession = (UserSession) session.getAttribute(currentPlatformUser);
+        if(!StringUtil.isNullOrEmpty(userSession)){
+            session.removeAttribute(currentPlatformUser);
+        }
+
+        // 放入角色信息
+        SysRole roles = this.sysRoleMapper.selectByPrimaryKey(currentUser.getRoleId());
+
+        session.setMaxInactiveInterval(60*60);
+
+        //清空密码
+        currentUser.setPassword("");
+
+        userSession=new UserSession();
+        userSession.setId(session.getId());
+        userSession.setCreationTime(session.getCreationTime());
+        userSession.setUser(currentUser);
+        userSession.setRole(roles);
+
+        session.setAttribute(currentPlatformUser,userSession);
+
+        return userSession;
     }
 
     @Override

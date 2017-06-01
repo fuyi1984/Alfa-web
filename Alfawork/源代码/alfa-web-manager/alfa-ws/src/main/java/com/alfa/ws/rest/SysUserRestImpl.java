@@ -129,8 +129,8 @@ public class SysUserRestImpl implements SysUserRest {
         log.info("verifyUser---account="+account);
 
         Criteria criteria = new Criteria();
-        criteria.put("_username", account);
-        criteria.put("_phone", account);
+        criteria.put("username", account);
+        criteria.put("phone", account);
 
         // 根据用户名密码查询用户信息
         List<SysUsers> users = sysUsersService.selectByParams(criteria);
@@ -146,19 +146,20 @@ public class SysUserRestImpl implements SysUserRest {
             if(currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)){
                 if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
                     currentUser.setToken(StringUtil.getUUID());
-                    sysUsersService.updateByPrimaryKey(currentUser);
+                    sysUsersService.updateByPrimaryKeySelective(currentUser);
                 }
 
                 // 保存Session和Cookie
-                String json = JsonUtil.toJson(sysUsersService.createSession(servletRequest, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+                String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.users_password_verify_success,sysUsersService.createSession(servletRequest,
+                        servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
                 response = Response.status(Response.Status.OK).entity(json).build();
             }else{
                 response = Response.status(Response.Status.OK)
-                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebUtil.getMessage("error.users.wrong.password"), null))).build();
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_wrong_password, null))).build();
             }
         }else{
             response = Response.status(Response.Status.OK)
-                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebUtil.getMessage("error.users.name.notexist"), null))).build();
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_name_notexist, null))).build();
 
         }
 

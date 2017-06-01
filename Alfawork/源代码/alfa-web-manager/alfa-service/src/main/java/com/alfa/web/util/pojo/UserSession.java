@@ -1,6 +1,7 @@
 package com.alfa.web.util.pojo;
 
 import com.alfa.web.pojo.SysAccount;
+import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
 
 import java.io.Serializable;
@@ -13,18 +14,16 @@ public class UserSession implements Serializable {
     private Long creationTime;
     private SysUsers user;
     private SysAccount account;
-    //private MsgConfig msgConfig;
-    private String platformIntranetUrl;
-    private String platformInternetUrl;
-    private String ftpInternetUrl;
-    private String ftpIntranetUrl;
-    private String ftpInternetUrlList;
-    private String ftpIntranetUrlList;
-    private String pythonIntranetUrl;
-    private String pythonInternetUrl;
-    private String clientFtpUsername;
-    private String clientFtpPassword;
+    private SysRole role;
     private String languageCode;
+
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
+    }
 
     public String getId() {
         return id;
@@ -58,91 +57,11 @@ public class UserSession implements Serializable {
         this.account = account;
     }
 
-    public String getPlatformIntranetUrl() {
-        return platformIntranetUrl;
+    public SysRole getRole() {
+        return role;
     }
 
-    public void setPlatformIntranetUrl(String platformIntranetUrl) {
-        this.platformIntranetUrl = platformIntranetUrl;
-    }
-
-    public String getPlatformInternetUrl() {
-        return platformInternetUrl;
-    }
-
-    public void setPlatformInternetUrl(String platformInternetUrl) {
-        this.platformInternetUrl = platformInternetUrl;
-    }
-
-    public String getFtpInternetUrl() {
-        return ftpInternetUrl;
-    }
-
-    public void setFtpInternetUrl(String ftpInternetUrl) {
-        this.ftpInternetUrl = ftpInternetUrl;
-    }
-
-    public String getFtpIntranetUrl() {
-        return ftpIntranetUrl;
-    }
-
-    public void setFtpIntranetUrl(String ftpIntranetUrl) {
-        this.ftpIntranetUrl = ftpIntranetUrl;
-    }
-
-    public String getFtpInternetUrlList() {
-        return ftpInternetUrlList;
-    }
-
-    public void setFtpInternetUrlList(String ftpInternetUrlList) {
-        this.ftpInternetUrlList = ftpInternetUrlList;
-    }
-
-    public String getFtpIntranetUrlList() {
-        return ftpIntranetUrlList;
-    }
-
-    public void setFtpIntranetUrlList(String ftpIntranetUrlList) {
-        this.ftpIntranetUrlList = ftpIntranetUrlList;
-    }
-
-    public String getPythonIntranetUrl() {
-        return pythonIntranetUrl;
-    }
-
-    public void setPythonIntranetUrl(String pythonIntranetUrl) {
-        this.pythonIntranetUrl = pythonIntranetUrl;
-    }
-
-    public String getPythonInternetUrl() {
-        return pythonInternetUrl;
-    }
-
-    public void setPythonInternetUrl(String pythonInternetUrl) {
-        this.pythonInternetUrl = pythonInternetUrl;
-    }
-
-    public String getClientFtpUsername() {
-        return clientFtpUsername;
-    }
-
-    public void setClientFtpUsername(String clientFtpUsername) {
-        this.clientFtpUsername = clientFtpUsername;
-    }
-
-    public String getClientFtpPassword() {
-        return clientFtpPassword;
-    }
-
-    public void setClientFtpPassword(String clientFtpPassword) {
-        this.clientFtpPassword = clientFtpPassword;
-    }
-
-    public String getLanguageCode() {
-        return languageCode;
-    }
-
-    public void setLanguageCode(String languageCode) {
-        this.languageCode = languageCode;
+    public void setRole(SysRole role) {
+        this.role = role;
     }
 }

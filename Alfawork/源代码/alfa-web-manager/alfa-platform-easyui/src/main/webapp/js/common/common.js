@@ -2,6 +2,10 @@
  * Created by Administrator on 2017/5/26.
  */
 
+// WebService请求地址
+var web_service_name = "/alfa-ws";
+var ws_url = "http://" + window.location.host + web_service_name;// 发布使用的url
+
 //后台地址
 var platformUrl = "/alfa-platform";
 

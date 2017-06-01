@@ -5,7 +5,7 @@ package com.alfa.web.util.constant;
  */
 public interface WebConstants {
 
-    public static final String CURRENT_PLATFORM_USER = "TS_CLOUD_CURRENT_PLATFORM_USER";
+    public static final String CURRENT_PLATFORM_USER = "CURRENT_PLATFORM_USER";
 
     /**
      * 性别
@@ -222,7 +222,20 @@ public interface WebConstants {
          */
         String error_users_name_isempty="error.users.name.isempty";
 
+        /***
+         * 用户名密码不为空
+         */
+        String error_users_name_notexist="error.users.name.notexist";
 
+        /**
+         * 用户名密码错误
+         */
+        String error_users_wrong_password="error.users.wrong.password";
+
+        /**
+         * 用户名密码登录成功
+         */
+        String users_password_verify_success="users.password.verify.success";
     }
 
 }
