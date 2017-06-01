@@ -1,0 +1,30 @@
+[
+  {
+    "MenuId": 1,
+    "MenuName": "系统管理",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "角色管理",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysrole/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 2,
+        "MenuNames": "用户管理",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysuser/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      },
+      {
+        "MenuId": 3,
+        "MenuNames": "系统配置",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysconfig/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      }
+    ]
+  }
+]

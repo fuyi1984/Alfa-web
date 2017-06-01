@@ -32,7 +32,7 @@ function updateform(){
     }
 
     $.ajax({
-        url: '/alfa-ws/rest/Sysconfig/updateConfig',
+        url: ws_url+'/rest/Sysconfig/updateConfig',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

@@ -1,7 +1,13 @@
 /**
  * Created by Administrator on 2017/5/31.
  */
+
+var account="";
+var menus="";
+
 $(function(){
+
+    InitData();
     InitLeftMenu();
     tabClose();
     tabCloseEven();
@@ -18,6 +24,19 @@ $(function(){
         }
     });
 })
+
+function InitData(){
+    if(ReadCookie("realname")!="") {
+        account = ReadCookie("realname");
+    }
+
+    //$("#welcome").html("欢迎 "+account);
+    $("#welcome").html("欢迎 "+account+" "+$("#welcome").html());
+
+    if(ReadCookie("menuitem")!="") {
+        menus = ReadCookie("menuitem");
+    }
+}
 
 function showChangePasswordWin() {
     $('#winPassword').window('open');
@@ -91,7 +110,7 @@ function InitLeftMenu() {
 
     $("#nav").accordion({animate:false});
 
-    $.post("/Home/GetMenuInfo/",function(data){
+    $.post(platform_url+menus,function(data){
 
         _menus=data;
 

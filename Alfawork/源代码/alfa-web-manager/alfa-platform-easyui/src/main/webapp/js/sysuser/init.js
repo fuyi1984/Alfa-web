@@ -129,7 +129,7 @@ function initdatagrid()
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: '/alfa-ws/rest/user/deleteUser',
+                        url: ws_url+'/rest/user/deleteUser',
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status=='success') {
@@ -183,7 +183,7 @@ function initdatagrid()
         var recordendindex=param.rows*param.page;
 
         $.ajax({
-            url: '/alfa-ws/rest/user/findlist',
+            url: ws_url+'/rest/user/findlist',
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
                    + pagesize + '&recordstartindex=' + recordstartindex
@@ -206,8 +206,8 @@ function initdatagrid()
 
 
 function initcombobox(){
-    $('#rolelist,#rolelist_update').combobox({
-            url: '/alfa-ws/rest/roles/findAllRole',
+    $('.easyui-combobox').combobox({
+            url: ws_url+'/rest/roles/findAllRole',
             method:'get',
             valueField:'roleId',
             textField:'role_name'

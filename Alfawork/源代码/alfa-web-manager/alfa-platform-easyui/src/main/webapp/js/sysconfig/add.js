@@ -32,7 +32,7 @@ function submitForm(){
     }
 
     $.ajax({
-        url: '/alfa-ws/rest/Sysconfig/insertConfig',
+        url: ws_url+'/rest/Sysconfig/insertConfig',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

@@ -26,7 +26,7 @@ function updateform(){
     }
 
     $.ajax({
-        url: '/alfa-ws/rest/roles/editrole',
+        url: ws_url+'/rest/roles/editrole',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

@@ -51,9 +51,19 @@ function logOn() {
             /*data: $.param(params),*/
             data:JSON.stringify(params),
             success: function (data) {
+
+                console.log(data);
+
                 if (data.status == "success") {
+
                     div.html("登陆成功");
-                    window.location.href = platformUrl+"/pages/home/index.html";
+
+                    //SetCookie("loginAccount",account,24);
+                    SetCookie("realname",data.data.user.realname,24);
+                    SetCookie("token",data.data.user.token);
+                    SetCookie("menuitem",data.data.user.menuitem,24);
+
+                    window.location.href = platform_url+"/pages/home/index.html";
                 }
                 else {
                     div.html("未载入相关数据，请重试");

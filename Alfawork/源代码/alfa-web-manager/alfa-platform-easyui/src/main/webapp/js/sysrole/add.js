@@ -25,7 +25,7 @@ function submitForm(){
     console.log(params);
 
     $.ajax({
-        url: '/alfa-ws/rest/roles/addrole',
+        url: ws_url+'/rest/roles/addrole',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

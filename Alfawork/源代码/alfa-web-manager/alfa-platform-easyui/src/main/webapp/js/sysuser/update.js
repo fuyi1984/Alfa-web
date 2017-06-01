@@ -42,7 +42,7 @@ function updateform(){
     }
 
     $.ajax({
-        url: '/alfa-ws/rest/user/editUser',
+        url: ws_url+'/rest/user/editUser',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

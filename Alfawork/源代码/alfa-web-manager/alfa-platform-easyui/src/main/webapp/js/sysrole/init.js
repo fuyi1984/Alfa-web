@@ -125,7 +125,7 @@ function initdatagrid()
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: '/alfa-ws/rest/roles/deleterole',
+                        url: ws_url+'/rest/roles/deleterole',
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status=='success') {
@@ -179,7 +179,7 @@ function initdatagrid()
         var recordendindex=param.rows*param.page;
 
         $.ajax({
-            url: '/alfa-ws/rest/roles/findlist',
+            url: ws_url+'/rest/roles/findlist',
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName='+$('#role_name_search').val()+'',
             contentType: 'application/json;charset=UTF-8',

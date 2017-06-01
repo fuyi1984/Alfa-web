@@ -63,7 +63,7 @@ function submitForm(){
     console.log(params);
 
     $.ajax({
-        url: '/alfa-ws/rest/user/insertUser',
+        url: ws_url+'/rest/user/insertUser',
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',
