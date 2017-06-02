@@ -4,6 +4,8 @@
 
 $(function () {
 
+    setCurrentUser();
+
     $('#add').window('close');
     $('#update').window('close');
     $('#search').window('close');
@@ -12,16 +14,16 @@ $(function () {
 
     initcombobox();
 
+
 });
 
 
-function initdatagrid()
-{
+function initdatagrid() {
     $('#grid').datagrid({
         title: '用户管理 ',
         singleSelect: true,
         iconCls: 'icon-save',
-        collapsible:true,
+        collapsible: true,
         nowrap: false,
         striped: true,
         loader: ajaxfindlist,
@@ -39,7 +41,7 @@ function initdatagrid()
 
         columns: [[
             {field: 'username', title: '用户名', width: 80, align: 'center'},
-            {field: 'realname', title: '真实姓名', width:80, align:'center'},
+            {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
             {field: 'role_name', title: '角色', width: 80, align: 'center'},
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 120, align: 'center'},
@@ -84,11 +86,13 @@ function initdatagrid()
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
-                    $('#form2').form('load',{userId_update:row.userId,
-                        realname_update:row.realname,
-                        rolelist_update:row.roleId,
-						phone_update:row.username,
-                        address_update:row.address});
+                    $('#form2').form('load', {
+                        userId_update: row.userId,
+                        realname_update: row.realname,
+                        rolelist_update: row.roleId,
+                        phone_update: row.username,
+                        address_update: row.address
+                    });
 
                     $('#update').window('open');
 
@@ -117,7 +121,7 @@ function initdatagrid()
                 console.log(rows);
                 console.log(rows[0].userId);
 
-                var parm={"userId": rows[0].userId};
+                var parm = {"userId": rows[0].userId};
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -125,20 +129,20 @@ function initdatagrid()
                     }
 
                     $.ajax({
-                        cache:false,
+                        cache: false,
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url+'/rest/user/deleteUser',
+                        url: ws_url + '/rest/user/deleteUser',
                         data: JSON.stringify(parm),
                         success: function (msg) {
-                            if (msg.status=='success') {
+                            if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
-                            }else{
-                                $.messager.alert('错误', '删除失败！', "error",function(){
+                            } else {
+                                $.messager.alert('错误', '删除失败！', "error", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
@@ -162,14 +166,14 @@ function initdatagrid()
                 $('#search').window('open');
             }
         }, '-'],
-		
-		/*onClickRow:function(rowIndex,rowData){
-            if(isChecked(rowData)){
-                $("#grid").datagrid("unselectRow", rowIndex);
-            }else{
-				$("#grid").datagrid("unselectRow", rowIndex);
-			}
-        }*/
+
+        /*onClickRow:function(rowIndex,rowData){
+         if(isChecked(rowData)){
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }else{
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }
+         }*/
 
     });
 
@@ -177,17 +181,17 @@ function initdatagrid()
 
         console.log(param);
 
-        var pagenum=param.page - 1;
-        var pagesize=param.rows;
-        var recordstartindex=param.page==1?0:param.rows*(param.page-1);
-        var recordendindex=param.rows*param.page;
+        var pagenum = param.page - 1;
+        var pagesize = param.rows;
+        var recordstartindex = param.page == 1 ? 0 : param.rows * (param.page - 1);
+        var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url+'/rest/user/findlist',
+            url: ws_url + '/rest/user/findlist',
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
-                   + pagesize + '&recordstartindex=' + recordstartindex
-                   + '&recordendindex=' + recordendindex + '&username='+$('#username_search').val()+'',
+            + pagesize + '&recordstartindex=' + recordstartindex
+            + '&recordendindex=' + recordendindex + '&username=' + $('#username_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -205,19 +209,19 @@ function initdatagrid()
 }
 
 
-function initcombobox(){
+function initcombobox() {
     $('.easyui-combobox').combobox({
-            url: ws_url+'/rest/roles/findAllRole',
-            method:'get',
-            valueField:'roleId',
-            textField:'role_name'
+            url: ws_url + '/rest/roles/findAllRole',
+            method: 'get',
+            valueField: 'roleId',
+            textField: 'role_name'
         }
     )
 
     /*$('#sexlist').combobox({
-        url: 'combobox_data.json',
-        method:'get',
-        valueField:'id',
-        textField:'text'
-    })*/
+     url: 'combobox_data.json',
+     method:'get',
+     valueField:'id',
+     textField:'text'
+     })*/
 }

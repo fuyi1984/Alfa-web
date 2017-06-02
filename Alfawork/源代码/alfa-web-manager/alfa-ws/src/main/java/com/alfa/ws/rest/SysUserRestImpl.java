@@ -10,10 +10,7 @@ import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
-import com.alfa.web.util.pojo.BasePager;
-import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
-import com.alfa.web.util.pojo.UserSession;
+import com.alfa.web.util.pojo.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +100,38 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response logoutUser(HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
-        return null;
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("resultStatus", "false");
+
+        Response response = Response.status(Response.Status.OK).entity(resultMap).build();
+
+        try{
+            HttpSession session = servletRequest.getSession();
+
+            if (session != null && session.getId() != null && !"".equals(session.getId())) {
+                if (session != null) {
+
+                    Enumeration e = session.getAttributeNames();
+                    while (e.hasMoreElements()) {
+                        String sessionName = (String) e.nextElement();
+                        log.info("logoutUser----------------exits user session name="+sessionName+" sessionId="+session.getId());
+                        session.removeAttribute(sessionName);
+                    }
+
+                    session.invalidate();
+                    resultMap = new HashMap<String, Object>();
+                    resultMap.put("resultStatus", "true");
+                    return Response.status(Response.Status.OK).entity(resultMap).build();
+                }
+            }
+
+        }catch (Exception e){
+            log.error("user logout error---------------"+e.getMessage());
+            e.printStackTrace();
+            return response;
+        }
+        return response;
     }
 
     @Override
@@ -234,5 +263,26 @@ public class SysUserRestImpl implements SysUserRest {
 
         return Response.status(Response.Status.OK).entity(json).build();
 
+    }
+
+    @Override
+    public Response current(HttpServletRequest servletRequest) {
+        try{
+            log.debug("start");
+            // 当前用户信息已在验证用户登录时放入UserManager中
+            UserSession currentUser= UserManager.getUserSession();
+
+            log.debug("start2");
+            if(currentUser!=null&&currentUser.getId()!=null&&currentUser.getUser()!=null){
+                return Response.status(Response.Status.OK).entity(currentUser).build();
+            }else{
+                currentUser=new UserSession();
+                currentUser.setId(null);
+                return Response.status(Response.Status.OK).entity(currentUser).build();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
+        }
     }
 }

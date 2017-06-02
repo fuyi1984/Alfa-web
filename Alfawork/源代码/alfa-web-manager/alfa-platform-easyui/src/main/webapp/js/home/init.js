@@ -2,12 +2,15 @@
  * Created by Administrator on 2017/5/31.
  */
 
-var account="";
-var menus="";
+//var account="";
+//var menus="";
 
-$(function(){
+$(function () {
 
-    InitData();
+    setCurrentUser();
+
+    $("#welcome").html("欢迎 " + grealname + " " + $("#welcome").html());
+
     InitLeftMenu();
     tabClose();
     tabCloseEven();
@@ -19,21 +22,24 @@ $(function(){
 
             var src = iframe.attr('src');
             if (src)
-                $('#tabs').tabs('update', { tab: currTab, options: { content: createFrame(src)} });
+                $('#tabs').tabs('update', {tab: currTab, options: {content: createFrame(src)}});
 
         }
     });
+
 })
 
-function InitData(){
-    if(ReadCookie("realname")!="") {
+function InitData() {
+
+    if (grealname != "") {
         account = ReadCookie("realname");
     }
 
+    alert(account);
     //$("#welcome").html("欢迎 "+account);
-    $("#welcome").html("欢迎 "+account+" "+$("#welcome").html());
+    $("#welcome").html("欢迎 " + grealname + " " + $("#welcome").html());
 
-    if(ReadCookie("menuitem")!="") {
+    if (ReadCookie("menuitem") != "") {
         menus = ReadCookie("menuitem");
     }
 }
@@ -79,7 +85,7 @@ function changePassword() {
         $.messager.alert('提示', '两次密码不一致，请重新输入！');
         return;
     }
-    var parm = { password: password, oldPassword: oldPassword };
+    var parm = {password: password, oldPassword: oldPassword};
     $.ajax({
         type: "POST",
         url: "/Home/ChangedPassword/",
@@ -103,21 +109,21 @@ function changePassword() {
     });
 }
 
-var _menus={};
+var _menus = {};
 
 //初始化左侧
 function InitLeftMenu() {
 
-    $("#nav").accordion({animate:false});
+    $("#nav").accordion({animate: false});
 
-    $.post(platform_url+menus,function(data){
+    $.post(platform_url + gmenuitem, function (data) {
 
-        _menus=data;
+        _menus = data;
 
-        $.each(data,function(i,n){
+        $.each(data, function (i, n) {
 
-            var menulist='';
-            menulist+='<ul>';
+            var menulist = '';
+            menulist += '<ul>';
 
             $.each(n.MenuInfos, function (j, o) {
                 menulist += '<li><div><a ref="' + o.MenuId + '" href="#" rel="' + o.Url + '"  onclick="add(this)" >' +

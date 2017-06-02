@@ -4,22 +4,22 @@
 
 $(function () {
 
+    setCurrentUser();
+
     $('#add').window('close');
     $('#update').window('close');
     $('#search').window('close');
 
     initdatagrid();
-
 });
 
 
-function initdatagrid()
-{
+function initdatagrid() {
     $('#grid').datagrid({
         title: '角色管理 ',
         singleSelect: true,
         iconCls: 'icon-save',
-        collapsible:true,
+        collapsible: true,
         nowrap: false,
         striped: true,
         loader: ajaxfindlist,
@@ -37,7 +37,7 @@ function initdatagrid()
 
         columns: [[
             {field: 'role_name', title: '角色名称', width: 80, align: 'center'},
-           /* {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},*/
+            /* {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},*/
             {field: 'menuitem', title: ' 菜单路径', width: 80, align: 'center'},
             {field: 'roleDesc', title: ' 角色描述', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
@@ -80,11 +80,13 @@ function initdatagrid()
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
-                    $('#form2').form('load',{roleId_update:row.roleId,
-                        role_name_update:row.role_name,
+                    $('#form2').form('load', {
+                        roleId_update: row.roleId,
+                        role_name_update: row.role_name,
                         /*statusname_update:row.statusname,*/
-                        menuitem_update:row.menuitem,
-                        roleDesc_update:row.roleDesc});
+                        menuitem_update: row.menuitem,
+                        roleDesc_update: row.roleDesc
+                    });
 
                     $('#update').window('open');
 
@@ -113,7 +115,7 @@ function initdatagrid()
                 console.log(rows);
                 console.log(rows[0].roleId);
 
-                var parm={"roleId": rows[0].roleId};
+                var parm = {"roleId": rows[0].roleId};
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -121,20 +123,20 @@ function initdatagrid()
                     }
 
                     $.ajax({
-                        cache:false,
+                        cache: false,
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url+'/rest/roles/deleterole',
+                        url: ws_url + '/rest/roles/deleterole',
                         data: JSON.stringify(parm),
                         success: function (msg) {
-                            if (msg.status=='success') {
+                            if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
-                            }else{
-                                $.messager.alert('错误', '删除失败！', "error",function(){
+                            } else {
+                                $.messager.alert('错误', '删除失败！', "error", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
@@ -158,14 +160,14 @@ function initdatagrid()
                 $('#search').window('open');
             }
         }, '-'],
-		
-		/*onClickRow:function(rowIndex,rowData){
-            if(isChecked(rowData)){
-                $("#grid").datagrid("unselectRow", rowIndex);
-            }else{
-				$("#grid").datagrid("unselectRow", rowIndex);
-			}
-        }*/
+
+        /*onClickRow:function(rowIndex,rowData){
+         if(isChecked(rowData)){
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }else{
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }
+         }*/
 
     });
 
@@ -173,15 +175,15 @@ function initdatagrid()
 
         console.log(param);
 
-        var pagenum=param.page - 1;
-        var pagesize=param.rows;
-        var recordstartindex=param.page==1?0:param.rows*(param.page-1);
-        var recordendindex=param.rows*param.page;
+        var pagenum = param.page - 1;
+        var pagesize = param.rows;
+        var recordstartindex = param.page == 1 ? 0 : param.rows * (param.page - 1);
+        var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url+'/rest/roles/findlist',
+            url: ws_url + '/rest/roles/findlist',
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName='+$('#role_name_search').val()+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName=' + $('#role_name_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

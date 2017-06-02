@@ -313,15 +313,16 @@ public class WebUtil {
      * @param obj
      */
     public static <T> void prepareInsertParams(T obj) {
-        /*if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
-            // 创建人
-            invokeSet(obj, "createdBy", AuthUtil.getAuthUser().getAccount());
-            // 更新人
-            invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
-        }*/
 
-        invokeSet(obj,"createdBy","test");
-        invokeSet(obj,"updatedBy","test");
+        if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getUsername()!= null) {
+            // 创建人
+            invokeSet(obj, "createdBy", AuthUtil.getAuthUser().getUsername());
+            // 更新人
+            invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getUsername());
+        }
+
+        //invokeSet(obj,"createdBy","test");
+        //invokeSet(obj,"updatedBy","test");
 
         Date date = new Date();
         // 更新时间
@@ -379,12 +380,12 @@ public class WebUtil {
      * @param obj
      */
    public static <T> void prepareUpdateParams(T obj) {
-        /*if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getAccount() != null) {
+        if (AuthUtil.getAuthUser() != null && AuthUtil.getAuthUser().getUsername() != null) {
             // 更新人
-            invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getAccount());
+            invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getUsername());
         }
-        */
-       invokeSet(obj, "updatedBy", "test");
+
+        //invokeSet(obj, "updatedBy", "test");
         // 更新时间
         Date date = new Date();
         invokeSet(obj, "updatedDt", date);

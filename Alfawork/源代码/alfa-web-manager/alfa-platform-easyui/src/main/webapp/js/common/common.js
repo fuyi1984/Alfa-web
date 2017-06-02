@@ -10,6 +10,9 @@ var ws_url = "http://" + window.location.host + web_service_name;// 发布使用
 var platform_name = "/alfa-platform";
 var platform_url="http://" + window.location.host + platform_name;
 
+var grealname="";
+var gmenuitem="";
+
 function isChecked(rowData) {
     var rows = $('#grid').datagrid('getSelections');
     for (var i = 0; i < rows.length; i++) {
@@ -56,4 +59,41 @@ function SetCookie(name,value,hours){
         expireNextID_sem = "; expires=" + expireNextID_sem.toGMTString();
     }
     document.cookie = name + "=" + escape(value) + expire + ((path == null) ? "" : (";domain="+SiteName+"; path=" + path));
+}
+
+//退出
+function logoutUser(){
+    $.post(ws_url+"/rest/user/logout",function(data){
+        alert("logout:"+data);
+        window.location.href=platform_url+"/pages/home/login.html";
+    });
+}
+
+/** 加载页面判断user是否登陆 */
+function setCurrentUser() {
+
+    $.ajax({
+        url: ws_url+'/rest/user/current',
+        type: "get",
+        contentType: 'application/json;charset=UTF-8',
+        async:false,
+        success: function (data) {
+            console.log(data);
+            if (typeof data != "undefined" && null != data) {
+                if(data.id==null){
+                    var div = "<div id='notification' ><span>会话过期，请注意未保存的数据，请<u><a href='"+ctx+"/' target='_parent'>点击这里</a></u>重新登录。</span></div>";
+                    $("body").html(div);
+                }else if(data.id!=null){
+                    grealname=data.user.realname;
+                    gmenuitem=data.user.menuitem;
+                }
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+            var div = "<div id='notification' ><span>会话过期，请注意未保存的数据，请<u><a href="+ctx+"//pages/login.jsp>点击这里</a></u>重新登录。</span></div>";
+            $("body").append(div);
+        }
+    });
+
 }

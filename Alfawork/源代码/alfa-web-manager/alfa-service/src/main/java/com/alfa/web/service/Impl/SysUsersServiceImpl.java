@@ -164,9 +164,9 @@ public class SysUsersServiceImpl implements SysUsersService {
         HttpSession session=servletRequest.getSession();
 
         //存在则删除重建session
-        UserSession userSession = (UserSession) session.getAttribute(currentPlatformUser);
+        UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
         if(!StringUtil.isNullOrEmpty(userSession)){
-            session.removeAttribute(currentPlatformUser);
+            session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
         }
 
         // 放入角色信息

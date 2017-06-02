@@ -4,22 +4,24 @@
 
 $(function () {
 
+    setCurrentUser();
+
     $('#add').window('close');
     $('#update').window('close');
     $('#search').window('close');
 
     initdatagrid();
 
+
 });
 
 
-function initdatagrid()
-{
+function initdatagrid() {
     $('#grid').datagrid({
         title: '系统配置 ',
         singleSelect: true,
         iconCls: 'icon-save',
-        collapsible:true,
+        collapsible: true,
         nowrap: false,
         striped: true,
         loader: ajaxfindlist,
@@ -80,7 +82,13 @@ function initdatagrid()
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
-                    $('#form2').form('load',{Id_update:row.id,configName_update:row.configName,configKey_update:row.configKey,configValue_update:row.configValue,description_update:row.description});
+                    $('#form2').form('load', {
+                        Id_update: row.id,
+                        configName_update: row.configName,
+                        configKey_update: row.configKey,
+                        configValue_update: row.configValue,
+                        description_update: row.description
+                    });
                     $('#update').window('open');
 
                 }
@@ -108,7 +116,7 @@ function initdatagrid()
                 console.log(rows);
                 console.log(rows[0].id);
 
-                var parm={"id": rows[0].id};
+                var parm = {"id": rows[0].id};
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -116,20 +124,20 @@ function initdatagrid()
                     }
 
                     $.ajax({
-                        cache:false,
+                        cache: false,
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url+'/rest/Sysconfig/deleteConfig',
+                        url: ws_url + '/rest/Sysconfig/deleteConfig',
                         data: JSON.stringify(parm),
                         success: function (msg) {
-                            if (msg.status=='success') {
+                            if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
-                            }else{
-                                $.messager.alert('错误', '删除失败！', "error",function(){
+                            } else {
+                                $.messager.alert('错误', '删除失败！', "error", function () {
                                     $('#grid').datagrid("clearSelections");
                                     $('#grid').datagrid("reload");
                                 });
@@ -155,12 +163,12 @@ function initdatagrid()
         }, '-'],
 
         /*onClickRow:function(rowIndex,rowData){
-            if(isChecked(rowData)){
-                $("#grid").datagrid("unselectRow", rowIndex);
-            }else{
-				$("#grid").datagrid("unselectRow", rowIndex);
-			}
-        }*/
+         if(isChecked(rowData)){
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }else{
+         $("#grid").datagrid("unselectRow", rowIndex);
+         }
+         }*/
 
     });
 
@@ -168,15 +176,15 @@ function initdatagrid()
 
         console.log(param);
 
-        var pagenum=param.page - 1;
-        var pagesize=param.rows;
-        var recordstartindex=param.page==1?0:param.rows*(param.page-1);
-        var recordendindex=param.rows*param.page;
+        var pagenum = param.page - 1;
+        var pagesize = param.rows;
+        var recordstartindex = param.page == 1 ? 0 : param.rows * (param.page - 1);
+        var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url+'/rest/Sysconfig/findlist',
+            url: ws_url + '/rest/Sysconfig/findlist',
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName='+$('#configName_search').val()+'&configKey='+$('#configKey_search').val()+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

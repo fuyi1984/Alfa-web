@@ -8,6 +8,8 @@ import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.util.pojo.UserManager;
+import com.alfa.web.util.pojo.UserSession;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,6 +56,23 @@ public class SysUserServiceTest extends TestBase {
             }else{
                 logger.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_ADD_FAILURE, null)));
             }
+        }
+    }
+
+    @Test
+    public void current(){
+        try{
+            // 当前用户信息已在验证用户登录时放入UserManager中
+            UserSession currentUser= UserManager.getUserSession();
+            if(currentUser!=null&&currentUser.getId()!=null&&currentUser.getUser()!=null){
+                System.out.println(currentUser.getUser().getRealname());
+            }else{
+                currentUser=new UserSession();
+                currentUser.setId(null);
+                System.out.println(currentUser);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

@@ -59,9 +59,9 @@ function logOn() {
                     div.html("登陆成功");
 
                     //SetCookie("loginAccount",account,24);
-                    SetCookie("realname",data.data.user.realname,24);
-                    SetCookie("token",data.data.user.token);
-                    SetCookie("menuitem",data.data.user.menuitem,24);
+                    //SetCookie("realname",data.data.user.realname,24);
+                    //SetCookie("token",data.data.user.token);
+                    //SetCookie("menuitem",data.data.user.menuitem,24);
 
                     window.location.href = platform_url+"/pages/home/index.html";
                 }
@@ -115,6 +115,6 @@ function loginValidator(inputId) {
 
 function keySub(event) {
     if (event.keyCode == 13) {
-        userLoginSubmit();
+        logOn();
     }
 }
