@@ -81,8 +81,7 @@ function setCurrentUser() {
             console.log(data);
             if (typeof data != "undefined" && null != data) {
                 if(data.id==null){
-                    var div = "<div id='notification' ><span>会话过期，请注意未保存的数据，请<u><a href='"+ctx+"/' target='_parent'>点击这里</a></u>重新登录。</span></div>";
-                    $("body").html(div);
+                    window.location.href=platform_url+"/pages/home/login.html";
                 }else if(data.id!=null){
                     grealname=data.user.realname;
                     gmenuitem=data.user.menuitem;
@@ -91,8 +90,7 @@ function setCurrentUser() {
         },
         error: function (xhr) {
             console.log(xhr);
-            var div = "<div id='notification' ><span>会话过期，请注意未保存的数据，请<u><a href="+ctx+"//pages/login.jsp>点击这里</a></u>重新登录。</span></div>";
-            $("body").append(div);
+            window.location.href=platform_url+"/pages/home/login.html";
         }
     });
 
