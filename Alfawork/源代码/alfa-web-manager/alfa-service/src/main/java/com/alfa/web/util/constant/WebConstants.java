@@ -236,6 +236,16 @@ public interface WebConstants {
          * 用户名密码登录成功
          */
         String users_password_verify_success="users.password.verify.success";
+
+        /**
+         * 密码错误
+         */
+        String error_users_original_pwd="error.users.original.pwd";
+
+        /**
+         * 密码修改成功
+         */
+        String password_update_success="password.update.success";
     }
 
 }

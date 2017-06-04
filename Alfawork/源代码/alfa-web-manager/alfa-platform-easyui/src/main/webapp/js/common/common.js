@@ -10,8 +10,10 @@ var ws_url = "http://" + window.location.host + web_service_name;// 发布使用
 var platform_name = "/alfa-platform";
 var platform_url="http://" + window.location.host + platform_name;
 
+var guserid="";
 var grealname="";
 var gmenuitem="";
+var gtoken="";
 
 function isChecked(rowData) {
     var rows = $('#grid').datagrid('getSelections');
@@ -64,7 +66,7 @@ function SetCookie(name,value,hours){
 //退出
 function logoutUser(){
     $.post(ws_url+"/rest/user/logout",function(data){
-        alert("logout:"+data);
+        //alert("logout:"+data);
         window.location.href=platform_url+"/pages/home/login.html";
     });
 }
@@ -85,6 +87,8 @@ function setCurrentUser() {
                 }else if(data.id!=null){
                     grealname=data.user.realname;
                     gmenuitem=data.user.menuitem;
+                    gtoken=data.user.token;
+                    guserid=data.user.userId;
                 }
             }
         },

@@ -66,7 +66,7 @@ function logOn() {
                     window.location.href = platform_url+"/pages/home/index.html";
                 }
                 else {
-                    div.html("未载入相关数据，请重试");
+                    div.html("登录失败，请重试!");
                 }
             },
             error: function (xhr) {

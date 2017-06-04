@@ -190,7 +190,7 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public SysUsers selectByPrimaryKey(Long userSid) {
-        return null;
+        return this.sysUsersMapper.selectByPrimaryKey(userSid);
     }
 
     @Override

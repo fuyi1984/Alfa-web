@@ -48,6 +48,14 @@ function showChangePasswordWin() {
     $('#winPassword').window('open');
 }
 
+function logout() {
+    $.messager.confirm('提示', '您确认要注消当前登录用户吗？', function (r) {
+        if (r) {
+            logoutUser();
+        }
+    });
+}
+
 function add(e) {
     //alert(e);
     var tabTitle = $(e).children('.nav').text();
@@ -85,25 +93,31 @@ function changePassword() {
         $.messager.alert('提示', '两次密码不一致，请重新输入！');
         return;
     }
-    var parm = {password: password, oldPassword: oldPassword};
+    var parm = {userId: guserid, password: password, oldPassword: oldPassword};
+
+    console.log(parm);
+
     $.ajax({
-        type: "POST",
-        url: "/Home/ChangedPassword/",
-        data: parm,
-        success: function (msg) {
-            if (msg.IsSuccess) {
+        type: "post",
+        url: ws_url + "/rest/user/modifyPassword",
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(parm),
+        success: function(data) {
+            console.log(data);
+            if (data.status == "success") {
                 $.messager.alert('提示', '修改成功！', "info", function () {
                     $('#winPassword').window('close');
                     $("#iptOldPassword").val("");
                     $("#iptPassword").val("");
                     $("#iptNewPassword").val("");
-                    window.location.href = "/";
+                    window.location.href = platform_url+"/pages/home/login.html";
                 });
             } else {
                 $.messager.alert('提示', '密码错误，请重新输入！', "info");
             }
         },
-        error: function () {
+        error: function(xhr) {
+            console.log(xhr);
             $.messager.alert('错误', '修改失败！', "error");
         }
     });

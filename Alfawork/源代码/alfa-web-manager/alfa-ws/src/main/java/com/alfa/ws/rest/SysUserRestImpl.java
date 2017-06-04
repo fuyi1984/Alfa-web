@@ -9,6 +9,7 @@ import com.alfa.web.service.SysUsersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.constant.MyError;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.*;
 import org.apache.log4j.Logger;
@@ -283,6 +284,51 @@ public class SysUserRestImpl implements SysUserRest {
         }catch (Exception e){
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
+        }
+    }
+
+    @Override
+    public Response modifyPassword(String params) {
+
+        String json="";
+        Map<String,Object> map;
+
+        MyError error = new MyError();
+        error.error = "修改密码失败 ";
+        error.errorCode = "320";
+
+        try{
+            map=JsonUtil.fromJson(params,Map.class);
+            Long userId = Long.parseLong(map.get("userId").toString());
+            SysUsers currentUser = this.sysUsersService.selectByPrimaryKey(userId);
+
+            String newPwd=String.valueOf(map.get("password"));
+            String oldPwd=String.valueOf(map.get("oldPassword"));
+
+            if(!WebUtil.encrypt(oldPwd,currentUser.getUsername()).equals(currentUser.getPassword())){
+                return Response.status(Response.Status.OK).entity(
+                        JsonUtil.toJson(
+                                new RestResult(RestResult.FAILURE,
+                                        WebConstants.MsgCd.error_users_original_pwd,
+                                        null))).build();
+            }
+
+            currentUser.setPassword(WebUtil.encrypt(newPwd, currentUser.getUsername()));
+            WebUtil.prepareUpdateParams(currentUser);
+            int result=this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+            if (result == 1) {
+                return Response.status(Response.Status.OK).entity(
+                        JsonUtil.toJson(
+                                new RestResult(RestResult.SUCCESS,
+                                        WebConstants.MsgCd.password_update_success,
+                                        null))).build();
+            } else {
+                return Response.status(320).entity(error).build();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.status(320).entity(error).build();
         }
     }
 }

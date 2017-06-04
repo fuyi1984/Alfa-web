@@ -108,5 +108,17 @@ public interface SysUserRest {
     @Path("/current")
     public Response current(@Context HttpServletRequest servletRequest);
 
+    /**
+     * 用户修改密码
+     *
+     * @param user
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/modifyPassword")
+    public Response modifyPassword(String params);
 
 }
