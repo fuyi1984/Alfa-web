@@ -186,6 +186,7 @@ function initdatagrid() {
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
+            async:true,
             success: function (data) {
                 console.log(data);
                 $('#grid').datagrid('clearSelections')

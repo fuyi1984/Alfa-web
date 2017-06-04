@@ -193,6 +193,7 @@ function initdatagrid() {
             + pagesize + '&recordstartindex=' + recordstartindex
             + '&recordendindex=' + recordendindex + '&username=' + $('#username_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
+            async:true,
             success: function (data) {
                 console.log(data);
                 $('#grid').datagrid('clearSelections')

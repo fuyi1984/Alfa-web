@@ -50,6 +50,7 @@ function logOn() {
             contentType: 'application/json;charset=UTF-8',
             /*data: $.param(params),*/
             data:JSON.stringify(params),
+            async:false,
             success: function (data) {
 
                 console.log(data);

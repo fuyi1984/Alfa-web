@@ -48,7 +48,73 @@
 </div>
 <div id="mainPanle" region="center" style="background: #eee; overflow-y: hidden">
     <div id="tabs" class="easyui-tabs" fit="true" border="false">
-        <div title="欢迎使用" style="padding: 20px; overflow: hidden; color: red;">
+        <div title="欢迎使用" style="padding: 20px; overflow: hidden; color:black;">
+            <table cellspacing="1" cellpadding="3" width="98%" align="center" bgcolor="#ffffff"
+                   border="0">
+                <tbody>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%" style="height: 24px">
+                        &nbsp;<strong>系统名:</strong><span id="os_name"></span>
+                    </td>
+                    <td width="50%" style="height: 24px">
+                        &nbsp;<b>系统架构：</b><span id="os_arch"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%" style="height: 23px">
+                        &nbsp;<b>系统版本号:</b><span id="os_version"></span>
+                    </td>
+                    <td width="50%" style="height: 23px">
+                        &nbsp;<b>系统时间:</b><span id="os_date"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%" style="height: 23px">
+                        &nbsp;<b>服务器CPU个数:</b><span id="os_cpus"></span>
+                    </td>
+                    <td width="50%" style="height: 23px">
+                        &nbsp;<b>用户的当前工作目录:</b><span id="os_user_dir"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%">
+                        &nbsp;<b>Java的运行环境版本:</b><span id="java_version"></span>
+                    </td>
+                    <td width="50%">
+                        &nbsp;<b>java默认的临时文件路径:</b><span id="java_io_tmpdir"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%">
+                        &nbsp;<b>java 平台:</b><span id="sun_desktop"></span>
+                    </td>
+                    <td width="50%">
+                        &nbsp;<b>服务上下文:</b><span id="server_context"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%">
+                        &nbsp;<b>服务器名:</b><span id="server_name"></span>
+                    </td>
+                    <td width="50%">
+                        &nbsp;<b>服务器端口:</b><span id="server_port"></span>
+                    </td>
+                </tr>
+                <tr bgcolor="#e0ecff">
+                    <td width="50%">
+                        &nbsp;<b>服务器地址:</b><span id="server_addr"></span>
+                    </td>
+                    <td width="50%">
+                        &nbsp;<b>服务协议:</b><span id="server_protocol"></span>
+                    </td>
+                </tr>
+               <!-- <tr bgcolor="#e0ecff">
+                    <td colspan="2">
+                        &nbsp;<b>服务器操作系统：</b><span id="os_name"></span>
+                    </td>
+                </tr>-->
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

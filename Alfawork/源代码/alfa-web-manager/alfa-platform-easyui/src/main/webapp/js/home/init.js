@@ -9,6 +9,8 @@ $(function () {
 
     setCurrentUser();
 
+    InitServerInfo();
+
     $("#welcome").html("欢迎 " + grealname + " " + $("#welcome").html());
 
     InitLeftMenu();
@@ -26,8 +28,40 @@ $(function () {
 
         }
     });
-
 })
+
+function InitServerInfo(){
+    $.ajax({
+        url: ws_url+'/rest/server/getsysteminfo',
+        type: "get",
+        contentType: 'application/json;charset=UTF-8',
+        async:true,
+        success: function (data) {
+            console.log(data);
+            if (typeof data != "undefined" && null != data) {
+
+                $("#os_name").html(data.os_name);
+                $("#os_arch").html(data.os_arch);
+                $("#os_version").html(data.os_version);
+                $("#os_date").html(data.os_date);
+                $("#os_cpus").html(data.os_cpus);
+                $("#os_user_dir").html(data.os_user_dir);
+                $("#java_version").html(data.java_version);
+                $("#java_io_tmpdir").html(data.java_io_tmpdir);
+                $("#sun_desktop").html(data.sun_desktop);
+                $("#server_context").html(data.server_context);
+                $("#server_name").html(data.server_name);
+                $("#server_port").html(data.server_port);
+                $("#server_addr").html(data.server_addr);
+                $("#server_protocol").html(data.server_protocol);
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+
+        }
+    });
+}
 
 function InitData() {
 
@@ -102,6 +136,7 @@ function changePassword() {
         url: ws_url + "/rest/user/modifyPassword",
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(parm),
+        async:false,
         success: function(data) {
             console.log(data);
             if (data.status == "success") {
