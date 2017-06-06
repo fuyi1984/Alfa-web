@@ -9,3 +9,4 @@ var ws_url = "http://" + window.location.host + web_service_name;// 发布使用
 var platform_name = "/alfa-platform";
 var platform_url="http://" + window.location.host + platform_name;
 
+//var urlcustom=document.URL;

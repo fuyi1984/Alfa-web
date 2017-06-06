@@ -77,14 +77,18 @@ function setCurrentUser() {
                 if(data.id==null){
                     window.location.href=platform_url+"/pages/home/login.html";
                 }else if(data.id!=null){
-                       grealname=data.user.realname;
-                       gmenuitem=data.user.menuitem;
-                       gtoken=data.user.token;
-                       guserid=data.user.userId;
+                    // if(urlcustom.indexOf("/home/")>0||urlcustom.indexOf("login.html")>0) {
+                        grealname = data.user.realname;
+                        gmenuitem = data.user.menuitem;
+                        gtoken = data.user.token;
+                        guserid = data.user.userId;
+                    // }else {
+                    //     window.location.href=platform_url+"/pages/home/login.html";
+                    // }
                 }
             }
         },
-        error: function (xhr) {
+        error: function(xhr) {
             console.log(xhr);
             window.location.href=platform_url+"/pages/home/login.html";
         }

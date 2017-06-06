@@ -10,9 +10,9 @@
     <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
     <script src="../../easyui/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
-    <script src="../../js/constant.js" type="text/javascript"></script>
-    <script src="../../js/common.js" type="text/javascript"></script>
-    <script src="../../js/sysrole.js" type="text/javascript"></script>
+    <script src="../../js/common/constant.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+    <script src="../../js/sysrole/Init.js" type="text/javascript"></script>
 </head>
 <body class="easyui-layout">
 <div region="center" style="padding: 5px;" border="false">
@@ -75,7 +75,7 @@
 
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
                iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                             onclick="location.href = document.referrer;"
+                                             onclick="$('#add').window('close');"
                                              iconcls="icon-cancel">返回</a>
 
         </div>
@@ -139,7 +139,7 @@
 
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:updateform()" id="updateForm"
                iconcls="icon-save">修改</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                             onclick="location.href = document.referrer;"
+                                             onclick="$('#update').window('close');"
                                              iconcls="icon-cancel">返回</a>
 
         </div>
@@ -167,7 +167,7 @@
 
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:searchform()"
                iconcls="icon-search">查询</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                               onclick="location.href = document.referrer;"
+                                               onclick="$('#search').window('close');"
                                                iconcls="icon-cancel">返回</a>
 
         </div>

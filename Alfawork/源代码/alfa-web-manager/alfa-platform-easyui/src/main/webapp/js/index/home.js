@@ -32,6 +32,10 @@ $(function () {
     });
 })
 
+/*window.onunload=function(){
+    top.location="/login.html";
+}*/
+
 function InitServerInfo(){
     $.ajax({
         url: ws_url+'/rest/server/getsysteminfo?token='+gtoken,
@@ -81,6 +85,7 @@ function InitData() {
 }
 
 function showChangePasswordWin() {
+    $("#iptOldPassword").val("");
     $('#winPassword').window('open');
 }
 
@@ -147,7 +152,7 @@ function changePassword() {
                     $("#iptOldPassword").val("");
                     $("#iptPassword").val("");
                     $("#iptNewPassword").val("");
-                    window.location.href = platform_url+"/pages/home/login.html";
+                    window.location.href=platform_url+"/pages/home/login.html";
                 });
             } else {
                 $.messager.alert('提示', '密码错误，请重新输入！', "info");

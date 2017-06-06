@@ -34,7 +34,7 @@ function logOn() {
         var account = $("#txtAccount").val();
         var password = $("#txtPassword").val();
 
-        var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='../images/loading.gif' />";
+        var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='../../images/loading.gif' />";
         div.html(loading);
 
         var params = {username: account, password: password, token: -1};
