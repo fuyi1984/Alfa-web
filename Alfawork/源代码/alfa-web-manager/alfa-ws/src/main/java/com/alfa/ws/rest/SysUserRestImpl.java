@@ -288,6 +288,35 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
+    public Response redirect(String token, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+        try{
+            if(!StringUtil.isNullOrEmpty(token)){
+                Criteria criteria=new Criteria();
+                criteria.put("token", token);
+
+                List<SysUsers> users=sysUsersService.selectByParams(criteria);
+
+                if(users.size()>0){
+                    SysUsers currentUser=users.get(0);
+                    log.info("UserRestImpl----------------------redirect account="+currentUser.getUsername()+" token="+token);
+                    // 保存Session和Cookie
+                    String json = JsonUtil.toJson(sysUsersService.createSession(servletRequest, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+                    return Response.status(Response.Status.OK).entity(json).build();
+                }else{
+                    UserSession currentUser = new UserSession();
+                    return Response.status(Response.Status.OK).entity(currentUser).build();
+                }
+            }else{
+                UserSession currentUser = new UserSession();
+                return Response.status(Response.Status.OK).entity(currentUser).build();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
+        }
+    }
+
+    @Override
     public Response modifyPassword(String params) {
 
         String json="";

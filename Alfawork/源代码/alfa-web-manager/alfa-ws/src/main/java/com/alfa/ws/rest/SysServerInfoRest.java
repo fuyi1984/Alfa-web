@@ -26,7 +26,7 @@ public interface SysServerInfoRest {
      */
     @WebMethod
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/getsysteminfo")
     public Response GetSystemInfo(@Context HttpServletRequest servletRequest);
 }

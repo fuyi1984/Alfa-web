@@ -36,8 +36,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/insertConfig")
     public Response insertConfig(SysConfig config);
 
@@ -49,8 +49,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/updateConfig")
     public Response updateConfig(SysConfig config);
 
@@ -62,8 +62,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteConfig")
     public Response deleteConfig(SysConfig config);
 
@@ -72,8 +72,8 @@ public interface SysconfigRest {
      */
     @WebMethod
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findConfig(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
@@ -96,7 +96,7 @@ public interface SysconfigRest {
      */
     @WebMethod
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/licenseValid")
     public Response licenseValid();
 }

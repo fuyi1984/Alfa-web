@@ -7,6 +7,8 @@
 
 $(function () {
 
+    //alert(ReadCookie("token"));
+
     setCurrentUser();
 
     InitServerInfo();
@@ -32,7 +34,7 @@ $(function () {
 
 function InitServerInfo(){
     $.ajax({
-        url: ws_url+'/rest/server/getsysteminfo',
+        url: ws_url+'/rest/server/getsysteminfo?token='+gtoken,
         type: "get",
         contentType: 'application/json;charset=UTF-8',
         async:true,
@@ -133,7 +135,7 @@ function changePassword() {
 
     $.ajax({
         type: "post",
-        url: ws_url + "/rest/user/modifyPassword",
+        url: ws_url + "/rest/user/modifyPassword?token="+gtoken,
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(parm),
         async:false,

@@ -24,8 +24,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/findrole")
     public Response findRole(SysRole role);
 
@@ -34,8 +34,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/addrole")
     public Response addRole(SysRole role);
 
@@ -44,8 +44,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/editrole")
     public Response editRole(SysRole role);
 
@@ -54,8 +54,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleterole")
     public Response deleteRole(SysRole role);
 
@@ -64,8 +64,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/findAllRole")
     public Response findAllRole();
 
@@ -74,8 +74,8 @@ public interface SysRoleRest {
      */
     @WebMethod
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findRolelist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 

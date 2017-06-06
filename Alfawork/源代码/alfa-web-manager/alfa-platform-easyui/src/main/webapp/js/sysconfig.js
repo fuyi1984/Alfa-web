@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/5/23.
+ * Created by Administrator on 2017/6/5.
  */
 
 $(function () {
@@ -128,7 +128,7 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/Sysconfig/deleteConfig',
+                        url: ws_url + '/rest/Sysconfig/deleteConfig?token='+gtoken,
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status == 'success') {
@@ -182,7 +182,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url + '/rest/Sysconfig/findlist',
+            url: ws_url + '/rest/Sysconfig/findlist?token='+gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',
             contentType: 'application/json;charset=UTF-8',
@@ -199,4 +199,147 @@ function initdatagrid() {
             }
         });
     }
+}
+
+function submitForm(){
+
+    var params={
+        "configName": $('#configName_add').val(),
+        "configKey": $('#configKey_add').val(),
+        "configValue": $('#configValue_add').val(),
+        "description": $('#description_add').val()
+    }
+
+    console.log(params);
+
+    if(params.configName=="")
+    {
+        $.messager.alert('提示', '配置项名称不能为空');
+        return;
+    }
+
+    if(params.configKey=="")
+    {
+        $.messager.alert('提示', '配置项代码不能为空');
+        return;
+    }
+
+    if(params.configValue=="")
+    {
+        $.messager.alert('提示', '配置项值不能为空');
+        return;
+    }
+
+    $.ajax({
+        url: ws_url+'/rest/Sysconfig/insertConfig?token='+gtoken,
+        contentType: 'application/json;charset=UTF-8',
+        type: 'post',
+        datatype: 'json',
+        data:JSON.stringify(params),
+        cache:false,
+        success: function (data) {
+
+            console.log(data.status);
+            console.log(data.message);
+
+            $('#form1').form('clear');
+
+            if(data.status=='success'){
+                $.messager.alert('提示', '添加成功！', 'info', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#add').window('close');
+                    $('#grid').datagrid("reload");
+                });
+            }else if(data.status=='failure'){
+                if(data.message=='Configuration.Exists.Success'){
+                    $.messager.alert('提示', '数据已经存在,添加失败！', 'warning', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#add').window('close');
+                        $('#grid').datagrid("reload");
+                    });
+                }else{
+                    $.messager.alert('提示', '添加失败！', 'error', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#add').window('close');
+                        $('#grid').datagrid("reload");
+                    });
+                }
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
+    });
+}
+
+function searchform() {
+    $('#search').window('close');
+    initdatagrid();
+}
+
+function updateform(){
+    var params={
+        "id":$('#Id_update').val(),
+        "configName": $('#configName_update').val(),
+        "configKey": $('#configKey_update').val(),
+        "configValue": $('#configValue_update').val(),
+        "description": $('#description_update').val()
+    }
+
+    console.log(params);
+
+    if(params.configName=="")
+    {
+        $.messager.alert('提示', '配置项名称不能为空');
+        return;
+    }
+
+    if(params.configKey=="")
+    {
+        $.messager.alert('提示', '配置项代码不能为空');
+        return;
+    }
+
+    if(params.configValue=="")
+    {
+        $.messager.alert('提示', '配置项值不能为空');
+        return;
+    }
+
+    $.ajax({
+        url: ws_url+'/rest/Sysconfig/updateConfig?token='+gtoken,
+        contentType: 'application/json;charset=UTF-8',
+        type: 'post',
+        datatype: 'json',
+        data:JSON.stringify(params),
+        cache:false,
+        success: function (data) {
+
+            console.log(data.status);
+            console.log(data.message);
+
+            $('#form2').form('clear');
+
+            if(data.status=='success'){
+                $.messager.alert('提示', '修改成功！', 'info', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#update').window('close');
+                    $('#grid').datagrid("clearSelections");
+                    $('#grid').datagrid("reload");
+                });
+            }else if(data.status=='failure'){
+
+                $.messager.alert('提示', '修改失败！', 'error', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#update').window('close');
+                    $('#grid').datagrid("clearSelections");
+                    $('#grid').datagrid("reload");
+                });
+
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
+    });
 }

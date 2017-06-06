@@ -2,14 +2,6 @@
  * Created by Administrator on 2017/5/26.
  */
 
-// WebService请求地址
-var web_service_name = "/alfa-ws";
-var ws_url = "http://" + window.location.host + web_service_name;// 发布使用的url
-
-//后台地址
-var platform_name = "/alfa-platform";
-var platform_url="http://" + window.location.host + platform_name;
-
 var guserid="";
 var grealname="";
 var gmenuitem="";
@@ -73,7 +65,7 @@ function logoutUser(){
 
 /** 加载页面判断user是否登陆 */
 function setCurrentUser() {
-
+    
     $.ajax({
         url: ws_url+'/rest/user/current',
         type: "get",
@@ -85,10 +77,10 @@ function setCurrentUser() {
                 if(data.id==null){
                     window.location.href=platform_url+"/pages/home/login.html";
                 }else if(data.id!=null){
-                    grealname=data.user.realname;
-                    gmenuitem=data.user.menuitem;
-                    gtoken=data.user.token;
-                    guserid=data.user.userId;
+                       grealname=data.user.realname;
+                       gmenuitem=data.user.menuitem;
+                       gtoken=data.user.token;
+                       guserid=data.user.userId;
                 }
             }
         },

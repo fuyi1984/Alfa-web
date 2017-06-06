@@ -1,6 +1,7 @@
 /**
- * Created by Administrator on 2017/5/23.
+ * Created by Administrator on 2017/6/5.
  */
+
 
 $(function () {
 
@@ -133,7 +134,7 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/user/deleteUser',
+                        url: ws_url + '/rest/user/deleteUser?token='+gtoken,
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status == 'success') {
@@ -187,7 +188,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url + '/rest/user/findlist',
+            url: ws_url + '/rest/user/findlist?token='+gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
             + pagesize + '&recordstartindex=' + recordstartindex
@@ -212,7 +213,7 @@ function initdatagrid() {
 
 function initcombobox() {
     $('.easyui-combobox').combobox({
-            url: ws_url + '/rest/roles/findAllRole',
+            url: ws_url + '/rest/roles/findAllRole?token='+gtoken,
             method: 'get',
             valueField: 'roleId',
             textField: 'role_name'
@@ -225,4 +226,189 @@ function initcombobox() {
      valueField:'id',
      textField:'text'
      })*/
+}
+
+function submitForm(){
+
+    //alert($('#sexlist').combobox('getValue'));
+    var username=$('#phone_add').val();
+    var phone=$('#phone_add').val();
+    var password=$('#password_add').val();
+    var repassword=$('#repassword').val();
+    //var sex=$('#sexlist').combobox('getValue');
+    var role=$('#rolelist').combobox('getValue');
+    var address=$('#address_add').val();
+    var realname=$('#realname_add').val();
+
+    if(username==""||phone=="")
+    {
+        $.messager.alert('提示', '手机号不能为空!');
+        return;
+    }
+
+    if(password.length<5 && password.length>32){
+        $.messager.alert('提示', '密码长度大于5小于32!');
+        return;
+    }
+
+    if(repassword.length<5 && repassword.length>32){
+        $.messager.alert('提示', '确认密码长度大于5小于32!');
+        return;
+    }
+
+    if(repassword != password){
+        $.messager.alert('提示', '密码和确认密码不相等!');
+        return;
+    }
+
+    if(realname==""){
+        $.messager.alert('提示', '真实姓名不能为空!');
+        return;
+    }
+
+    /*if(sex==""){
+     $.messager.alert('提示', '性别不能为空!');
+     return;
+     }*/
+
+    if(role==""){
+        $.messager.alert('提示', '角色不能为空!');
+        return;
+    }
+
+    var params={
+        "username": username,
+        "phone": phone,
+        "password": password,
+        /*"sex":sex,*/
+        "roleId":role,
+        "address":address,
+        "realname":realname
+    };
+
+    console.log(params);
+
+    $.ajax({
+        url: ws_url+'/rest/user/insertUser?token='+gtoken,
+        contentType: 'application/json;charset=UTF-8',
+        type: 'post',
+        datatype: 'json',
+        data:JSON.stringify(params),
+        cache:false,
+        success: function (data) {
+
+            console.log(data.status);
+            console.log(data.message);
+
+            $('#form1').form('clear');
+
+            if(data.status=='success'){
+                $.messager.alert('提示', '添加成功！', 'info', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#add').window('close');
+                    $('#grid').datagrid("reload");
+                });
+            }else if(data.status=='failure'){
+                if(data.message=='USER_EXIST_SUCCESS'){
+                    $.messager.alert('提示', '数据已经存在,添加失败！', 'warning', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#add').window('close');
+                        $('#grid').datagrid("reload");
+                    });
+                }else{
+                    $.messager.alert('提示', '添加失败！', 'error', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#add').window('close');
+                        $('#grid').datagrid("reload");
+                    });
+                }
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
+    });
+}
+
+function searchform() {
+    $('#search').window('close');
+    initdatagrid();
+}
+
+
+function updateform(){
+
+    //alert($('#sexlist').combobox('getValue'));
+    var userId=$('#userId_update').val();
+    var username=$('#phone_update').val();
+    var phone=$('#phone_update').val();
+    var role=$('#rolelist_update').combobox('getValue');
+    var address=$('#address_update').val();
+    var realname=$('#realname_update').val();
+
+    var params={
+        "userId":userId,
+        "username":username,
+        "phone":phone,
+        "roleId": role,
+        "address":address,
+        "realname":realname
+    }
+
+    console.log(params);
+
+    if(phone=="")
+    {
+        $.messager.alert('提示', '联系电话不能为空');
+        return;
+    }
+
+    if(realname=="")
+    {
+        $.messager.alert('提示', '真实姓名不能为空');
+        return;
+    }
+
+    if(role=="")
+    {
+        $.messager.alert('提示', '角色不能为空');
+        return;
+    }
+
+    $.ajax({
+        url: ws_url+'/rest/user/editUser?token'+gtoken,
+        contentType: 'application/json;charset=UTF-8',
+        type: 'post',
+        datatype: 'json',
+        data:JSON.stringify(params),
+        cache:false,
+        success: function (data) {
+
+            console.log(data.status);
+            console.log(data.message);
+
+            $('#form2').form('clear');
+
+            if(data.status=='success'){
+                $.messager.alert('提示', '修改成功！', 'info', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#update').window('close');
+                    $('#grid').datagrid("clearSelections");
+                    $('#grid').datagrid("reload");
+                });
+            }else if(data.status=='failure'){
+
+                $.messager.alert('提示', '修改失败！', 'error', function () {
+                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                    $('#update').window('close');
+                    $('#grid').datagrid("clearSelections");
+                    $('#grid').datagrid("reload");
+                });
+
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
+    });
 }

@@ -30,8 +30,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/insertByMobile")
     public Response insertByMobile(SysUsers user,
                                    @Context HttpServletRequest servletRequest,
@@ -45,8 +45,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/insertUser")
     public Response insertUser(SysUsers user) throws Exception;
 
@@ -55,8 +55,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteUser")
     public Response deleteUser(SysUsers user);
 
@@ -65,8 +65,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Produces({ MediaType.APPLICATION_JSON })
-    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/editUser")
     public Response editUser(SysUsers user);
 
@@ -74,7 +74,7 @@ public interface SysUserRest {
      * 退出用户
      */
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/logout")
     public Response logoutUser(@Context HttpServletRequest servletRequest,
                                @Context HttpServletResponse servletResponse);
@@ -83,7 +83,7 @@ public interface SysUserRest {
      * 用户登录
      */
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/verify")
     public Response verifyUser(SysUsers user,
                                @Context HttpServletRequest servletRequest,
@@ -94,8 +94,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findUserlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
@@ -104,9 +104,19 @@ public interface SysUserRest {
      */
     @WebMethod
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/current")
     public Response current(@Context HttpServletRequest servletRequest);
+
+    /**
+     * 验证客户端用户是否登录
+     */
+    @WebMethod
+    @GET
+    @Path("/redirect")
+    public Response redirect(String token,
+                             @Context HttpServletRequest servletRequest,
+                             @Context HttpServletResponse servletResponse);
 
     /**
      * 用户修改密码
@@ -116,8 +126,8 @@ public interface SysUserRest {
      */
     @WebMethod
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     @Path("/modifyPassword")
     public Response modifyPassword(String params);
 

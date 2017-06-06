@@ -34,8 +34,8 @@ function logOn() {
         var account = $("#txtAccount").val();
         var password = $("#txtPassword").val();
 
-        var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='../../images/loading.gif' />";
-        div.html(loading + "载入中，请稍候...");
+        var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='../images/loading.gif' />";
+        div.html(loading);
 
         var params = {username: account, password: password, token: -1};
 
@@ -59,11 +59,7 @@ function logOn() {
 
                     div.html("登陆成功");
 
-                    //SetCookie("loginAccount",account,24);
-                    //SetCookie("realname",data.data.user.realname,24);
-                    //SetCookie("token",data.data.user.token);
-                    //SetCookie("menuitem",data.data.user.menuitem,24);
-
+                    //window.location.href = platformUrl+"/pages/jsp/redirect.jsp?token="+data.data.user.token;
                     window.location.href = platform_url+"/pages/home/index.html";
                 }
                 else {
