@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>index</title>
 
-    <link href="../../easyui/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css"/>
+    <link href="../../easyui/themes/default/easyui.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
 
     <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
@@ -13,14 +13,17 @@
     <script src="../../js/common/constant.js" type="text/javascript"></script>
     <script src="../../js/common/common.js" type="text/javascript"></script>
     <script src="../../js/sysuser/Init.js" type="text/javascript"></script>
+	<script src="../../js/sysuser/Add.js" type="text/javascript"></script>
+	<script src="../../js/sysuser/Search.js" type="text/javascript"></script>
+	<script src="../../js/sysuser/Update.js" type="text/javascript"></script>
     <script src="../../js/common/validator.js" typ="text/javascript"></script>
 </head>
 <body class="easyui-layout">
 <div region="center" style="padding: 5px;" border="false">
-    <table id="grid">
+    <table id="usergrid">
     </table>
 </div>
-<div id="add" class="easyui-window" title="添加用户信息"
+<div id="useradd" class="easyui-window" title="添加用户信息"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
      style="width:430px;height:350px;padding:10px;">
     <form id="form1" method="post">
@@ -110,15 +113,15 @@
         </div>
         <div style="text-align: center; padding: 5px 5px 10px 10px">
 
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:usersubmitForm()" id="submit"
                iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                             onclick="$('#add').window('close');"
+                                             onclick="$('#useradd').window('close');"
                                              iconcls="icon-cancel">返回</a>
 
         </div>
     </form>
 </div>
-<div id="update" class="easyui-window" title="修改用户信息"
+<div id="userupdate" class="easyui-window" title="修改用户信息"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
      style="width:430px;height:280px;padding:10px;">
     <form id="form2">
@@ -170,15 +173,15 @@
         </div>
         <div style="text-align: center; padding: 5px 5px 10px 10px">
 
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:updateform()" id="updateForm"
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:userupdateform()" id="updateForm"
                iconcls="icon-save">修改</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                             onclick="$('#update').window('close');"
+                                             onclick="$('#userupdate').window('close');"
                                              iconcls="icon-cancel">返回</a>
 
         </div>
     </form>
 </div>
-<div id="search" class="easyui-window" title="查询用户信息"
+<div id="usersearch" class="easyui-window" title="查询用户信息"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-search'"
      style="width:450px;height:180px;padding:10px;">
     <form id="form3">
@@ -198,9 +201,9 @@
         </div>
         <div style="text-align: center; padding: 5px 5px 10px 10px">
 
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:searchform()"
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:usersearchform()"
                iconcls="icon-search">查询</a> <a href="javascript:void(0)" class="easyui-linkbutton"
-                                               onclick="$('#search').window('close');"
+                                               onclick="$('#usersearch').window('close');"
                                                iconcls="icon-cancel">返回</a>
 
         </div>

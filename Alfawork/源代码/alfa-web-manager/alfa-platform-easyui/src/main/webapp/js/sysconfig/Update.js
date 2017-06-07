@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/6/6.
  */
-function updateform() {
+function configupdateform() {
     var params = {
         "id": $('#Id_update').val(),
         "configName": $('#configName_update').val(),
@@ -44,17 +44,17 @@ function updateform() {
             if (data.status == 'success') {
                 $.messager.alert('提示', '修改成功！', 'info', function () {
                     //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                    $('#update').window('close');
-                    $('#grid').datagrid("clearSelections");
-                    $('#grid').datagrid("reload");
+                    $('#configupdate').window('close');
+                    $('#configgrid').datagrid("clearSelections");
+                    $('#configgrid').datagrid("reload");
                 });
             } else if (data.status == 'failure') {
 
                 $.messager.alert('提示', '修改失败！', 'error', function () {
                     //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                    $('#update').window('close');
-                    $('#grid').datagrid("clearSelections");
-                    $('#grid').datagrid("reload");
+                    $('#configupdate').window('close');
+                    $('#configgrid').datagrid("clearSelections");
+                    $('#configgrid').datagrid("reload");
                 });
 
             }

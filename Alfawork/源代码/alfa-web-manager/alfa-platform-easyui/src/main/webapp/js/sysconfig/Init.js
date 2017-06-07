@@ -6,9 +6,9 @@ $(function () {
 
     setCurrentUser();
 
-    $('#add').window('close');
-    $('#update').window('close');
-    $('#search').window('close');
+    $('#configadd').window('close');
+    $('#configupdate').window('close');
+    $('#configsearch').window('close');
 
     initdatagrid();
 
@@ -18,7 +18,7 @@ $(function () {
 
 function initdatagrid() {
 
-    $('#grid').datagrid({
+    $('#configgrid').datagrid({
         title: '系统配置 ',
         singleSelect: true,
         iconCls: 'icon-save',
@@ -67,7 +67,7 @@ function initdatagrid() {
                  */
 
                 //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
-                $('#add').window('open');
+                $('#configadd').window('open');
             }
         }, '-', {
             id: 'btnUpdate',
@@ -75,7 +75,7 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#grid').datagrid('getSelected');
+                var row = $('#configgrid').datagrid('getSelected');
 
                 console.log(row);
 
@@ -90,7 +90,7 @@ function initdatagrid() {
                         configValue_update: row.configValue,
                         description_update: row.description
                     });
-                    $('#update').window('open');
+                    $('#configupdate').window('open');
 
                 }
                 else {
@@ -108,7 +108,7 @@ function initdatagrid() {
             iconCls: 'icon-cut',
             handler: function () {
 
-                var rows = $('#grid').datagrid('getSelections');
+                var rows = $('#configgrid').datagrid('getSelections');
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
                     return;
@@ -134,19 +134,19 @@ function initdatagrid() {
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
-                                    $('#grid').datagrid("clearSelections");
-                                    $('#grid').datagrid("reload");
+                                    $('#configgrid').datagrid("clearSelections");
+                                    $('#configgrid').datagrid("reload");
                                 });
                             } else {
                                 $.messager.alert('错误', '删除失败！', "error", function () {
-                                    $('#grid').datagrid("clearSelections");
-                                    $('#grid').datagrid("reload");
+                                    $('#configgrid').datagrid("clearSelections");
+                                    $('#configgrid').datagrid("reload");
                                 });
                             }
                         },
                         error: function (xhr) {
                             console.log(xhr);
-                            $('#grid').datagrid("clearSelections");
+                            $('#configgrid').datagrid("clearSelections");
                             $.messager.alert('错误', '删除失败！', "error");
                         }
                     });
@@ -159,7 +159,7 @@ function initdatagrid() {
             disabled: false,
             iconCls: 'icon-search',
             handler: function () {
-                $('#search').window('open');
+                $('#configsearch').window('open');
             }
         }, '-'],
 
@@ -189,7 +189,7 @@ function initdatagrid() {
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#grid').datagrid('clearSelections')
+                $('#configgrid').datagrid('clearSelections')
                 $('#form3').form('clear');
                 success(data);
             },

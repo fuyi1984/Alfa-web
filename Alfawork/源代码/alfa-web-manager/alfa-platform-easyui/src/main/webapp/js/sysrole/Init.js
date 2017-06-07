@@ -6,16 +6,16 @@ $(function () {
 
     setCurrentUser();
 
-    $('#add').window('close');
-    $('#update').window('close');
-    $('#search').window('close');
+    $('#roleadd').window('close');
+    $('#roleupdate').window('close');
+    $('#rolesearch').window('close');
 
     initdatagrid();
 });
 
 
 function initdatagrid() {
-    $('#grid').datagrid({
+    $('#rolegrid').datagrid({
         title: '角色管理 ',
         singleSelect: true,
         iconCls: 'icon-save',
@@ -64,7 +64,7 @@ function initdatagrid() {
                  */
 
                 //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
-                $('#add').window('open');
+                $('#roleadd').window('open');
             }
         }, '-', {
             id: 'btnUpdate',
@@ -72,7 +72,7 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#grid').datagrid('getSelected');
+                var row = $('#rolegrid').datagrid('getSelected');
 
                 console.log(row);
 
@@ -88,7 +88,7 @@ function initdatagrid() {
                         roleDesc_update: row.roleDesc
                     });
 
-                    $('#update').window('open');
+                    $('#roleupdate').window('open');
 
                 }
                 else {
@@ -106,7 +106,7 @@ function initdatagrid() {
             iconCls: 'icon-cut',
             handler: function () {
 
-                var rows = $('#grid').datagrid('getSelections');
+                var rows = $('#rolegrid').datagrid('getSelections');
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
                     return;
@@ -132,19 +132,19 @@ function initdatagrid() {
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
-                                    $('#grid').datagrid("clearSelections");
-                                    $('#grid').datagrid("reload");
+                                    $('#rolegrid').datagrid("clearSelections");
+                                    $('#rolegrid').datagrid("reload");
                                 });
                             } else {
                                 $.messager.alert('错误', '删除失败！', "error", function () {
-                                    $('#grid').datagrid("clearSelections");
-                                    $('#grid').datagrid("reload");
+                                    $('#rolegrid').datagrid("clearSelections");
+                                    $('#rolegrid').datagrid("reload");
                                 });
                             }
                         },
                         error: function (xhr) {
                             console.log(xhr);
-                            $('#grid').datagrid("clearSelections");
+                            $('#rolegrid').datagrid("clearSelections");
                             $.messager.alert('错误', '删除失败！', "error");
                         }
                     });
@@ -157,7 +157,7 @@ function initdatagrid() {
             disabled: false,
             iconCls: 'icon-search',
             handler: function () {
-                $('#search').window('open');
+                $('#rolesearch').window('open');
             }
         }, '-'],
 
@@ -187,7 +187,7 @@ function initdatagrid() {
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#grid').datagrid('clearSelections')
+                $('#rolegrid').datagrid('clearSelections')
                 $('#form3').form('clear');
                 success(data);
             },

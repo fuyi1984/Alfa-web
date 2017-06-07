@@ -246,6 +246,36 @@ public interface WebConstants {
          * 密码修改成功
          */
         String password_update_success="password.update.success";
+
+        /**
+         * 订单插入成功
+         */
+        String Order_Insert_Success="Order.Insert.Success";
+
+        /**
+         * 订单插入失败
+         */
+        String Order_Insert_Failtrue="Order.Insert.Failtrue";
+
+        /**
+         * 订单删除成功
+         */
+        String Order_Delete_Success="Order.Delete.Success";
+
+        /**
+         * 订单删除失败
+         */
+        String Order_Delete_Failtrue="Order.Delete.Failtrue";
+
+        /**
+         * 订单修改成功
+         */
+        String Order_Update_Success="Order.Update.Success";
+
+        /**
+         * 订单修改失败
+         */
+        String Order_Update_Failtrue="Order.Update.Failtrue";
     }
 
 }

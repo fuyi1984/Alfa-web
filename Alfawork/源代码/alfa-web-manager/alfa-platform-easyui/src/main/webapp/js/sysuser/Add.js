@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/6/6.
  */
-function submitForm(){
+function usersubmitForm(){
 
     //alert($('#sexlist').combobox('getValue'));
     var username=$('#phone_add').val();
@@ -78,21 +78,21 @@ function submitForm(){
             if(data.status=='success'){
                 $.messager.alert('提示', '添加成功！', 'info', function () {
                     //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                    $('#add').window('close');
-                    $('#grid').datagrid("reload");
+                    $('#useradd').window('close');
+                    $('#usergrid').datagrid("reload");
                 });
             }else if(data.status=='failure'){
                 if(data.message=='USER_EXIST_SUCCESS'){
                     $.messager.alert('提示', '数据已经存在,添加失败！', 'warning', function () {
                         //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                        $('#add').window('close');
-                        $('#grid').datagrid("reload");
+                        $('#useradd').window('close');
+                        $('#usergrid').datagrid("reload");
                     });
                 }else{
                     $.messager.alert('提示', '添加失败！', 'error', function () {
                         //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                        $('#add').window('close');
-                        $('#grid').datagrid("reload");
+                        $('#useradd').window('close');
+                        $('#usergrid').datagrid("reload");
                     });
                 }
             }

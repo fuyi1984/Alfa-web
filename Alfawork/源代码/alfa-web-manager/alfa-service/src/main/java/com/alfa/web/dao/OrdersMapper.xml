@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.OrdersMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.Orders">
+
+        <id column="orderid" property="orderid" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
+        <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+        <result column="workerid" property="workerid" jdbcType="BIGINT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+
+            <if test="condition.orderid != null">
+                and A.orderid = #{condition.orderid}
+            </if>
+            <if test="condition.username != null">
+                and A.username = #{condition.username}
+            </if>
+            <if test="condition.usernameLike != null">
+                and A.username like concat('%', #{condition.usernameLike}, '%')
+            </if>
+            <if test="condition.iphone != null">
+                and A.iphone = #{condition.iphone}
+            </if>
+            <if test="condition.address != null">
+                and A.address = #{condition.address}
+            </if>
+            <if test="condition.num != null">
+                and A.num = #{condition.num}
+            </if>
+            <if test="condition.orgname != null">
+                and A.orgname = #{condition.orgname}
+            </if>
+            <if test="condition.orgstatus != null">
+                and A.orgstatus = #{condition.orgstatus}
+            </if>
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+            <if test="condition.workerid != null">
+                and A.workerid = #{condition.workerid}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.orderid, A.username, A.iphone, A.address, A.num, A.orgname,
+        A.orgstatus,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid,
+    </sql>
+
+    <insert id="insert" parameterType="com.alfa.web.pojo.Orders">
+        <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into orders(username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        updatedBy,updatedDt,version,workerid)
+        values (#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.Orders">
+        <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="iphone != null">
+                iphone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="orgname != null">
+                orgname,
+            </if>
+            <if test="orgstatus != null">
+                orgstatus,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="workerid != null">
+                workerid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                #{username},
+            </if>
+            <if test="iphone != null">
+                #{iphone},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="num != null">
+                #{num},
+            </if>
+            <if test="orgname != null">
+                #{orgname},
+            </if>
+            <if test="orgstatus != null">
+                #{orgstatus},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+            <if test="workerid != null">
+                #{workerid},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List" />
+        B.phone,B.realname
+        from orders A
+
+        left join sysusers B on(A.workerid = B.userId)
+        left join sysrole C on(B.roleId=C.roleId)
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+
+        GROUP BY A.orderid
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit" />
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+        select count(*) from orders A
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        B.phone,B.realname
+        from
+        SysUsers A
+        left join sysusers B on(A.workerid = B.userId)
+        left join sysrole C on(B.roleId=C.roleId)
+        where A.orderid=#{orderid}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from
+        orders
+        where orderid = #{orderid}
+    </delete>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from orders A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
+        update orders
+        <set>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="iphone != null">
+                iphone=#{iphone},
+            </if>
+            <if test="address != null">
+                address=#{address},
+            </if>
+            <if test="num != null">
+                num=#{num},
+            </if>
+            <if test="orgname != null">
+                orgname=#{orgname},
+            </if>
+            <if test="orgstatus != null">
+                orgstatus=#{orgstatus},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version},
+            </if>
+            <if test="workerid != null">
+                workerid=#{workerid},
+            </if>
+        </set>
+        where orderid = #{orderid}
+    </update>
+
+</mapper>
