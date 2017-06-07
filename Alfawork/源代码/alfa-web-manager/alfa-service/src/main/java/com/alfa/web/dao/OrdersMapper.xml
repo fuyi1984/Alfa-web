@@ -216,9 +216,7 @@
         <include refid="Base_Column_List" />
         B.phone,B.realname
         from
-        SysUsers A
-        left join sysusers B on(A.workerid = B.userId)
-        left join sysrole C on(B.roleId=C.roleId)
+        orders A
         where A.orderid=#{orderid}
     </select>
 
