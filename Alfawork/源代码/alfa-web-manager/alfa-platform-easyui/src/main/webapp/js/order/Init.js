@@ -196,7 +196,15 @@ function initcombobox(){
         url: ws_url + '/rest/user/findAllTransporter?token='+gtoken,
         method: 'get',
         valueField: 'userId',
-        textField: 'realname'
+        textField: 'realname',
+        icons: [{
+            iconCls:'icon-reload',
+            handler: function(){
+                $("#workerlist").combobox({
+                    reload: ws_url + '/rest/user/findAllTransporter?token='+gtoken
+                })
+            }
+        }]
     })
 }
 

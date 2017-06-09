@@ -49,7 +49,7 @@ function initdatagrid() {
                 //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
 
                 $('#rolelist').combobox({
-                        reload: ws_url + '/rest/roles/findAllRole?token='+gtoken
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
                     }
                 )
 
@@ -70,8 +70,8 @@ function initdatagrid() {
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
                     $('#rolelist_update').combobox({
-                            reload: ws_url + '/rest/roles/findAllRole?token='+gtoken
-                        })
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
+                    })
 
                     $('#form2').form('load', {
                         userId_update: row.userId,
@@ -120,7 +120,7 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/user/deleteUser?token='+gtoken,
+                        url: ws_url + '/rest/user/deleteUser?token=' + gtoken,
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status == 'success') {
@@ -189,7 +189,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url + '/rest/user/findlist?token='+gtoken,
+            url: ws_url + '/rest/user/findlist?token=' + gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
             + pagesize + '&recordstartindex=' + recordstartindex
@@ -211,18 +211,34 @@ function initdatagrid() {
 
 function initcombobox() {
     $('#rolelist_update').combobox({
-            url: ws_url + '/rest/roles/findAllRole?token='+gtoken,
+            url: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
             method: 'get',
             valueField: 'roleId',
-            textField: 'role_name'
+            textField: 'role_name',
+            icons: [{
+                iconCls: 'icon-reload',
+                handler: function () {
+                    $("#rolelist_update").combobox({
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
+                    })
+                }
+            }]
         }
     )
 
     $('#rolelist').combobox({
-            url: ws_url + '/rest/roles/findAllRole?token='+gtoken,
+            url: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
             method: 'get',
             valueField: 'roleId',
-            textField: 'role_name'
+            textField: 'role_name',
+            icons: [{
+                iconCls: 'icon-reload',
+                handler: function () {
+                    $("#rolelist").combobox({
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
+                    })
+                }
+            }]
         }
     )
 }
