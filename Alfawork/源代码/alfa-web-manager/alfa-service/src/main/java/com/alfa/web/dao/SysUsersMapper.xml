@@ -116,6 +116,9 @@
             <if test="condition.createDtTo != null" >
                 and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
             </if>
+            <if test="condition.roleId!=null">
+                and A.roleId = #{condition.roleId}
+            </if>
         </trim>
     </sql>
 
@@ -123,7 +126,7 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">

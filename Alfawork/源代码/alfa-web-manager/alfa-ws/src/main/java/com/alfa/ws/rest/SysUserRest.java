@@ -131,4 +131,17 @@ public interface SysUserRest {
     @Path("/modifyPassword")
     public Response modifyPassword(String params);
 
+    /**
+     * 查找所有的废油收运人员
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/findAllTransporter")
+    public Response findAllTransporter();
+
+
+
 }

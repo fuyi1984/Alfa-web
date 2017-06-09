@@ -2,29 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d68d766e-27c7-4a22-b82d-8298fe960264" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/alfa/web/sysrole/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/alfa/web/sysrole/addrole.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/alfa/web/sysrole/deleterole.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/com/alfa/web/sysrole/findrole.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysrole/add.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysrole/init.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysrole/search.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysrole/update.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/pages/sysrole/combobox_data.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/pages/sysrole/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/order/Init.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/pages/order/index.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/pages/Test/Test.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/.idea/artifacts/alfa_platform_easyui_war.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/.idea/artifacts/alfa_platform_easyui_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/.idea/artifacts/alfa_platform_easyui_war_exploded.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/.idea/artifacts/alfa_platform_easyui_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/pom.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysAccountMapper.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysAccountMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysAccountMapper.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysAccountMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRoleMapper.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRoleMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/SysRoleServiceTest.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/SysRoleServiceTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysRoleRest.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysRoleRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysRoleRestImpl.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysRoleRestImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" afterPath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/crebas.sql" afterPath="$PROJECT_DIR$/../数据库设计关系图/crebas.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/common/common.js" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/common/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/OrdersTest.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/OrdersTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRestImpl.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/resources/rest-services.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/resources/rest-services.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +42,7 @@
       <file leaf-file-name="TestinsertConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="309">
               <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
@@ -64,7 +52,7 @@
       <file leaf-file-name="TestdeleteConfig.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestdeleteConfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
+            <state relative-caret-position="111">
               <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="22" />
               <folding />
             </state>
@@ -74,7 +62,7 @@
       <file leaf-file-name="deleterole.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/deleterole.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="155">
               <caret line="9" column="50" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="50" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
@@ -83,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="findrole.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="findrole.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/findrole.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="134">
@@ -118,8 +106,8 @@
       <file leaf-file-name="findlist.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/findlist.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="21" selection-end-column="14" />
+            <state relative-caret-position="176">
+              <caret line="8" column="125" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="125" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -127,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addrole.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addrole.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/addrole.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
@@ -225,6 +213,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -307,10 +297,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sysconfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1006,16 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/findlist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestfindAll.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -1040,25 +1044,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestdeleteConfig.py">
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/addrole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="176">
+          <caret line="8" column="75" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="75" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/findlist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="125" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="125" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="309">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestdeleteConfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/deleterole.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="155">
           <caret line="9" column="50" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="50" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
@@ -1070,16 +1094,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
           <caret line="8" column="49" lean-forward="false" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-          <folding>
-            <element signature="e#24#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysrole/addrole.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="75" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="75" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>

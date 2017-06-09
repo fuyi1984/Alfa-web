@@ -3,7 +3,9 @@
  */
 
 var guserid="";
+var groleid="";
 var grealname="";
+var gphone="";
 var gmenuitem="";
 var gtoken="";
 
@@ -82,6 +84,8 @@ function setCurrentUser() {
                         gmenuitem = data.user.menuitem;
                         gtoken = data.user.token;
                         guserid = data.user.userId;
+                        groleid = data.user.roleId;
+                        gphone=data.user.phone;
                     // }else {
                     //     window.location.href=platform_url+"/pages/home/login.html";
                     // }

@@ -32,41 +32,11 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        idField: 'Id',
-
-        frozenColumns: [[
-            {field: 'Id', checkbox: true}
-        ]],
-
-        columns: [[
-            {field: 'configName', title: '配置项名称', width: 80, align: 'center'},
-            {field: 'configKey', title: ' 配置项代码', width: 80, align: 'center'},
-            {field: 'configValue', title: ' 配置项值', width: 80, align: 'center'},
-            {field: 'description', title: ' 配置项描述', width: 80, align: 'center'},
-            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
-            {
-                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
-            },
-            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
-            {
-                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
-            }
-        ]],
-        pagination: true,
-        rownumbers: true,
         toolbar: ['-', {
             id: 'btnSave',
             text: '添加',
             iconCls: 'icon-add',
             handler: function () {
-                /**
-                 window.location.href = "/";
-
-                 $('#grid').edatagrid('addRow');
-
-                 */
-
-                //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
                 $('#configadd').window('open');
             }
         }, '-', {
@@ -80,8 +50,6 @@ function initdatagrid() {
                 console.log(row);
 
                 if (row) {
-
-                    //window.location.href = "/UserInfo/View/" + row.ID;
 
                     $('#form2').form('load', {
                         Id_update: row.id,
@@ -97,8 +65,6 @@ function initdatagrid() {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
                 }
-
-                //$('#update').window('open');
 
             }
         }, '-', {
@@ -151,7 +117,6 @@ function initdatagrid() {
                         }
                     });
                 });
-
             }
         }, '-', {
             id: 'btnSearch',
@@ -163,13 +128,28 @@ function initdatagrid() {
             }
         }, '-'],
 
-        /*onClickRow:function(rowIndex,rowData){
-         if(isChecked(rowData)){
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }else{
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }
-         }*/
+        idField: 'Id',
+
+        frozenColumns: [[
+            {field: 'Id', checkbox: true}
+        ]],
+
+        columns: [[
+            {field: 'configName', title: '配置项名称', width: 80, align: 'center'},
+            {field: 'configKey', title: ' 配置项代码', width: 80, align: 'center'},
+            {field: 'configValue', title: ' 配置项值', width: 80, align: 'center'},
+            {field: 'description', title: ' 配置项描述', width: 80, align: 'center'},
+            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
+            {
+                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
+            },
+            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
+            {
+                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
+            }
+        ]],
+        pagination: true,
+        rownumbers: true
 
     });
 

@@ -126,15 +126,23 @@ public class OrdersRestImpl implements OrdersRest {
 
         //过滤
         Criteria criteria = new Criteria();
-        if (!StringUtil.isNullOrEmpty(map.get("configName"))) {
-            criteria.put("configNameLike",  map.get("configName").toString());
-        }
-        if (!StringUtil.isNullOrEmpty(map.get("configKey"))) {
-            criteria.put("configKeyLike",  map.get("configKey").toString());
+
+        if(!StringUtil.isNullOrEmpty(map.get("roleId"))){
+            //收运人员
+            if("9".equals(map.get("roleId").toString())){
+                if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
+                    criteria.put("phone",  map.get("phone").toString());
+                }
+            }
+            //产废单位
+            else if("10".equals(map.get("roleId").toString())){
+                if (!StringUtil.isNullOrEmpty(map.get("iphone"))) {
+                    criteria.put("iphone",  map.get("iphone").toString());
+                }
+            }
         }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
-
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
         int count = this.ordersService.countByParams(criteria);
 

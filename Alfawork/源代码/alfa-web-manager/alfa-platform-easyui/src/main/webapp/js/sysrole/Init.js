@@ -29,28 +29,6 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        idField: 'roleId',
-
-        frozenColumns: [[
-            {field: 'roleId', checkbox: true}
-        ]],
-
-        columns: [[
-            {field: 'role_name', title: '角色名称', width: 80, align: 'center'},
-            /* {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},*/
-            {field: 'menuitem', title: ' 菜单路径', width: 80, align: 'center'},
-            {field: 'roleDesc', title: ' 角色描述', width: 80, align: 'center'},
-            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
-            {
-                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
-            },
-            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
-            {
-                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
-            }
-        ]],
-        pagination: true,
-        rownumbers: true,
         toolbar: ['-', {
             id: 'btnSave',
             text: '添加',
@@ -161,13 +139,28 @@ function initdatagrid() {
             }
         }, '-'],
 
-        /*onClickRow:function(rowIndex,rowData){
-         if(isChecked(rowData)){
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }else{
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }
-         }*/
+        idField: 'roleId',
+
+        frozenColumns: [[
+            {field: 'roleId', checkbox: true}
+        ]],
+
+        columns: [[
+            {field: 'role_name', title: '角色名称', width: 80, align: 'center'},
+            /* {field: 'statusname', title: ' 角色状态', width: 80, align: 'center'},*/
+            {field: 'menuitem', title: ' 菜单路径', width: 80, align: 'center'},
+            {field: 'roleDesc', title: ' 角色描述', width: 80, align: 'center'},
+            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
+            {
+                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
+            },
+            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
+            {
+                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
+            }
+        ]],
+        pagination: true,
+        rownumbers: true
 
     });
 

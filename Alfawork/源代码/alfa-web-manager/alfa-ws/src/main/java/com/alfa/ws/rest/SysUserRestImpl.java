@@ -360,4 +360,13 @@ public class SysUserRestImpl implements SysUserRest {
             return Response.status(320).entity(error).build();
         }
     }
+
+    @Override
+    public Response findAllTransporter() {
+        Criteria criteria = new Criteria();
+        criteria.put("roleId", "9");
+        List<SysUsers> UserList = this.sysUsersService.selectByParams(criteria);
+        String json = JsonUtil.toJson(UserList);
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
 }

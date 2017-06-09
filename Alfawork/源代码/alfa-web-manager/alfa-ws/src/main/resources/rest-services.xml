@@ -16,6 +16,7 @@
             <bean class="com.alfa.ws.rest.SysRoleRestImpl"/>
             <bean class="com.alfa.ws.rest.SysUserRestImpl"/>
             <bean class="com.alfa.ws.rest.SysServerInfoRestImpl"/>
+            <bean class="com.alfa.ws.rest.OrdersRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

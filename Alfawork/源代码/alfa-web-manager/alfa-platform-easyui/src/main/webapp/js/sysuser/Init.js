@@ -34,29 +34,6 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        idField: 'userId',
-
-        frozenColumns: [[
-            {field: 'userId', checkbox: true}
-        ]],
-
-        columns: [[
-            {field: 'username', title: '用户名', width: 80, align: 'center'},
-            {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
-            {field: 'role_name', title: '角色', width: 80, align: 'center'},
-            {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
-            {field: 'address', title: '地址', width: 120, align: 'center'},
-            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
-            {
-                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
-            },
-            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
-            {
-                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
-            }
-        ]],
-        pagination: true,
-        rownumbers: true,
         toolbar: ['-', {
             id: 'btnSave',
             text: '添加',
@@ -70,6 +47,11 @@ function initdatagrid() {
                  */
 
                 //this.href = 'alfa-platform-easyui/pages/sysconfig/edit.html';
+
+                $('#rolelist').combobox({
+                        reload: ws_url + '/rest/roles/findAllRole?token='+gtoken
+                    }
+                )
 
                 $('#useradd').window('open');
             }
@@ -86,6 +68,10 @@ function initdatagrid() {
                 if (row) {
 
                     //window.location.href = "/UserInfo/View/" + row.ID;
+
+                    $('#rolelist_update').combobox({
+                            reload: ws_url + '/rest/roles/findAllRole?token='+gtoken
+                        })
 
                     $('#form2').form('load', {
                         userId_update: row.userId,
@@ -168,14 +154,29 @@ function initdatagrid() {
             }
         }, '-'],
 
-        /*onClickRow:function(rowIndex,rowData){
-         if(isChecked(rowData)){
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }else{
-         $("#grid").datagrid("unselectRow", rowIndex);
-         }
-         }*/
+        idField: 'userId',
 
+        frozenColumns: [[
+            {field: 'userId', checkbox: true}
+        ]],
+
+        columns: [[
+            {field: 'username', title: '用户名', width: 80, align: 'center'},
+            {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
+            {field: 'role_name', title: '角色', width: 80, align: 'center'},
+            {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
+            {field: 'address', title: '地址', width: 120, align: 'center'},
+            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
+            {
+                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
+            },
+            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
+            {
+                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
+            }
+        ]],
+        pagination: true,
+        rownumbers: true
     });
 
     function ajaxfindlist(param, success, error) {
@@ -209,7 +210,7 @@ function initdatagrid() {
 }
 
 function initcombobox() {
-    $('.easyui-combobox').combobox({
+    $('#rolelist_update').combobox({
             url: ws_url + '/rest/roles/findAllRole?token='+gtoken,
             method: 'get',
             valueField: 'roleId',
@@ -217,12 +218,13 @@ function initcombobox() {
         }
     )
 
-    /*$('#sexlist').combobox({
-     url: 'combobox_data.json',
-     method:'get',
-     valueField:'id',
-     textField:'text'
-     })*/
+    $('#rolelist').combobox({
+            url: ws_url + '/rest/roles/findAllRole?token='+gtoken,
+            method: 'get',
+            valueField: 'roleId',
+            textField: 'role_name'
+        }
+    )
 }
 
 

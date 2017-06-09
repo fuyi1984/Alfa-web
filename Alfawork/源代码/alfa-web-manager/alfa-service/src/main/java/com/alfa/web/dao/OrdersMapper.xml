@@ -76,7 +76,7 @@
     <sql id="Base_Column_List">
         A.orderid, A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
     </sql>
 
     <insert id="insert" parameterType="com.alfa.web.pojo.Orders">
@@ -181,11 +181,15 @@
         </if>
 
         <include refid="Base_Column_List" />
-        B.phone,B.realname
+        ,B.phone,B.realname
         from orders A
 
         left join sysusers B on(A.workerid = B.userId)
         left join sysrole C on(B.roleId=C.roleId)
+
+        <if test="condition.phone != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause" />
@@ -214,7 +218,6 @@
             parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List" />
-        B.phone,B.realname
         from
         orders A
         where A.orderid=#{orderid}
