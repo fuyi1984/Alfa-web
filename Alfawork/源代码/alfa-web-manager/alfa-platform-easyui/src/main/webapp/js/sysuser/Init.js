@@ -70,13 +70,14 @@ function initdatagrid() {
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
                     $('#rolelist_update').combobox({
-                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
+                        setValue:row.roleId,
                     })
 
                     $('#form2').form('load', {
                         userId_update: row.userId,
                         realname_update: row.realname,
-                        rolelist_update: row.roleId,
+                        /*rolelist_update: row.roleId,*/
                         phone_update: row.username,
                         address_update: row.address
                     });
@@ -107,6 +108,11 @@ function initdatagrid() {
 
                 console.log(rows);
                 console.log(rows[0].userId);
+
+                if(rows[0].userId==guserid){
+                    $.messager.alert('提示', '不能删除当前登录用户!');
+                    return;
+                }
 
                 var parm = {"userId": rows[0].userId};
 

@@ -32,6 +32,15 @@ function initdatagrid() {
             iconCls: 'icon-add',
             handler: function () {
 
+                if(groleid==10) {
+                    $('#form1').form('load', {
+                        username_add: grealname,
+                        iphone_add:gphone
+                    });
+                    $('#username_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
+                    $('#iphone_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
+                }
+
                 $('#orderadd').window('open');
             }
         }, '-', {
@@ -268,5 +277,12 @@ function Accesscontrol(){
             $('#btnDelete').linkbutton('disable');
             $('#btnSearch').linkbutton('disable');
             break;
+        //产废单位
+        case 10:
+            $('#btnAllocating').linkbutton('disable');
+            $('#btnDelete').linkbutton('disable');
+            $('#btnSearch').linkbutton('disable');
+            $('#btnConfirm').linkbutton('disable');
+
     }
 }

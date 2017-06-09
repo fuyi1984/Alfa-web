@@ -1,9 +1,11 @@
 package com.alfa.ws.rest;
 
 import com.alfa.web.aspect.UserLog;
+import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.util.JsonUtil;
@@ -39,6 +41,9 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Autowired
     private SysRoleService sysRoleService;
+
+    @Autowired
+    private OrdersService ordersService;
 
 
     @Override
@@ -89,6 +94,15 @@ public class SysUserRestImpl implements SysUserRest {
     @Override
     public Response editUser(SysUsers user) {
 
+        Criteria criteria = new Criteria();
+        criteria.put("workerid", user.getUserId());
+
+        List<Orders> ordersList = this.ordersService.selectByParams(criteria);
+
+        if(ordersList.size()>0){
+            this.ordersService.updateWorkerIdByParams(criteria);
+        }
+
         WebUtil.prepareUpdateParams(user);
 
         int result = this.sysUsersService.updateByPrimaryKeySelective(user);
@@ -107,7 +121,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         Response response = Response.status(Response.Status.OK).entity(resultMap).build();
 
-        try{
+        try {
             HttpSession session = servletRequest.getSession();
 
             if (session != null && session.getId() != null && !"".equals(session.getId())) {
@@ -116,7 +130,7 @@ public class SysUserRestImpl implements SysUserRest {
                     Enumeration e = session.getAttributeNames();
                     while (e.hasMoreElements()) {
                         String sessionName = (String) e.nextElement();
-                        log.info("logoutUser----------------exits user session name="+sessionName+" sessionId="+session.getId());
+                        log.info("logoutUser----------------exits user session name=" + sessionName + " sessionId=" + session.getId());
                         session.removeAttribute(sessionName);
                     }
 
@@ -127,8 +141,8 @@ public class SysUserRestImpl implements SysUserRest {
                 }
             }
 
-        }catch (Exception e){
-            log.error("user logout error---------------"+e.getMessage());
+        } catch (Exception e) {
+            log.error("user logout error---------------" + e.getMessage());
             e.printStackTrace();
             return response;
         }
@@ -141,14 +155,14 @@ public class SysUserRestImpl implements SysUserRest {
         Response response = Response.status(500)
                 .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
 
-        HttpSession session=servletRequest.getSession();
+        HttpSession session = servletRequest.getSession();
 
-        String platform=servletRequest.getHeader("PLATFORM");
+        String platform = servletRequest.getHeader("PLATFORM");
 
         //获取用户名和密码
 
-        String account=user.getUsername().trim();
-        String password=user.getPassword().trim();
+        String account = user.getUsername().trim();
+        String password = user.getPassword().trim();
 
         //用户名密码为空返回提示
         if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {
@@ -156,7 +170,7 @@ public class SysUserRestImpl implements SysUserRest {
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_name_isempty, null))).build();
         }
 
-        log.info("verifyUser---account="+account);
+        log.info("verifyUser---account=" + account);
 
         Criteria criteria = new Criteria();
         criteria.put("username", account);
@@ -171,23 +185,23 @@ public class SysUserRestImpl implements SysUserRest {
 
             String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
 
-            log.info("User Login: "+passwordEncrypt+"@"+currentUser.getPassword()+"@"+password);
+            log.info("User Login: " + passwordEncrypt + "@" + currentUser.getPassword() + "@" + password);
 
-            if(currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)){
-                if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
+            if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
+                if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
                     currentUser.setToken(StringUtil.getUUID());
                     sysUsersService.updateByPrimaryKeySelective(currentUser);
                 }
 
                 // 保存Session和Cookie
-                String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.users_password_verify_success,sysUsersService.createSession(servletRequest,
+                String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.users_password_verify_success, sysUsersService.createSession(servletRequest,
                         servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
                 response = Response.status(Response.Status.OK).entity(json).build();
-            }else{
+            } else {
                 response = Response.status(Response.Status.OK)
                         .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_wrong_password, null))).build();
             }
-        }else{
+        } else {
             response = Response.status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_name_notexist, null))).build();
 
@@ -268,20 +282,20 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response current(HttpServletRequest servletRequest) {
-        try{
+        try {
             log.debug("start");
             // 当前用户信息已在验证用户登录时放入UserManager中
-            UserSession currentUser= UserManager.getUserSession();
+            UserSession currentUser = UserManager.getUserSession();
 
             log.debug("start2");
-            if(currentUser!=null&&currentUser.getId()!=null&&currentUser.getUser()!=null){
+            if (currentUser != null && currentUser.getId() != null && currentUser.getUser() != null) {
                 return Response.status(Response.Status.OK).entity(currentUser).build();
-            }else{
-                currentUser=new UserSession();
+            } else {
+                currentUser = new UserSession();
                 currentUser.setId(null);
                 return Response.status(Response.Status.OK).entity(currentUser).build();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
         }
@@ -289,28 +303,28 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response redirect(String token, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
-        try{
-            if(!StringUtil.isNullOrEmpty(token)){
-                Criteria criteria=new Criteria();
+        try {
+            if (!StringUtil.isNullOrEmpty(token)) {
+                Criteria criteria = new Criteria();
                 criteria.put("token", token);
 
-                List<SysUsers> users=sysUsersService.selectByParams(criteria);
+                List<SysUsers> users = sysUsersService.selectByParams(criteria);
 
-                if(users.size()>0){
-                    SysUsers currentUser=users.get(0);
-                    log.info("UserRestImpl----------------------redirect account="+currentUser.getUsername()+" token="+token);
+                if (users.size() > 0) {
+                    SysUsers currentUser = users.get(0);
+                    log.info("UserRestImpl----------------------redirect account=" + currentUser.getUsername() + " token=" + token);
                     // 保存Session和Cookie
                     String json = JsonUtil.toJson(sysUsersService.createSession(servletRequest, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
                     return Response.status(Response.Status.OK).entity(json).build();
-                }else{
+                } else {
                     UserSession currentUser = new UserSession();
                     return Response.status(Response.Status.OK).entity(currentUser).build();
                 }
-            }else{
+            } else {
                 UserSession currentUser = new UserSession();
                 return Response.status(Response.Status.OK).entity(currentUser).build();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
         }
@@ -319,22 +333,22 @@ public class SysUserRestImpl implements SysUserRest {
     @Override
     public Response modifyPassword(String params) {
 
-        String json="";
-        Map<String,Object> map;
+        String json = "";
+        Map<String, Object> map;
 
         MyError error = new MyError();
         error.error = "修改密码失败 ";
         error.errorCode = "320";
 
-        try{
-            map=JsonUtil.fromJson(params,Map.class);
+        try {
+            map = JsonUtil.fromJson(params, Map.class);
             Long userId = Long.parseLong(map.get("userId").toString());
             SysUsers currentUser = this.sysUsersService.selectByPrimaryKey(userId);
 
-            String newPwd=String.valueOf(map.get("password"));
-            String oldPwd=String.valueOf(map.get("oldPassword"));
+            String newPwd = String.valueOf(map.get("password"));
+            String oldPwd = String.valueOf(map.get("oldPassword"));
 
-            if(!WebUtil.encrypt(oldPwd,currentUser.getUsername()).equals(currentUser.getPassword())){
+            if (!WebUtil.encrypt(oldPwd, currentUser.getUsername()).equals(currentUser.getPassword())) {
                 return Response.status(Response.Status.OK).entity(
                         JsonUtil.toJson(
                                 new RestResult(RestResult.FAILURE,
@@ -344,7 +358,7 @@ public class SysUserRestImpl implements SysUserRest {
 
             currentUser.setPassword(WebUtil.encrypt(newPwd, currentUser.getUsername()));
             WebUtil.prepareUpdateParams(currentUser);
-            int result=this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+            int result = this.sysUsersService.updateByPrimaryKeySelective(currentUser);
 
             if (result == 1) {
                 return Response.status(Response.Status.OK).entity(
@@ -355,7 +369,7 @@ public class SysUserRestImpl implements SysUserRest {
             } else {
                 return Response.status(320).entity(error).build();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return Response.status(320).entity(error).build();
         }

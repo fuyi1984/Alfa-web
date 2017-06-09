@@ -187,6 +187,10 @@
         left join sysusers B on(A.workerid = B.userId)
         left join sysrole C on(B.roleId=C.roleId)
 
+        <if test="condition.roleId != null">
+            INNER join sysrole E on(E.roleId=B.roleId and E.roleId=#{condition.roleId})
+        </if>
+
         <if test="condition.phone != null">
             INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
         </if>
@@ -277,6 +281,15 @@
             </if>
         </set>
         where orderid = #{orderid}
+    </update>
+
+    <update id="updateWorkerIdByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+        workerid = 0
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
     </update>
 
 </mapper>

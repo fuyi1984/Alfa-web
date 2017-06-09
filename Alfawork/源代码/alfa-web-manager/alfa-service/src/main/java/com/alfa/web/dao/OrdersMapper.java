@@ -67,4 +67,11 @@ public interface OrdersMapper {
      * 根据主键更新记录
      */
     int updateByPrimaryKey(Orders record);
+
+    /**
+     * 根据参数清空订单的收运人员数据
+     * @param example
+     * @return
+     */
+    int updateWorkerIdByParams(Criteria example);
 }

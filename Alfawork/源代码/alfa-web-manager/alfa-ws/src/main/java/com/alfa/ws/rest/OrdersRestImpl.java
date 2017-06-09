@@ -130,12 +130,14 @@ public class OrdersRestImpl implements OrdersRest {
         if(!StringUtil.isNullOrEmpty(map.get("roleId"))){
             //收运人员
             if("9".equals(map.get("roleId").toString())){
+                //criteria.put("roleId",  map.get("roleId").toString());
                 if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
                     criteria.put("phone",  map.get("phone").toString());
                 }
             }
             //产废单位
             else if("10".equals(map.get("roleId").toString())){
+                //criteria.put("roleId",  map.get("roleId").toString());
                 if (!StringUtil.isNullOrEmpty(map.get("iphone"))) {
                     criteria.put("iphone",  map.get("iphone").toString());
                 }

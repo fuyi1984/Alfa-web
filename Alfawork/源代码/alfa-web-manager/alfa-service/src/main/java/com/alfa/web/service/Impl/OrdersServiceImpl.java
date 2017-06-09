@@ -100,4 +100,9 @@ public class OrdersServiceImpl implements OrdersService {
     public int updateByPrimaryKey(Orders record) {
         return this.ordersMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int updateWorkerIdByParams(Criteria example) {
+        return this.ordersMapper.updateWorkerIdByParams(example);
+    }
 }
