@@ -121,7 +121,56 @@ function initdatagrid() {
             disabled: false,
             iconCls: 'icon-save',
             handler:function(){
+                var rows = $('#ordergrid').datagrid('getSelections');
 
+                if (!rows || rows.length == 0) {
+                    $.messager.alert('提示', '请选择需要删除的订单');
+                    return;
+                }
+
+                var params = {"orderid": rows[0].orderid,"orgstatus":"完成"};
+
+                console.log(params);
+
+                $.messager.confirm('提示', '是否确认完成这些订单?', function (r) {
+                    if (!r) {
+                        return;
+                    }
+                    $.ajax({
+                        url: ws_url + '/rest/order/updateorders?token' + gtoken,
+                        contentType: 'application/json;charset=UTF-8',
+                        type: 'post',
+                        datatype: 'json',
+                        data: JSON.stringify(params),
+                        cache: false,
+                        success: function (data) {
+
+                            console.log(data.status);
+                            console.log(data.message);
+
+                            if (data.status == 'success') {
+                                $.messager.alert('提示', '确认成功！', 'info', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#ordergrid').datagrid("clearSelections");
+                                    $('#ordergrid').datagrid("reload");
+                                });
+                            } else if (data.status == 'failure') {
+
+                                $.messager.alert('提示', '确认失败！', 'error', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#ordergrid').datagrid("clearSelections");
+                                    $('#ordergrid').datagrid("reload");
+                                });
+
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                            $('#ordergrid').datagrid("clearSelections");
+                            $.messager.alert('错误', '确认失败！', "error");
+                        }
+                    });
+                });
             }
         },'-', {
             id: 'btnSearch',
