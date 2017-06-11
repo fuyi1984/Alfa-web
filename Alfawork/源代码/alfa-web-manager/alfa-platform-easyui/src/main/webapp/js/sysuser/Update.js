@@ -11,6 +11,7 @@ function userupdateform(){
     var role=$('#rolelist_update').combobox('getValue');
     var address=$('#address_update').val();
     var realname=$('#realname_update').val();
+    var orgname=$('#orgname_update').val();
 
     var params={
         "userId":userId,
@@ -18,7 +19,8 @@ function userupdateform(){
         "phone":phone,
         "roleId": role,
         "address":address,
-        "realname":realname
+        "realname":realname,
+        "orgname":orgname
     }
 
     console.log(params);

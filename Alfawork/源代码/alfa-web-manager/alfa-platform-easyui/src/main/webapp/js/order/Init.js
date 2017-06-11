@@ -35,10 +35,14 @@ function initdatagrid() {
                 if(groleid==10) {
                     $('#form1').form('load', {
                         username_add: grealname,
-                        iphone_add:gphone
+                        iphone_add:gphone,
+                        address_add:gaddress,
+                        orgname_add:gorgname,
                     });
                     $('#username_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
                     $('#iphone_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
+                    $('#address_add').textbox('textbox').attr('readonly',true);
+                    $('#orgname_add').textbox('textbox').attr('readonly',true);
                 }
 
                 $('#orderadd').window('open');

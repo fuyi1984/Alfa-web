@@ -31,6 +31,7 @@
         <result column="role_name" property="role_name" jdbcType="VARCHAR"/>
         <result column="menuitem" property="menuitem" jdbcType="VARCHAR"/>
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
@@ -76,6 +77,9 @@
             </if>
             <if test="condition.address != null">
                 and A.address = #{condition.address}
+            </if>
+            <if test="condition.orgname!=null">
+                and A.orgname = #{condition.orgname}
             </if>
             <if test="condition.remarks != null">
                 and A.remarks = #{condition.remarks}
@@ -126,7 +130,7 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
@@ -135,10 +139,10 @@
         </selectKey>
         insert into sysusers (realname,username, password, phone, sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
-        createdBy, createdDt, updatedBy, updatedDt, version,roleId)
+        createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname)
         values (#{realname},#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
-        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId})
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
@@ -185,6 +189,9 @@
             </if>
             <if test="address != null">
                 address,
+            </if>
+            <if test="orgname!=null">
+                orgname,
             </if>
             <if test="remarks != null">
                 remarks,
@@ -259,6 +266,9 @@
             </if>
             <if test="address != null">
                 #{address},
+            </if>
+            <if test="orgname!=null">
+                #{orgname},
             </if>
             <if test="remarks != null">
                 #{remarks},
@@ -405,6 +415,9 @@
             </if>
             <if test="address != null">
                 address=#{address},
+            </if>
+            <if test="orgname!=null">
+                orgname=#{orgname},
             </if>
             <if test="remarks != null">
                 remarks=#{remarks},

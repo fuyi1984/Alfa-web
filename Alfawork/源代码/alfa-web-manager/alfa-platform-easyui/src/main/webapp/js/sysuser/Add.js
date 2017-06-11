@@ -12,6 +12,7 @@ function usersubmitForm(){
     var role=$('#rolelist').combobox('getValue');
     var address=$('#address_add').val();
     var realname=$('#realname_add').val();
+    var orgname=$('#orgname_add').val();
 
     if(username==""||phone=="")
     {
@@ -56,7 +57,8 @@ function usersubmitForm(){
         /*"sex":sex,*/
         "roleId":role,
         "address":address,
-        "realname":realname
+        "realname":realname,
+        "orgname":orgname
     };
 
     console.log(params);

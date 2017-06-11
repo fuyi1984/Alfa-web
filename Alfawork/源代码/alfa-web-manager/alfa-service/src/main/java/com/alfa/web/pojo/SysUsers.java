@@ -63,6 +63,20 @@ public class SysUsers extends Entity implements Serializable{
      * 地址
      */
     private String address;
+
+    public String getOrgname() {
+        return orgname;
+    }
+
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
+    }
+
+    /**
+     * 单位名称
+
+     */
+    private String orgname;
     /**
      * 备注
      */

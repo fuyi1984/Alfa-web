@@ -8,6 +8,8 @@ var grealname="";
 var gphone="";
 var gmenuitem="";
 var gtoken="";
+var gaddress="";
+var gorgname="";
 
 function isChecked(rowData) {
     var rows = $('#grid').datagrid('getSelections');
@@ -86,6 +88,8 @@ function setCurrentUser() {
                         guserid = data.user.userId;
                         groleid = data.user.roleId;
                         gphone=data.user.phone;
+                        gaddress=data.user.address;
+                        gorgname=data.user.orgname;
                     // }else {
                     //     window.location.href=platform_url+"/pages/home/login.html";
                     // }

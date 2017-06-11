@@ -70,16 +70,16 @@ function initdatagrid() {
                     //window.location.href = "/UserInfo/View/" + row.ID;
 
                     $('#rolelist_update').combobox({
-                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
-                        setValue:row.roleId,
+                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
                     })
 
                     $('#form2').form('load', {
                         userId_update: row.userId,
                         realname_update: row.realname,
-                        /*rolelist_update: row.roleId,*/
+                        rolelist_update: row.roleId,
                         phone_update: row.username,
-                        address_update: row.address
+                        address_update: row.address,
+                        orgname_update:row.orgname
                     });
 
                     $('#userupdate').window('open');
@@ -109,7 +109,7 @@ function initdatagrid() {
                 console.log(rows);
                 console.log(rows[0].userId);
 
-                if(rows[0].userId==guserid){
+                if (rows[0].userId == guserid) {
                     $.messager.alert('提示', '不能删除当前登录用户!');
                     return;
                 }
@@ -172,6 +172,7 @@ function initdatagrid() {
             {field: 'role_name', title: '角色', width: 80, align: 'center'},
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 120, align: 'center'},
+            {field: 'orgname', title: '单位名称', width: 120, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
