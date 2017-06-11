@@ -107,6 +107,19 @@ public class SysUsers extends Entity implements Serializable{
      */
     private String VerifyCode;
 
+    /**
+     * 验证码
+     */
+    private String captcha;
+
+    public String getCaptcha() {
+        return captcha;
+    }
+
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
+
     public String getVerifyCode() {
         return VerifyCode;
     }

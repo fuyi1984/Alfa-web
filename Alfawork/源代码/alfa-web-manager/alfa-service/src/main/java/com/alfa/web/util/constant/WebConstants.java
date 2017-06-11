@@ -276,6 +276,25 @@ public interface WebConstants {
          * 订单修改失败
          */
         String Order_Update_Failtrue="Order.Update.Failtrue";
+
+        /**
+         * 获取验证码失败
+         */
+        String ERROR_MOBILE_GET_FAILURE="ERROR_MOBILE_GET_FAILURE";
+
+        /**
+         * 获取验证码成功
+         */
+        String INFO_MOBILE_GET_SUCCESS="INFO_MOBILE_GET_SUCCESS";
+    }
+
+    public interface VerifyCode{
+        int type0 = 0; //手机注册验证
+        int type1 = 1; //邮箱注册验证
+        int type2 = 2; //企业注册验证
+        int type3 = 3; //手机找回密码验证
+        int type4 = 4; //用户修改手机号码
+        int type5 = 5; //用户修改邮箱验证码
     }
 
 }

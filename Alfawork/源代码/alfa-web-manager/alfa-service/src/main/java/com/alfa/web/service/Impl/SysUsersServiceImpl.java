@@ -152,7 +152,22 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public UserSession createSession(HttpSession session, HttpServletResponse servletResponse, String currentPlatformUser, SysUsers currentUser) {
-        return null;
+        // 放入角色信息
+        SysRole roles = this.sysRoleMapper.selectByPrimaryKey(currentUser.getRoleId());
+
+        session.setMaxInactiveInterval(60 * 60);
+        // 清空密码
+        currentUser.setPassword("");
+
+        UserSession userSession = new UserSession();
+        userSession.setId(session.getId());
+        userSession.setCreationTime(session.getCreationTime());
+        userSession.setUser(currentUser);
+        userSession.setRole(roles);
+
+        session.setAttribute(currentPlatformUser,userSession);
+
+        return userSession;
     }
 
     @Override
@@ -165,6 +180,7 @@ public class SysUsersServiceImpl implements SysUsersService {
 
         //存在则删除重建session
         UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
+
         if(!StringUtil.isNullOrEmpty(userSession)){
             session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
         }

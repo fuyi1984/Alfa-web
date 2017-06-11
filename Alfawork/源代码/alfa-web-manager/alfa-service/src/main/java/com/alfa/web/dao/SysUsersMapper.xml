@@ -32,12 +32,16 @@
         <result column="menuitem" property="menuitem" jdbcType="VARCHAR"/>
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
+        <result column="captcha" property="captcha" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
             <if test="condition.realname!=null">
                 and A.realname=#{condition.realname}
+            </if>
+            <if test="condition.captcha!=null">
+                and A.captcha=#{condition.captcha}
             </if>
             <if test="condition.VerifyCode != null">
                 and A.VerifyCode = #{condition.VerifyCode}
@@ -130,7 +134,7 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname,Acaptcha
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
@@ -139,10 +143,10 @@
         </selectKey>
         insert into sysusers (realname,username, password, phone, sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
-        createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname)
+        createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname,captcha)
         values (#{realname},#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
-        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname})
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname},#{captcha})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
@@ -153,6 +157,9 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="realname!=null">
                 realname,
+            </if>
+            <if test="captcha!=null">
+                captcha,
             </if>
             <if test="roleId != null">
                 roleId,
@@ -230,6 +237,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="realname!=null">
                 #{realname},
+            </if>
+            <if test="captcha!=null">
+                #{captcha},
             </if>
             <if test="roleId != null">
                 #{roleId},
@@ -377,6 +387,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysUsers">
         update SysUsers
         <set>
+            <if test="captcha!=null">
+                captcha=#{captcha},
+            </if>
             <if test="realname!=null">
                 realname=#{realname},
             </if>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.VerifyCodeMapper" >
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.VerifyCode" >
+        <id column="VERIFY_SID" property="verifySid" jdbcType="BIGINT" />
+        <result column="CODE" property="code" jdbcType="VARCHAR" />
+        <result column="TYPE" property="type" jdbcType="INTEGER" />
+        <result column="BOUND_ACCOUNT" property="boundAccount" jdbcType="VARCHAR" />
+        <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+        <result column="CREATED_DT" property="createdDt" jdbcType="TIMESTAMP" />
+        <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+        <result column="UPDATED_DT" property="updatedDt" jdbcType="TIMESTAMP" />
+        <result column="VERSION" property="version" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <trim prefix="where" prefixOverrides="and|or" >
+            <if test="condition.code != null" >
+                and CODE = #{condition.code}
+            </if>
+            <if test="condition.type != null" >
+                and TYPE = #{condition.type}
+            </if>
+            <if test="condition.boundAccount != null" >
+                and BOUND_ACCOUNT = #{condition.boundAccount}
+            </if>
+            <if test="condition.createdBy != null" >
+                and CREATED_BY = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and CREATED_DT = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and UPDATED_BY = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and UPDATED_DT = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and VERSION = #{condition.version}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        VERIFY_SID, CODE, TYPE, BOUND_ACCOUNT, CREATED_BY, CREATED_DT, UPDATED_BY, UPDATED_DT,
+        VERSION
+    </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from VerifyCode
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+        <include refid="common.Mysql_Pagination_Limit" />
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from VerifyCode
+        where VERIFY_SID = #{verifySid}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from VerifyCode
+        where VERIFY_SID = #{verifySid}
+    </delete>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
+        delete from VerifyCode
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.alfa.web.pojo.VerifyCode" >
+
+        <selectKey keyProperty="verifySid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        insert into VerifyCode (VERIFY_SID, CODE, TYPE, BOUND_ACCOUNT, CREATED_BY, CREATED_DT,
+        UPDATED_BY, UPDATED_DT, VERSION)
+        values (#{verifySid}, #{code}, #{type}, #{boundAccount}, #{createdBy}, #{createdDt},
+        #{updatedBy}, #{updatedDt}, #{version})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.VerifyCode" >
+        <selectKey keyProperty="verifySid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into VerifyCode
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            VERIFY_SID,
+            <if test="code != null" >
+                CODE,
+            </if>
+            <if test="type != null" >
+                TYPE,
+            </if>
+            <if test="boundAccount != null" >
+                BOUND_ACCOUNT,
+            </if>
+            <if test="createdBy != null" >
+                CREATED_BY,
+            </if>
+            <if test="createdDt != null" >
+                CREATED_DT,
+            </if>
+            <if test="updatedBy != null" >
+                UPDATED_BY,
+            </if>
+            <if test="updatedDt != null" >
+                UPDATED_DT,
+            </if>
+            <if test="version != null" >
+                VERSION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            #{verifySid},
+            <if test="code != null" >
+                #{code},
+            </if>
+            <if test="type != null" >
+                #{type},
+            </if>
+            <if test="boundAccount != null" >
+                #{boundAccount},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer" >
+        select count(*) from VerifyCode
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByParamsSelective" parameterType="map" >
+        update VerifyCode
+        <set >
+            <if test="record.verifySid != null" >
+                VERIFY_SID = #{record.verifySid},
+            </if>
+            <if test="record.code != null" >
+                CODE = #{record.code},
+            </if>
+            <if test="record.type != null" >
+                TYPE = #{record.type},
+            </if>
+            <if test="record.boundAccount != null" >
+                BOUND_ACCOUNT = #{record.boundAccount},
+            </if>
+            <if test="record.createdBy != null" >
+                CREATED_BY = #{record.createdBy},
+            </if>
+            <if test="record.createdDt != null" >
+                CREATED_DT = #{record.createdDt},
+            </if>
+            <if test="record.updatedBy != null" >
+                UPDATED_BY = #{record.updatedBy},
+            </if>
+            <if test="record.updatedDt != null" >
+                UPDATED_DT = #{record.updatedDt},
+            </if>
+            <if test="record.version != null" >
+                VERSION = #{record.version},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByParams" parameterType="map" >
+        update VerifyCode
+        set VERIFY_SID = #{record.verifySid},
+        CODE = #{record.code},
+        TYPE = #{record.type},
+        BOUND_ACCOUNT = #{record.boundAccount},
+        CREATED_BY = #{record.createdBy},
+        CREATED_DT = #{record.createdDt},
+        UPDATED_BY = #{record.updatedBy},
+        UPDATED_DT = #{record.updatedDt},
+        VERSION = #{record.version}
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.VerifyCode" >
+        update VerifyCode
+        <set >
+            <if test="code != null" >
+                CODE = #{code},
+            </if>
+            <if test="type != null" >
+                TYPE = #{type},
+            </if>
+            <if test="boundAccount != null" >
+                BOUND_ACCOUNT = #{boundAccount},
+            </if>
+            <if test="createdBy != null" >
+                CREATED_BY = #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                CREATED_DT = #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                UPDATED_BY = #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                UPDATED_DT = #{updatedDt},
+            </if>
+            <if test="version != null" >
+                VERSION = #{version},
+            </if>
+        </set>
+        where VERIFY_SID = #{verifySid}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.alfa.web.pojo.VerifyCode" >
+        update VerifyCode
+        set CODE = #{code},
+        TYPE = #{type},
+        BOUND_ACCOUNT = #{boundAccount},
+        CREATED_BY = #{createdBy},
+        CREATED_DT = #{createdDt},
+        UPDATED_BY = #{updatedBy},
+        UPDATED_DT = #{updatedDt},
+        VERSION = #{version}
+        where VERIFY_SID = #{verifySid}
+    </update>
+
+</mapper>
