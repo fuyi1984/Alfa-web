@@ -97,7 +97,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         int type = verifyCode.getType();
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
-                verifyCode.setCode(WebUtil.randomCaptcha(4));
+                verifyCode.setCode(WebUtil.randomCaptcha(6));
                 try {
                     smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
                 } catch (IOException e) {

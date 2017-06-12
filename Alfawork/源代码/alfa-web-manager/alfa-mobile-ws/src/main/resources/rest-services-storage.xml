@@ -15,7 +15,8 @@
 
     <jaxrs:server id="restServer" address="/" staticSubresourceResolution="true">
         <jaxrs:serviceBeans>
-            <bean class="com.alfa.mobile.rest.TestRestImpl"/>
+            <bean class="com.alfa.mobile.rest.SysUserRestImpl"/>
+            <bean class="com.alfa.mobile.rest.OrdersRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
