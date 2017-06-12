@@ -20,9 +20,9 @@ public class SmsServiceImpl implements SmsService {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
-    public static String sn = "2SDK-XXX-6688-XXXXX";// 软件序列号,请通过亿美销售人员获取
-    public static String key = "123456";// 序列号首次激活时自己设定
-    public static String password = "123456";// 密码,请通过亿美销售人员获取
+    public static String sn = "0SDK-EBB-6699-RGQNT";// 软件序列号,请通过亿美销售人员获取
+    public static String key = "973664";// 序列号首次激活时自己设定
+    public static String password = "973664";// 密码,请通过亿美销售人员获取
     public static String baseUrl = "http://hprpt2.eucp.b2m.cn:8080/sdkproxy/";
 
     @Override
