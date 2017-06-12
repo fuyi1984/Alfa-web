@@ -50,6 +50,7 @@ public interface SysUserRest {
     @POST
     @Path("/createUser")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(RegisterUser registerUser);
 
     /**
@@ -65,6 +66,8 @@ public interface SysUserRest {
     @WebMethod
     @POST
     @Path("/login")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response login(SysUsers user, @Context HttpServletRequest servletRequest,
                           @Context HttpServletResponse servletResponse);
 

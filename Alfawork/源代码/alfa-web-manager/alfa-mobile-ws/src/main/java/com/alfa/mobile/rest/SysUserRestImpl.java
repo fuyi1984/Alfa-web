@@ -69,12 +69,14 @@ public class SysUserRestImpl implements SysUserRest {
         user.setPhone(registerUser.getMobile());
         user.setCaptcha(registerUser.getCaptcha());
         user.setVerifyCode(registerUser.getCaptcha());
+        user.setUsername(user.getPhone());
 
         mu.setUser(user);
 
+
         Criteria criteria = new Criteria();
-        user.setUsername(user.getPhone());
         criteria.put("username", user.getUsername());
+        //criteria.put("phone",user.getPhone());
 
         List<SysUsers> userExistList = this.sysUsersService.selectByParams(criteria);
 
@@ -85,7 +87,9 @@ public class SysUserRestImpl implements SysUserRest {
                             "帐号已经存在", null))).build();
         }
 
+
         criteria.clear();
+
         criteria.put("code", user.getVerifyCode());
         criteria.put("boundAccount", user.getPhone());
         criteria.put("type", WebConstants.VerifyCode.type0);
@@ -101,7 +105,9 @@ public class SysUserRestImpl implements SysUserRest {
 
         //手机号码验证是否注册
         criteria.clear();
+
         criteria.put("phone", user.getPhone());
+
         List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
         if (userList.size() > 0) {
             return Response.status(Response.Status.OK).entity(
@@ -115,7 +121,7 @@ public class SysUserRestImpl implements SysUserRest {
         try {
 
             user.setToken(StringUtil.getUUID());
-            user.setPassword(WebUtil.encrypt(user.getCaptcha(),user.getUsername()));
+            user.setPassword(WebUtil.encrypt(user.getCaptcha(), user.getUsername()));
 
             result = this.sysUsersService.insertUser(user);
             log.info("User Register: Create Account successfully!");
@@ -136,9 +142,8 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response login(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
-        Response response = Response.status(500)
-                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
-        ;
+
+        Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
 
         HttpSession session = servletRequest.getSession();
 
@@ -165,10 +170,10 @@ public class SysUserRestImpl implements SysUserRest {
             String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
 
             if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
-//                    if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
-//                        currentUser.setToken(StringUtil.getUUID());
-//                        userService.updateByPrimaryKeySelective(currentUser);
-//                    }
+                /*if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
+                      currentUser.setToken(StringUtil.getUUID());
+                      this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+                }*/
                 // 保存Session和Cookie
                 String json = JsonUtil.toJson(
                         this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));

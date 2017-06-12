@@ -1,6 +1,7 @@
 package com.alfa.web.service.Impl;
 
 import com.alfa.web.service.SmsService;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.Sms.SDKHttpClient;
 import com.alfa.web.vo.Mo;
 import com.alfa.web.vo.StatusReport;
@@ -20,10 +21,15 @@ public class SmsServiceImpl implements SmsService {
 
     private final Logger log = Logger.getLogger(this.getClass());
 
-    public static String sn = "0SDK-EBB-6699-RGQNT";// 软件序列号,请通过亿美销售人员获取
+    /*public static String sn = "0SDK-EBB-6699-RGQNT";// 软件序列号,请通过亿美销售人员获取
     public static String key = "973664";// 序列号首次激活时自己设定
     public static String password = "973664";// 密码,请通过亿美销售人员获取
-    public static String baseUrl = "http://hprpt2.eucp.b2m.cn:8080/sdkproxy/";
+    public static String baseUrl = "http://hprpt2.eucp.b2m.cn:8080/sdkproxy/";*/
+
+    public static String sn = PropertiesUtil.getProperty("verify.sn");// 软件序列号,请通过亿美销售人员获取
+    public static String key = PropertiesUtil.getProperty("verify.key");// 序列号首次激活时自己设定
+    public static String password = PropertiesUtil.getProperty("verify.password");// 密码,请通过亿美销售人员获取
+    public static String baseUrl = PropertiesUtil.getProperty("verify.baseUrl");
 
     @Override
     public String registAndLogout() throws IOException {
