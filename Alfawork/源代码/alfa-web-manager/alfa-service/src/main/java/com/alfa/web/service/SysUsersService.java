@@ -225,4 +225,6 @@ public interface SysUsersService {
      * @return
      */
     int updateIsFirstPagePromotion(Criteria criteria);
+
+
 }

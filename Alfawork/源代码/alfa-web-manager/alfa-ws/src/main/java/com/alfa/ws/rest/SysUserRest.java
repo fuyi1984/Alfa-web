@@ -143,5 +143,12 @@ public interface SysUserRest {
     public Response findAllTransporter();
 
 
+    /**
+     * 验证手机是否存在
+     */
+    @WebMethod
+    @POST
+    @Path("/validatMobile")
+    public Response validatMobile(SysUsers user);
 
 }

@@ -1,6 +1,7 @@
 package com.alfa.web.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -9,6 +10,48 @@ import java.util.List;
  *
  */
 public interface SmsService {
+
+    /**
+     * 激活序列号,初次使用、已注销后再次使用时调用该方法.
+     * @return
+     * @throws IOException
+     */
+    public String registAndLogout() throws IOException;
+
+
+    /**
+     * 余额查询
+     * @return
+     */
+    public String getBalance();
+
+
+    /**
+     * 发送带有信息ID的短信,可供查询状态报告
+     * @param mdn
+     * @param message
+     * @return
+     */
+    public String sendSMS(String mdn,String message) throws UnsupportedEncodingException;
+
+    /**
+     * 获取上行短信
+     * @return
+     */
+    public int getMos();
+
+    /**
+     * 获取报告数量
+     * @return
+     */
+    public int getReports();
+
+    /**
+     * 注销序列号
+     * @return
+     */
+    public String logout();
+
     /**
      * 发送一条短信，手机使用逗号隔开，少于100个
      * 信息字数少于60字符

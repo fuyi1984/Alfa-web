@@ -99,7 +99,8 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
                 try {
-                    smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+                    //smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+                    smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -122,7 +123,8 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
                 try{
-                    smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content")+ verifyCode.getCode());
+                    //smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content")+ verifyCode.getCode());
+                    smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
                 }catch (IOException e){
                     e.printStackTrace();
                     System.out.println("发送短信失败");

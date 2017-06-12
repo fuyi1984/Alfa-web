@@ -1,13 +1,11 @@
 package com.alfa.ws.rest;
 
 import com.alfa.web.aspect.UserLog;
-import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.SysConfig;
-import com.alfa.web.pojo.SysRole;
-import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.*;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.VerifyCodeService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -45,10 +43,59 @@ public class SysUserRestImpl implements SysUserRest {
     @Autowired
     private OrdersService ordersService;
 
+    @Autowired
+    private VerifyCodeService verifyCodeService;
+
 
     @Override
     public Response insertByMobile(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
-        return null;
+
+        HttpSession session = servletRequest.getSession();
+        Criteria criteria = new Criteria();
+        criteria.put("code", user.getVerifyCode());
+        criteria.put("boundAccount", user.getPhone());
+        criteria.put("type", WebConstants.VerifyCode.type0);
+
+        List<VerifyCode> vcList = this.verifyCodeService.selectByParams(criteria);
+
+        //验证失败
+        if(vcList.size()==0){
+            log.info("User Register: Verify Code failed!");
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(new RestResult(RestResult.FAILURE,  "error.users.verification.code.error", null))).build();
+        }
+
+        //手机号码验证是否注册
+        criteria.clear();
+        criteria.put("phone", user.getPhone());
+        List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
+        if(userList.size()>0){
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,  "error.users.phone.already.exists", null))).build();
+        }
+
+        user.setUsername(user.getPhone());
+
+        //添加数据
+        boolean result = true;
+
+        try {
+            user.setToken(StringUtil.getUUID());
+            user.setPassword(WebUtil.encrypt(user.getVerifyCode(), user.getUsername()));
+
+            result = this.sysUsersService.insertUser(user);
+            log.info("User Register: Create Account successfully!");
+        }catch (Exception e) {
+            log.error(e);
+            result = false;
+        }
+
+        if (result) {
+            log.info("User Register: Create User successfully!");
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "注册成功", user))).build();
+        } else {
+            log.info("User Register: Create User failed!");
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "注册失败", null))).build();
+        }
     }
 
     @Override
@@ -382,5 +429,32 @@ public class SysUserRestImpl implements SysUserRest {
         List<SysUsers> UserList = this.sysUsersService.selectByParams(criteria);
         String json = JsonUtil.toJson(UserList);
         return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
+    public Response validatMobile(SysUsers user) {
+        if(StringUtil.isNullOrEmpty(user.getPhone())){
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,  "error.vr.parameter.wrong", null))).build();
+        }
+
+        Criteria criteria = new Criteria();
+        criteria.put("phone", user.getPhone());
+
+        List<SysUsers> list = this.sysUsersService.selectByParams(criteria);
+
+        if(!StringUtil.isNullOrEmpty(user.getUserId())){
+            if(list.size() == 0 ||(list.size() == 1 && list.get(0).getUserId().equals(user.getUserId()))){
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS,  "info.users.phone.not.registered", null))).build();
+            }else{
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,  "error.users.phone.registered", null))).build();
+            }
+        }else{
+            if (list.size()==0) {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS,  "info.users.phone.not.registered", null))).build();
+            } else {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,  "error.users.phone.registered", null))).build();
+            }
+
+        }
     }
 }
