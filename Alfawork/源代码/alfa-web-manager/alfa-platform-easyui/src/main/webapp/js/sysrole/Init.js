@@ -4,13 +4,19 @@
 
 $(function () {
 
-    setCurrentUser();
+    gtoken=ReadCookie("token");
 
-    $('#roleadd').window('close');
-    $('#roleupdate').window('close');
-    $('#rolesearch').window('close');
+    if(gtoken!="") {
+        setCurrentUser();
 
-    initdatagrid();
+        $('#roleadd').window('close');
+        $('#roleupdate').window('close');
+        $('#rolesearch').window('close');
+
+        initdatagrid();
+    }else{
+        window.location.href=platform_url+"/pages/home/login.html";
+    }
 });
 
 
@@ -92,6 +98,11 @@ function initdatagrid() {
 
                 console.log(rows);
                 console.log(rows[0].roleId);
+
+                if (rows[0].roleId == groleid) {
+                    $.messager.alert('提示', '不能删除当前角色!');
+                    return;
+                }
 
                 var parm = {"roleId": rows[0].roleId};
 

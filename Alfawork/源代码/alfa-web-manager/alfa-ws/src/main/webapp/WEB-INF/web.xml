@@ -65,7 +65,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- IdentityAuthenticationFilter
+    <!-- IdentityAuthenticationFilter-->
     <filter>
         <filter-name>IdentityAuthenticationFilter</filter-name>
         <filter-class>com.alfa.ws.filter.IdentityAuthenticationFilter</filter-class>
@@ -73,7 +73,7 @@
     <filter-mapping>
         <filter-name>IdentityAuthenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
 
     <!-- CXFServlet -->
     <servlet>

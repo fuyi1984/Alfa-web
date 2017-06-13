@@ -9,27 +9,34 @@ $(function () {
 
     //alert(ReadCookie("token"));
 
-    setCurrentUser();
+    gtoken=ReadCookie("token");
 
-    InitServerInfo();
+    if(gtoken!="") {
 
-    $("#welcome").html("欢迎 " + grealname + " " + $("#welcome").html());
+        setCurrentUser();
 
-    InitLeftMenu();
-    tabClose();
-    tabCloseEven();
+        InitServerInfo();
 
-    $('#tabs').tabs({
-        onSelect: function (title) {
-            var currTab = $('#tabs').tabs('getTab', title);
-            var iframe = $(currTab.panel('options').content);
+        $("#welcome").html("欢迎 " + grealname + " " + $("#welcome").html());
 
-            var src = iframe.attr('src');
-            if (src)
-                $('#tabs').tabs('update', {tab: currTab, options: {content: createFrame(src)}});
+        InitLeftMenu();
+        tabClose();
+        tabCloseEven();
 
-        }
-    });
+        $('#tabs').tabs({
+            onSelect: function (title) {
+                var currTab = $('#tabs').tabs('getTab', title);
+                var iframe = $(currTab.panel('options').content);
+
+                var src = iframe.attr('src');
+                if (src)
+                    $('#tabs').tabs('update', {tab: currTab, options: {content: createFrame(src)}});
+
+            }
+        });
+    }else{
+        window.location.href=platform_url+"/pages/home/login.html";
+    }
 })
 
 /*window.onunload=function(){
@@ -87,6 +94,15 @@ function InitData() {
 function showChangePasswordWin() {
     $("#iptOldPassword").val("");
     $('#winPassword').window('open');
+}
+
+//退出
+function logoutUser(){
+    $.post(ws_url+"/rest/user/logout?token="+gtoken,function(data){
+        //alert("logout:"+data);
+        setCookie("token","",-1);
+        window.location.href=platform_url+"/pages/home/login.html";
+    });
 }
 
 function logout() {

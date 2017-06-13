@@ -43,7 +43,8 @@ function SetCookie(name,value,hours){
     var expireNextID = "";
     var expirenow = new Date((new Date()).getTime());
     expirenow = "; expires=" + expirenow.toGMTString();
-    var SiteName = "loongrender.com";
+    var SiteName = window.location.host;
+    SiteName=SiteName.substr(0,SiteName.indexOf(":"));
     path="/";
     if(window.location.href.indexOf("localhost") >0){
         SiteName = "localhost";
@@ -59,19 +60,11 @@ function SetCookie(name,value,hours){
     document.cookie = name + "=" + escape(value) + expire + ((path == null) ? "" : (";domain="+SiteName+"; path=" + path));
 }
 
-//退出
-function logoutUser(){
-    $.post(ws_url+"/rest/user/logout",function(data){
-        //alert("logout:"+data);
-        window.location.href=platform_url+"/pages/home/login.html";
-    });
-}
-
 /** 加载页面判断user是否登陆 */
 function setCurrentUser() {
     
     $.ajax({
-        url: ws_url+'/rest/user/current',
+        url: ws_url+'/rest/user/current?token='+gtoken,
         type: "get",
         contentType: 'application/json;charset=UTF-8',
         async:false,

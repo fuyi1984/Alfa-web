@@ -44,7 +44,7 @@ function userupdateform(){
     }
 
     $.ajax({
-        url: ws_url+'/rest/user/editUser?token'+gtoken,
+        url: ws_url+'/rest/user/editUser?token='+gtoken,
         contentType: 'application/json;charset=UTF-8',
         type: 'post',
         datatype: 'json',

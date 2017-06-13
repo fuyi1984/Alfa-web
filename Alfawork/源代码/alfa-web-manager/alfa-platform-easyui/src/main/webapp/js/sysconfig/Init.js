@@ -4,13 +4,19 @@
 
 $(function () {
 
-    setCurrentUser();
+    gtoken=ReadCookie("token");
 
-    $('#configadd').window('close');
-    $('#configupdate').window('close');
-    $('#configsearch').window('close');
+    if(gtoken!="") {
+        setCurrentUser();
 
-    initdatagrid();
+        $('#configadd').window('close');
+        $('#configupdate').window('close');
+        $('#configsearch').window('close');
+
+        initdatagrid();
+    }else{
+        window.location.href=platform_url+"/pages/home/login.html";
+    }
 
 
 });

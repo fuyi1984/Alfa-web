@@ -28,7 +28,7 @@ function orderallocatform(){
         console.log(params);
 
         $.ajax({
-            url: ws_url+'/rest/order/updateorders?token'+gtoken,
+            url: ws_url+'/rest/order/updateorders?token='+gtoken,
             contentType: 'application/json;charset=UTF-8',
             type: 'post',
             datatype: 'json',

@@ -2,12 +2,18 @@
  * Created by Administrator on 2017/6/8.
  */
 $(function () {
-    setCurrentUser();
-    $('#orderadd').window('close');
-    $('#orderAllocating').window('close');
-    initdatagrid();
-    initcombobox();
-    Accesscontrol();
+    gtoken=ReadCookie("token");
+
+    if(gtoken!="") {
+        setCurrentUser();
+        $('#orderadd').window('close');
+        $('#orderAllocating').window('close');
+        initdatagrid();
+        initcombobox();
+        Accesscontrol();
+    }else{
+        window.location.href=platform_url+"/pages/home/login.html";
+    }
 });
 
 function initdatagrid() {
@@ -150,7 +156,7 @@ function initdatagrid() {
                         return;
                     }
                     $.ajax({
-                        url: ws_url + '/rest/order/updateorders?token' + gtoken,
+                        url: ws_url + '/rest/order/updateorders?token=' + gtoken,
                         contentType: 'application/json;charset=UTF-8',
                         type: 'post',
                         datatype: 'json',

@@ -5,15 +5,21 @@
 
 $(function () {
 
-    setCurrentUser();
+    gtoken=ReadCookie("token");
 
-    $('#useradd').window('close');
-    $('#userupdate').window('close');
-    $('#usersearch').window('close');
+    if(gtoken!="") {
+        setCurrentUser();
 
-    initdatagrid();
+        $('#useradd').window('close');
+        $('#userupdate').window('close');
+        $('#usersearch').window('close');
 
-    initcombobox();
+        initdatagrid();
+
+        initcombobox();
+    }else{
+        window.location.href=platform_url+"/pages/home/login.html";
+    }
 
 
 });

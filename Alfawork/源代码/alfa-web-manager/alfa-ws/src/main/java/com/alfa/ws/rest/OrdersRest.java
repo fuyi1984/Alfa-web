@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Administrator on 2017/6/7.
@@ -61,7 +62,7 @@ public interface OrdersRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/updateorders")
-    public Response updateorder(Orders order);
+    public Response updateorder(Orders order) throws UnsupportedEncodingException;
 
     /**
      * 查询分页订单

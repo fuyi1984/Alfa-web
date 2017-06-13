@@ -3,8 +3,10 @@ package com.alfa.ws.rest;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.OrdersService;
+import com.alfa.web.service.SmsService;
 import com.alfa.web.service.SysconfigService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +36,9 @@ public class OrdersRestImpl implements OrdersRest {
      */
     @Autowired
     private OrdersService ordersService;
+
+    @Autowired
+    private SmsService smsService;
 
     @Override
     public Response insertorder(Orders order) throws Exception {
@@ -63,13 +69,22 @@ public class OrdersRestImpl implements OrdersRest {
     }
 
     @Override
-    public Response updateorder(Orders order) {
+    public Response updateorder(Orders order) throws UnsupportedEncodingException {
         String Json="";
         WebUtil.prepareUpdateParams(order);
 
         int result=this.ordersService.updateByPrimaryKeySelective(order);
 
         if(result==1){
+
+            /*String ret=this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty(" notice.transporter")+order.getIphone());
+
+            if(ret=="0"){
+                log.info("通知收运人员的短信发送成功!");
+            }else{
+                log.info("通知收运人员的短信发送失败!");
+            }*/
+
             Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Order_Update_Success,null));
         }else{
             Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Order_Update_Failtrue,null));

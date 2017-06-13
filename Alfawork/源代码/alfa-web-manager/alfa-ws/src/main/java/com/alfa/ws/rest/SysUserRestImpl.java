@@ -2,10 +2,7 @@ package com.alfa.ws.rest;
 
 import com.alfa.web.aspect.UserLog;
 import com.alfa.web.pojo.*;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SysRoleService;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.VerifyCodeService;
+import com.alfa.web.service.*;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -45,7 +42,6 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Autowired
     private VerifyCodeService verifyCodeService;
-
 
     @Override
     public Response insertByMobile(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
@@ -153,6 +149,7 @@ public class SysUserRestImpl implements SysUserRest {
         WebUtil.prepareUpdateParams(user);
 
         int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
         if (result == 1) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
         } else {
@@ -235,10 +232,10 @@ public class SysUserRestImpl implements SysUserRest {
             log.info("User Login: " + passwordEncrypt + "@" + currentUser.getPassword() + "@" + password);
 
             if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
-                if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
+                //if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
                     currentUser.setToken(StringUtil.getUUID());
                     sysUsersService.updateByPrimaryKeySelective(currentUser);
-                }
+                //}
 
                 // 保存Session和Cookie
                 String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.users_password_verify_success, sysUsersService.createSession(servletRequest,

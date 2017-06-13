@@ -42,33 +42,54 @@ public class IdentityAuthenticationFilter implements Filter {
         UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
 
         SysUsers platformUser = null;
-        if(!StringUtil.isNullOrEmpty(userSession)){
-            platformUser = userSession.getUser();
-        }
 
-        if(!StringUtil.isNullOrEmpty(request.getParameter("mobiletoken"))){
+        /*if(!StringUtil.isNullOrEmpty(userSession)){
+            platformUser = userSession.getUser();
+        }*/
+
+        String mobiletoken = request.getParameter("mobiletoken");
+
+        if(!StringUtil.isNullOrEmpty(mobiletoken)){
 
             Criteria criteria = new Criteria();
-            criteria.put("mobiletoken", request.getParameter("mobiletoken").toString());
+            criteria.put("mobiletoken", mobiletoken);
 
             List<SysUsers> users = sysUsersService.selectByParams(criteria);
             if (users.size() > 0) {
                 platformUser = users.get(0);
-                //已经登录则清理session
+/*                //已经登录则清理session
                 session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
                 //重新创建session
-                sysUsersService.createSession(request, response, WebConstants.CURRENT_PLATFORM_USER, platformUser);
+                sysUsersService.createSession(request, response, WebConstants.CURRENT_PLATFORM_USER, platformUser);*/
             }
         }
 
-        // 此处过滤的路径为不需要登陆验证的路径
-        if (request.getRequestURI().contains("/verify")){
-            chain.doFilter(arg0, arg1);
-        }else if(null != platformUser){
+        // 输出请求路径
+        log.debug("URI : " + request.getRequestURI());
 
-        }else{
-            // 用户未登陆返回320
-            response.setStatus(320);
+        log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
+
+
+        // 此处过滤的路径为不需要登陆验证的路径
+        Boolean urlfilter = request.getRequestURI().contains("/login")
+                || request.getRequestURI().contains("/createUser");
+
+        if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
+            if (urlfilter) {
+                chain.doFilter(arg0, arg1);
+            } else {
+                if (mobiletoken.equals(platformUser.getMobiletoken())) {
+                    chain.doFilter(arg0, arg1);
+                } else {
+                    response.setStatus(403);
+                }
+            }
+        } else {
+            if (urlfilter) {
+                chain.doFilter(arg0, arg1);
+            } else {
+                response.setStatus(320);
+            }
         }
     }
 

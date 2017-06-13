@@ -134,7 +134,7 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname,Acaptcha
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname,A.captcha
     </sql>
     
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">

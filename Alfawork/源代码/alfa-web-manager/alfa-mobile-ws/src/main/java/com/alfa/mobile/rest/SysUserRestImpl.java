@@ -121,6 +121,7 @@ public class SysUserRestImpl implements SysUserRest {
         try {
 
             user.setToken(StringUtil.getUUID());
+            user.setMobiletoken(StringUtil.getUUID());
             user.setPassword(WebUtil.encrypt(user.getCaptcha(), user.getUsername()));
 
             result = this.sysUsersService.insertUser(user);
@@ -170,10 +171,10 @@ public class SysUserRestImpl implements SysUserRest {
             String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
 
             if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
-                /*if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
-                      currentUser.setToken(StringUtil.getUUID());
-                      this.sysUsersService.updateByPrimaryKeySelective(currentUser);
-                }*/
+                //if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
+                currentUser.setMobiletoken(StringUtil.getUUID());
+                this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+                //}
                 // 保存Session和Cookie
                 String json = JsonUtil.toJson(
                         this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
