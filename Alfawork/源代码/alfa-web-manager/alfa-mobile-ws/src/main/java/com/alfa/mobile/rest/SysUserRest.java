@@ -54,7 +54,7 @@ public interface SysUserRest {
     public Response createUser(RegisterUser registerUser);
 
     /**
-     * 登录
+     * 短信验证码方式登录
      *
      * 1. 判断是否为平台用户
      * 2. 获取相应的角色权限和账户信息
@@ -68,7 +68,7 @@ public interface SysUserRest {
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(SysUsers user, @Context HttpServletRequest servletRequest,
+    public Response login(RegisterUser registerUser, @Context HttpServletRequest servletRequest,
                           @Context HttpServletResponse servletResponse);
 
     /**

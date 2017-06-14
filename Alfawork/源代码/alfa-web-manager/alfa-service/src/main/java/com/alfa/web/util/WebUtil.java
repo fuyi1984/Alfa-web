@@ -321,9 +321,6 @@ public class WebUtil {
             invokeSet(obj, "updatedBy", AuthUtil.getAuthUser().getUsername());
         }
 
-        //invokeSet(obj,"createdBy","test");
-        //invokeSet(obj,"updatedBy","test");
-
         Date date = new Date();
         // 更新时间
         invokeSet(obj, "createdDt", date);

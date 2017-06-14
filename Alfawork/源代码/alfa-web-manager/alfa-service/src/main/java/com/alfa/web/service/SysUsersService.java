@@ -132,6 +132,15 @@ public interface SysUsersService {
      */
     boolean insertUser(SysUsers user) throws Exception;
 
+
+    /**
+     * 手机新增用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    boolean inserMobileUser(SysUsers user) throws Exception;
+
     /**
      * 后台新增用户
      *

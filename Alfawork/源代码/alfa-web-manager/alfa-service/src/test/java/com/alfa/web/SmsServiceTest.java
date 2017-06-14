@@ -32,4 +32,9 @@ public class SmsServiceTest extends TestBase {
         String result=smsService.sendSMS("15320353121", PropertiesUtil.getProperty("verify.content") + WebUtil.randomCaptcha(6));
         System.out.println(result);
     }
+
+    @Test
+    public void insertVerifyCodeAndReturn(){
+
+    }
 }

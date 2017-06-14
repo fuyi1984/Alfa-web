@@ -126,6 +126,21 @@ public class SysUsersServiceImpl implements SysUsersService {
     }
 
     @Override
+    public boolean inserMobileUser(SysUsers user) throws Exception {
+        boolean result = false;
+
+        WebUtil.prepareInsertParams(user,user.getPhone());
+        int levelResult = this.sysUsersMapper.insertSelective(user);
+
+        if (levelResult == 1) {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
+    }
+
+    @Override
     public boolean insertPlatformUser(SysUsers user) {
         return false;
     }
@@ -158,6 +173,8 @@ public class SysUsersServiceImpl implements SysUsersService {
         session.setMaxInactiveInterval(60 * 60);
         // 清空密码
         currentUser.setPassword("");
+        currentUser.setCaptcha("");
+        currentUser.setVerifyCode("");
 
         UserSession userSession = new UserSession();
         userSession.setId(session.getId());

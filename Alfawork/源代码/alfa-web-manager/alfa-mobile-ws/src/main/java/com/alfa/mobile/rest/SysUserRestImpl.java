@@ -70,6 +70,7 @@ public class SysUserRestImpl implements SysUserRest {
         user.setCaptcha(registerUser.getCaptcha());
         user.setVerifyCode(registerUser.getCaptcha());
         user.setUsername(user.getPhone());
+        user.setRealname(user.getPhone());
 
         mu.setUser(user);
 
@@ -122,9 +123,13 @@ public class SysUserRestImpl implements SysUserRest {
 
             user.setToken(StringUtil.getUUID());
             user.setMobiletoken(StringUtil.getUUID());
-            user.setPassword(WebUtil.encrypt(user.getCaptcha(), user.getUsername()));
+            user.setPassword(WebUtil.encrypt(user.getVerifyCode(), user.getUsername()));
+            user.setRoleId(10L);
 
-            result = this.sysUsersService.insertUser(user);
+            result = this.sysUsersService.inserMobileUser(user);
+
+            //user.setPassword("");
+
             log.info("User Register: Create Account successfully!");
 
         } catch (Exception e) {
@@ -134,7 +139,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         if (result) {
             log.info("User Register: Create User successfully!");
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "注册成功", user))).build();
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "注册成功", null))).build();
         } else {
             log.info("User Register: Create User failed!");
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "注册失败", null))).build();
@@ -142,50 +147,66 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
-    public Response login(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+    public Response login(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
 
         Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
 
         HttpSession session = servletRequest.getSession();
 
-        // 获取用户名密码
-        String account = user.getUsername().trim();
-        String password = user.getPassword();
+        // 获取手机号和验证码
+        String phone = registerUser.getMobile().trim();
+        String Captcha = registerUser.getCaptcha().trim();
 
-        // 用户名密码为空返回提示
-        if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {
+        //手机号验证码为空返回提示
+        if (StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(Captcha)) {
             return Response.status(Response.Status.OK)
-                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入用户名和密码。", null))).build();
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入手机号和验证码。", null))).build();
         }
 
         Criteria criteria = new Criteria();
-        criteria.put("username", account);
-        criteria.put("phone", account);
+
+        criteria.put("code", Captcha);
+        criteria.put("boundAccount", phone);
+        criteria.put("type", WebConstants.VerifyCode.type0);
+
+        List<VerifyCode> vcList = this.verifyCodeService.selectByParams(criteria);
+
+        if (vcList.size() == 0) {
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "验证码不正确"))).build();
+        }
+
+        criteria.clear();
+
+        criteria.put("username", phone);
+        criteria.put("phone", phone);
 
         // 根据用户名密码查询用户信息
         List<SysUsers> users = this.sysUsersService.selectByParams(criteria);
 
         if (users.size() > 0) {
+
             SysUsers currentUser = users.get(0);
 
-            String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
+            String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
 
-            if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
-                //if(StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())){
-                currentUser.setMobiletoken(StringUtil.getUUID());
-                this.sysUsersService.updateByPrimaryKeySelective(currentUser);
-                //}
-                // 保存Session和Cookie
-                String json = JsonUtil.toJson(
-                        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
-                response = Response.status(Response.Status.OK).entity(json).build();
-            } else {
-                response = Response.status(Response.Status.OK)
-                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "密码错误。", null))).build();
-            }
+            currentUser.setCaptcha(Captcha);
+            currentUser.setVerifyCode(Captcha);
+            currentUser.setPassword(passwordEncrypt);
+            currentUser.setMobiletoken(StringUtil.getUUID());
+
+            this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+            //}
+            // 保存Session和Cookie
+            String json = JsonUtil.toJson(
+                    this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+            response = Response.status(Response.Status.OK).entity(json).build();
+
         } else {
             response = Response.status(Response.Status.OK)
-                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "用户名不存在。", null))).build();
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "帐号不存在。", null))).build();
         }
 
         return response;

@@ -3,49 +3,52 @@
 <mapper namespace="com.alfa.web.dao.VerifyCodeMapper" >
 
     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.VerifyCode" >
-        <id column="VERIFY_SID" property="verifySid" jdbcType="BIGINT" />
-        <result column="CODE" property="code" jdbcType="VARCHAR" />
-        <result column="TYPE" property="type" jdbcType="INTEGER" />
-        <result column="BOUND_ACCOUNT" property="boundAccount" jdbcType="VARCHAR" />
-        <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
-        <result column="CREATED_DT" property="createdDt" jdbcType="TIMESTAMP" />
-        <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
-        <result column="UPDATED_DT" property="updatedDt" jdbcType="TIMESTAMP" />
-        <result column="VERSION" property="version" jdbcType="BIGINT" />
+        <id column="verifySid" property="verifySid" jdbcType="BIGINT" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="boundAccount" property="boundAccount" jdbcType="VARCHAR" />
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP" />
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
+        <result column="version" property="version" jdbcType="BIGINT" />
     </resultMap>
 
     <sql id="Example_Where_Clause" >
         <trim prefix="where" prefixOverrides="and|or" >
+            <if test="condition.verifySid!=null">
+                and verifySid=#{condition.verifySid}
+            </if>
             <if test="condition.code != null" >
-                and CODE = #{condition.code}
+                and code = #{condition.code}
             </if>
             <if test="condition.type != null" >
-                and TYPE = #{condition.type}
+                and type = #{condition.type}
             </if>
             <if test="condition.boundAccount != null" >
-                and BOUND_ACCOUNT = #{condition.boundAccount}
+                and boundAccount = #{condition.boundAccount}
             </if>
             <if test="condition.createdBy != null" >
-                and CREATED_BY = #{condition.createdBy}
+                and createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null" >
-                and CREATED_DT = #{condition.createdDt}
+                and createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null" >
-                and UPDATED_BY = #{condition.updatedBy}
+                and updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null" >
-                and UPDATED_DT = #{condition.updatedDt}
+                and updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null" >
-                and VERSION = #{condition.version}
+                and version = #{condition.version}
             </if>
         </trim>
     </sql>
 
     <sql id="Base_Column_List" >
-        VERIFY_SID, CODE, TYPE, BOUND_ACCOUNT, CREATED_BY, CREATED_DT, UPDATED_BY, UPDATED_DT,
-        VERSION
+        verifySid, code, type, boundAccount, createdBy, createdDt, updatedBy, updatedDt,
+        version
     </sql>
 
     <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
@@ -89,9 +92,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
 
-        insert into VerifyCode (VERIFY_SID, CODE, TYPE, BOUND_ACCOUNT, CREATED_BY, CREATED_DT,
-        UPDATED_BY, UPDATED_DT, VERSION)
-        values (#{verifySid}, #{code}, #{type}, #{boundAccount}, #{createdBy}, #{createdDt},
+        insert into VerifyCode (code, type, boundAccount, createdBy, createdDt,
+        updatedBy, updatedDt, version)
+        values (#{code}, #{type}, #{boundAccount}, #{createdBy}, #{createdDt},
         #{updatedBy}, #{updatedDt}, #{version})
     </insert>
 
@@ -102,30 +105,30 @@
         </selectKey>
         insert into VerifyCode
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            VERIFY_SID,
+            verifySid,
             <if test="code != null" >
-                CODE,
+                code,
             </if>
             <if test="type != null" >
-                TYPE,
+                type,
             </if>
             <if test="boundAccount != null" >
-                BOUND_ACCOUNT,
+                boundAccount,
             </if>
             <if test="createdBy != null" >
-                CREATED_BY,
+                createdBy,
             </if>
             <if test="createdDt != null" >
-                CREATED_DT,
+                createdDt,
             </if>
             <if test="updatedBy != null" >
-                UPDATED_BY,
+                updatedBy,
             </if>
             <if test="updatedDt != null" >
-                UPDATED_DT,
+                updatedDt,
             </if>
             <if test="version != null" >
-                VERSION,
+                version,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -168,31 +171,31 @@
         update VerifyCode
         <set >
             <if test="record.verifySid != null" >
-                VERIFY_SID = #{record.verifySid},
+                verifySid = #{record.verifySid},
             </if>
             <if test="record.code != null" >
-                CODE = #{record.code},
+                code = #{record.code},
             </if>
             <if test="record.type != null" >
-                TYPE = #{record.type},
+                type = #{record.type},
             </if>
             <if test="record.boundAccount != null" >
-                BOUND_ACCOUNT = #{record.boundAccount},
+                boundAccount = #{record.boundAccount},
             </if>
             <if test="record.createdBy != null" >
-                CREATED_BY = #{record.createdBy},
+                createdBy = #{record.createdBy},
             </if>
             <if test="record.createdDt != null" >
-                CREATED_DT = #{record.createdDt},
+                createdDt = #{record.createdDt},
             </if>
             <if test="record.updatedBy != null" >
-                UPDATED_BY = #{record.updatedBy},
+                updatedBy = #{record.updatedBy},
             </if>
             <if test="record.updatedDt != null" >
-                UPDATED_DT = #{record.updatedDt},
+                updatedDt = #{record.updatedDt},
             </if>
             <if test="record.version != null" >
-                VERSION = #{record.version},
+                version = #{record.version},
             </if>
         </set>
         <if test="_parameter != null" >
@@ -202,15 +205,15 @@
 
     <update id="updateByParams" parameterType="map" >
         update VerifyCode
-        set VERIFY_SID = #{record.verifySid},
-        CODE = #{record.code},
-        TYPE = #{record.type},
-        BOUND_ACCOUNT = #{record.boundAccount},
-        CREATED_BY = #{record.createdBy},
-        CREATED_DT = #{record.createdDt},
-        UPDATED_BY = #{record.updatedBy},
-        UPDATED_DT = #{record.updatedDt},
-        VERSION = #{record.version}
+        set verifySid = #{record.verifySid},
+        code = #{record.code},
+        type = #{record.type},
+        boundAccount = #{record.boundAccount},
+        createdBy = #{record.createdBy},
+        createdDt = #{record.createdDt},
+        updatedBy = #{record.updatedBy},
+        updatedDt = #{record.updatedDt},
+        version = #{record.version}
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
@@ -220,44 +223,44 @@
         update VerifyCode
         <set >
             <if test="code != null" >
-                CODE = #{code},
+                code = #{code},
             </if>
             <if test="type != null" >
-                TYPE = #{type},
+                type = #{type},
             </if>
             <if test="boundAccount != null" >
-                BOUND_ACCOUNT = #{boundAccount},
+                boundAccount = #{boundAccount},
             </if>
             <if test="createdBy != null" >
-                CREATED_BY = #{createdBy},
+                createdBy = #{createdBy},
             </if>
             <if test="createdDt != null" >
-                CREATED_DT = #{createdDt},
+                createdDt = #{createdDt},
             </if>
             <if test="updatedBy != null" >
-                UPDATED_BY = #{updatedBy},
+                updatedBy = #{updatedBy},
             </if>
             <if test="updatedDt != null" >
-                UPDATED_DT = #{updatedDt},
+                updatedDt = #{updatedDt},
             </if>
             <if test="version != null" >
-                VERSION = #{version},
+                version = #{version},
             </if>
         </set>
-        where VERIFY_SID = #{verifySid}
+        where verifySid = #{verifySid}
     </update>
 
     <update id="updateByPrimaryKey" parameterType="com.alfa.web.pojo.VerifyCode" >
         update VerifyCode
-        set CODE = #{code},
-        TYPE = #{type},
-        BOUND_ACCOUNT = #{boundAccount},
-        CREATED_BY = #{createdBy},
-        CREATED_DT = #{createdDt},
-        UPDATED_BY = #{updatedBy},
-        UPDATED_DT = #{updatedDt},
-        VERSION = #{version}
-        where VERIFY_SID = #{verifySid}
+        set code = #{code},
+        type = #{type},
+        boundAccount = #{boundAccount},
+        createdBy = #{createdBy},
+        createdDt = #{createdDt},
+        updatedBy = #{updatedBy},
+        updatedDt = #{updatedDt},
+        version = #{version}
+        where verifySid = #{verifySid}
     </update>
 
 </mapper>

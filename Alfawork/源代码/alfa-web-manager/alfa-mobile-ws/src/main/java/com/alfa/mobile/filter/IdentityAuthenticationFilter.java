@@ -72,7 +72,8 @@ public class IdentityAuthenticationFilter implements Filter {
 
         // 此处过滤的路径为不需要登陆验证的路径
         Boolean urlfilter = request.getRequestURI().contains("/login")
-                || request.getRequestURI().contains("/createUser");
+                || request.getRequestURI().contains("/createUser")
+                || request.getRequestURI().contains("/getCaptcha");
 
         if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
             if (urlfilter) {
