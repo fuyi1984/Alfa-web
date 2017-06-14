@@ -100,7 +100,7 @@ function showChangePasswordWin() {
 function logoutUser(){
     $.post(ws_url+"/rest/user/logout?token="+gtoken,function(data){
         //alert("logout:"+data);
-        setCookie("token","",-1);
+        SetCookie("token","");
         window.location.href=platform_url+"/pages/home/login.html";
     });
 }

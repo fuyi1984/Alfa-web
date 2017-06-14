@@ -38,8 +38,8 @@ public class IdentityAuthenticationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) arg0;
         HttpServletResponse response = (HttpServletResponse) arg1;
 
-        HttpSession session = request.getSession();
-        UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
+        //HttpSession session = request.getSession();
+        //UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
 
         SysUsers platformUser = null;
 
@@ -75,7 +75,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 || request.getRequestURI().contains("/createUser")
                 || request.getRequestURI().contains("/getCaptcha");
 
-        if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
+        if (!StringUtil.isNullOrEmpty(platformUser)) {
             if (urlfilter) {
                 chain.doFilter(arg0, arg1);
             } else {
@@ -86,6 +86,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 }
             }
         } else {
+            log.debug("session is null!");
             if (urlfilter) {
                 chain.doFilter(arg0, arg1);
             } else {

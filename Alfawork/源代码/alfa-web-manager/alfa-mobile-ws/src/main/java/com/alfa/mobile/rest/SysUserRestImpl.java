@@ -200,8 +200,15 @@ public class SysUserRestImpl implements SysUserRest {
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
             //}
             // 保存Session和Cookie
-            String json = JsonUtil.toJson(
-                    this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+            //String json = JsonUtil.toJson(
+            //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+            currentUser.setPassword("");
+            currentUser.setCaptcha("");
+            currentUser.setVerifyCode("");
+
+            String json=JsonUtil.toJson(currentUser);
+
             response = Response.status(Response.Status.OK).entity(json).build();
 
         } else {
