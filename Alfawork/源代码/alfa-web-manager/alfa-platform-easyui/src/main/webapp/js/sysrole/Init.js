@@ -4,9 +4,9 @@
 
 $(function () {
 
-    gtoken=ReadCookie("token");
+    gtoken = ReadCookie("token");
 
-    if(gtoken!="") {
+    if (gtoken != "") {
         setCurrentUser();
 
         $('#roleadd').window('close');
@@ -14,8 +14,8 @@ $(function () {
         $('#rolesearch').window('close');
 
         initdatagrid();
-    }else{
-        window.location.href=platform_url+"/pages/home/login.html";
+    } else {
+        window.location.href = platform_url + "/pages/home/login.html";
     }
 });
 
@@ -104,6 +104,11 @@ function initdatagrid() {
                     return;
                 }
 
+                if (rows[0].roleId == 15 || rows[0].roleId == 9 || rows[0].roleId == 10) {
+                    $.messager.alert('提示', '不能删除此角色!');
+                    return;
+                }
+
                 var parm = {"roleId": rows[0].roleId};
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
@@ -116,7 +121,7 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/roles/deleterole?token='+gtoken,
+                        url: ws_url + '/rest/roles/deleterole?token=' + gtoken,
                         data: JSON.stringify(parm),
                         success: function (msg) {
                             if (msg.status == 'success') {
@@ -185,7 +190,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
-            url: ws_url + '/rest/roles/findlist?token='+gtoken,
+            url: ws_url + '/rest/roles/findlist?token=' + gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleName=' + $('#role_name_search').val() + '',
             contentType: 'application/json;charset=UTF-8',

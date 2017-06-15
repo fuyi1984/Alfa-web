@@ -37,6 +37,7 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            1=1
             <if test="condition.realname!=null">
                 and A.realname=#{condition.realname}
             </if>

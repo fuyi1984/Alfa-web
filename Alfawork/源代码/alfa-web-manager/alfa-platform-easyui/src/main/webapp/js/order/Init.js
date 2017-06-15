@@ -212,7 +212,7 @@ function initdatagrid() {
             {field: 'username', title: '姓名', width: 80, align: 'center'},
             {field: 'iphone', title: '电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 80, align: 'center'},
-            {field: 'num', title: '数量', width: 80, align: 'center'},
+            {field: 'num', title: '数量(吨)', width: 80, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
             {field: 'orgstatus', title: '订单状态', width: 80, align: 'center'},
             {field: 'realname', title: '收运人员姓名', width: 80, align: 'center'},

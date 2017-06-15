@@ -20,6 +20,7 @@
 
     <sql id="Example_Where_Clause" >
         <trim prefix="where" prefixOverrides="and|or" >
+            1=1
             <if test="condition.roleId != null" >
                 and A.roleId in (${condition.roleId})
             </if>

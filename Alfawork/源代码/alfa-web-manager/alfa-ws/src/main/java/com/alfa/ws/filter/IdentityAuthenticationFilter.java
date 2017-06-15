@@ -47,54 +47,102 @@ public class IdentityAuthenticationFilter implements Filter {
         //    platformUser = userSession.getUser();
         //}
 
-        String token = request.getParameter("token");
+        String mobiletoken = request.getParameter("mobiletoken");
 
-        log.debug("token:" + token);
+        log.debug("mobiletoken:"+mobiletoken);
 
-        if (!StringUtil.isNullOrEmpty(token)) {
+        if(StringUtil.isNullOrEmpty(mobiletoken)) {
+            //region 网页Web接口身份验证
+            String token = request.getParameter("token");
 
-            Criteria criteria = new Criteria();
-            criteria.put("token", token);
+            log.debug("token:" + token);
 
-            List<SysUsers> users = sysUsersService.selectByParams(criteria);
-            if (users.size() > 0) {
-                platformUser = users.get(0);
-                //已经登录则清理session
-                //session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
-                //重新创建session
-                //sysUsersService.createSession(request, response, WebConstants.CURRENT_PLATFORM_USER, platformUser);
+            if (!StringUtil.isNullOrEmpty(token)) {
+
+                Criteria criteria = new Criteria();
+                criteria.put("token", token);
+
+                List<SysUsers> users = sysUsersService.selectByParams(criteria);
+                if (users.size() > 0) {
+                    platformUser = users.get(0);
+                    //已经登录则清理session
+                    //session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
+                    //重新创建session
+                    //sysUsersService.createSession(request, response, WebConstants.CURRENT_PLATFORM_USER, platformUser);
+                }
             }
-        }
 
-        // 输出请求路径
-        log.debug("URI : " + request.getRequestURI());
+            // 输出请求路径
+            log.debug("URI : " + request.getRequestURI());
 
-        log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
+            log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
 
-        // 此处过滤的路径为不需要登陆验证的路径
+            // 此处过滤的路径为不需要登陆验证的路径
 /*        Boolean urlfilter = request.getRequestURI().contains("/verify")
                 || request.getRequestURI().contains("/logout") //platform logout
                 || request.getRequestURI().contains("/current");*/
 
-        Boolean urlfilter = request.getRequestURI().contains("/verify");
+            Boolean urlfilter = request.getRequestURI().contains("/verify");
 
 
-        if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
-            if (urlfilter) {
-                chain.doFilter(arg0, arg1);
-            } else {
-                if (token.equals(platformUser.getToken())) {
+            if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
+                if (urlfilter) {
                     chain.doFilter(arg0, arg1);
                 } else {
-                    response.setStatus(403);
+                    if (token.equals(platformUser.getToken())) {
+                        chain.doFilter(arg0, arg1);
+                    } else {
+                        response.setStatus(403);
+                    }
+                }
+            } else {
+                if (urlfilter) {
+                    chain.doFilter(arg0, arg1);
+                } else {
+                    response.setStatus(320);
                 }
             }
-        } else {
-            if (urlfilter) {
-                chain.doFilter(arg0, arg1);
-            } else {
-                response.setStatus(320);
+            //endregion
+        }else{
+            //region 手机Web接口身份验证
+            Criteria criteria = new Criteria();
+            criteria.put("mobiletoken", mobiletoken);
+
+            List<SysUsers> users = sysUsersService.selectByParams(criteria);
+            if (users.size() > 0) {
+                platformUser = users.get(0);
             }
+
+            // 输出请求路径
+            log.debug("URI : " + request.getRequestURI());
+
+            log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
+
+
+            // 此处过滤的路径为不需要登陆验证的路径
+            Boolean urlfilter = request.getRequestURI().contains("/login")
+                    || request.getRequestURI().contains("/createUser")
+                    || request.getRequestURI().contains("/getCaptcha");
+
+            if (!StringUtil.isNullOrEmpty(platformUser)) {
+                if (urlfilter) {
+                    chain.doFilter(arg0, arg1);
+                } else {
+                    if (mobiletoken.equals(platformUser.getMobiletoken())) {
+                        chain.doFilter(arg0, arg1);
+                    } else {
+                        response.setStatus(403);
+                    }
+                }
+            } else {
+                log.debug("session is null!");
+                if (urlfilter) {
+                    chain.doFilter(arg0, arg1);
+                } else {
+                    response.setStatus(320);
+                }
+            }
+            //endregion
         }
     }
 
