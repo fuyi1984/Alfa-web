@@ -55,7 +55,15 @@ public class OrdersRestImpl implements OrdersRest {
 
         int num = this.ordersService.countByParams(criteria);
 
-        if (num <= Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum"))) {
+        log.debug("num:"+num);
+
+        int maxnum=Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum"));
+
+        log.debug("maxnum:"+maxnum);
+
+        if (num+1 <= maxnum) {
+
+            //region  小于规定的范围
 
             boolean result = false;
 
@@ -67,12 +75,20 @@ public class OrdersRestImpl implements OrdersRest {
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
             }
 
+            //endregion
+
         } else {
+
+            //region 大于规定的范围
+
             return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(
                             new RestResult(RestResult.FAILURE, "Order num is maxnum", null)
                     )).build();
+
+            //endregion
         }
+
     }
 
     @Override

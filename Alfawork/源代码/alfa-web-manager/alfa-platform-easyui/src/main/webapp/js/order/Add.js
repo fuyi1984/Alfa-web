@@ -13,20 +13,20 @@ function AddValidator(){
         return false;
     }
 
-    if ($("#address_add").val() == "") {
+    /*if ($("#address_add").val() == "") {
         $.messager.alert('提示', '地址不能为空');
         return false;
-    }
+    }*/
 
     if ($("#num_add").val() == "") {
         $.messager.alert('提示', '数量不能为空');
         return false;
     }
 
-    if ($("#orgname_add").val() == "") {
+    /*if ($("#orgname_add").val() == "") {
         $.messager.alert('提示', '单位名称不能为空');
         return false;
-    }
+    }*/
 
     return true;
 }
@@ -40,7 +40,7 @@ function ordersubmitForm() {
             "address": $("#address_add").val(),
             "num": $("#num_add").val(),
             "orgname":$("#orgname_add").val(),
-            "orgstatus":"提交"
+            "orgstatus":"提交中"
         }
 
         console.log(params);

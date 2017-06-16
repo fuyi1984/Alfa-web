@@ -3,6 +3,7 @@ package com.alfa.web;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
@@ -12,6 +13,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,24 @@ public class OrdersTest extends TestBase {
 
     @Autowired
     private OrdersService ordersService;
+
+    @Test
+    public void insertOrder(){
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Criteria criteria = new Criteria();
+        criteria.put("iphone", "13062317530");
+        criteria.put("createdDtLike",sdf.format(dt));
+
+        String maxnum= PropertiesUtil.getProperty("orders.maxnum");
+
+        int num = this.ordersService.countByParams(criteria);
+
+        System.out.println("num:"+num+" maxnum:"+maxnum);
+
+        Assert.assertEquals(true,num<=Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum")));
+    }
 
     @Test
     public void Add() throws Exception {
