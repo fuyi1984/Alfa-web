@@ -69,7 +69,6 @@ public class IdentityAuthenticationFilter implements Filter {
 
         log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
 
-
         // 此处过滤的路径为不需要登陆验证的路径
         Boolean urlfilter = request.getRequestURI().contains("/login")
                 || request.getRequestURI().contains("/createUser")

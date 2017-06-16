@@ -58,6 +58,9 @@
             <if test="condition.createdDt != null">
                 and A.createdDt = #{condition.createdDt}
             </if>
+            <if test="condition.createdDtLike != null">
+                and A.createdDt like concat('%', #{condition.createdDtLike}, '%')
+            </if>
             <if test="condition.updatedBy != null">
                 and A.updatedBy = #{condition.updatedBy}
             </if>

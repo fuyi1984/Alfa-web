@@ -47,11 +47,11 @@ public class IdentityAuthenticationFilter implements Filter {
         //    platformUser = userSession.getUser();
         //}
 
-        String mobiletoken = request.getParameter("mobiletoken");
+        /*String mobiletoken = request.getParameter("mobiletoken");
 
         log.debug("mobiletoken:"+mobiletoken);
 
-        if(StringUtil.isNullOrEmpty(mobiletoken)) {
+        if(StringUtil.isNullOrEmpty(mobiletoken)) {*/
             //region 网页Web接口身份验证
             String token = request.getParameter("token");
 
@@ -103,7 +103,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 }
             }
             //endregion
-        }else{
+        /*}else{
             //region 手机Web接口身份验证
             Criteria criteria = new Criteria();
             criteria.put("mobiletoken", mobiletoken);
@@ -143,7 +143,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 }
             }
             //endregion
-        }
+        }*/
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.alfa.mobile.rest;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,14 +38,30 @@ public class OrdersRestImpl implements OrdersRest {
     @Override
     public Response insertorder(Orders order) throws Exception {
 
-        boolean result = false;
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        result = this.ordersService.insert(order);
+        Criteria criteria = new Criteria();
+        criteria.put("iphone", order.getIphone());
+        criteria.put("createdDtLike",sdf.format(dt));
 
-        if (result) {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();
+        int num = this.ordersService.countByParams(criteria);
+
+        if (num <= Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum"))) {
+            boolean result = false;
+
+            result = this.ordersService.insert(order);
+
+            if (result) {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();
+            } else {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
+            }
         } else {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "Order num is maxnum", null)
+                    )).build();
         }
     }
 
