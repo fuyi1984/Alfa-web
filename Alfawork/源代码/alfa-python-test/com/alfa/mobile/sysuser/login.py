@@ -5,7 +5,7 @@ import json
 
 
 def http_post():
-    url = 'http://localhost:8080/alfa-mobile-ws/rest/user/login'
+    url = 'http://www.alfagreenenergy.com:8081/alfa-mobile-ws/rest/user/login'
     values = {"mobile": "13062317530", "captcha": "751047"}
     headers = {'content-type': 'application/json'}
 
