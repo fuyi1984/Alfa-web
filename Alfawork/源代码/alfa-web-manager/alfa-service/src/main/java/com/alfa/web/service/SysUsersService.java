@@ -70,6 +70,13 @@ public interface SysUsersService {
     int deleteByPrimaryKey(Long userSid);
 
     /**
+     * 根据用户主键批量删除用户
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
+
+    /**
      * 根据条件更新用户
      *
      * @param record 用户管理

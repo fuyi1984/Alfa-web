@@ -12,6 +12,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/5/26.
@@ -59,6 +61,16 @@ public interface SysUserRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteUser")
     public Response deleteUser(SysUsers user);
+
+    /**
+     *批量删除用户
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteUser")
+    public Response batchdeleteUser(List<String> list) throws IOException;
 
     /**
      * 编辑用户

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -128,6 +129,20 @@ public class SysUserRestImpl implements SysUserRest {
             result = this.sysUsersService.deleteByPrimaryKey(user.getUserId());
         }
         if (result == 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_DELETE_SUCCESS, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_DELETE_FAILURE, null))).build();
+        }
+    }
+
+    @Override
+    public Response batchdeleteUser(List<String> list) {
+
+        int result = 0;
+
+        result=this.sysUsersService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_DELETE_SUCCESS, null))).build();
         } else {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_DELETE_FAILURE, null))).build();

@@ -378,6 +378,15 @@
         where userId = #{userId}
     </delete>
 
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        SysUsers
+        where userId in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from SysUsers A
         <if test="_parameter != null">

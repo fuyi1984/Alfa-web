@@ -5,9 +5,9 @@
 
 $(function () {
 
-    gtoken=ReadCookie("token");
+    gtoken = ReadCookie("token");
 
-    if(gtoken!="") {
+    if (gtoken != "") {
         setCurrentUser();
 
         $('#useradd').window('close');
@@ -17,8 +17,8 @@ $(function () {
         initdatagrid();
 
         initcombobox();
-    }else{
-        window.location.href=platform_url+"/pages/home/login.html";
+    } else {
+        window.location.href = platform_url + "/pages/home/login.html";
     }
 
 
@@ -77,13 +77,13 @@ function initdatagrid() {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
                 }
-                else{
+                else {
 
                     if (rows.length > 1) {
                         $.messager.alert('提示', '请选择一条数据');
                         $('#usergrid').datagrid("clearSelections");
                         return;
-                    }else {
+                    } else {
                         //window.location.href = "/UserInfo/View/" + row.ID;
 
                         $('#rolelist_update').combobox({
@@ -124,19 +124,26 @@ function initdatagrid() {
                 console.log(rows);
                 console.log(rows[0].userId);
 
-                if (rows.length > 1) {
-                    $.messager.alert('提示', '请选择一条数据');
-                    $('#usergrid').datagrid("clearSelections");
-                    return;
-                }
+                /*if (rows.length > 1) {
+                 $.messager.alert('提示', '请选择一条数据');
+                 $('#usergrid').datagrid("clearSelections");
+                 return;
+                 }
 
-                if (rows[0].userId == guserid) {
-                    $.messager.alert('提示', '不能删除当前登录用户!');
-                    $('#usergrid').datagrid("clearSelections");
-                    return;
-                }
+                 if (rows[0].userId == guserid) {
+                 $.messager.alert('提示', '不能删除当前登录用户!');
+                 $('#usergrid').datagrid("clearSelections");
+                 return;
+                 }*/
 
-                var parm = {"userId": rows[0].userId};
+                //var parm = {"userId": rows[0].userId};
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.userId);
+                });
+
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -148,8 +155,8 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/user/deleteUser?token=' + gtoken,
-                        data: JSON.stringify(parm),
+                        url: ws_url + '/rest/user/batchdeleteUser?token=' + gtoken,
+                        data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {

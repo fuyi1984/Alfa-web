@@ -76,6 +76,11 @@ public class SysUsersServiceImpl implements SysUsersService {
     }
 
     @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.sysUsersMapper.batchdeleteByPrimaryKey(list);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(SysUsers record) {
         return this.sysUsersMapper.updateByPrimaryKeySelective(record);
     }

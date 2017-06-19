@@ -16,7 +16,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/26.
@@ -74,6 +76,17 @@ public class SysUserServiceTest extends TestBase {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void batchdeleteuser() throws IOException {
+        String params="userId=27&userId=20";
+
+        Map<String, Object> map;
+
+        map=JsonUtil.fromJson(params, Map.class);
+
+        System.out.println(map.size());
     }
 
 }
