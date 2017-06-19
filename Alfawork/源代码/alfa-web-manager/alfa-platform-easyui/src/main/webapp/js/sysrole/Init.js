@@ -23,7 +23,7 @@ $(function () {
 function initdatagrid() {
     $('#rolegrid').datagrid({
         title: '角色管理 ',
-        singleSelect: true,
+        singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
         nowrap: false,
@@ -56,30 +56,35 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#rolegrid').datagrid('getSelected');
+                //var row = $('#rolegrid').datagrid('getSelected');
 
-                console.log(row);
+                var rows = $('#rolegrid').datagrid('getSelections');
 
-                if (row) {
-
-                    //window.location.href = "/UserInfo/View/" + row.ID;
-
-                    $('#form2').form('load', {
-                        roleId_update: row.roleId,
-                        role_name_update: row.role_name,
-                        /*statusname_update:row.statusname,*/
-                        menuitem_update: row.menuitem,
-                        roleDesc_update: row.roleDesc
-                    });
-
-                    $('#roleupdate').window('open');
-
-                }
-                else {
+                if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
                 }
+                else{
 
+                    if(rows.length>1){
+                        $.messager.alert('提示', '请选择一条数据');
+                        $('#rolegrid').datagrid("clearSelections");
+                        return;
+                    }else {
+                        //window.location.href = "/UserInfo/View/" + row.ID;
+
+                        $('#form2').form('load', {
+                            roleId_update: row.roleId,
+                            role_name_update: row.role_name,
+                            /*statusname_update:row.statusname,*/
+                            menuitem_update: row.menuitem,
+                            roleDesc_update: row.roleDesc
+                        });
+
+                        $('#roleupdate').window('open');
+                    }
+
+                }
                 //$('#update').window('open');
 
             }
@@ -91,21 +96,30 @@ function initdatagrid() {
             handler: function () {
 
                 var rows = $('#rolegrid').datagrid('getSelections');
+
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
                     return;
                 }
 
-                console.log(rows);
-                console.log(rows[0].roleId);
+                //console.log(rows);
+                //console.log(rows[0].roleId);
+
+                if(rows.length>1){
+                    $.messager.alert('提示', '请选择一条数据');
+                    $('#rolegrid').datagrid("clearSelections");
+                    return;
+                }
 
                 if (rows[0].roleId == groleid) {
                     $.messager.alert('提示', '不能删除当前角色!');
+                    $('#rolegrid').datagrid("clearSelections");
                     return;
                 }
 
                 if (rows[0].roleId == 15 || rows[0].roleId == 9 || rows[0].roleId == 10) {
                     $.messager.alert('提示', '不能删除此角色!');
+                    $('#rolegrid').datagrid("clearSelections");
                     return;
                 }
 

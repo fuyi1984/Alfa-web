@@ -30,9 +30,56 @@ public class SysUsers extends Entity implements Serializable{
     /**
      * 密码
      */
+    private String password64;
+    /**
+     * 密码
+     */
     private String password;
+
+    public String getPassword64() {
+        return password64;
+    }
+
+    public void setPassword64(String password64) {
+        this.password64 = password64;
+    }
+
+    @Override
+    public String toString() {
+        return "SysUsers{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password64='" + password64 + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sexname='" + sexname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", statusname='" + statusname + '\'' +
+                ", status='" + status + '\'' +
+                ", typesname='" + typesname + '\'' +
+                ", types='" + types + '\'' +
+                ", address='" + address + '\'' +
+                ", orgname='" + orgname + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", token='" + token + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
+                ", errorCount=" + errorCount +
+                ", errorCountformobile=" + errorCountformobile +
+                ", LoginIp='" + LoginIp + '\'' +
+                ", VerifyCode='" + VerifyCode + '\'' +
+                ", captcha='" + captcha + '\'' +
+                ", roleId=" + roleId +
+                ", realname='" + realname + '\'' +
+                ", role_name='" + role_name + '\'' +
+                ", menuitem='" + menuitem + '\'' +
+                ", roles=" + roles +
+                ", accountObj=" + accountObj +
+                '}';
+    }
+
     /**
      * 电话
+
      */
     private String phone;
     /**
@@ -152,36 +199,6 @@ public class SysUsers extends Entity implements Serializable{
 
     public void setRealname(String realname) {
         this.realname = realname;
-    }
-
-    @Override
-    public String toString() {
-        return "SysUsers{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sexname='" + sexname + '\'' +
-                ", sex='" + sex + '\'' +
-                ", statusname='" + statusname + '\'' +
-                ", status='" + status + '\'' +
-                ", typesname='" + typesname + '\'' +
-                ", types='" + types + '\'' +
-                ", address='" + address + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", token='" + token + '\'' +
-                ", mobiletoken='" + mobiletoken + '\'' +
-                ", errorCount=" + errorCount +
-                ", errorCountformobile=" + errorCountformobile +
-                ", LoginIp='" + LoginIp + '\'' +
-                ", VerifyCode='" + VerifyCode + '\'' +
-                ", roleId=" + roleId +
-                ", realname='" + realname + '\'' +
-                ", role_name='" + role_name + '\'' +
-                ", menuitem='" + menuitem + '\'' +
-                ", roles=" + roles +
-                ", accountObj=" + accountObj +
-                '}';
     }
 
     /**

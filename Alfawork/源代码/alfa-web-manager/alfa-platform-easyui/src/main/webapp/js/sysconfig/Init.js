@@ -26,7 +26,7 @@ function initdatagrid() {
 
     $('#configgrid').datagrid({
         title: '系统配置 ',
-        singleSelect: true,
+        singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
         nowrap: false,
@@ -51,25 +51,30 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#configgrid').datagrid('getSelected');
+                //var row = $('#configgrid').datagrid('getSelected');
 
-                console.log(row);
+                var rows = $('#configgrid').datagrid('getSelections');
 
-                if (row) {
-
-                    $('#form2').form('load', {
-                        Id_update: row.id,
-                        configName_update: row.configName,
-                        configKey_update: row.configKey,
-                        configValue_update: row.configValue,
-                        description_update: row.description
-                    });
-                    $('#configupdate').window('open');
-
-                }
-                else {
+                if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
+                }
+                else{
+
+                    if(rows.length>1){
+                        $.messager.alert('提示', '请选择一条数据');
+                        $('#configgrid').datagrid("clearSelections");
+                        return;
+                    }else {
+                        $('#form2').form('load', {
+                            Id_update: row.id,
+                            configName_update: row.configName,
+                            configKey_update: row.configKey,
+                            configValue_update: row.configValue,
+                            description_update: row.description
+                        });
+                        $('#configupdate').window('open');
+                    }
                 }
 
             }
@@ -81,8 +86,15 @@ function initdatagrid() {
             handler: function () {
 
                 var rows = $('#configgrid').datagrid('getSelections');
+
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
+                    return;
+                }
+
+                if(rows.length>1){
+                    $.messager.alert('提示', '请选择一条数据');
+                    $('#configgrid').datagrid("clearSelections");
                     return;
                 }
 

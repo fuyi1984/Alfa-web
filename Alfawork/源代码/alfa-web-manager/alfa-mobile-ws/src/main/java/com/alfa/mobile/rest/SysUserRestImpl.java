@@ -196,6 +196,7 @@ public class SysUserRestImpl implements SysUserRest {
             currentUser.setVerifyCode(Captcha);
             currentUser.setPassword(passwordEncrypt);
             currentUser.setMobiletoken(StringUtil.getUUID());
+            currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
 
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
             //}

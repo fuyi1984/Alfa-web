@@ -234,6 +234,7 @@ public class SysUserRestImpl implements SysUserRest {
             if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
                 //if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
                     currentUser.setToken(StringUtil.getUUID());
+                    currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
                     sysUsersService.updateByPrimaryKeySelective(currentUser);
                 //}
 

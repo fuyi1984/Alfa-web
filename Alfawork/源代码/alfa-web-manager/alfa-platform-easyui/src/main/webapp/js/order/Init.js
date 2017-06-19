@@ -20,7 +20,7 @@ function initdatagrid() {
 
     $('#ordergrid').datagrid({
         title: '废油回收',
-        singleSelect: true,
+        singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
         nowrap: false,
@@ -59,27 +59,34 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#ordergrid').datagrid('getSelected');
+                //var row = $('#ordergrid').datagrid('getSelected');
 
-                console.log(row);
+                var rows = $('#ordergrid').datagrid('getSelections');
 
-                if (row) {
+                //console.log(row);
 
-                    $("#workerlist").combobox({
-                        reload: ws_url + '/rest/user/findAllTransporter?token='+gtoken
-                    });
-
-                    $('#form2').form('load', {
-                        orderid_allocating: row.orderid
-                    });
-                    $('#orderAllocating').window('open');
-
-                }
-                else {
+                if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择需要分配的订单');
                     return;
-                }
+                }else{
 
+                    if(rows.length>1){
+                        $.messager.alert('提示', '请选择一条订单');
+                        $('#ordergrid').datagrid("clearSelections");
+                        return;
+                    }else {
+                        $("#workerlist").combobox({
+                            reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
+                        });
+
+                        $('#form2').form('load', {
+                            orderid_allocating: row.orderid
+                        });
+
+                        $('#orderAllocating').window('open');
+                    }
+
+                }
             }
         }, '-', {
             id: 'btnDelete',
@@ -95,8 +102,14 @@ function initdatagrid() {
                     return;
                 }
 
+                if(rows.length>1){
+                    $.messager.alert('提示', '请选择一条订单');
+                    $('#ordergrid').datagrid("clearSelections");
+                    return;
+                }
+
                 console.log(rows);
-                console.log(rows[0].id);
+                console.log(rows[0].orderid);
 
                 var parm = {"orderid": rows[0].orderid};
 
@@ -143,7 +156,13 @@ function initdatagrid() {
                 var rows = $('#ordergrid').datagrid('getSelections');
 
                 if (!rows || rows.length == 0) {
-                    $.messager.alert('提示', '请选择需要删除的订单');
+                    $.messager.alert('提示', '请选择需要确认完成的订单');
+                    return;
+                }
+
+                if(rows.length>1){
+                    $.messager.alert('提示', '请选择一条订单');
+                    $('#ordergrid').datagrid("clearSelections");
                     return;
                 }
 

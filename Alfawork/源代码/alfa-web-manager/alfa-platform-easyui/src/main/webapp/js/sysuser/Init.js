@@ -28,7 +28,7 @@ $(function () {
 function initdatagrid() {
     $('#usergrid').datagrid({
         title: '用户管理 ',
-        singleSelect: true,
+        singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
         nowrap: false,
@@ -67,33 +67,41 @@ function initdatagrid() {
             iconCls: 'icon-save',
             handler: function () {
 
-                var row = $('#usergrid').datagrid('getSelected');
+                //var row = $('#usergrid').datagrid('getSelected');
+                var rows = $('#usergrid').datagrid('getSelections');
 
-                console.log(row);
+                //console.log(rows);
+                //console.log(rows[0].userId);
 
-                if (row) {
-
-                    //window.location.href = "/UserInfo/View/" + row.ID;
-
-                    $('#rolelist_update').combobox({
-                        reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
-                    })
-
-                    $('#form2').form('load', {
-                        userId_update: row.userId,
-                        realname_update: row.realname,
-                        rolelist_update: row.roleId,
-                        phone_update: row.username,
-                        address_update: row.address,
-                        orgname_update:row.orgname
-                    });
-
-                    $('#userupdate').window('open');
-
-                }
-                else {
+                if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
+                }
+                else{
+
+                    if (rows.length > 1) {
+                        $.messager.alert('提示', '请选择一条数据');
+                        $('#usergrid').datagrid("clearSelections");
+                        return;
+                    }else {
+                        //window.location.href = "/UserInfo/View/" + row.ID;
+
+                        $('#rolelist_update').combobox({
+                            reload: ws_url + '/rest/roles/findAllRole?token=' + gtoken
+                        })
+
+                        $('#form2').form('load', {
+                            userId_update: rows[0].userId,
+                            realname_update: rows[0].realname,
+                            rolelist_update: rows[0].roleId,
+                            phone_update: rows[0].username,
+                            address_update: rows[0].address,
+                            orgname_update: rows[0].orgname
+                        });
+
+                        $('#userupdate').window('open');
+                    }
+
                 }
 
                 //$('#update').window('open');
@@ -107,6 +115,7 @@ function initdatagrid() {
             handler: function () {
 
                 var rows = $('#usergrid').datagrid('getSelections');
+
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
                     return;
@@ -115,8 +124,15 @@ function initdatagrid() {
                 console.log(rows);
                 console.log(rows[0].userId);
 
+                if (rows.length > 1) {
+                    $.messager.alert('提示', '请选择一条数据');
+                    $('#usergrid').datagrid("clearSelections");
+                    return;
+                }
+
                 if (rows[0].userId == guserid) {
                     $.messager.alert('提示', '不能删除当前登录用户!');
+                    $('#usergrid').datagrid("clearSelections");
                     return;
                 }
 
@@ -179,6 +195,7 @@ function initdatagrid() {
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 120, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 120, align: 'center'},
+            {field: 'loginIp', title: 'IP地址', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
