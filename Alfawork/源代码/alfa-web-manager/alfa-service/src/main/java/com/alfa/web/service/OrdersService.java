@@ -56,7 +56,14 @@ public interface OrdersService {
     int deleteByPrimaryKey(Long orderid);
 
     /**
-     * 删除配置
+     * 根据订单主键批量删除订单
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
+
+    /**
+     * 删除订单
      *
      * @param record
      * @return

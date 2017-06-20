@@ -15,6 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/7.
@@ -50,6 +51,20 @@ public interface OrdersRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteorders")
     public Response deleteorder(Orders order);
+
+
+    /**
+     * 批量删除订单
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteorders")
+    public Response batchdeleteorder(List<String> list);
 
     /**
      * 更新订单

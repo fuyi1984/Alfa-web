@@ -103,6 +103,19 @@ public class SysRoleRestImpl implements SysRoleRest {
     }
 
     @Override
+    public Response batchdeleteRole(List<String> list) {
+        int result = 0;
+
+        result=this.sysRoleService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.ROLES_DELETE_SUCCESS, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ROLES_DELETE_FAILURE, null))).build();
+        }
+    }
+
+    @Override
     public Response findAllRole() {
         Criteria example = new Criteria();
         /*example.put("status", "0");

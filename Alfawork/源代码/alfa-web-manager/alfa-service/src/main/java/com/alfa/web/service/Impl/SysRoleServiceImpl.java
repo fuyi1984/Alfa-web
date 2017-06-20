@@ -88,6 +88,11 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.sysRoleMapper.batchdeleteByPrimaryKey(list);
+    }
+
+    @Override
     public int updateByParamsSelective(SysRole record, Criteria example) {
         return this.sysRoleMapper.updateByParamsSelective(record, example.getCondition());
     }

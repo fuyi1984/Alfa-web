@@ -27,6 +27,11 @@ public interface SysConfigMapper {
     int deleteByPrimaryKey(Long configSid);
 
     /**
+     * 根据主键批量删除记录
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
+
+    /**
      * 保存记录,不管记录里面的属性是否为空
      */
     int insertSysConfig(SysConfig record);

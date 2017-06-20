@@ -92,7 +92,7 @@ function initdatagrid() {
                     return;
                 }
 
-                if(rows.length>1){
+                /*if(rows.length>1){
                     $.messager.alert('提示', '请选择一条数据');
                     $('#configgrid').datagrid("clearSelections");
                     return;
@@ -101,7 +101,13 @@ function initdatagrid() {
                 console.log(rows);
                 console.log(rows[0].id);
 
-                var parm = {"id": rows[0].id};
+                var parm = {"id": rows[0].id};*/
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.id);
+                });
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -113,8 +119,8 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/Sysconfig/deleteConfig?token=' + gtoken,
-                        data: JSON.stringify(parm),
+                        url: ws_url + '/rest/Sysconfig/batchdeleteConfig?token=' + gtoken,
+                        data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {

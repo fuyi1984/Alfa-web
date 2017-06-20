@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/27.
@@ -66,6 +67,20 @@ public interface SysconfigRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteConfig")
     public Response deleteConfig(SysConfig config);
+
+
+    /**
+     * 批量删除配置
+     *
+     * @param configSid
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteConfig")
+    public Response batchdeleteConfig(List<String> list);
 
     /**
      * 查询分页配置

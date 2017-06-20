@@ -31,6 +31,8 @@ public interface SysRoleService {
 
     int deleteByParams(Criteria example);
 
+    int batchdeleteByPrimaryKey(List<String> list);
+
     int updateByParamsSelective(SysRole record, Criteria example);
 
     int updateByParams(SysRole record, Criteria example);

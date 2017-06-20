@@ -100,9 +100,30 @@ public class OrdersRestImpl implements OrdersRest {
             json= JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Order_Delete_Success,null));
             return Response.status(Response.Status.OK).entity(json).build();
         }else{
-            json= JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Order_Insert_Failtrue,null));
+            json= JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Order_Delete_Failtrue,null));
             return Response.status(Response.Status.OK).entity(json).build();
         }
+    }
+
+    @Override
+    public Response batchdeleteorder(List<String> list) {
+
+        int result = 0;
+
+        result=this.ordersService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null)))
+                    .build();
+        }
+
     }
 
     @Override

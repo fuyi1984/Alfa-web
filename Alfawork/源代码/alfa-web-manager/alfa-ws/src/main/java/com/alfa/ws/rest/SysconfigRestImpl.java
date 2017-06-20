@@ -134,6 +134,20 @@ public class SysconfigRestImpl implements SysconfigRest {
     }
 
     @Override
+    public Response batchdeleteConfig(List<String> list) {
+
+        int result = 0;
+
+        result=this.sysconfigService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Configuration_Delete_Success, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Configuration_Delete_Failtrue, null))).build();
+        }
+    }
+
+    @Override
     public Response findConfig(String param, HttpServletRequest request, HttpServletResponse response) {
 
       /*  String sortName=request.getParameter("sortName");

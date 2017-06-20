@@ -71,6 +71,11 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.ordersMapper.batchdeleteByPrimaryKey(list);
+    }
+
+    @Override
     public boolean delete(Long orderid) {
 
         boolean result = false;

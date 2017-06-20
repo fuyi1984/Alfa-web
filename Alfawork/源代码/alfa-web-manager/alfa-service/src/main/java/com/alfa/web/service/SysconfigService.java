@@ -18,6 +18,8 @@ public interface SysconfigService {
 
     int deleteByPrimaryKey(Long configSid);
 
+    int batchdeleteByPrimaryKey(List<String> list);
+
     int updateByPrimaryKeySelective(SysConfig record);
 
     int updateByPrimaryKey(SysConfig record);

@@ -102,6 +102,8 @@ function initdatagrid() {
                     return;
                 }
 
+                /*
+
                 if(rows.length>1){
                     $.messager.alert('提示', '请选择一条订单');
                     $('#ordergrid').datagrid("clearSelections");
@@ -113,6 +115,14 @@ function initdatagrid() {
 
                 var parm = {"orderid": rows[0].orderid};
 
+                */
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.orderid);
+                });
+
                 $.messager.confirm('提示', '是否删除这些订单?', function (r) {
                     if (!r) {
                         return;
@@ -123,8 +133,8 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/order/deleteorders?token=' + gtoken,
-                        data: JSON.stringify(parm),
+                        url: ws_url + '/rest/order/batchdeleteorders?token=' + gtoken,
+                        data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {

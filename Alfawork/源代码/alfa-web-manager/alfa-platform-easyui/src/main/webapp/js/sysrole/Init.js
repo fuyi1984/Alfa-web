@@ -105,25 +105,33 @@ function initdatagrid() {
                 //console.log(rows);
                 //console.log(rows[0].roleId);
 
-                if(rows.length>1){
+                /*if(rows.length>1){
                     $.messager.alert('提示', '请选择一条数据');
                     $('#rolegrid').datagrid("clearSelections");
                     return;
+                }*/
+
+                for(var i=0;i<rows.length;i++) {
+                    if (rows[i].roleId == groleid) {
+                        $.messager.alert('提示', '不能删除当前角色!');
+                        $('#rolegrid').datagrid("clearSelections");
+                        return;
+                    }
+
+                    if (rows[i].roleId == 15 || rows[i].roleId == 9 || rows[i].roleId == 10) {
+                        $.messager.alert('提示', '不能删除此角色!');
+                        $('#rolegrid').datagrid("clearSelections");
+                        return;
+                    }
                 }
 
-                if (rows[0].roleId == groleid) {
-                    $.messager.alert('提示', '不能删除当前角色!');
-                    $('#rolegrid').datagrid("clearSelections");
-                    return;
-                }
+                //var parm = {"roleId": rows[0].roleId};
 
-                if (rows[0].roleId == 15 || rows[0].roleId == 9 || rows[0].roleId == 10) {
-                    $.messager.alert('提示', '不能删除此角色!');
-                    $('#rolegrid').datagrid("clearSelections");
-                    return;
-                }
+                var assetList = new Array();
 
-                var parm = {"roleId": rows[0].roleId};
+                $.each(rows, function (i, n) {
+                    assetList.push(n.roleId);
+                });
 
                 $.messager.confirm('提示', '是否删除这些数据?', function (r) {
                     if (!r) {
@@ -135,8 +143,8 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/roles/deleterole?token=' + gtoken,
-                        data: JSON.stringify(parm),
+                        url: ws_url + '/rest/roles/batchdeleterole?token=' + gtoken,
+                        data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {

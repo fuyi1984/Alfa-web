@@ -211,6 +211,14 @@
         where roleId = #{roleId}
     </delete>
 
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List" >
+        delete from SysRole
+        where roleId in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
         delete from SysRole A
         <if test="_parameter != null" >

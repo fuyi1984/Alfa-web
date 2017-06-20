@@ -138,6 +138,15 @@ function initdatagrid() {
 
                 //var parm = {"userId": rows[0].userId};
 
+                for(var i=0;i<rows.length;i++)
+                {
+                    if (rows[i].userId == guserid) {
+                        $.messager.alert('提示', '不能删除当前登录用户!');
+                        $('#usergrid').datagrid("clearSelections");
+                        return;
+                    }
+                }
+
                 var assetList = new Array();
 
                 $.each(rows, function (i, n) {

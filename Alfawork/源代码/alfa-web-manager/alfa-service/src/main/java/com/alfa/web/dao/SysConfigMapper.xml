@@ -89,6 +89,14 @@
         where id = #{id}
     </delete>
 
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from sysconfig
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from sysconfig
         <if test="_parameter != null">

@@ -47,6 +47,11 @@ public class SysconfigServiceImpl implements SysconfigService {
     }
 
     @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.sysConfigMapper.batchdeleteByPrimaryKey(list);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(SysConfig record) {
         return this.sysConfigMapper.updateByPrimaryKeySelective(record);
     }

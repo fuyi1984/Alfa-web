@@ -236,6 +236,15 @@
         where orderid = #{orderid}
     </delete>
 
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        orders
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from orders A
         <if test="_parameter != null">

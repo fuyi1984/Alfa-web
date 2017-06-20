@@ -10,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/27.
@@ -58,6 +59,16 @@ public interface SysRoleRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleterole")
     public Response deleteRole(SysRole role);
+
+    /**
+     * 批量删除角色
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleterole")
+    public Response batchdeleteRole(List<String> list);
 
     /**
      * 查询所有角色

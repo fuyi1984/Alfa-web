@@ -29,6 +29,13 @@ public interface OrdersMapper {
     int deleteByPrimaryKey(Long orderid);
 
     /**
+     * 根据主键批量删除记录
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
+
+    /**
      * 保存记录,不管记录里面的属性是否为空
      */
     int insert(Orders record);
