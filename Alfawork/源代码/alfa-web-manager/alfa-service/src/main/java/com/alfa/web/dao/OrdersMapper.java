@@ -94,4 +94,11 @@ public interface OrdersMapper {
      * @return
      */
     int batchupdateorderStatus(List<String> list);
+
+    /**
+     * 批量更新订单的收运人员
+     * @param list
+     * @return
+     */
+    int batchupdateorderWorker(Criteria example);
 }

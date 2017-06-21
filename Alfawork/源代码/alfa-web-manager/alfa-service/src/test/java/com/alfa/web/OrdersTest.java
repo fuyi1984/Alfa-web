@@ -86,4 +86,18 @@ public class OrdersTest extends TestBase {
 
     }
 
+    @Test
+    public void updateorderworker(){
+
+        String param="idlist=12,13,14&workerid=3&orgstatus=2";
+
+        Map map = WebUtil.getParamsMap(param, "utf-8");
+
+        String[] idlist= ((String)map.get("idlist")).split(",");
+        System.out.println(idlist);
+        System.out.println(map.get("workerid"));
+        System.out.println(map.get("orgstatus"));
+
+    }
+
 }

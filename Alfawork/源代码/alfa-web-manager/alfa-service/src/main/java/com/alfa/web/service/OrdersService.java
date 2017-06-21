@@ -94,9 +94,17 @@ public interface OrdersService {
     int batchupdateorderStatus(List<String> list);
 
     /**
+     * 批量分配订单
+     * @param example
+     * @return
+     */
+    int batchupdateorderWorker(Criteria example);
+
+    /**
      * 根据参数清空订单的收运人员数据
      * @param example
      * @return
      */
     int updateWorkerIdByParams(Criteria example);
+
 }

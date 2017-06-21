@@ -94,6 +94,19 @@ public interface OrdersRest {
     public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
 
     /**
+     * 批量分配订单
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchupdateorderWorker")
+    public Response batchupdateorderWorker(String param, @Context HttpServletRequest request, @Context HttpServletResponse response) throws UnsupportedEncodingException;
+
+    /**
      * 查询分页订单
      */
     @WebMethod

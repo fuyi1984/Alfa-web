@@ -172,6 +172,42 @@ public class OrdersRestImpl implements OrdersRest {
     }
 
     @Override
+    public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+        Map map=WebUtil.getParamsMap(param,"utf-8");
+
+        Criteria criteria = new Criteria();
+
+        if (!StringUtil.isNullOrEmpty(map.get("status"))) {
+            criteria.put("status",  map.get("status").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("worker"))) {
+            criteria.put("worker",  map.get("worker").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("orderidlist"))) {
+            criteria.put("orderidlist",  map.get("orderidlist").toString().split(","));
+        }
+
+        int result = 0;
+
+        result=this.ordersService.batchupdateorderWorker(criteria);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
+                    .build();
+        }
+    }
+
+    @Override
     public Response findOrder(String param, HttpServletRequest request, HttpServletResponse response) {
            /*  String sortName=request.getParameter("sortName");
         log.debug("sortName:"+sortName);*/

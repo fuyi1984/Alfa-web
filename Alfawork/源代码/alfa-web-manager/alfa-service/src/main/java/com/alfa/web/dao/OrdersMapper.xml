@@ -31,6 +31,12 @@
             <if test="condition.orderid != null">
                 and A.orderid = #{condition.orderid}
             </if>
+            <if test="condition.orderidlist!=null">
+                and A.orderid in
+                <foreach collection="condition.orderidlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="condition.username != null">
                 and A.username = #{condition.username}
             </if>
@@ -304,6 +310,8 @@
         </if>
     </update>
 
+
+    <!--批量确认完成订单-->
     <update id="batchupdateorderStatus" parameterType="java.util.List">
         update orders
         set
@@ -312,6 +320,17 @@
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
+    </update>
+
+    <!--批量分配订单-->
+    <update id="batchupdateorderWorker" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+        A.orgstatus=#{condition.status},
+        A.workerid=#{condition.worker}
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
     </update>
 
 </mapper>

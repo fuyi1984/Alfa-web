@@ -18,21 +18,22 @@ function allocatValidator(){
 function orderallocatform(){
     if(allocatValidator()){
 
-        var params={
+        /*var params={
             "orderid":$("#orderid_allocating").val(),
             "workerid":$('#workerlist').combobox('getValue'),
             "orgstatus":"2" //分配
         };
 
 
-        console.log(params);
+        console.log(params);*/
 
         $.ajax({
-            url: ws_url+'/rest/order/updateorders?token='+gtoken,
+            url: ws_url+'/rest/order/batchupdateorderWorker?token='+gtoken,
             contentType: 'application/json;charset=UTF-8',
             type: 'post',
             datatype: 'json',
-            data:JSON.stringify(params),
+            /*data:JSON.stringify(params),*/
+            data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combobox('getValue')+'&status=2',
             cache:false,
             success: function (data) {
 

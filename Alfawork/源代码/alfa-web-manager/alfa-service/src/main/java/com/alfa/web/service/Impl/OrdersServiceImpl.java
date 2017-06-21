@@ -112,6 +112,11 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
+    public int batchupdateorderWorker(Criteria example) {
+        return this.ordersMapper.batchupdateorderWorker(example);
+    }
+
+    @Override
     public int updateWorkerIdByParams(Criteria example) {
         return this.ordersMapper.updateWorkerIdByParams(example);
     }

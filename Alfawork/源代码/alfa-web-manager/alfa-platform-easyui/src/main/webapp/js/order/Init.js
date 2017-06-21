@@ -2,17 +2,17 @@
  * Created by Administrator on 2017/6/8.
  */
 $(function () {
-    gtoken=ReadCookie("token");
+    gtoken = ReadCookie("token");
 
-    if(gtoken!="") {
+    if (gtoken != "") {
         setCurrentUser();
         $('#orderadd').window('close');
         $('#orderAllocating').window('close');
         initdatagrid();
         initcombobox();
         Accesscontrol();
-    }else{
-        window.location.href=platform_url+"/pages/home/login.html";
+    } else {
+        window.location.href = platform_url + "/pages/home/login.html";
     }
 });
 
@@ -38,17 +38,17 @@ function initdatagrid() {
             iconCls: 'icon-add',
             handler: function () {
 
-                if(groleid==10) {
+                if (groleid == 10) {
                     $('#form1').form('load', {
                         username_add: grealname,
-                        iphone_add:gphone,
-                        address_add:gaddress,
-                        orgname_add:gorgname,
+                        iphone_add: gphone,
+                        address_add: gaddress,
+                        orgname_add: gorgname,
                     });
-                    $('#username_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
-                    $('#iphone_add').textbox('textbox').attr('readonly',true);  //设置输入框为禁用
-                    $('#address_add').textbox('textbox').attr('readonly',true);
-                    $('#orgname_add').textbox('textbox').attr('readonly',true);
+                    $('#username_add').textbox('textbox').attr('readonly', true);  //设置输入框为禁用
+                    $('#iphone_add').textbox('textbox').attr('readonly', true);  //设置输入框为禁用
+                    $('#address_add').textbox('textbox').attr('readonly', true);
+                    $('#orgname_add').textbox('textbox').attr('readonly', true);
                 }
 
                 $('#orderadd').window('open');
@@ -68,23 +68,41 @@ function initdatagrid() {
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择需要分配的订单');
                     return;
-                }else{
+                } else {
 
-                    if(rows.length>1){
-                        $.messager.alert('提示', '请选择一条订单');
-                        $('#ordergrid').datagrid("clearSelections");
-                        return;
-                    }else {
-                        $("#workerlist").combobox({
-                            reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
-                        });
+                    var orderidlist = "";
 
-                        $('#form2').form('load', {
-                            orderid_allocating: rows[0].orderid
-                        });
-
-                        $('#orderAllocating').window('open');
+                    for (var i = 0; i < rows.length; i++) {
+                        if (i == 0) {
+                            orderidlist += rows[i].orderid;
+                        } else {
+                            orderidlist += "," + rows[i].orderid;
+                        }
                     }
+
+                    //alert(orderidlist);
+
+                    // if (rows.length > 1) {
+                    //     $.messager.alert('提示', '请选择一条订单');
+                    //     $('#ordergrid').datagrid("clearSelections");
+                    //     return;
+                    // } else {
+
+                    $("#workerlist").combobox({
+                        reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
+                    });
+
+                    // $('#form2').form('load', {
+                    //     orderid_allocating: rows[0].orderid
+                    // });
+
+                    $('#form2').form('load', {
+                        orderid_allocating: orderidlist
+                    });
+
+                    $('#orderAllocating').window('open');
+
+                    //}
 
                 }
             }
@@ -104,18 +122,18 @@ function initdatagrid() {
 
                 /*
 
-                if(rows.length>1){
-                    $.messager.alert('提示', '请选择一条订单');
-                    $('#ordergrid').datagrid("clearSelections");
-                    return;
-                }
+                 if(rows.length>1){
+                 $.messager.alert('提示', '请选择一条订单');
+                 $('#ordergrid').datagrid("clearSelections");
+                 return;
+                 }
 
-                console.log(rows);
-                console.log(rows[0].orderid);
+                 console.log(rows);
+                 console.log(rows[0].orderid);
 
-                var parm = {"orderid": rows[0].orderid};
+                 var parm = {"orderid": rows[0].orderid};
 
-                */
+                 */
 
                 var assetList = new Array();
 
@@ -157,12 +175,12 @@ function initdatagrid() {
                 });
 
             }
-        }, '-',{
-            id:'btnConfirm',
-            text:'确认',
+        }, '-', {
+            id: 'btnConfirm',
+            text: '确认',
             disabled: false,
             iconCls: 'icon-save',
-            handler:function(){
+            handler: function () {
                 var rows = $('#ordergrid').datagrid('getSelections');
 
                 if (!rows || rows.length == 0) {
@@ -171,14 +189,14 @@ function initdatagrid() {
                 }
 
                 /*if(rows.length>1){
-                    $.messager.alert('提示', '请选择一条订单');
-                    $('#ordergrid').datagrid("clearSelections");
-                    return;
-                }
+                 $.messager.alert('提示', '请选择一条订单');
+                 $('#ordergrid').datagrid("clearSelections");
+                 return;
+                 }
 
-                var params = {"orderid": rows[0].orderid,"orgstatus":"完成"};
+                 var params = {"orderid": rows[0].orderid,"orgstatus":"完成"};
 
-                console.log(params);*/
+                 console.log(params);*/
 
                 var assetList = new Array();
 
@@ -226,7 +244,7 @@ function initdatagrid() {
                     });
                 });
             }
-        },'-', {
+        }, '-', {
             id: 'btnSearch',
             text: '查询',
             disabled: false,
@@ -249,8 +267,9 @@ function initdatagrid() {
             {field: 'address', title: '地址', width: 80, align: 'center'},
             {field: 'num', title: '数量(吨)', width: 80, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
-            {field: 'orgstatus', title: '订单状态', width: 80, align: 'center',formatter:function(value, rec){
-                switch (value){
+            {
+                field: 'orgstatus', title: '订单状态', width: 80, align: 'center', formatter: function (value, rec) {
+                switch (value) {
                     //提交
                     case "1":
                         return '<span style="color:red;">提交</span>';
@@ -261,7 +280,8 @@ function initdatagrid() {
                     case "3":
                         return '<span style="color:green;">完成</span>';
                 }
-            }},
+            }
+            },
             {field: 'realname', title: '收运人员姓名', width: 80, align: 'center'},
             {field: 'phone', title: '收运人员电话', width: 80, align: 'center'},
             /* {field: 'createdBy', title: '创建人', width: 80, align: 'center'},*/
@@ -306,17 +326,17 @@ function initdatagrid() {
     }
 }
 
-function initcombobox(){
+function initcombobox() {
     $("#workerlist").combobox({
-        url: ws_url + '/rest/user/findAllTransporter?token='+gtoken,
+        url: ws_url + '/rest/user/findAllTransporter?token=' + gtoken,
         method: 'get',
         valueField: 'userId',
         textField: 'realname',
         icons: [{
-            iconCls:'icon-reload',
-            handler: function(){
+            iconCls: 'icon-reload',
+            handler: function () {
                 $("#workerlist").combobox({
-                    reload: ws_url + '/rest/user/findAllTransporter?token='+gtoken
+                    reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
                 })
             }
         }]
@@ -324,9 +344,9 @@ function initcombobox(){
 }
 
 //页面权限控制
-function Accesscontrol(){
+function Accesscontrol() {
 
-    switch(groleid){
+    switch (groleid) {
         //收运人员
         case 9:
             $('#btnSave').linkbutton('disable');
