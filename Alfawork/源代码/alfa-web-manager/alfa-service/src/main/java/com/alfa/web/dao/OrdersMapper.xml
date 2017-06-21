@@ -304,4 +304,14 @@
         </if>
     </update>
 
+    <update id="batchupdateorderStatus" parameterType="java.util.List">
+        update orders
+        set
+        orgstatus='3'
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
 </mapper>

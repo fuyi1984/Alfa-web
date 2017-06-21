@@ -74,11 +74,11 @@ function initdatagrid() {
                         //window.location.href = "/UserInfo/View/" + row.ID;
 
                         $('#form2').form('load', {
-                            roleId_update: row.roleId,
-                            role_name_update: row.role_name,
-                            /*statusname_update:row.statusname,*/
-                            menuitem_update: row.menuitem,
-                            roleDesc_update: row.roleDesc
+                            roleId_update: rows[0].roleId,
+                            role_name_update: rows[0].role_name,
+                            /*statusname_update:rows[0].statusname,*/
+                            menuitem_update: rows[0].menuitem,
+                            roleDesc_update: rows[0].roleDesc
                         });
 
                         $('#roleupdate').window('open');

@@ -67,11 +67,11 @@ function initdatagrid() {
                         return;
                     }else {
                         $('#form2').form('load', {
-                            Id_update: row.id,
-                            configName_update: row.configName,
-                            configKey_update: row.configKey,
-                            configValue_update: row.configValue,
-                            description_update: row.description
+                            Id_update: rows[0].id,
+                            configName_update: rows[0].configName,
+                            configKey_update: rows[0].configKey,
+                            configValue_update: rows[0].configValue,
+                            description_update: rows[0].description
                         });
                         $('#configupdate').window('open');
                     }

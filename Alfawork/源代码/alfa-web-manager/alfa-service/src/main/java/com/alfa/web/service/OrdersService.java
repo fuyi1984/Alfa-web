@@ -87,6 +87,13 @@ public interface OrdersService {
     int updateByPrimaryKey(Orders record);
 
     /**
+     * 根据主键批量更新订单状态
+     * @param list
+     * @return
+     */
+    int batchupdateorderStatus(List<String> list);
+
+    /**
      * 根据参数清空订单的收运人员数据
      * @param example
      * @return

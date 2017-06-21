@@ -79,6 +79,20 @@ public interface OrdersRest {
     @Path("/updateorders")
     public Response updateorder(Orders order) throws UnsupportedEncodingException;
 
+
+    /**
+     * 批量更新订单状态
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchupdateorderstatus")
+    public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
+
     /**
      * 查询分页订单
      */

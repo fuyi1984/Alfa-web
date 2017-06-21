@@ -80,7 +80,7 @@ function initdatagrid() {
                         });
 
                         $('#form2').form('load', {
-                            orderid_allocating: row.orderid
+                            orderid_allocating: rows[0].orderid
                         });
 
                         $('#orderAllocating').window('open');
@@ -170,7 +170,7 @@ function initdatagrid() {
                     return;
                 }
 
-                if(rows.length>1){
+                /*if(rows.length>1){
                     $.messager.alert('提示', '请选择一条订单');
                     $('#ordergrid').datagrid("clearSelections");
                     return;
@@ -178,18 +178,24 @@ function initdatagrid() {
 
                 var params = {"orderid": rows[0].orderid,"orgstatus":"完成"};
 
-                console.log(params);
+                console.log(params);*/
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.orderid);
+                });
 
                 $.messager.confirm('提示', '是否确认完成这些订单?', function (r) {
                     if (!r) {
                         return;
                     }
                     $.ajax({
-                        url: ws_url + '/rest/order/updateorders?token=' + gtoken,
+                        url: ws_url + '/rest/order/batchupdateorderstatus?token=' + gtoken,
                         contentType: 'application/json;charset=UTF-8',
                         type: 'post',
                         datatype: 'json',
-                        data: JSON.stringify(params),
+                        data: JSON.stringify(assetList),
                         cache: false,
                         success: function (data) {
 
@@ -243,7 +249,19 @@ function initdatagrid() {
             {field: 'address', title: '地址', width: 80, align: 'center'},
             {field: 'num', title: '数量(吨)', width: 80, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
-            {field: 'orgstatus', title: '订单状态', width: 80, align: 'center'},
+            {field: 'orgstatus', title: '订单状态', width: 80, align: 'center',formatter:function(value, rec){
+                switch (value){
+                    //提交
+                    case "1":
+                        return '<span style="color:red;">提交</span>';
+                    //分配
+                    case "2":
+                        return '<span style="color:blue;">分配</span>';
+                    //完成
+                    case "3":
+                        return '<span style="color:green;">完成</span>';
+                }
+            }},
             {field: 'realname', title: '收运人员姓名', width: 80, align: 'center'},
             {field: 'phone', title: '收运人员电话', width: 80, align: 'center'},
             /* {field: 'createdBy', title: '创建人', width: 80, align: 'center'},*/

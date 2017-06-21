@@ -21,7 +21,7 @@ function orderallocatform(){
         var params={
             "orderid":$("#orderid_allocating").val(),
             "workerid":$('#workerlist').combobox('getValue'),
-            "orgstatus":"分配"
+            "orgstatus":"2" //分配
         };
 
 

@@ -76,9 +76,22 @@ public interface OrdersMapper {
     int updateByPrimaryKey(Orders record);
 
     /**
+     * 根据主键批量更新记录
+     * @return
+     */
+    //int batchupdateByPrimaryKey();
+
+    /**
      * 根据参数清空订单的收运人员数据
      * @param example
      * @return
      */
     int updateWorkerIdByParams(Criteria example);
+
+    /**
+     * 根据主键批量更新订单状态
+     * @param list
+     * @return
+     */
+    int batchupdateorderStatus(List<String> list);
 }

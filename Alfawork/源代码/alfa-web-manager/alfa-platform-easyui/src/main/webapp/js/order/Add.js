@@ -40,7 +40,7 @@ function ordersubmitForm() {
             "address": $("#address_add").val(),
             "num": $("#num_add").val(),
             "orgname":$("#orgname_add").val(),
-            "orgstatus":"提交中"
+            "orgstatus":"1" //提交
         }
 
         console.log(params);
