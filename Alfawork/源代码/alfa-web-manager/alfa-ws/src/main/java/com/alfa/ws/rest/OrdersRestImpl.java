@@ -128,7 +128,9 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Override
     public Response updateorder(Orders order) throws UnsupportedEncodingException {
+
         String Json="";
+
         WebUtil.prepareUpdateParams(order);
 
         int result=this.ordersService.updateByPrimaryKeySelective(order);
@@ -155,6 +157,11 @@ public class OrdersRestImpl implements OrdersRest {
     public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
 
         int result = 0;
+
+        Orders order=new Orders();
+        order.setOrderid(Long.parseLong(orderlist.get(0)));
+
+        WebUtil.prepareUpdateParams(order);
 
         result=this.ordersService.batchupdateorderStatus(orderlist);
 
@@ -187,7 +194,14 @@ public class OrdersRestImpl implements OrdersRest {
         }
 
         if (!StringUtil.isNullOrEmpty(map.get("orderidlist"))) {
+
             criteria.put("orderidlist",  map.get("orderidlist").toString().split(","));
+
+            Orders order=new Orders();
+            order.setOrderid(Long.parseLong(map.get("orderidlist").toString().split(",")[0]));
+
+            WebUtil.prepareUpdateParams(order);
+
         }
 
         int result = 0;
