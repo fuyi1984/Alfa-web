@@ -3,6 +3,7 @@ package com.alfa.ws.rest;
 import com.alfa.web.aspect.UserLog;
 import com.alfa.web.pojo.*;
 import com.alfa.web.service.*;
+import com.alfa.web.util.Base64Util;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -220,8 +221,8 @@ public class SysUserRestImpl implements SysUserRest {
 
         //获取用户名和密码
 
-        String account = user.getUsername().trim();
-        String password = user.getPassword().trim();
+        String account = new String(Base64Util.decode(user.getUsername().trim()));
+        String password = new String(Base64Util.decode(user.getPassword().trim()));
 
         //用户名密码为空返回提示
         if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {

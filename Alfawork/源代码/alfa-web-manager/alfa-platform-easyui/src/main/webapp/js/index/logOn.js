@@ -37,7 +37,7 @@ function logOn() {
         var loading = "<img alt='载入中，请稍候...' height='28' width='28' src='../../images/loading.gif' />";
         div.html(loading);
 
-        var params = {username: account, password: password, token: -1};
+        var params = {username: encode64(account), password: encode64(password), token: -1};
 
 		console.log(params);
 		

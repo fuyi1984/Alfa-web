@@ -91,23 +91,26 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public int insertVerifyCode(VerifyCode verifyCode) {
+
         if(null == verifyCode || verifyCode.getType() == null){
             return -1;
         }
+
         int type = verifyCode.getType();
+
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
                 try {
-                    //smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+                    //发送短信
                     smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     System.out.println("发送短信失败");
                 }
                 break;
         }
+
         WebUtil.prepareInsertParams(verifyCode);
         int r = this.verifyCodeMapper.insertSelective(verifyCode);
         return r;
@@ -119,12 +122,13 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             return null;
         }
         int type=verifyCode.getType();
+
         //verifyCode.setCode(WebUtil.randomCaptcha(6));
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
                 try{
-                    //smsService.sendMessage(verifyCode.getBoundAccount(), PropertiesUtil.getProperty("verify.content")+ verifyCode.getCode());
+                    //短信发送
                     smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
                 }catch (IOException e){
                     e.printStackTrace();
@@ -132,6 +136,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
                 }
                 break;
         }
+
         WebUtil.prepareInsertParams(verifyCode);
         this.verifyCodeMapper.insertSelective(verifyCode);
         return verifyCode.getCode();

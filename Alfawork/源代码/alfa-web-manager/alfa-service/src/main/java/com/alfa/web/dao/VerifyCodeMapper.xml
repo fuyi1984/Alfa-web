@@ -106,7 +106,6 @@
         </selectKey>
         insert into VerifyCode
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            verifySid,
             <if test="code != null" >
                 code,
             </if>
@@ -133,7 +132,6 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            #{verifySid},
             <if test="code != null" >
                 #{code},
             </if>
