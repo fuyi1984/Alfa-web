@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
 
 /**
  * Created by Administrator on 2017/6/11.
@@ -69,7 +70,7 @@ public interface SysUserRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response login(RegisterUser registerUser, @Context HttpServletRequest servletRequest,
-                          @Context HttpServletResponse servletResponse);
+                          @Context HttpServletResponse servletResponse) throws ParseException;
 
     /**
      *

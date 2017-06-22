@@ -6,6 +6,7 @@ import com.alfa.web.pojo.VerifyCode;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.service.VerifyCodeService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
@@ -21,6 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,7 +159,7 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
-    public Response login(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+    public Response login(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ParseException {
 
         Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
 
@@ -183,6 +188,28 @@ public class SysUserRestImpl implements SysUserRest {
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
                             "验证码不正确"))).build();
+        }else{
+
+            //region 手机验证码有效时间判断
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            Date now=df.parse(df.format(new Date()));
+
+            VerifyCode code=vcList.get(0);
+            Date start=code.getCreatedDt();
+
+            long between=(now.getTime()-start.getTime())/1000;
+
+            if(between>Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time")))
+            {
+                return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "验证码已经超过有效时间"))).build();
+            }
+
+            //endregion
         }
 
         criteria.clear();
