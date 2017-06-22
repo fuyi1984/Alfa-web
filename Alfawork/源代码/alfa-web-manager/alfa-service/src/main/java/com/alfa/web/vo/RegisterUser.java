@@ -7,6 +7,7 @@ public class RegisterUser {
 
     private String mobile;
     private String captcha;
+    private String orgname;
 
     public String getMobile() {
         return mobile;
@@ -22,5 +23,13 @@ public class RegisterUser {
 
     public void setCaptcha(String captcha) {
         this.captcha = captcha;
+    }
+
+    public String getOrgname() {
+        return orgname;
+    }
+
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
     }
 }

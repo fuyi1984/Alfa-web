@@ -158,10 +158,10 @@ public class OrdersRestImpl implements OrdersRest {
 
         int result = 0;
 
-        Orders order=new Orders();
+        /*Orders order=new Orders();
         order.setOrderid(Long.parseLong(orderlist.get(0)));
 
-        WebUtil.prepareUpdateParams(order);
+        WebUtil.prepareUpdateParams(order);*/
 
         result=this.ordersService.batchupdateorderStatus(orderlist);
 
@@ -197,10 +197,10 @@ public class OrdersRestImpl implements OrdersRest {
 
             criteria.put("orderidlist",  map.get("orderidlist").toString().split(","));
 
-            Orders order=new Orders();
+            /*Orders order=new Orders();
             order.setOrderid(Long.parseLong(map.get("orderidlist").toString().split(",")[0]));
 
-            WebUtil.prepareUpdateParams(order);
+            WebUtil.prepareUpdateParams(order);*/
 
         }
 

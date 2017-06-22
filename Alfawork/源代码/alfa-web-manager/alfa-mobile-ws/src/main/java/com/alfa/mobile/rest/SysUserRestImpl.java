@@ -66,11 +66,17 @@ public class SysUserRestImpl implements SysUserRest {
         MobileUser mu = new MobileUser();
 
         SysUsers user = new SysUsers();
+
         user.setPhone(registerUser.getMobile());
+
         user.setCaptcha(registerUser.getCaptcha());
         user.setVerifyCode(registerUser.getCaptcha());
+
         user.setUsername(user.getPhone());
         user.setRealname(user.getPhone());
+
+        //单位名称
+        user.setOrgname(registerUser.getOrgname());
 
         mu.setUser(user);
 
@@ -119,6 +125,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         //添加数据
         boolean result = true;
+
         try {
 
             user.setToken(StringUtil.getUUID());
@@ -190,11 +197,19 @@ public class SysUserRestImpl implements SysUserRest {
 
             SysUsers currentUser = users.get(0);
 
-            String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
+
 
             currentUser.setCaptcha(Captcha);
             currentUser.setVerifyCode(Captcha);
-            currentUser.setPassword(passwordEncrypt);
+
+            /**
+             * 角色为产废单位的时候用验证码替换用户密码
+             */
+            if(currentUser.getRoleId().equals(10L)){
+                String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
+                currentUser.setPassword(passwordEncrypt);
+            }
+
             currentUser.setMobiletoken(StringUtil.getUUID());
             currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
 
