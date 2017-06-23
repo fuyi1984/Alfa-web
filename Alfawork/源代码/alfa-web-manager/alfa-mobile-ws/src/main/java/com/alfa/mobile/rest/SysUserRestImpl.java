@@ -5,10 +5,7 @@ import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.VerifyCode;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.service.VerifyCodeService;
-import com.alfa.web.util.JsonUtil;
-import com.alfa.web.util.PropertiesUtil;
-import com.alfa.web.util.StringUtil;
-import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
@@ -166,8 +163,8 @@ public class SysUserRestImpl implements SysUserRest {
         HttpSession session = servletRequest.getSession();
 
         // 获取手机号和验证码
-        String phone = registerUser.getMobile().trim();
-        String Captcha = registerUser.getCaptcha().trim();
+        String phone = new String(Base64Util.decode(registerUser.getMobile().trim()));
+        String Captcha = new String(Base64Util.decode(registerUser.getCaptcha().trim()));
 
         //手机号验证码为空返回提示
         if (StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(Captcha)) {
