@@ -188,7 +188,7 @@ function InitLeftMenu() {
 
     $("#nav").accordion({animate: false});
 
-    $.post(platform_url + gmenuitem, function (data) {
+    $.get(platform_url + gmenuitem, function (data) {
 
         _menus = data;
 
