@@ -238,6 +238,7 @@ public class SysUserRestImpl implements SysUserRest {
             currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
 
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
             //}
             // 保存Session和Cookie
             //String json = JsonUtil.toJson(
@@ -246,6 +247,7 @@ public class SysUserRestImpl implements SysUserRest {
             currentUser.setPassword("");
             currentUser.setCaptcha("");
             currentUser.setVerifyCode("");
+            currentUser.setToken("");
 
             String json=JsonUtil.toJson(currentUser);
 
