@@ -180,7 +180,21 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Override
     public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
-        return null;
+        int result = 0;
+
+        result=this.ordersService.batchcompleteorderStatus(orderlist);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
+                    .build();
+        }
     }
 
     @Override

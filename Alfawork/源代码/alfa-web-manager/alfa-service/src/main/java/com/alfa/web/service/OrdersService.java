@@ -101,6 +101,13 @@ public interface OrdersService {
     int batchupdateorderWorker(Criteria example);
 
     /**
+     * 库管人员批量完成订单
+     * @param list
+     * @return
+     */
+    int batchcompleteorderStatus(List<String> list);
+
+    /**
      * 根据参数清空订单的收运人员数据
      * @param example
      * @return

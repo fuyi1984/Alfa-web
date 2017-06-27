@@ -199,7 +199,7 @@ function initdatagrid() {
                 var rows = $('#ordergrid').datagrid('getSelections');
 
                 if (!rows || rows.length == 0) {
-                    $.messager.alert('提示', '请选择需要确认完成的订单');
+                    $.messager.alert('提示', '请选择需要确认的订单');
                     return;
                 }
 
@@ -219,7 +219,7 @@ function initdatagrid() {
                     assetList.push(n.orderid);
                 });
 
-                $.messager.confirm('提示', '是否确认完成这些订单?', function (r) {
+                $.messager.confirm('提示', '是否确认这些订单?', function (r) {
                     if (!r) {
                         return;
                     }
@@ -261,18 +261,79 @@ function initdatagrid() {
 
                 //endregion
             }
-        },'-',{
-            id:'btnComplete',
-            text:'完成',
-            disabled:false,
-            iconCls:'icon-save',
-            handler:function(){
+        }, '-', {
+            id: 'btnComplete',
+            text: '完成',
+            disabled: false,
+            iconCls: 'icon-save',
+            handler: function () {
                 //region 完成订单
+                var rows = $('#ordergrid').datagrid('getSelections');
 
+                if (!rows || rows.length == 0) {
+                    $.messager.alert('提示', '请选择需要确认完成的订单');
+                    return;
+                }
+
+                /*if(rows.length>1){
+                 $.messager.alert('提示', '请选择一条订单');
+                 $('#ordergrid').datagrid("clearSelections");
+                 return;
+                 }
+
+                 var params = {"orderid": rows[0].orderid,"orgstatus":"完成"};
+
+                 console.log(params);*/
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.orderid);
+                });
+
+                $.messager.confirm('提示', '是否确认完成这些订单?', function (r) {
+                    if (!r) {
+                        return;
+                    }
+                    $.ajax({
+                        url: ws_url + '/rest/order/batchcompleteorderStatus?token=' + gtoken,
+                        contentType: 'application/json;charset=UTF-8',
+                        type: 'post',
+                        datatype: 'json',
+                        data: JSON.stringify(assetList),
+                        cache: false,
+                        success: function (data) {
+
+                            console.log(data.status);
+                            console.log(data.message);
+
+                            if (data.status == 'success') {
+                                $.messager.alert('提示', '确认成功！', 'info', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#ordergrid').datagrid("clearSelections");
+                                    $('#ordergrid').datagrid("reload");
+                                });
+                            } else if (data.status == 'failure') {
+
+                                $.messager.alert('提示', '确认失败！', 'error', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#ordergrid').datagrid("clearSelections");
+                                    $('#ordergrid').datagrid("reload");
+                                });
+
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                            $('#ordergrid').datagrid("clearSelections");
+                            $.messager.alert('错误', '确认失败！', "error");
+                        }
+                    });
+                });
 
                 //endregion
             }
-        },'-', {
+        }, '-', {
             id: 'btnSearch',
             text: '查询',
             disabled: false,
@@ -304,9 +365,9 @@ function initdatagrid() {
                     //分配
                     case "2":
                         return '<span style="color:blue;">分配</span>';
-                    //已确认
+                    //确认
                     case "3":
-                        return '<span style="color:green;">已确认</span>';
+                        return '<span style="color:green;">确认</span>';
                     //完成
                     case "4":
                         return '<span style="color:green;">完成</span>';
@@ -384,6 +445,7 @@ function Accesscontrol() {
             $('#btnAllocating').linkbutton('disable');
             $('#btnDelete').linkbutton('disable');
             $('#btnSearch').linkbutton('disable');
+            $('#btnComplete').linkbutton('disable');
             break;
         //产废单位
         case 10:
@@ -391,6 +453,22 @@ function Accesscontrol() {
             $('#btnDelete').linkbutton('disable');
             $('#btnSearch').linkbutton('disable');
             $('#btnConfirm').linkbutton('disable');
-
+            $('#btnComplete').linkbutton('disable');
+            break;
+        //网络运营部
+        case 15:
+            $('#btnSave').linkbutton('disable');
+            $('#btnSearch').linkbutton('disable');
+            $('#btnConfirm').linkbutton('disable');
+            $('#btnComplete').linkbutton('disable');
+            break;
+        //库管人员
+        case 26:
+            $('#btnSave').linkbutton('disable');
+            $('#btnAllocating').linkbutton('disable');
+            $('#btnDelete').linkbutton('disable');
+            $('#btnSearch').linkbutton('disable');
+            $('#btnConfirm').linkbutton('disable');
+            break;
     }
 }
