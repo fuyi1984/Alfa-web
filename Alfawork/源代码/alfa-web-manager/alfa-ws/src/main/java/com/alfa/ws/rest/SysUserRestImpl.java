@@ -46,6 +46,25 @@ public class SysUserRestImpl implements SysUserRest {
     private VerifyCodeService verifyCodeService;
 
     @Override
+    public Response getCaptcha(String mobile) {
+        Map<String, String> result = null;
+
+        try {
+            result = new HashMap<String, String>();
+            VerifyCode vc = new VerifyCode();
+            vc.setType(WebConstants.VerifyCode.type0);
+            vc.setBoundAccount(mobile);
+            String code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+            result.put("captcha", code);
+            log.debug(mobile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_MOBILE_GET_FAILURE)).build();
+        }
+        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS, result)).build();
+    }
+
+    @Override
     public Response insertByMobile(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
 
         HttpSession session = servletRequest.getSession();

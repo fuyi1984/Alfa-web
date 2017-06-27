@@ -81,7 +81,7 @@ public interface OrdersRest {
 
 
     /**
-     * 批量更新订单状态
+     * 收运人员批量确认订单状态
      *
      * @param order
      * @return
@@ -92,6 +92,19 @@ public interface OrdersRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/batchupdateorderstatus")
     public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
+
+    /**
+     * 库管人员批量完成订单状态
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchcompleteorderStatus")
+    public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
 
     /**
      * 批量分配订单

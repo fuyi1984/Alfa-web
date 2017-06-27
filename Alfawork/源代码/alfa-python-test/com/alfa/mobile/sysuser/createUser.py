@@ -5,8 +5,8 @@ import json
 
 
 def http_post():
-    url = 'http://localhost:8080/alfa-mobile-ws/rest/user/createUser'
-    values = {"mobile": "13062317530", "captcha": "751047"}
+    url = 'http://118.178.18.0:8082/alfa-mobile-ws/rest/user/createUser'
+    values = {"mobile": "18580043708", "captcha": "997460","orgname":"阿尔法石油化工"}
     headers = {'content-type': 'application/json'}
 
     jdata = json.dumps(values)

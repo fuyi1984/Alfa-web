@@ -52,7 +52,7 @@ public interface SysUserRest {
     @Path("/createUser")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(RegisterUser registerUser);
+    public Response createUser(RegisterUser registerUser) throws ParseException;
 
     /**
      * 短信验证码方式登录

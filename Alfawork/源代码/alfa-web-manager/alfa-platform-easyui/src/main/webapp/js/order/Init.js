@@ -38,6 +38,8 @@ function initdatagrid() {
             iconCls: 'icon-add',
             handler: function () {
 
+                //region 添加订单
+
                 if (groleid == 10) {
                     $('#form1').form('load', {
                         username_add: grealname,
@@ -52,12 +54,16 @@ function initdatagrid() {
                 }
 
                 $('#orderadd').window('open');
+
+                //endregion
             }
         }, '-', {
             id: 'btnAllocating',
             text: '分配',
             iconCls: 'icon-save',
             handler: function () {
+
+                //region 分配订单
 
                 //var row = $('#ordergrid').datagrid('getSelected');
 
@@ -105,6 +111,8 @@ function initdatagrid() {
                     //}
 
                 }
+
+                //endregion
             }
         }, '-', {
             id: 'btnDelete',
@@ -112,6 +120,8 @@ function initdatagrid() {
             disabled: false,
             iconCls: 'icon-cut',
             handler: function () {
+
+                //region 删除订单
 
                 var rows = $('#ordergrid').datagrid('getSelections');
 
@@ -174,6 +184,8 @@ function initdatagrid() {
                     });
                 });
 
+                //endregion
+
             }
         }, '-', {
             id: 'btnConfirm',
@@ -181,6 +193,9 @@ function initdatagrid() {
             disabled: false,
             iconCls: 'icon-save',
             handler: function () {
+
+                //region 确认订单
+
                 var rows = $('#ordergrid').datagrid('getSelections');
 
                 if (!rows || rows.length == 0) {
@@ -243,8 +258,21 @@ function initdatagrid() {
                         }
                     });
                 });
+
+                //endregion
             }
-        }, '-', {
+        },'-',{
+            id:'btnComplete',
+            text:'完成',
+            disabled:false,
+            iconCls:'icon-save',
+            handler:function(){
+                //region 完成订单
+
+
+                //endregion
+            }
+        },'-', {
             id: 'btnSearch',
             text: '查询',
             disabled: false,
@@ -265,7 +293,7 @@ function initdatagrid() {
             {field: 'username', title: '姓名', width: 80, align: 'center'},
             {field: 'iphone', title: '电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 80, align: 'center'},
-            {field: 'num', title: '数量(吨)', width: 80, align: 'center'},
+            {field: 'num', title: '数量(桶)', width: 80, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
             {
                 field: 'orgstatus', title: '订单状态', width: 80, align: 'center', formatter: function (value, rec) {
@@ -276,8 +304,11 @@ function initdatagrid() {
                     //分配
                     case "2":
                         return '<span style="color:blue;">分配</span>';
-                    //完成
+                    //已确认
                     case "3":
+                        return '<span style="color:green;">已确认</span>';
+                    //完成
+                    case "4":
                         return '<span style="color:green;">完成</span>';
                 }
             }

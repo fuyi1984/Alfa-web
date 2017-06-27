@@ -128,6 +128,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         int type=verifyCode.getType();
 
         //verifyCode.setCode(WebUtil.randomCaptcha(6));
+
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));

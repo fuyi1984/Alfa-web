@@ -45,25 +45,27 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response getCaptcha(String mobile) {
-        Map<String, String> result = null;
+        //Map<String, String> result = null;
+
+        String code="";
 
         try {
-            result = new HashMap<String, String>();
+            //result = new HashMap<String, String>();
             VerifyCode vc = new VerifyCode();
             vc.setType(WebConstants.VerifyCode.type0);
             vc.setBoundAccount(mobile);
-            String code = verifyCodeService.insertVerifyCodeAndReturn(vc);
-            result.put("captcha", code);
+            code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+            //result.put("captcha", code);
             log.debug(mobile);
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_MOBILE_GET_FAILURE)).build();
         }
-        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS, result)).build();
+        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS,code)).build();
     }
 
     @Override
-    public Response createUser(RegisterUser registerUser) {
+    public Response createUser(RegisterUser registerUser) throws ParseException {
 
         MobileUser mu = new MobileUser();
 
@@ -90,10 +92,14 @@ public class SysUserRestImpl implements SysUserRest {
         List<SysUsers> userExistList = this.sysUsersService.selectByParams(criteria);
 
         if (userExistList.size() > 0) {
+          /*  return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "帐号已经存在", null))).build();*/
             return Response
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
-                            "帐号已经存在", null))).build();
+                            "1", null))).build();
         }
 
 
@@ -106,10 +112,40 @@ public class SysUserRestImpl implements SysUserRest {
         List<VerifyCode> vcList = this.verifyCodeService.selectByParams(criteria);
 
         if (vcList.size() == 0) {
+            /*return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "验证码不正确"))).build();*/
             return Response
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
-                            "验证码不正确"))).build();
+                            "2"))).build();
+        }else{
+
+            //region 手机验证码有效时间判断
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            Date now=df.parse(df.format(new Date()));
+
+            VerifyCode code=vcList.get(0);
+            Date start=code.getCreatedDt();
+
+            long between=(now.getTime()-start.getTime())/1000;
+
+            if(between>Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time")))
+            {
+                /*return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "验证码已经超过有效时间"))).build();*/
+                return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "6"))).build();
+            }
+
+            //endregion
         }
 
         //手机号码验证是否注册
@@ -119,9 +155,14 @@ public class SysUserRestImpl implements SysUserRest {
 
         List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
         if (userList.size() > 0) {
-            return Response.status(Response.Status.OK).entity(
+            /*return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(
                             new RestResult(RestResult.FAILURE, "手机号已经存在", null)
+                    )).build();*/
+
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "3", null)
                     )).build();
         }
 
@@ -148,17 +189,21 @@ public class SysUserRestImpl implements SysUserRest {
 
         if (result) {
             log.info("User Register: Create User successfully!");
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "注册成功", null))).build();
+            /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "注册成功", null))).build();*/
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "4", null))).build();
         } else {
             log.info("User Register: Create User failed!");
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "注册失败", null))).build();
+            /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "注册失败", null))).build();*/
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "5", null))).build();
         }
     }
 
     @Override
     public Response login(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ParseException {
 
-        Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();
+        /*Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();*/
+
+        Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
 
         HttpSession session = servletRequest.getSession();
 
@@ -168,8 +213,10 @@ public class SysUserRestImpl implements SysUserRest {
 
         //手机号验证码为空返回提示
         if (StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(Captcha)) {
+            /*return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入手机号和验证码。", null))).build();*/
             return Response.status(Response.Status.OK)
-                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入手机号和验证码。", null))).build();
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
 
         Criteria criteria = new Criteria();
@@ -181,10 +228,14 @@ public class SysUserRestImpl implements SysUserRest {
         List<VerifyCode> vcList = this.verifyCodeService.selectByParams(criteria);
 
         if (vcList.size() == 0) {
+            /*return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "验证码不正确"))).build();*/
             return Response
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
-                            "验证码不正确"))).build();
+                            "3"))).build();
         }else{
 
             //region 手机验证码有效时间判断
@@ -200,10 +251,14 @@ public class SysUserRestImpl implements SysUserRest {
 
             if(between>Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time")))
             {
+                /*return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "验证码已经超过有效时间"))).build();*/
                 return Response
                         .status(Response.Status.OK)
                         .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
-                                "验证码已经超过有效时间"))).build();
+                                "4"))).build();
             }
 
             //endregion
@@ -254,8 +309,10 @@ public class SysUserRestImpl implements SysUserRest {
             response = Response.status(Response.Status.OK).entity(json).build();
 
         } else {
+            /*response = Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "帐号不存在。", null))).build();*/
             response = Response.status(Response.Status.OK)
-                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "帐号不存在。", null))).build();
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "5", null))).build();
         }
 
         return response;

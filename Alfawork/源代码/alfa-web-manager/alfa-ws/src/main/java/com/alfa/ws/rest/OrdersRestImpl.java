@@ -179,6 +179,11 @@ public class OrdersRestImpl implements OrdersRest {
     }
 
     @Override
+    public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
+        return null;
+    }
+
+    @Override
     public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         Map map=WebUtil.getParamsMap(param,"utf-8");

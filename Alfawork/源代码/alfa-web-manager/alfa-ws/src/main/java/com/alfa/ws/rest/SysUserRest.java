@@ -25,6 +25,20 @@ import java.util.List;
 public interface SysUserRest {
 
     /**
+     * 手机号做为用户名，返回验证码
+     *
+     * 1.查询系统是否有此手机号注册的用户
+     * 2.调用短信平台接口，发送相应验证码到此手机
+     * @param mobile
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Path("/getCaptcha/{mobile}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCaptcha(@PathParam("mobile") String mobile);
+
+    /**
      * 手机注册用户
      *
      * @param user

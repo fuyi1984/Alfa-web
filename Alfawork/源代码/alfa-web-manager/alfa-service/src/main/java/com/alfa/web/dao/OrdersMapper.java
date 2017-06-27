@@ -95,6 +95,14 @@ public interface OrdersMapper {
      */
     int batchupdateorderStatus(List<String> list);
 
+
+    /**
+     * 库管人员批量确认完成状态
+     * @param list
+     * @return
+     */
+    int batchcompleteorderStatus(List<String> list);
+
     /**
      * 批量更新订单的收运人员
      * @param list

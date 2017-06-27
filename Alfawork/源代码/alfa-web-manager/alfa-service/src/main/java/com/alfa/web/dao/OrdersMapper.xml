@@ -311,11 +311,22 @@
     </update>
 
 
-    <!--批量确认完成订单-->
+    <!--收运人员批量确认完成订单-->
     <update id="batchupdateorderStatus" parameterType="java.util.List">
         update orders
         set
         orgstatus='3'
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--库管人员批量确认完成订单-->
+    <update id="batchcompleteorderStatus" parameterType="java.util.List">
+        update orders
+        set
+        orgstatus='4'
         where orderid in
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
             #{item}
