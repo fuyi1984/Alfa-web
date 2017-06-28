@@ -367,7 +367,7 @@ function initdatagrid() {
                         return '<span style="color:blue;">分配</span>';
                     //确认
                     case "3":
-                        return '<span style="color:green;">确认</span>';
+                        return '<span style="color:blueviolet;">确认</span>';
                     //完成
                     case "4":
                         return '<span style="color:green;">完成</span>';

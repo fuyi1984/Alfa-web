@@ -179,6 +179,11 @@ public class OrdersRestImpl implements OrdersRest {
             }
         }
 
+        //订单ID
+        if(!StringUtil.isNullOrEmpty(map.get("orderid"))){
+            criteria.put("orderid", map.get("orderid").toString());
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
         int count = this.ordersService.countByParams(criteria);
