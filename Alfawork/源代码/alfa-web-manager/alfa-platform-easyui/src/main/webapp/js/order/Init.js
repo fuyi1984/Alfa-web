@@ -351,6 +351,7 @@ function initdatagrid() {
         ]],
 
         columns: [[
+            {field: 'orderno', title: '订单号', width: 80, align: 'center'},
             {field: 'username', title: '姓名', width: 80, align: 'center'},
             {field: 'iphone', title: '电话', width: 80, align: 'center'},
             {field: 'address', title: '地址', width: 80, align: 'center'},

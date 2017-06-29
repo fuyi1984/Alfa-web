@@ -13,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/7.
@@ -49,6 +51,20 @@ public interface OrdersRest {
     @Path("/deleteorders")
     public Response deleteorder(Orders order);
 
+
+    /**
+     * 批量删除订单
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteorders")
+    public Response batchdeleteorder(List<String> list);
+
     /**
      * 更新订单
      *
@@ -60,7 +76,47 @@ public interface OrdersRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/updateorders")
-    public Response updateorder(Orders order);
+    public Response updateorder(Orders order) throws UnsupportedEncodingException;
+
+
+    /**
+     * 收运人员批量确认订单状态
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchupdateorderstatus")
+    public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
+
+    /**
+     * 库管人员批量完成订单状态
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchcompleteorderStatus")
+    public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
+
+    /**
+     * 批量分配订单
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchupdateorderWorker")
+    public Response batchupdateorderWorker(String param, @Context HttpServletRequest request, @Context HttpServletResponse response) throws UnsupportedEncodingException;
 
     /**
      * 查询分页订单

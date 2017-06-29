@@ -72,6 +72,9 @@ public class OrdersRestImpl implements OrdersRest {
 
             boolean result = false;
 
+            sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+            order.setOrderno("SN"+sdf.format(dt));
+
             result = this.ordersService.insert(order);
 
             if (result) {

@@ -12,6 +12,20 @@ public class Orders extends Entity implements Serializable {
      */
     private Long orderid;
 
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
+    /**
+     * 订单号
+
+     */
+    private String orderno;
+
     /**
      * 姓名
      */
