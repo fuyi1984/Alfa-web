@@ -101,17 +101,25 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
-                try {
-                    //发送短信
 
-                    //smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+                //region 发送短信
 
-                    smsService.sendSMS(verifyCode.getBoundAccount(),String.format(PropertiesUtil.getProperty("verify.content"),verifyCode.getCode()));
+                if(PropertiesUtil.getProperty("sms.open").equals("true")) {
+                    try {
+                        //发送短信
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("发送短信失败");
+                        //smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+
+                        smsService.sendSMS(verifyCode.getBoundAccount(), String.format(PropertiesUtil.getProperty("verify.content"), verifyCode.getCode()));
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("发送短信失败");
+                    }
                 }
+
+                //endregion
+
                 break;
         }
 
@@ -131,15 +139,24 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
         switch (type){
             case WebConstants.VerifyCode.type0://个人注册-手机
+
                 verifyCode.setCode(WebUtil.randomCaptcha(6));
-                try{
-                    //短信发送
-                    //smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
-                    smsService.sendSMS(verifyCode.getBoundAccount(),String.format(PropertiesUtil.getProperty("verify.content"),verifyCode.getCode()));
-                }catch (IOException e){
-                    e.printStackTrace();
-                    System.out.println("发送短信失败");
+
+                //region 短信发送
+
+                if(PropertiesUtil.getProperty("sms.open").equals("true")) {
+                    try {
+                        //短信发送
+                        //smsService.sendSMS(verifyCode.getBoundAccount(),PropertiesUtil.getProperty("verify.content") + verifyCode.getCode());
+                        smsService.sendSMS(verifyCode.getBoundAccount(), String.format(PropertiesUtil.getProperty("verify.content"), verifyCode.getCode()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        System.out.println("发送短信失败");
+                    }
                 }
+
+                //endregion
+
                 break;
         }
 

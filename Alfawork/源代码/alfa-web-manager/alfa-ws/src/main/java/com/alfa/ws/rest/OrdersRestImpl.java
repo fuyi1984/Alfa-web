@@ -1,7 +1,9 @@
 package com.alfa.ws.rest;
 
+import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.SysConfig;
+import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SmsService;
 import com.alfa.web.service.SysconfigService;
@@ -42,6 +44,9 @@ public class OrdersRestImpl implements OrdersRest {
     @Autowired
     private SmsService smsService;
 
+    @Autowired
+    private HistoryAddressService historyAddressService;
+
     @Override
     public Response insertorder(Orders order) throws Exception {
 
@@ -50,18 +55,18 @@ public class OrdersRestImpl implements OrdersRest {
 
         Criteria criteria = new Criteria();
         criteria.put("iphone", order.getIphone());
-        criteria.put("createdDtLike",sdf.format(dt));
+        criteria.put("createdDtLike", sdf.format(dt));
 
 
         int num = this.ordersService.countByParams(criteria);
 
-        log.debug("num:"+num);
+        log.debug("num:" + num);
 
-        int maxnum=Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum"));
+        int maxnum = Integer.parseInt(PropertiesUtil.getProperty("orders.maxnum"));
 
-        log.debug("maxnum:"+maxnum);
+        log.debug("maxnum:" + maxnum);
 
-        if (num+1 <= maxnum) {
+        if (num + 1 <= maxnum) {
 
             //region  小于规定的范围
 
@@ -70,6 +75,32 @@ public class OrdersRestImpl implements OrdersRest {
             result = this.ordersService.insert(order);
 
             if (result) {
+
+                //region 记录订单的收油地址历史记录
+
+                criteria.clear();
+                criteria.put("iphone", order.getIphone());
+                criteria.put("address", order.getAddress());
+
+                num = this.historyAddressService.countByParams(criteria);
+
+                if (num == 0) {
+
+                    HistoryAddress historyAddress = new HistoryAddress();
+                    historyAddress.setIphone(order.getIphone());
+                    historyAddress.setAddress(order.getAddress());
+
+                    num = this.historyAddressService.insertSelective(historyAddress);
+
+                    if (num >= 1) {
+                        log.debug("收油地址历史记录插入成功!");
+                    } else {
+                        log.debug("收油地址历史记录插入失败!");
+                    }
+                }
+
+                //endregion
+
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();
             } else {
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
@@ -93,14 +124,14 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Override
     public Response deleteorder(Orders order) {
-        String json="";
-        boolean result=this.ordersService.delete(order.getOrderid());
+        String json = "";
+        boolean result = this.ordersService.delete(order.getOrderid());
 
-        if(result){
-            json= JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Order_Delete_Success,null));
+        if (result) {
+            json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null));
             return Response.status(Response.Status.OK).entity(json).build();
-        }else{
-            json= JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Order_Delete_Failtrue,null));
+        } else {
+            json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null));
             return Response.status(Response.Status.OK).entity(json).build();
         }
     }
@@ -110,7 +141,7 @@ public class OrdersRestImpl implements OrdersRest {
 
         int result = 0;
 
-        result=this.ordersService.batchdeleteByPrimaryKey(list);
+        result = this.ordersService.batchdeleteByPrimaryKey(list);
 
         if (result >= 1) {
             return Response.status(Response.Status.OK).entity(
@@ -129,25 +160,33 @@ public class OrdersRestImpl implements OrdersRest {
     @Override
     public Response updateorder(Orders order) throws UnsupportedEncodingException {
 
-        String Json="";
+        String Json = "";
 
         WebUtil.prepareUpdateParams(order);
 
-        int result=this.ordersService.updateByPrimaryKeySelective(order);
+        int result = this.ordersService.updateByPrimaryKeySelective(order);
 
-        if(result==1){
+        if (result == 1) {
 
-            /*String ret=this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty(" notice.transporter")+order.getIphone());
+            //region 分配收油人员后的短信通知
 
-            if(ret=="0"){
-                log.info("通知收运人员的短信发送成功!");
-            }else{
-                log.info("通知收运人员的短信发送失败!");
-            }*/
+            if(PropertiesUtil.getProperty("sms.open").equals("true")) {
 
-            Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,WebConstants.MsgCd.Order_Update_Success,null));
-        }else{
-            Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,WebConstants.MsgCd.Order_Update_Failtrue,null));
+                String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
+
+                if (ret == "0") {
+                    log.info("通知收运人员的短信发送成功!");
+                } else {
+                    log.info("通知收运人员的短信发送失败!");
+                }
+
+            }
+
+            //endregion
+
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null));
+        } else {
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null));
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
@@ -163,7 +202,7 @@ public class OrdersRestImpl implements OrdersRest {
 
         WebUtil.prepareUpdateParams(order);*/
 
-        result=this.ordersService.batchupdateorderStatus(orderlist);
+        result = this.ordersService.batchupdateorderStatus(orderlist);
 
         if (result >= 1) {
             return Response.status(Response.Status.OK).entity(
@@ -182,7 +221,7 @@ public class OrdersRestImpl implements OrdersRest {
     public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
         int result = 0;
 
-        result=this.ordersService.batchcompleteorderStatus(orderlist);
+        result = this.ordersService.batchcompleteorderStatus(orderlist);
 
         if (result >= 1) {
             return Response.status(Response.Status.OK).entity(
@@ -200,21 +239,21 @@ public class OrdersRestImpl implements OrdersRest {
     @Override
     public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
-        Map map=WebUtil.getParamsMap(param,"utf-8");
+        Map map = WebUtil.getParamsMap(param, "utf-8");
 
         Criteria criteria = new Criteria();
 
         if (!StringUtil.isNullOrEmpty(map.get("status"))) {
-            criteria.put("status",  map.get("status").toString());
+            criteria.put("status", map.get("status").toString());
         }
 
         if (!StringUtil.isNullOrEmpty(map.get("worker"))) {
-            criteria.put("worker",  map.get("worker").toString());
+            criteria.put("worker", map.get("worker").toString());
         }
 
         if (!StringUtil.isNullOrEmpty(map.get("orderidlist"))) {
 
-            criteria.put("orderidlist",  map.get("orderidlist").toString().split(","));
+            criteria.put("orderidlist", map.get("orderidlist").toString().split(","));
 
             /*Orders order=new Orders();
             order.setOrderid(Long.parseLong(map.get("orderidlist").toString().split(",")[0]));
@@ -225,7 +264,7 @@ public class OrdersRestImpl implements OrdersRest {
 
         int result = 0;
 
-        result=this.ordersService.batchupdateorderWorker(criteria);
+        result = this.ordersService.batchupdateorderWorker(criteria);
 
         if (result >= 1) {
             return Response.status(Response.Status.OK).entity(
@@ -245,10 +284,10 @@ public class OrdersRestImpl implements OrdersRest {
            /*  String sortName=request.getParameter("sortName");
         log.debug("sortName:"+sortName);*/
 
-        Map map=WebUtil.getParamsMap(param,"utf-8");
+        Map map = WebUtil.getParamsMap(param, "utf-8");
 
         //分页排序处理
-        BasePager pager=new BasePager();
+        BasePager pager = new BasePager();
 
         if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
             pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
@@ -289,21 +328,26 @@ public class OrdersRestImpl implements OrdersRest {
         //过滤
         Criteria criteria = new Criteria();
 
-        if(!StringUtil.isNullOrEmpty(map.get("roleId"))){
+        if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
             //收运人员
-            if("9".equals(map.get("roleId").toString())){
+            if ("9".equals(map.get("roleId").toString())) {
                 //criteria.put("roleId",  map.get("roleId").toString());
                 if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
-                    criteria.put("phone",  map.get("phone").toString());
+                    criteria.put("phone", map.get("phone").toString());
                 }
             }
             //产废单位
-            else if("10".equals(map.get("roleId").toString())){
+            else if ("10".equals(map.get("roleId").toString())) {
                 //criteria.put("roleId",  map.get("roleId").toString());
                 if (!StringUtil.isNullOrEmpty(map.get("iphone"))) {
-                    criteria.put("iphone",  map.get("iphone").toString());
+                    criteria.put("iphone", map.get("iphone").toString());
                 }
             }
+        }
+
+        //订单ID
+        if (!StringUtil.isNullOrEmpty(map.get("orderid"))) {
+            criteria.put("orderid", map.get("orderid").toString());
         }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
