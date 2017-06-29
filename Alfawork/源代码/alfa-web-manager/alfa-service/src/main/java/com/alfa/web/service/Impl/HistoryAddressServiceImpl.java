@@ -3,6 +3,7 @@ package com.alfa.web.service.Impl;
 import com.alfa.web.dao.HistoryAddressMapper;
 import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.service.HistoryAddressService;
+import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ public class HistoryAddressServiceImpl implements HistoryAddressService {
 
     @Override
     public int insertSelective(HistoryAddress record) {
+        WebUtil.prepareInsertParams(record);
         return this.historyAddressMapper.insertSelective(record);
     }
 

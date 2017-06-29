@@ -17,6 +17,7 @@
         <jaxrs:serviceBeans>
             <bean class="com.alfa.mobile.rest.SysUserRestImpl"/>
             <bean class="com.alfa.mobile.rest.OrdersRestImpl"/>
+            <bean class="com.alfa.mobile.rest.HistoryAddressRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
