@@ -190,6 +190,7 @@ public class SysUserRestImpl implements SysUserRest {
         } else {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
         }
+
     }
 
     @Override

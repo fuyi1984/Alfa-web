@@ -1,6 +1,7 @@
 package com.alfa.mobile.rest;
 
 
+import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.VerifyCode;
 import com.alfa.web.service.SysUsersService;
@@ -316,6 +317,20 @@ public class SysUserRestImpl implements SysUserRest {
         }
 
         return response;
+    }
+
+    @Override
+    public Response editUser(SysUsers user) {
+
+        WebUtil.prepareUpdateParams(user);
+
+        int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+        if (result == 1) {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
+        } else {
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+        }
     }
 
     @Override

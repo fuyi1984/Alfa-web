@@ -73,6 +73,16 @@ public interface SysUserRest {
                           @Context HttpServletResponse servletResponse) throws ParseException;
 
     /**
+     * 编辑用户
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/editUser")
+    public Response editUser(SysUsers user);
+
+    /**
      *
      * @param user
      * @return
