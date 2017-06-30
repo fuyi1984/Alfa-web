@@ -7,7 +7,7 @@ public class RegisterUser {
 
     private String mobile;
     private String captcha;
-    private String orgname;
+    private String openid;
 
     public String getMobile() {
         return mobile;
@@ -25,11 +25,11 @@ public class RegisterUser {
         this.captcha = captcha;
     }
 
-    public String getOrgname() {
-        return orgname;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setOrgname(String orgname) {
-        this.orgname = orgname;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

@@ -238,6 +238,45 @@ public class SysUsers extends Entity implements Serializable{
      */
     private List<SysAccount> accountObj;
 
+    private Long weixinid;
+
+    private String openid;
+
+    private String headimgurl;
+
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Long getWeixinid() {
+        return weixinid;
+    }
+
+    public void setWeixinid(Long weixinid) {
+        this.weixinid = weixinid;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public String getHeadimgurl() {
+        return headimgurl;
+    }
+
+    public void setHeadimgurl(String headimgurl) {
+        this.headimgurl = headimgurl;
+    }
 
     public List<SysAccount> getAccountObj() {
         return accountObj;

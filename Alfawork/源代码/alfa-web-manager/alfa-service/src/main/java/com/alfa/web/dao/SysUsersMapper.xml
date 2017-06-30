@@ -33,12 +33,18 @@
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
         <result column="captcha" property="captcha" jdbcType="VARCHAR"/>
-
+        <result column="weixinid" property="weixinid" jdbcType="BIGINT"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
             1=1
+            <if test="condition.weixinid!=null">
+                and A.weixinid=#{condition.weixinid}
+            </if>
             <if test="condition.realname!=null">
                 and A.realname=#{condition.realname}
             </if>
@@ -120,10 +126,10 @@
             <if test="condition.version != null">
                 and A.version = #{condition.version}
             </if>
-            <if test="condition.createDtFrom != null" >
+            <if test="condition.createDtFrom != null">
                 and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
             </if>
-            <if test="condition.createDtTo != null" >
+            <if test="condition.createDtTo != null">
                 and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
             </if>
             <if test="condition.roleId!=null">
@@ -136,19 +142,20 @@
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname,A.captcha
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.VerifyCode,A.realname,A.roleId,A.orgname,A.captcha,A.weixinid
     </sql>
-    
+
     <insert id="insert" parameterType="com.alfa.web.pojo.SysUsers">
         <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into sysusers (realname,username, password, phone, sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
-        createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname,captcha)
-        values (#{realname},#{username}, #{password}, #{phone}, #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
+        createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname,captcha,weixinid)
+        values (#{realname},#{username}, #{password}, #{phone},
+        #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
-        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname},#{captcha})
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname},#{captcha},#{weixinid})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysUsers">
@@ -157,6 +164,9 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="weixinid!=null">
+                weixinid,
+            </if>
             <if test="realname!=null">
                 realname,
             </if>
@@ -237,6 +247,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="weixinid!=null">
+                #{weixinid},
+            </if>
             <if test="realname!=null">
                 #{realname},
             </if>
@@ -326,7 +339,7 @@
             distinct
         </if>
 
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         ,B.roleId,B.role_name,B.menuitem
         from SysUsers A
 
@@ -337,7 +350,7 @@
         </if>
 
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
 
         GROUP BY A.userId
@@ -346,7 +359,7 @@
             order by ${orderByClause}
         </if>
 
-        <include refid="common.Mysql_Pagination_Limit" />
+        <include refid="common.Mysql_Pagination_Limit"/>
 
     </select>
 
@@ -359,14 +372,14 @@
         </if>
 
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
             parameterType="java.lang.Long">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from
         SysUsers A
         left join SysRole B on(B.roleId = A.roleId )
@@ -392,13 +405,19 @@
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
         delete from SysUsers A
         <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+            <include refid="Example_Where_Clause"/>
         </if>
     </delete>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysUsers">
         update SysUsers
         <set>
+            <if test="weixinid!=null">
+                weixinid=#{weixinid},
+            </if>
+            <if test="captcha!=null">
+                captcha=#{captcha},
+            </if>
             <if test="captcha!=null">
                 captcha=#{captcha},
             </if>
