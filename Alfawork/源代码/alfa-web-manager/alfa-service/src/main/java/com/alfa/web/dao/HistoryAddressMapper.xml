@@ -162,4 +162,46 @@
     </insert>
 
 
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.HistoryAddress">
+        update HistoryAddress
+        <set>
+            <if test="userid!=null">
+                userid=#{userid},
+            </if>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="iphone != null">
+                iphone=#{iphone},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version}
+            </if>
+        </set>
+        where id = #{id}
+
+    </update>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        HistoryAddress
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+
 </mapper>

@@ -4,8 +4,10 @@ import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
@@ -99,7 +101,22 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
     @Override
     public Response updateHistoryAddress(HistoryAddress record) throws UnsupportedEncodingException {
-        return null;
+
+        String Json = "";
+
+        WebUtil.prepareUpdateParams(record);
+
+        int result = this.historyAddressService.updateByPrimaryKeySelective(record);
+
+        if (result == 1) {
+            //收油地址更新成功
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+        } else {
+            //收油地址更新失败
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+        }
+
+        return Response.status(Response.Status.OK).entity(Json).build();
     }
 
     @Override
@@ -129,6 +146,39 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
     @Override
     public Response deleteHistoryAddress(HistoryAddress record) {
-        return null;
+        String json = "";
+
+        int result = this.historyAddressService.deleteByPrimaryKey(record.getId());
+
+        if (result>=1) {
+            //收油地址删除成功
+            json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+            return Response.status(Response.Status.OK).entity(json).build();
+        } else {
+            //收油地址删除失败
+            json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+            return Response.status(Response.Status.OK).entity(json).build();
+        }
+    }
+
+    @Override
+    public Response batchdeleteHistoryAddress(List<String> list) {
+        int result = 0;
+
+        result = this.historyAddressService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            //删除成功
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, "1", null)))
+                    .build();
+        } else {
+            //删除失败
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "2", null)))
+                    .build();
+        }
     }
 }

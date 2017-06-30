@@ -2,6 +2,7 @@ package com.alfa.web.dao;
 
 import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.util.pojo.Criteria;
 
 import java.util.List;
@@ -44,5 +45,17 @@ public interface HistoryAddressMapper {
      * 根据主键查询记录
      */
     HistoryAddress selectByPrimaryKey(Long id);
+
+    /**
+     * 根据主键更新属性不为空的记录
+     */
+    int updateByPrimaryKeySelective(HistoryAddress record);
+
+    /**
+     * 根据主键批量删除记录
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
 
 }

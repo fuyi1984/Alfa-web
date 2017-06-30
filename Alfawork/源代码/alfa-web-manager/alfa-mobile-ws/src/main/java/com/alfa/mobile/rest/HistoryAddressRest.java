@@ -15,6 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/6/29.
@@ -73,4 +74,17 @@ public interface HistoryAddressRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteHistoryAddress")
     public Response deleteHistoryAddress(HistoryAddress record);
+
+    /**
+     * 批量删除收油地址
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteHistoryAddress")
+    public Response batchdeleteHistoryAddress(List<String> list);
 }

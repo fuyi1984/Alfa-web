@@ -56,4 +56,15 @@ public class HistoryAddressServiceImpl implements HistoryAddressService {
     public HistoryAddress selectByPrimaryKey(Long id) {
         return this.historyAddressMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(HistoryAddress record) {
+        WebUtil.prepareUpdateParams(record);
+        return this.historyAddressMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.historyAddressMapper.batchdeleteByPrimaryKey(list);
+    }
 }

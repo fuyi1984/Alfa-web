@@ -43,4 +43,16 @@ public interface HistoryAddressService {
      * 根据主键查询记录
      */
     HistoryAddress selectByPrimaryKey(Long id);
+
+    /**
+     * 根据主键更新属性不为空的记录
+     */
+    int updateByPrimaryKeySelective(HistoryAddress record);
+
+    /**
+     * 根据主键批量删除收油地址
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
 }
