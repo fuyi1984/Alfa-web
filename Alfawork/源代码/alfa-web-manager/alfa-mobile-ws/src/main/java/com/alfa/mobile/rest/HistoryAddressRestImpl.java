@@ -1,18 +1,21 @@
 package com.alfa.mobile.rest;
 
 import com.alfa.web.pojo.HistoryAddress;
+import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,5 +95,40 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
         //endregion
 
         return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
+    public Response updateHistoryAddress(HistoryAddress record) throws UnsupportedEncodingException {
+        return null;
+    }
+
+    @Override
+    public Response insertHistoryAddress(HistoryAddress record) throws Exception {
+
+        Criteria criteria = new Criteria();
+        criteria.put("iphone", record.getIphone());
+        criteria.put("address",record.getAddress());
+
+        List<HistoryAddress> list=this.historyAddressService.selectByParams(criteria);
+
+        if(list.size()>=1){
+            //收油地址已存在,无法再添加
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+        }else{
+            int result=this.historyAddressService.insertSelective(record);
+
+            if(result>=1){
+                //收油地址插入成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
+            }else{
+                //收油地址插入失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+            }
+        }
+    }
+
+    @Override
+    public Response deleteHistoryAddress(HistoryAddress record) {
+        return null;
     }
 }

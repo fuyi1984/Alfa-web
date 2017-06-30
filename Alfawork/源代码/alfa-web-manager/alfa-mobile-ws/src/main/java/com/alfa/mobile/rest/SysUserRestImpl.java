@@ -46,6 +46,9 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response getCaptcha(String mobile) {
+
+        //region 短信发送
+
         //Map<String, String> result = null;
 
         String code = "";
@@ -63,10 +66,13 @@ public class SysUserRestImpl implements SysUserRest {
             return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_MOBILE_GET_FAILURE)).build();
         }
         return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS, code)).build();
+
+        //endregion
     }
 
     @Override
     public Response getCaptchaForWorker(String mobile) {
+
         //region 收运人员获取手机验证码
 
         String code = "";
@@ -167,10 +173,9 @@ public class SysUserRestImpl implements SysUserRest {
         user.setRealname(user.getPhone());
 
         //单位名称
-        user.setOrgname(registerUser.getOrgname());
+        //user.setOrgname(registerUser.getOrgname());
 
         mu.setUser(user);
-
 
         Criteria criteria = new Criteria();
         criteria.put("username", user.getUsername());

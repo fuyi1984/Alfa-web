@@ -1,5 +1,7 @@
 package com.alfa.mobile.rest;
 
+import com.alfa.web.pojo.HistoryAddress;
+import com.alfa.web.pojo.Orders;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Administrator on 2017/6/29.
@@ -31,4 +34,43 @@ public interface HistoryAddressRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+    /**
+     * 修改收油地址
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/updateHistoryAddress")
+    public Response updateHistoryAddress(HistoryAddress record) throws UnsupportedEncodingException;
+
+    /**
+     * 新增收油地址
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/insertHistoryAddress")
+    public Response insertHistoryAddress(HistoryAddress record) throws Exception;
+
+    /**
+     * 删除收油地址
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/deleteHistoryAddress")
+    public Response deleteHistoryAddress(HistoryAddress record);
 }
