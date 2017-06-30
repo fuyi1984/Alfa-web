@@ -43,6 +43,14 @@ public class weixin_usersServiceTest extends TestBase {
 
     @Test
     public void Update(){
+        td_weixin_users td_weixin_users=new td_weixin_users();
+        td_weixin_users.setId(1L);
+        td_weixin_users.setUserid(1L);
+        System.out.println(weixin_usersService.updateByPrimaryKeySelective(td_weixin_users));
+    }
 
+    @Test
+    public void delete(){
+        System.out.println(weixin_usersService.deleteByPrimaryKey(1L));
     }
 }

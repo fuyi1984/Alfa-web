@@ -48,7 +48,7 @@ public class SysUserRestImpl implements SysUserRest {
     public Response getCaptcha(String mobile) {
         //Map<String, String> result = null;
 
-        String code="";
+        String code = "";
 
         try {
             //result = new HashMap<String, String>();
@@ -62,7 +62,93 @@ public class SysUserRestImpl implements SysUserRest {
             e.printStackTrace();
             return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_MOBILE_GET_FAILURE)).build();
         }
-        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS,code)).build();
+        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS, code)).build();
+    }
+
+    @Override
+    public Response getCaptchaForWorker(String mobile) {
+        //region 收运人员获取手机验证码
+
+        String code = "";
+
+        Criteria criteria = new Criteria();
+        criteria.put("phone", mobile);
+
+        List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
+
+        if (userList.size() > 0) {
+
+            SysUsers users = userList.get(0);
+
+            if (users.getRoleId().equals(9L)) {
+                //region 角色为收运人员
+                try {
+                    VerifyCode vc = new VerifyCode();
+                    vc.setType(WebConstants.VerifyCode.type0);
+                    vc.setBoundAccount(mobile);
+                    code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // 短信发送失败
+                    return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
+                }
+                //短信发送成功
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "2", code)).build();
+                //endregion
+            } else {
+                //region 角色非收运人员,不能获取手机验证码
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "3")).build();
+                //endregion
+            }
+        } else {
+            //region 手机号不存在，不能获取手机验证码
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "4")).build();
+            //endregion
+        }
+
+        //endregion
+    }
+
+    @Override
+    public Response getCaptchaForFactory(String mobile) {
+
+        //region 产废单位获取手机验证码
+
+        String code = "";
+
+        Criteria criteria = new Criteria();
+        criteria.put("phone", mobile);
+
+        List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
+
+        if (userList.size() > 0) {
+
+            SysUsers users = userList.get(0);
+            if (users.getRoleId().equals(9L)) {
+                //region 角色为收运人员,不能获取短信验证码
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
+                //endregion
+            }
+        }
+
+        //endregion
+
+        //region 短信发送
+
+        try {
+            VerifyCode vc = new VerifyCode();
+            vc.setType(WebConstants.VerifyCode.type0);
+            vc.setBoundAccount(mobile);
+            code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 短信发送失败
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "2")).build();
+        }
+        //短信发送成功
+        return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "3", code)).build();
+
+        //endregion
     }
 
     @Override
@@ -121,21 +207,20 @@ public class SysUserRestImpl implements SysUserRest {
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
                             "2"))).build();
-        }else{
+        } else {
 
             //region 手机验证码有效时间判断
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            Date now=df.parse(df.format(new Date()));
+            Date now = df.parse(df.format(new Date()));
 
-            VerifyCode code=vcList.get(0);
-            Date start=code.getCreatedDt();
+            VerifyCode code = vcList.get(0);
+            Date start = code.getCreatedDt();
 
-            long between=(now.getTime()-start.getTime())/1000;
+            long between = (now.getTime() - start.getTime()) / 1000;
 
-            if(between>Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time")))
-            {
+            if (between > Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time"))) {
                 /*return Response
                         .status(Response.Status.OK)
                         .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
@@ -237,21 +322,20 @@ public class SysUserRestImpl implements SysUserRest {
                     .status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
                             "3"))).build();
-        }else{
+        } else {
 
             //region 手机验证码有效时间判断
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            Date now=df.parse(df.format(new Date()));
+            Date now = df.parse(df.format(new Date()));
 
-            VerifyCode code=vcList.get(0);
-            Date start=code.getCreatedDt();
+            VerifyCode code = vcList.get(0);
+            Date start = code.getCreatedDt();
 
-            long between=(now.getTime()-start.getTime())/1000;
+            long between = (now.getTime() - start.getTime()) / 1000;
 
-            if(between>Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time")))
-            {
+            if (between > Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time"))) {
                 /*return Response
                         .status(Response.Status.OK)
                         .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
@@ -278,14 +362,13 @@ public class SysUserRestImpl implements SysUserRest {
             SysUsers currentUser = users.get(0);
 
 
-
             currentUser.setCaptcha(Captcha);
             currentUser.setVerifyCode(Captcha);
 
             /**
              * 角色为产废单位的时候用验证码替换用户密码
              */
-            if(currentUser.getRoleId().equals(10L)){
+            if (currentUser.getRoleId().equals(10L)) {
                 String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
                 currentUser.setPassword(passwordEncrypt);
             }
@@ -305,7 +388,7 @@ public class SysUserRestImpl implements SysUserRest {
             currentUser.setVerifyCode("");
             currentUser.setToken("");
 
-            String json=JsonUtil.toJson(currentUser);
+            String json = JsonUtil.toJson(currentUser);
 
             response = Response.status(Response.Status.OK).entity(json).build();
 

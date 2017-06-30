@@ -38,6 +38,28 @@ public interface SysUserRest {
     public Response getCaptcha(@PathParam("mobile") String mobile);
 
     /**
+     * 收运人员获取手机验证码
+     * @param mobile
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Path("/getCaptchaForWorker/{mobile}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCaptchaForWorker(@PathParam("mobile") String mobile);
+
+    /**
+     * 产废单位获取手机验证码
+     * @param mobile
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Path("/getCaptchaForFactory/{mobile}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCaptchaForFactory(@PathParam("mobile") String mobile);
+
+    /**
      * 注册，输入验证码
      *
      * 1. 创建用户
