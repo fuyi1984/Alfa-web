@@ -4,8 +4,10 @@ package com.alfa.mobile.rest;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.VerifyCode;
+import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.service.VerifyCodeService;
+import com.alfa.web.service.weixin_usersService;
 import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -43,6 +45,9 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Autowired
     private VerifyCodeService verifyCodeService;
+
+    @Autowired
+    private weixin_usersService weixin_usersService;
 
     @Override
     public Response getCaptcha(String mobile) {
@@ -403,6 +408,179 @@ public class SysUserRestImpl implements SysUserRest {
             response = Response.status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "5", null))).build();
         }
+
+        return response;
+
+    }
+
+    @Override
+    public Response loginforweixin(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ParseException {
+        /*Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();*/
+
+        Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+
+        HttpSession session = servletRequest.getSession();
+
+        // 获取手机号,验证码和OpenId
+        String phone = new String(Base64Util.decode(registerUser.getMobile().trim()));
+        String Captcha = new String(Base64Util.decode(registerUser.getCaptcha().trim()));
+        String openid = registerUser.getOpenid().trim();
+
+        //region 手机号和验证码判断
+
+        //手机号验证码为空返回提示
+        if (StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(Captcha)) {
+            /*return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入手机号和验证码。", null))).build();*/
+            return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+
+        //endregion
+
+        //region OpenId为空返回提示
+
+        if(StringUtil.isNullOrEmpty(openid))
+        {
+            //OpenId不能为空
+            return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "6", null))).build();
+        }
+
+        //endregion
+
+        Criteria criteria = new Criteria();
+
+        //region 手机验证码判断
+
+        criteria.put("code", Captcha);
+        criteria.put("boundAccount", phone);
+        criteria.put("type", WebConstants.VerifyCode.type0);
+
+        List<VerifyCode> vcList = this.verifyCodeService.selectByParams(criteria);
+
+        if (vcList.size() == 0) {
+            /*return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "验证码不正确"))).build();*/
+            return Response
+                    .status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                            "3"))).build();
+        } else {
+
+            //region 手机验证码有效时间判断
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            Date now = df.parse(df.format(new Date()));
+
+            VerifyCode code = vcList.get(0);
+            Date start = code.getCreatedDt();
+
+            long between = (now.getTime() - start.getTime()) / 1000;
+
+            if (between > Long.parseLong(PropertiesUtil.getProperty("sms.verify.Valid.time"))) {
+                /*return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "验证码已经超过有效时间"))).build();*/
+                return Response
+                        .status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE,
+                                "4"))).build();
+            }
+
+            //endregion
+        }
+
+        //endregion
+
+        criteria.clear();
+
+        //region 用户信息判断
+
+        criteria.put("username", phone);
+        criteria.put("phone", phone);
+
+        // 根据用户名密码查询用户信息
+        List<SysUsers> users = this.sysUsersService.selectByParamsForWeixin(criteria);
+
+        if (users.size() > 0) {
+
+            //region 用户信息不为空
+
+            SysUsers currentUser = users.get(0);
+
+            //region 查询OpenId
+
+            criteria.clear();
+
+            criteria.put("openid",openid);
+
+            List<td_weixin_users> weixinlist=this.weixin_usersService.selectByParams(criteria);
+
+            if(weixinlist.size()>0){
+
+                td_weixin_users weixin=weixinlist.get(0);
+
+                if(StringUtil.isNullOrEmpty(currentUser.getWeixinid())){
+                    currentUser.setWeixinid(weixin.getId());
+                }else{
+                    if(!currentUser.getWeixinid().equals(weixin.getId())){
+                        currentUser.setWeixinid(weixin.getId());
+                    }
+                }
+            }
+
+            //endregion
+
+            currentUser.setCaptcha(Captcha);
+            currentUser.setVerifyCode(Captcha);
+
+            /**
+             * 角色为产废单位的时候用验证码替换用户密码
+             */
+            if (currentUser.getRoleId().equals(10L)) {
+                String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
+                currentUser.setPassword(passwordEncrypt);
+            }
+
+            currentUser.setMobiletoken(StringUtil.getUUID());
+            currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
+
+            this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+            //}
+            // 保存Session和Cookie
+            //String json = JsonUtil.toJson(
+            //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+            currentUser.setPassword("");
+            currentUser.setCaptcha("");
+            currentUser.setVerifyCode("");
+            currentUser.setToken("");
+
+            String json = JsonUtil.toJson(currentUser);
+
+            response = Response.status(Response.Status.OK).entity(json).build();
+
+            //endregion
+
+        } else {
+
+            //region 用户信息为空
+
+            /*response = Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "帐号不存在。", null))).build();*/
+            response = Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "5", null))).build();
+
+            //endregion
+        }
+
+        //endregion
 
         return response;
     }

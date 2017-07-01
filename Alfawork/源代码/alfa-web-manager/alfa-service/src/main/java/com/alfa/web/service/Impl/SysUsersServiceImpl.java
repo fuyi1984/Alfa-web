@@ -60,6 +60,12 @@ public class SysUsersServiceImpl implements SysUsersService {
     }
 
     @Override
+    public List<SysUsers> selectByParamsForWeixin(Criteria example) {
+        List<SysUsers> users=this.sysUsersMapper.selectByParamsForWeixin(example);
+        return users;
+    }
+
+    @Override
     public List<SysUsers> selectByParamsNew(Criteria example) {
         List<SysUsers> users=this.sysUsersMapper.selectByParams(example);
         return users;

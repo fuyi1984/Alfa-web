@@ -95,6 +95,24 @@ public interface SysUserRest {
                           @Context HttpServletResponse servletResponse) throws ParseException;
 
     /**
+     * 短信验证码方式登录(微信)
+     *
+     * 1. 判断是否为平台用户
+     * 2. 获取相应的角色权限和账户信息
+     * @param user
+     * @param servletRequest
+     * @param servletResponse
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Path("/loginforweixin")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response loginforweixin(RegisterUser registerUser, @Context HttpServletRequest servletRequest,
+                          @Context HttpServletResponse servletResponse) throws ParseException;
+
+    /**
      * 编辑用户
      */
     @WebMethod

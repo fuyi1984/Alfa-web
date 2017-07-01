@@ -363,6 +363,40 @@
 
     </select>
 
+    <!--微信环境带条件查询-->
+    <select id="selectByParamsForWeixin" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+        ,B.roleId,B.role_name,B.menuitem,D.openid,D.headimgurl,D.state
+        from SysUsers A
+
+        left join SysRole B on(A.roleId = B.roleId)
+        left join td_weixin_users D on(A.weixinid = D.Id)
+
+        <if test="condition.roleId != null">
+            INNER JOIN SysRole C ON(C.roleId = A.roleId and C.roleId = #{condition.roleId})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.userId
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
             resultType="java.lang.Integer">
         select count(*) from SysUsers A

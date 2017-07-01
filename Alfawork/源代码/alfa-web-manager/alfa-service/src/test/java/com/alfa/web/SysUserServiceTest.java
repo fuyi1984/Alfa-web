@@ -1,6 +1,7 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.util.JsonUtil;
@@ -87,6 +88,13 @@ public class SysUserServiceTest extends TestBase {
         map=JsonUtil.fromJson(params, Map.class);
 
         System.out.println(map.size());
+    }
+
+    @Test
+    public void selectByParamsForWeixin(){
+        Criteria criteria=new Criteria();
+        List<SysUsers> userlist=this.sysUsersService.selectByParamsForWeixin(criteria);
+        System.out.println(JsonUtil.toJson(userlist));
     }
 
 }

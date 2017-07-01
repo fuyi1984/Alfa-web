@@ -44,39 +44,6 @@ public class SysUsers extends Entity implements Serializable{
         this.password64 = password64;
     }
 
-    @Override
-    public String toString() {
-        return "SysUsers{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password64='" + password64 + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", sexname='" + sexname + '\'' +
-                ", sex='" + sex + '\'' +
-                ", statusname='" + statusname + '\'' +
-                ", status='" + status + '\'' +
-                ", typesname='" + typesname + '\'' +
-                ", types='" + types + '\'' +
-                ", address='" + address + '\'' +
-                ", orgname='" + orgname + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", token='" + token + '\'' +
-                ", mobiletoken='" + mobiletoken + '\'' +
-                ", errorCount=" + errorCount +
-                ", errorCountformobile=" + errorCountformobile +
-                ", LoginIp='" + LoginIp + '\'' +
-                ", VerifyCode='" + VerifyCode + '\'' +
-                ", captcha='" + captcha + '\'' +
-                ", roleId=" + roleId +
-                ", realname='" + realname + '\'' +
-                ", role_name='" + role_name + '\'' +
-                ", menuitem='" + menuitem + '\'' +
-                ", roles=" + roles +
-                ", accountObj=" + accountObj +
-                '}';
-    }
-
     /**
      * 电话
 
@@ -232,6 +199,43 @@ public class SysUsers extends Entity implements Serializable{
      * 用户关联角色列表
      */
     private List<SysRole> roles;
+
+    @Override
+    public String toString() {
+        return "SysUsers{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password64='" + password64 + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sexname='" + sexname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", statusname='" + statusname + '\'' +
+                ", status='" + status + '\'' +
+                ", typesname='" + typesname + '\'' +
+                ", types='" + types + '\'' +
+                ", address='" + address + '\'' +
+                ", orgname='" + orgname + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", token='" + token + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
+                ", errorCount=" + errorCount +
+                ", errorCountformobile=" + errorCountformobile +
+                ", LoginIp='" + LoginIp + '\'' +
+                ", VerifyCode='" + VerifyCode + '\'' +
+                ", captcha='" + captcha + '\'' +
+                ", roleId=" + roleId +
+                ", realname='" + realname + '\'' +
+                ", role_name='" + role_name + '\'' +
+                ", menuitem='" + menuitem + '\'' +
+                ", roles=" + roles +
+                ", accountObj=" + accountObj +
+                ", weixinid=" + weixinid +
+                ", openid='" + openid + '\'' +
+                ", headimgurl='" + headimgurl + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 
     /**
      * 用户关联账户列表

@@ -46,6 +46,13 @@ public interface SysUsersService {
      * @return 用户List
      */
     List<SysUsers> selectByParams(Criteria example);
+
+    /**
+     * 根据条件查询微信记录集
+     * @param example
+     * @return
+     */
+    List<SysUsers> selectByParamsForWeixin(Criteria example);
     /**
      * 根据条件查询用户集合
      *
