@@ -63,18 +63,28 @@ public class weixin_usersRestImpl implements weixin_usersRest {
     @Override
     public Response updateOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException   {
 
-        String Json = "";
+        Criteria criteria = new Criteria();
+        criteria.put("openid", td_weixin_users.getOpenid());
 
-        int result = this.weixin_usersService.updateByPrimaryKeySelective(td_weixin_users);
+        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
 
-        if (result >= 1) {
-            //OpenId更新成功
-            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1", null));
+        if(list.size()>=1) {
+            String Json = "";
+
+            int result = this.weixin_usersService.updateByPrimaryKeySelective(td_weixin_users);
+
+            if (result >= 1) {
+                //OpenId更新成功
+                Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+            } else {
+                //OpenId更新失败
+                Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+            }
+
+            return Response.status(Response.Status.OK).entity(Json).build();
         }else{
-            //OpenId更新失败
-            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE,"2", null));
+            //OpenId不存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
         }
-
-        return Response.status(Response.Status.OK).entity(Json).build();
     }
 }
