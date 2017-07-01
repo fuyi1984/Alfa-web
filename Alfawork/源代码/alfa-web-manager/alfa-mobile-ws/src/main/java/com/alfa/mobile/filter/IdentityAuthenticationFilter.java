@@ -27,8 +27,8 @@ public class IdentityAuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig arg0) throws ServletException {
-        ServletContext sc=arg0.getServletContext();
-        sysUsersService= WebApplicationContextUtils.getRequiredWebApplicationContext(sc).
+        ServletContext sc = arg0.getServletContext();
+        sysUsersService = WebApplicationContextUtils.getRequiredWebApplicationContext(sc).
                 getBean(SysUsersService.class);
     }
 
@@ -49,7 +49,7 @@ public class IdentityAuthenticationFilter implements Filter {
 
         String mobiletoken = request.getParameter("mobiletoken");
 
-        if(!StringUtil.isNullOrEmpty(mobiletoken)){
+        if (!StringUtil.isNullOrEmpty(mobiletoken)) {
 
             Criteria criteria = new Criteria();
             criteria.put("mobiletoken", mobiletoken);
@@ -70,9 +70,12 @@ public class IdentityAuthenticationFilter implements Filter {
         log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
 
         // 此处过滤的路径为不需要登陆验证的路径
-        Boolean urlfilter = request.getRequestURI().contains("/login")
+        Boolean urlfilter = request.getRequestURI().contains("/loginforweixin")
                 || request.getRequestURI().contains("/createUser")
-                || request.getRequestURI().contains("/getCaptcha");
+                || request.getRequestURI().contains("/getCaptchaForWorker")
+                || request.getRequestURI().contains("/getCaptchaForFactory")
+                || request.getRequestURI().contains("/insertOpenId")
+                || request.getRequestURI().contains("/updateOpenId");
 
         if (!StringUtil.isNullOrEmpty(platformUser)) {
             if (urlfilter) {
