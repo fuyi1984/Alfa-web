@@ -422,8 +422,12 @@ public class SysUserRestImpl implements SysUserRest {
         HttpSession session = servletRequest.getSession();
 
         // 获取手机号,验证码和OpenId
+
         String phone = new String(Base64Util.decode(registerUser.getMobile().trim()));
         String Captcha = new String(Base64Util.decode(registerUser.getCaptcha().trim()));
+
+        //String phone = registerUser.getMobile().trim();
+        //String Captcha = registerUser.getCaptcha().trim();
         String openid = registerUser.getOpenid().trim();
 
         //region 手机号和验证码判断
@@ -513,6 +517,7 @@ public class SysUserRestImpl implements SysUserRest {
 
             SysUsers currentUser = users.get(0);
 
+
             //region 查询OpenId
 
             criteria.clear();
@@ -523,15 +528,20 @@ public class SysUserRestImpl implements SysUserRest {
 
             if(weixinlist.size()>0){
 
+                //region 用户信息关联微信账号信息
+
                 td_weixin_users weixin=weixinlist.get(0);
 
-                if(StringUtil.isNullOrEmpty(currentUser.getWeixinid())){
-                    currentUser.setWeixinid(weixin.getId());
-                }else{
-                    if(!currentUser.getWeixinid().equals(weixin.getId())){
-                        currentUser.setWeixinid(weixin.getId());
-                    }
-                }
+                currentUser.setWeixinid(weixin.getId());
+                currentUser.setOpenid(weixin.getOpenid());
+                currentUser.setHeadimgurl(weixin.getHeadimgurl());
+                currentUser.setState(weixin.getState());
+
+                //endregion
+            }else{
+                currentUser.setOpenid("");
+                currentUser.setHeadimgurl("");
+                currentUser.setState("");
             }
 
             //endregion
