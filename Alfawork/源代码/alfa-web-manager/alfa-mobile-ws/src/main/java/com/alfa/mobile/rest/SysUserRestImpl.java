@@ -596,6 +596,26 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
+    public Response GetCurrentUserInfoForWeiXin(SysUsers user) {
+
+        Criteria criteria = new Criteria();
+
+        criteria.put("userId", user.getUserId());
+
+        List<SysUsers> users = this.sysUsersService.selectByParamsForWeixin(criteria);
+
+        if(users.size()>0){
+
+            SysUsers currentuser = users.get(0);
+            //用户信息获取成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", currentuser))).build();
+        }else{
+            //用户信息获取失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+    }
+
+    @Override
     public Response editUser(SysUsers user) {
 
         WebUtil.prepareUpdateParams(user);
@@ -603,9 +623,11 @@ public class SysUserRestImpl implements SysUserRest {
         int result = this.sysUsersService.updateByPrimaryKeySelective(user);
 
         if (result == 1) {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
+            //用户信息更新成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
         } else {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+            //用户信息更新失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
     }
 

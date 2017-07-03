@@ -7,7 +7,7 @@ import json
 def http_post():
     url = 'http://localhost:8080/alfa-mobile-ws/rest/user/loginforweixin'
     #values = {"mobile": "13062317530", "captcha": "751047"}
-    values = {"mobile": "13220356963", "captcha": "710079","openid":"123"}
+    values = {"mobile": "13220356963", "captcha": "432943","openid":"ABCDEFG"}
     headers = {'content-type': 'application/json'}
 
     jdata = json.dumps(values)

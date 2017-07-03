@@ -113,7 +113,19 @@ public interface SysUserRest {
                           @Context HttpServletResponse servletResponse) throws ParseException;
 
     /**
-     * 编辑用户
+     * 获取当前登录用户的信息(微信)
+     * @param user
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/GetCurrentUserInfoForWeiXin")
+    public Response GetCurrentUserInfoForWeiXin(SysUsers user);
+
+    /**
+     * 编辑用户(微信）
      */
     @WebMethod
     @POST
