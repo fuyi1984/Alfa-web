@@ -5,7 +5,7 @@ import json
 
 
 def http_post():
-    url = 'http://localhost:8080/alfa-mobile-ws/rest/OpenId/insertOpenId'
+    url = 'http://118.178.18.0:8082/alfa-mobile-ws/rest/OpenId/insertOpenId'
     values = {"openid": "ABCDEFG", "headimgurl": "997460","state":"0"}
     headers = {'content-type': 'application/json'}
 

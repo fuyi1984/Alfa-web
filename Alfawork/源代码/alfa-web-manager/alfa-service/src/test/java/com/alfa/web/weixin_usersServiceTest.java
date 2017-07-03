@@ -24,8 +24,8 @@ public class weixin_usersServiceTest extends TestBase {
     @Test
     public void insert(){
         td_weixin_users td_weixin_users=new td_weixin_users();
-        td_weixin_users.setOpenid("1");
-        td_weixin_users.setHeadimgurl("1");
+        td_weixin_users.setOpenid("onsayw7BLsbVN3TzO-Nysb4Mda4M");
+        td_weixin_users.setHeadimgurl("http://wx.qlogo.cn/mmopen/nHRjFTqkrZ06TYVQBNeiar5ffduz4OYFVdbx78eDUNIYN3SRruPRoOFib9icekOnic8c0h998SKicibib51OmmCtaIYazT2trsuxZZX/0");
         td_weixin_users.setState("0");
         weixin_usersService.insertSelective(td_weixin_users);
     }
