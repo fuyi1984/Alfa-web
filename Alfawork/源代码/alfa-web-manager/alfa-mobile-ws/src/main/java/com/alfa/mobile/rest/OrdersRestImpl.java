@@ -161,25 +161,29 @@ public class OrdersRestImpl implements OrdersRest {
 
         if (result == 1) {
 
-            //region 分配收油人员后的短信通知
+            //region 管理员分配订单给收油人员后发送短信通知
 
-            if(PropertiesUtil.getProperty("sms.open").equals("true")) {
+            if(order.getOrgstatus().equals("2")) {
+                if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
-                String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
+                    String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
 
-                if (ret == "0") {
-                    log.info("通知收运人员的短信发送成功!");
-                } else {
-                    log.info("通知收运人员的短信发送失败!");
+                    if (ret == "0") {
+                        log.info("通知收运人员的短信发送成功!");
+                    } else {
+                        log.info("通知收运人员的短信发送失败!");
+                    }
+
                 }
-
             }
 
             //endregion
 
-            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null));
+            //订单更新成功
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1", null));
         } else {
-            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null));
+            //订单更新失败
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
