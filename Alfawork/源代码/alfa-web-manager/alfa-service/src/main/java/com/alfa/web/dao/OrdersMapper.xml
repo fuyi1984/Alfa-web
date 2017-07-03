@@ -4,14 +4,17 @@
 
     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.Orders">
 
+        <!--订单信息-->
         <id column="orderid" property="orderid" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
+        <result column="realnum" property="realnum" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="num" property="num" jdbcType="VARCHAR"/>
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
         <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="remark"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -19,9 +22,9 @@
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
 
+        <!--收运人员的相关信息-->
         <result column="workerid" property="workerid" jdbcType="BIGINT"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
-
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
 
     </resultMap>
@@ -29,6 +32,12 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
             1=1
+            <if test="condition.remark!=null">
+                and A.remark=#{condition.remark}
+            </if>
+            <if test="condition.realnum!=null">
+                and A.realnum=#{condition.realnum}
+            </if>
             <if test="condition.orderno!=null">
                 and A.orderno=#{condition.orderno}
             </if>
@@ -87,7 +96,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
+        A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
     </sql>
@@ -96,9 +105,9 @@
         <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into orders(orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        insert into orders(remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
         updatedBy,updatedDt,version,workerid)
-        values (#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
+        values (#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
     </insert>
 
@@ -110,6 +119,12 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username!=null">
                 username,
+            </if>
+            <if test="remark!=null">
+                remark,
+            </if>
+            <if test="realnum!=null">
+                realnum,
             </if>
             <if test="orderno!=null">
                 orderno,
@@ -151,6 +166,12 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="username!=null">
                 #{username},
+            </if>
+            <if test="remark!=null">
+                #{remark},
+            </if>
+            <if test="realnum!=null">
+                #{realnum},
             </if>
             <if test="orderno!=null">
                 #{orderno},
@@ -273,6 +294,12 @@
         <set>
             <if test="username!=null">
                 username=#{username},
+            </if>
+            <if test="remark!=null">
+                remark=#{remark},
+            </if>
+            <if test="realnum!=null">
+                realnum=#{realnum},
             </if>
             <if test="orderno!=null">
                 orderno=#{orderno},

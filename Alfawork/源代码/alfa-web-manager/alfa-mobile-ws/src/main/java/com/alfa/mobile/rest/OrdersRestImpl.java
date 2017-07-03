@@ -45,6 +45,8 @@ public class OrdersRestImpl implements OrdersRest {
     @Autowired
     private HistoryAddressService historyAddressService;
 
+    //region 单项操作
+
     @Override
     public Response insertorder(Orders order) throws Exception {
 
@@ -79,6 +81,7 @@ public class OrdersRestImpl implements OrdersRest {
 
                 //region 记录订单的收油地址历史记录
 
+                /*
                 criteria.clear();
                 criteria.put("iphone", order.getIphone());
                 criteria.put("address", order.getAddress());
@@ -99,12 +102,17 @@ public class OrdersRestImpl implements OrdersRest {
                         log.debug("收油地址历史记录插入失败!");
                     }
                 }
+                */
 
                 //endregion
 
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();
+                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();*/
+                //订单插入成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
             } else {
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
+                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();*/
+                //订单插入失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
             }
 
             //endregion
@@ -113,9 +121,14 @@ public class OrdersRestImpl implements OrdersRest {
 
             //region 大于规定的范围
 
-            return Response.status(Response.Status.OK).entity(
+          /*  return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(
                             new RestResult(RestResult.FAILURE, "Order num is maxnum", null)
+                    )).build();*/
+
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "3", null)
                     )).build();
 
             //endregion
@@ -135,27 +148,6 @@ public class OrdersRestImpl implements OrdersRest {
             json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null));
             return Response.status(Response.Status.OK).entity(json).build();
         }
-    }
-
-    @Override
-    public Response batchdeleteorder(List<String> list) {
-
-        int result = 0;
-
-        result = this.ordersService.batchdeleteByPrimaryKey(list);
-
-        if (result >= 1) {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null)))
-                    .build();
-        } else {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null)))
-                    .build();
-        }
-
     }
 
     @Override
@@ -191,93 +183,6 @@ public class OrdersRestImpl implements OrdersRest {
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
-    }
-
-    @Override
-    public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
-
-        int result = 0;
-
-        /*Orders order=new Orders();
-        order.setOrderid(Long.parseLong(orderlist.get(0)));
-
-        WebUtil.prepareUpdateParams(order);*/
-
-        result = this.ordersService.batchupdateorderStatus(orderlist);
-
-        if (result >= 1) {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
-                    .build();
-        } else {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
-                    .build();
-        }
-    }
-
-    @Override
-    public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
-        int result = 0;
-
-        result = this.ordersService.batchcompleteorderStatus(orderlist);
-
-        if (result >= 1) {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
-                    .build();
-        } else {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
-                    .build();
-        }
-    }
-
-    @Override
-    public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-
-        Map map = WebUtil.getParamsMap(param, "utf-8");
-
-        Criteria criteria = new Criteria();
-
-        if (!StringUtil.isNullOrEmpty(map.get("status"))) {
-            criteria.put("status", map.get("status").toString());
-        }
-
-        if (!StringUtil.isNullOrEmpty(map.get("worker"))) {
-            criteria.put("worker", map.get("worker").toString());
-        }
-
-        if (!StringUtil.isNullOrEmpty(map.get("orderidlist"))) {
-
-            criteria.put("orderidlist", map.get("orderidlist").toString().split(","));
-
-            /*Orders order=new Orders();
-            order.setOrderid(Long.parseLong(map.get("orderidlist").toString().split(",")[0]));
-
-            WebUtil.prepareUpdateParams(order);*/
-
-        }
-
-        int result = 0;
-
-        result = this.ordersService.batchupdateorderWorker(criteria);
-
-        if (result >= 1) {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
-                    .build();
-        } else {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
-                    .build();
-        }
     }
 
     @Override
@@ -370,4 +275,120 @@ public class OrdersRestImpl implements OrdersRest {
 
         return Response.status(Response.Status.OK).entity(json).build();
     }
+
+    //endregion
+
+    //region 批量操作
+
+    @Override
+    public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
+
+        int result = 0;
+
+        /*Orders order=new Orders();
+        order.setOrderid(Long.parseLong(orderlist.get(0)));
+
+        WebUtil.prepareUpdateParams(order);*/
+
+        result = this.ordersService.batchupdateorderStatus(orderlist);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
+                    .build();
+        }
+    }
+
+    @Override
+    public Response batchcompleteorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
+        int result = 0;
+
+        result = this.ordersService.batchcompleteorderStatus(orderlist);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
+                    .build();
+        }
+    }
+
+    @Override
+    public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+
+        Map map = WebUtil.getParamsMap(param, "utf-8");
+
+        Criteria criteria = new Criteria();
+
+        if (!StringUtil.isNullOrEmpty(map.get("status"))) {
+            criteria.put("status", map.get("status").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("worker"))) {
+            criteria.put("worker", map.get("worker").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("orderidlist"))) {
+
+            criteria.put("orderidlist", map.get("orderidlist").toString().split(","));
+
+            /*Orders order=new Orders();
+            order.setOrderid(Long.parseLong(map.get("orderidlist").toString().split(",")[0]));
+
+            WebUtil.prepareUpdateParams(order);*/
+
+        }
+
+        int result = 0;
+
+        result = this.ordersService.batchupdateorderWorker(criteria);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null)))
+                    .build();
+        }
+    }
+
+    @Override
+    public Response batchdeleteorder(List<String> list) {
+
+        int result = 0;
+
+        result = this.ordersService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null)))
+                    .build();
+        }
+
+    }
+
+    //endregion
+
+
 }

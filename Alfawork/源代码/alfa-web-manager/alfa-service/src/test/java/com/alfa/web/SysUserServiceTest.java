@@ -4,7 +4,9 @@ import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -31,10 +33,13 @@ public class SysUserServiceTest extends TestBase {
     @Autowired
     private SysUsersService sysUsersService;
 
+    @Autowired
+    private com.alfa.web.service.weixin_usersService weixin_usersService;
+
     @Test
     public void InsertUser() throws Exception {
 
-        SysUsers user=new SysUsers();
+        SysUsers user = new SysUsers();
         user.setUsername("9999");
         user.setPhone("9999");
         user.setRoleId(5L);
@@ -45,56 +50,123 @@ public class SysUserServiceTest extends TestBase {
         criteria.put("username", user.getUsername());
         List<SysUsers> UsersList = this.sysUsersService.selectByParams(criteria);
 
-        logger.info("UsersList Size:"+UsersList.size());
+        logger.info("UsersList Size:" + UsersList.size());
 
         if (UsersList.size() > 0) {
             logger.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EXIST_SUCCESS, null)));
         } else {
             //user.setSexname(user.getSex()=="0"?"男":"女");
-            user.setPassword(WebUtil.encrypt(user.getPassword(),user.getUsername()));
+            user.setPassword(WebUtil.encrypt(user.getPassword(), user.getUsername()));
             boolean result = this.sysUsersService.insertUser(user);
-            if(result){
+            if (result) {
                 //json= InterfaceResult.setResult(WebConstants.ResultStatus.SUCCESS,null);
                 logger.info(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_ADD_SUCCESS, null)));
-            }else{
+            } else {
                 logger.info(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_ADD_FAILURE, null)));
             }
         }
     }
 
     @Test
-    public void current(){
-        try{
+    public void current() {
+        try {
             // 当前用户信息已在验证用户登录时放入UserManager中
-            UserSession currentUser= UserManager.getUserSession();
-            if(currentUser!=null&&currentUser.getId()!=null&&currentUser.getUser()!=null){
+            UserSession currentUser = UserManager.getUserSession();
+            if (currentUser != null && currentUser.getId() != null && currentUser.getUser() != null) {
                 System.out.println(currentUser.getUser().getRealname());
-            }else{
-                currentUser=new UserSession();
+            } else {
+                currentUser = new UserSession();
                 currentUser.setId(null);
                 System.out.println(currentUser);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
     public void batchdeleteuser() throws IOException {
-        String params="userId=27&userId=20";
+        String params = "userId=27&userId=20";
 
         Map<String, Object> map;
 
-        map=JsonUtil.fromJson(params, Map.class);
+        map = JsonUtil.fromJson(params, Map.class);
 
         System.out.println(map.size());
     }
 
     @Test
-    public void selectByParamsForWeixin(){
-        Criteria criteria=new Criteria();
-        List<SysUsers> userlist=this.sysUsersService.selectByParamsForWeixin(criteria);
+    public void selectByParamsForWeixin() {
+        Criteria criteria = new Criteria();
+        List<SysUsers> userlist = this.sysUsersService.selectByParamsForWeixin(criteria);
         System.out.println(JsonUtil.toJson(userlist));
     }
 
+    @Test
+    public void loginforweixin() {
+        //region 用户信息判断
+
+        Criteria criteria = new Criteria();
+
+        criteria.put("username", "13220356963");
+        criteria.put("phone", "13220356963");
+
+        // 根据用户名密码查询用户信息
+        List<SysUsers> users = this.sysUsersService.selectByParamsForWeixin(criteria);
+
+        if (users.size() > 0) {
+
+            //region 用户信息不为空
+
+            SysUsers currentUser = users.get(0);
+
+
+            //region 查询OpenId
+
+            criteria.clear();
+
+            criteria.put("openid", "openidonsayw7BLsbVN3TzO-Nysb4Mda4M");
+
+            List<td_weixin_users> weixinlist = this.weixin_usersService.selectByParams(criteria);
+
+            if (weixinlist.size() > 0) {
+
+                //region 用户信息关联微信账号信息
+
+                td_weixin_users weixin = weixinlist.get(0);
+
+                currentUser.setWeixinid(weixin.getId());
+                currentUser.setOpenid(weixin.getOpenid());
+                currentUser.setHeadimgurl(weixin.getHeadimgurl());
+                currentUser.setState(weixin.getState());
+
+                //endregion
+            } else {
+                currentUser.setOpenid("");
+                currentUser.setHeadimgurl("");
+                currentUser.setState("");
+            }
+
+            //endregion
+
+            currentUser.setCaptcha("432943");
+            currentUser.setVerifyCode("432943");
+
+            /**
+             * 角色为产废单位的时候用验证码替换用户密码
+             */
+            if (currentUser.getRoleId().equals(10L)) {
+                String passwordEncrypt = WebUtil.encrypt("432943", currentUser.getUsername());
+                currentUser.setPassword(passwordEncrypt);
+            }
+
+            currentUser.setMobiletoken(StringUtil.getUUID());
+
+            this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+            System.out.println(JsonUtil.toJson(currentUser));
+
+        }
+
+    }
 }

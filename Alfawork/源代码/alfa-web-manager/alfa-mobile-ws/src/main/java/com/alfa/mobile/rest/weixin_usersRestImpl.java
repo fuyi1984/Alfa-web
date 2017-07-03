@@ -87,4 +87,23 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
         }
     }
+
+    @Override
+    public Response GetSingleOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException {
+
+        Criteria criteria = new Criteria();
+        criteria.put("openid", td_weixin_users.getOpenid());
+
+        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
+
+        if(list.size()>=1) {
+            td_weixin_users users=list.get(0);
+            //查询成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();
+
+        }else{
+            //查询失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+    }
 }

@@ -41,4 +41,17 @@ public interface weixin_usersRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/updateOpenId")
     public Response updateOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException;
+
+
+    /**
+     * 获取OpenId
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/GetSingleOpenId")
+    public Response GetSingleOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException;
 }

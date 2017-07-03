@@ -27,7 +27,45 @@ public class Orders extends Entity implements Serializable {
     private String orderno;
 
     /**
-     * 姓名
+     * 实收数量
+     */
+    private String realnum;
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderid=" + orderid +
+                ", orderno='" + orderno + '\'' +
+                ", realnum='" + realnum + '\'' +
+                ", remark='" + remark + '\'' +
+                ", username='" + username + '\'' +
+                ", iphone='" + iphone + '\'' +
+                ", address='" + address + '\'' +
+                ", num='" + num + '\'' +
+                ", orgname='" + orgname + '\'' +
+                ", orgstatus='" + orgstatus + '\'' +
+                ", workerid=" + workerid +
+                ", phone='" + phone + '\'' +
+                ", realname='" + realname + '\'' +
+                '}';
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    /**
+     * 备注
+
+     */
+    private String remark;
+
+    /**
+     * 产废单位用户姓名
      */
     private String username;
 
@@ -36,13 +74,22 @@ public class Orders extends Entity implements Serializable {
      */
     private String iphone;
 
+    public String getRealnum() {
+        return realnum;
+    }
+
+    public void setRealnum(String realnum) {
+        this.realnum = realnum;
+    }
+
     /**
-     * 地址
+     * 收油地址
+
      */
     private String address;
 
     /**
-     * 数量
+     * 预收数量
      */
     private String num;
 
@@ -57,7 +104,7 @@ public class Orders extends Entity implements Serializable {
     private String orgstatus;
 
     /**
-     * 用户Id
+     * 收运人员用户Id
      */
     private Long workerid;
 
@@ -151,19 +198,4 @@ public class Orders extends Entity implements Serializable {
         this.realname = realname;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "orderid=" + orderid +
-                ", username='" + username + '\'' +
-                ", iphone='" + iphone + '\'' +
-                ", address='" + address + '\'' +
-                ", num='" + num + '\'' +
-                ", orgname='" + orgname + '\'' +
-                ", orgstatus='" + orgstatus + '\'' +
-                ", workerid=" + workerid +
-                ", phone='" + phone + '\'' +
-                ", realname='" + realname + '\'' +
-                '}';
-    }
 }
