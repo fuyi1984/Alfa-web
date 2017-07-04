@@ -260,7 +260,8 @@ public class OrdersRestImpl implements OrdersRest {
             criteria.put("orderid", map.get("orderid").toString());
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+        WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
+
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
         int count = this.ordersService.countByParams(criteria);
 

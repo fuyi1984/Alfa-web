@@ -607,6 +607,17 @@ public class SysUserRestImpl implements SysUserRest {
         if(users.size()>0){
 
             SysUsers currentuser = users.get(0);
+
+            //region 关键参数赋值为空
+
+            currentuser.setPassword("");
+            currentuser.setCaptcha("");
+            currentuser.setVerifyCode("");
+            currentuser.setToken("");
+            currentuser.setMobiletoken("");
+
+            //endregion
+
             //用户信息获取成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", currentuser))).build();
         }else{

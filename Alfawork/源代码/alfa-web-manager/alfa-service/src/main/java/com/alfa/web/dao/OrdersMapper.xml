@@ -14,7 +14,7 @@
         <result column="num" property="num" jdbcType="VARCHAR"/>
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
         <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
-        <result column="remark" property="remark" jdbcType="remark"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
