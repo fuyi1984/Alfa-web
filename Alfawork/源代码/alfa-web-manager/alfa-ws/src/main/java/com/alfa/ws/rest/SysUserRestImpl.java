@@ -272,7 +272,7 @@ public class SysUserRestImpl implements SysUserRest {
 
 
                 currentUser.setToken(StringUtil.getUUID());
-                currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
+                currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
                 sysUsersService.updateByPrimaryKeySelective(currentUser);
 
                 currentUser.setMobiletoken("");

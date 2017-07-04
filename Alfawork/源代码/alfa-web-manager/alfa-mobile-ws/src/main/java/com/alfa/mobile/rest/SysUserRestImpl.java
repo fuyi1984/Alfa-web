@@ -384,7 +384,7 @@ public class SysUserRestImpl implements SysUserRest {
             }
 
             currentUser.setMobiletoken(StringUtil.getUUID());
-            currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
+            currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
 
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
 
@@ -558,7 +558,7 @@ public class SysUserRestImpl implements SysUserRest {
             }
 
             currentUser.setMobiletoken(StringUtil.getUUID());
-            currentUser.setLoginIp(WebUtil.getIpAddr(servletRequest));
+            currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
 
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
 

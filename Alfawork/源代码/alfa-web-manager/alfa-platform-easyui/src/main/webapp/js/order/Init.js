@@ -285,6 +285,8 @@ function initdatagrid() {
 
                  console.log(params);*/
 
+                //region 选择的订单数大于1
+
                 var assetList = new Array();
 
                 $.each(rows, function (i, n) {
@@ -330,6 +332,8 @@ function initdatagrid() {
                         }
                     });
                 });
+
+                //endregion
 
                 //endregion
             }
