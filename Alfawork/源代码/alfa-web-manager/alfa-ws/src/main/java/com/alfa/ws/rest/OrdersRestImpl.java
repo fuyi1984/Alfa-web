@@ -165,7 +165,7 @@ public class OrdersRestImpl implements OrdersRest {
             if(order.getOrgstatus().equals("2")) {
                 if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
-                    String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
+                    String ret = this.smsService.sendSMS(order.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),order.getOrgname(),order.getIphone(),order.getCreatedDt()));
 
                     if (ret == "0") {
                         log.info("通知收运人员的短信发送成功!");

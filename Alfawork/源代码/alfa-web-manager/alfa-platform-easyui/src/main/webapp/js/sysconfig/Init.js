@@ -163,11 +163,11 @@ function initdatagrid() {
             {field: 'configKey', title: ' 配置项代码', width: 80, align: 'center'},
             {field: 'configValue', title: ' 配置项值', width: 80, align: 'center'},
             {field: 'description', title: ' 配置项描述', width: 80, align: 'center'},
-            {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
+            /*{field: 'createdBy', title: '创建人', width: 80, align: 'center'},*/
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
             },
-            {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
+            /*{field: 'updatedBy', title: '更新人', width: 80, align: 'center'},*/
             {
                 field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
             }

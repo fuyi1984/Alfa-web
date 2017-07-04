@@ -352,26 +352,27 @@ function initdatagrid() {
 
         columns: [[
             {field: 'orderno', title: '订单号', width: 80, align: 'center'},
-            {field: 'username', title: '姓名', width: 80, align: 'center'},
-            {field: 'iphone', title: '电话', width: 80, align: 'center'},
-            {field: 'address', title: '地址', width: 80, align: 'center'},
-            {field: 'num', title: '数量(桶)', width: 80, align: 'center'},
+            {field: 'username', title: '申报人姓名', width: 80, align: 'center'},
+            {field: 'iphone', title: '申报人电话', width: 80, align: 'center'},
+            {field: 'address', title: '收油地址', width: 80, align: 'center'},
+            {field: 'num', title: '预收数量(桶)', width: 80, align: 'center'},
+            {field: 'realnum', title: '实收数量(桶)', width: 80, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
             {
                 field: 'orgstatus', title: '订单状态', width: 80, align: 'center', formatter: function (value, rec) {
                 switch (value) {
-                    //提交
+                    //订单提交
                     case "1":
-                        return '<span style="color:red;">提交</span>';
-                    //分配
+                        return '<span style="color:red;">订单提交</span>';
+                    //订单分配
                     case "2":
-                        return '<span style="color:blue;">分配</span>';
-                    //确认
+                        return '<span style="color:blue;">订单分配</span>';
+                    //订单确认
                     case "3":
-                        return '<span style="color:blueviolet;">确认</span>';
-                    //完成
+                        return '<span style="color:blueviolet;">订单确认</span>';
+                    //订单完成
                     case "4":
-                        return '<span style="color:green;">完成</span>';
+                        return '<span style="color:green;">订单完成</span>';
                 }
             }
             },
@@ -379,12 +380,16 @@ function initdatagrid() {
             {field: 'phone', title: '收运人员电话', width: 80, align: 'center'},
             /* {field: 'createdBy', title: '创建人', width: 80, align: 'center'},*/
             {
-                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
+                field: 'createdDt', title: '申报时间', width: 100, align: 'center'
             },
-            /*{field: 'updatedBy', title: '更新人', width: 80, align: 'center'},*/
+            {
+                field: 'remark', title: '备注', width: 100, align: 'center'
+            }
+            /*{field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
             {
                 field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
             }
+             */
         ]],
         pagination: true,
         rownumbers: true
@@ -446,7 +451,7 @@ function Accesscontrol() {
             $('#btnAllocating').linkbutton('disable');
             $('#btnDelete').linkbutton('disable');
             $('#btnSearch').linkbutton('disable');
-            $('#btnComplete').linkbutton('disable');
+            //$('#btnComplete').linkbutton('disable');
             break;
         //产废单位
         case 10:
