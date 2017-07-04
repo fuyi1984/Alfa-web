@@ -1,12 +1,9 @@
 package com.alfa.ws.rest;
 
-import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SmsService;
-import com.alfa.web.service.SysconfigService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
@@ -47,6 +44,8 @@ public class OrdersRestImpl implements OrdersRest {
     @Autowired
     private HistoryAddressService historyAddressService;
 
+    //region 单项操作
+
     @Override
     public Response insertorder(Orders order) throws Exception {
 
@@ -81,6 +80,7 @@ public class OrdersRestImpl implements OrdersRest {
 
                 //region 记录订单的收油地址历史记录
 
+                /*
                 criteria.clear();
                 criteria.put("iphone", order.getIphone());
                 criteria.put("address", order.getAddress());
@@ -101,12 +101,17 @@ public class OrdersRestImpl implements OrdersRest {
                         log.debug("收油地址历史记录插入失败!");
                     }
                 }
+                */
 
                 //endregion
 
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();
+                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();*/
+                //订单插入成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
             } else {
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();
+                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();*/
+                //订单插入失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
             }
 
             //endregion
@@ -115,9 +120,14 @@ public class OrdersRestImpl implements OrdersRest {
 
             //region 大于规定的范围
 
-            return Response.status(Response.Status.OK).entity(
+          /*  return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(
                             new RestResult(RestResult.FAILURE, "Order num is maxnum", null)
+                    )).build();*/
+
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "3", null)
                     )).build();
 
             //endregion
@@ -140,27 +150,6 @@ public class OrdersRestImpl implements OrdersRest {
     }
 
     @Override
-    public Response batchdeleteorder(List<String> list) {
-
-        int result = 0;
-
-        result = this.ordersService.batchdeleteByPrimaryKey(list);
-
-        if (result >= 1) {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null)))
-                    .build();
-        } else {
-            return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null)))
-                    .build();
-        }
-
-    }
-
-    @Override
     public Response updateorder(Orders order) throws UnsupportedEncodingException {
 
         String Json = "";
@@ -171,29 +160,129 @@ public class OrdersRestImpl implements OrdersRest {
 
         if (result == 1) {
 
-            //region 分配收油人员后的短信通知
+            //region 管理员分配订单给收油人员后发送短信通知
 
-            if(PropertiesUtil.getProperty("sms.open").equals("true")) {
+            if(order.getOrgstatus().equals("2")) {
+                if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
-                String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
+                    String ret = this.smsService.sendSMS(order.getPhone(), PropertiesUtil.getProperty("notice.transporter") + order.getIphone());
 
-                if (ret == "0") {
-                    log.info("通知收运人员的短信发送成功!");
-                } else {
-                    log.info("通知收运人员的短信发送失败!");
+                    if (ret == "0") {
+                        log.info("通知收运人员的短信发送成功!");
+                    } else {
+                        log.info("通知收运人员的短信发送失败!");
+                    }
+
                 }
-
             }
 
             //endregion
 
-            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null));
+            //订单更新成功
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1", null));
         } else {
-            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Update_Failtrue, null));
+            //订单更新失败
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
     }
+
+    @Override
+    public Response findOrder(String param, HttpServletRequest request, HttpServletResponse response) {
+           /*  String sortName=request.getParameter("sortName");
+        log.debug("sortName:"+sortName);*/
+
+        Map map = WebUtil.getParamsMap(param, "utf-8");
+
+        //分页排序处理
+        BasePager pager = new BasePager();
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
+        }
+
+       /* if (!StringUtil.isNullOrEmpty(map.get("page"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("page").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("rows"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("rows").toString()));
+        }*/
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
+            pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
+            pager.setSortField(map.get("sortdatafield").toString());
+        }
+
+       /* if (!StringUtil.isNullOrEmpty(map.get("sort"))) {
+            pager.setSortField(map.get("sort").toString());
+        }*/
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortName"))) {
+            pager.setSortField(map.get("sortName").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
+            pager.setSortOrder(map.get("sortorder").toString());
+        }
+
+        /*if (!StringUtil.isNullOrEmpty(map.get("order"))) {
+            pager.setSortOrder(map.get("order").toString());
+        }*/
+
+        //过滤
+        Criteria criteria = new Criteria();
+
+        if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
+            //收运人员
+            if ("9".equals(map.get("roleId").toString())) {
+                //criteria.put("roleId",  map.get("roleId").toString());
+                if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
+                    criteria.put("phone", map.get("phone").toString());
+                }
+            }
+            //产废单位
+            else if ("10".equals(map.get("roleId").toString())) {
+                //criteria.put("roleId",  map.get("roleId").toString());
+                if (!StringUtil.isNullOrEmpty(map.get("iphone"))) {
+                    criteria.put("iphone", map.get("iphone").toString());
+                }
+            }
+        }
+
+        //订单ID
+        if (!StringUtil.isNullOrEmpty(map.get("orderid"))) {
+            criteria.put("orderid", map.get("orderid").toString());
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
+
+        List<Orders> ordersList = this.ordersService.selectByParams(criteria);
+        int count = this.ordersService.countByParams(criteria);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        /*data.put("TotalRows", count);
+        data.put("Rows", configList);*/
+
+        /**
+         * easyui
+         */
+        data.put("total", count);
+        data.put("rows", ordersList);
+
+        String json = JsonUtil.toJson(data);
+
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    //endregion
+
+    //region 批量操作
 
     @Override
     public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException {
@@ -283,93 +372,27 @@ public class OrdersRestImpl implements OrdersRest {
     }
 
     @Override
-    public Response findOrder(String param, HttpServletRequest request, HttpServletResponse response) {
-           /*  String sortName=request.getParameter("sortName");
-        log.debug("sortName:"+sortName);*/
+    public Response batchdeleteorder(List<String> list) {
 
-        Map map = WebUtil.getParamsMap(param, "utf-8");
+        int result = 0;
 
-        //分页排序处理
-        BasePager pager = new BasePager();
+        result = this.ordersService.batchdeleteByPrimaryKey(list);
 
-        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
-            pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
+        if (result >= 1) {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Delete_Success, null)))
+                    .build();
+        } else {
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null)))
+                    .build();
         }
 
-       /* if (!StringUtil.isNullOrEmpty(map.get("page"))) {
-            pager.setPageIndex(Integer.parseInt(map.get("page").toString()));
-        }
-
-        if (!StringUtil.isNullOrEmpty(map.get("rows"))) {
-            pager.setPageIndex(Integer.parseInt(map.get("rows").toString()));
-        }*/
-
-        if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
-            pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
-        }
-
-        if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
-            pager.setSortField(map.get("sortdatafield").toString());
-        }
-
-       /* if (!StringUtil.isNullOrEmpty(map.get("sort"))) {
-            pager.setSortField(map.get("sort").toString());
-        }*/
-
-        if (!StringUtil.isNullOrEmpty(map.get("sortName"))) {
-            pager.setSortField(map.get("sortName").toString());
-        }
-
-        if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
-            pager.setSortOrder(map.get("sortorder").toString());
-        }
-
-        /*if (!StringUtil.isNullOrEmpty(map.get("order"))) {
-            pager.setSortOrder(map.get("order").toString());
-        }*/
-
-        //过滤
-        Criteria criteria = new Criteria();
-
-        if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
-            //收运人员
-            if ("9".equals(map.get("roleId").toString())) {
-                //criteria.put("roleId",  map.get("roleId").toString());
-                if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
-                    criteria.put("phone", map.get("phone").toString());
-                }
-            }
-            //产废单位
-            else if ("10".equals(map.get("roleId").toString())) {
-                //criteria.put("roleId",  map.get("roleId").toString());
-                if (!StringUtil.isNullOrEmpty(map.get("iphone"))) {
-                    criteria.put("iphone", map.get("iphone").toString());
-                }
-            }
-        }
-
-        //订单ID
-        if (!StringUtil.isNullOrEmpty(map.get("orderid"))) {
-            criteria.put("orderid", map.get("orderid").toString());
-        }
-
-        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
-        List<Orders> ordersList = this.ordersService.selectByParams(criteria);
-        int count = this.ordersService.countByParams(criteria);
-
-        Map<String, Object> data = new HashMap<String, Object>();
-
-        /*data.put("TotalRows", count);
-        data.put("Rows", configList);*/
-
-        /**
-         * easyui
-         */
-        data.put("total", count);
-        data.put("rows", ordersList);
-
-        String json = JsonUtil.toJson(data);
-
-        return Response.status(Response.Status.OK).entity(json).build();
     }
+
+    //endregion
+
+
 }

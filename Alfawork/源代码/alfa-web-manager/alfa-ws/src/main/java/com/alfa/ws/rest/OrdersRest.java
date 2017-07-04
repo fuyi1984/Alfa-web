@@ -1,7 +1,6 @@
 package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.SysConfig;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
