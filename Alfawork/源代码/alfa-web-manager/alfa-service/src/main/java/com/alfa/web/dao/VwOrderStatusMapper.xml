@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.VwOrderStatusMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.VwOrderStatus">
+
+        <id column="orderid" property="orderid" jdbcType="BIGINT"/>
+        <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
+
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            1=1
+            <if test="condition.orderid != null">
+                and A.orderid = #{condition.orderid}
+            </if>
+            <if test="condition.orgstatus != null">
+                and A.orgstatus = #{condition.orgstatus}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.orderid,
+        A.orgstatus,
+        A.createdDt,A.updatedDt
+    </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        from VwOrderStatus A
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.orderid
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+
+
+</mapper>

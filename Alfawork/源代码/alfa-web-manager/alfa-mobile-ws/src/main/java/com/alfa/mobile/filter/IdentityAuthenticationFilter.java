@@ -75,7 +75,8 @@ public class IdentityAuthenticationFilter implements Filter {
                 || request.getRequestURI().contains("/getCaptchaForWorker")
                 || request.getRequestURI().contains("/getCaptchaForFactory")
                 || request.getRequestURI().contains("/insertOpenId")
-                || request.getRequestURI().contains("/updateOpenId");
+                || request.getRequestURI().contains("/updateOpenId")
+                || request.getRequestURI().contains("/GetSingleOpenId");
 
         if (!StringUtil.isNullOrEmpty(platformUser)) {
             if (urlfilter) {
