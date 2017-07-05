@@ -4,17 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
        default-lazy-init="true">
 
-    <bean id="requestByXmlObject" class="com.alfa.web.job.RequestByXml"/>
-    <bean id="requestByXmlJob"
+    <!--监控订单状态,根据设定的时间范围，自动完成已经确认的订单，每3分钟执行一次-->
+    <bean id="MonitorOrderStatusObject" class="com.alfa.web.job.MonitorOrderStatus"/>
+    <bean id="MonitorOrderStatusJob"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="requestByXmlObject"/>
-        <property name="targetMethod" value="runJob"/>
+        <property name="targetObject" ref="MonitorOrderStatusObject"/>
+        <property name="targetMethod" value="FromConfirmToCompleted"/>
         <property name="concurrent" value="false"/>
     </bean>
-    <bean id="cronTrigger"
+    <bean id="MonitorOrderStatusTrigger"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="requestByXmlJob"/>
-        <property name="cronExpression" value="*/30 * * * * ?"/>
+        <property name="jobDetail" ref="MonitorOrderStatusJob"/>
+        <property name="cronExpression" value="0 /3 * * * ?"/>
     </bean>
 
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -22,6 +23,7 @@
         <property name="triggers">
             <list>
                 <!--<ref bean="cronTrigger"/>-->
+                <ref bean="MonitorOrderStatusTrigger"/>
             </list>
         </property>
         <property name="quartzProperties">
