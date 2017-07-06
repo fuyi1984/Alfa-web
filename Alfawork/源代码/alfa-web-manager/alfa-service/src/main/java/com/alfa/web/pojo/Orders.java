@@ -1,6 +1,7 @@
 package com.alfa.web.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 订单表
@@ -117,6 +118,20 @@ public class Orders extends Entity implements Serializable {
      * 收油人员真实姓名
      */
     private String realname;
+
+
+    /**
+     * 确认时间
+     */
+    private Date confirmDt;
+
+    public Date getConfirmDt() {
+        return confirmDt;
+    }
+
+    public void setConfirmDt(Date confirmDt) {
+        this.confirmDt = confirmDt;
+    }
 
     public Long getOrderid() {
         return orderid;

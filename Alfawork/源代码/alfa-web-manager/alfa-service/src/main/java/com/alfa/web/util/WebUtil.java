@@ -779,6 +779,16 @@ public class WebUtil {
     }
 
     /**
+     * 自定义获取服务器的IP地址
+     * @param request
+     * @return
+     */
+    public static String GetCustomServerIpAddr() throws UnknownHostException {
+        String server_ip = InetAddress.getLocalHost().getHostAddress();
+        return server_ip;
+    }
+
+    /**
      * 根据当前系统时间生成ID
      *
      * @return 精确到毫秒

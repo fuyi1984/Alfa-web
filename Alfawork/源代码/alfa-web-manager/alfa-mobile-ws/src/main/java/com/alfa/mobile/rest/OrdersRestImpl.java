@@ -155,6 +155,11 @@ public class OrdersRestImpl implements OrdersRest {
 
         String Json = "";
 
+        //收运人员确认订单的时候需要记录一个确认时间
+        if(order.getOrgstatus().equals("3")){
+            order.setConfirmDt(new Date());
+        }
+
         WebUtil.prepareUpdateParams(order);
 
         int result = this.ordersService.updateByPrimaryKeySelective(order);

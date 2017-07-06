@@ -2,10 +2,12 @@ package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.SystemInfo;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.WebUtil;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Properties;
 
@@ -17,7 +19,7 @@ public class SysServerInfoRestImpl implements SysServerInfoRest {
     private final Logger log = Logger.getLogger(this.getClass());
 
     @Override
-    public Response GetSystemInfo(HttpServletRequest servletRequest) {
+    public Response GetSystemInfo(HttpServletRequest servletRequest) throws UnknownHostException {
 
         Properties props=System.getProperties();
 
@@ -35,7 +37,8 @@ public class SysServerInfoRestImpl implements SysServerInfoRest {
         info.setOs_date(new Date());
         info.setServer_name(servletRequest.getServerName());
         info.setServer_port(servletRequest.getServerPort());
-        info.setServer_addr(servletRequest.getRemoteAddr());
+        //info.setServer_addr(servletRequest.getRemoteAddr());
+        info.setServer_addr(WebUtil.GetCustomServerIpAddr());
         info.setServer_host(servletRequest.getRemoteHost());
         info.setServer_protocol(servletRequest.getProtocol());
         info.setServer_context(servletRequest.getContextPath());

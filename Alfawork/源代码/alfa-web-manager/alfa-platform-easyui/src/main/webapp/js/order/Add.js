@@ -67,7 +67,7 @@ function ordersubmitForm() {
                         $('#ordergrid').datagrid("reload");
                     });
                 } else if (data.status == 'failure') {
-                    if (data.message == 'Order num is maxnum') {
+                    if (data.message == '3') {
                         $.messager.alert('提示', '提交订单数超出了当天最大限制数,请联系平台管理员！', 'warning', function () {
                             //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                             $('#orderadd').window('close');

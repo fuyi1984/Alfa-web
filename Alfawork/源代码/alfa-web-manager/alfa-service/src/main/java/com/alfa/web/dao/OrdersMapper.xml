@@ -15,6 +15,7 @@
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
         <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="confirmDt" property="confirmDt" jdbcType="TIMESTAMP"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -32,6 +33,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
             1=1
+            <if test="condition.confirmDt!=null">
+                and A.confirmDt=#{condition.confirmDt}
+            </if>
             <if test="condition.remark!=null">
                 and A.remark=#{condition.remark}
             </if>
@@ -96,7 +100,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
+        A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
     </sql>
@@ -105,9 +109,9 @@
         <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into orders(remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        insert into orders(confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
         updatedBy,updatedDt,version,workerid)
-        values (#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
+        values (#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
     </insert>
 
@@ -117,6 +121,9 @@
         </selectKey>
         insert into orders
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="confirmDt!=null">
+                confirmDt,
+            </if>
             <if test="username!=null">
                 username,
             </if>
@@ -164,6 +171,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="confirmDt!=null">
+                #{confirmDt},
+            </if>
             <if test="username!=null">
                 #{username},
             </if>
@@ -292,6 +302,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
         update orders
         <set>
+            <if test="confirmDt!=null">
+                confirmDt=#{confirmDt},
+            </if>
             <if test="username!=null">
                 username=#{username},
             </if>

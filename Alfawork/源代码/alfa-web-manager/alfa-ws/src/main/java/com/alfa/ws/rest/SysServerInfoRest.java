@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.UnknownHostException;
 
 /**
  * Created by Administrator on 2017/6/4.
@@ -28,5 +29,5 @@ public interface SysServerInfoRest {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/getsysteminfo")
-    public Response GetSystemInfo(@Context HttpServletRequest servletRequest);
+    public Response GetSystemInfo(@Context HttpServletRequest servletRequest) throws UnknownHostException;
 }
