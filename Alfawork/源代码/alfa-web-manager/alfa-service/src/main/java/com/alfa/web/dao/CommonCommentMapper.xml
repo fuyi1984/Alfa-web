@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.alfa.web.dao.HistoryAddressMapper">
+<mapper namespace="com.alfa.web.dao.CommonCommentMapper">
 
-    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.HistoryAddress">
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.CommonComment">
 
         <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="userid" property="userid" jdbcType="BIGINT"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="Content" property="Content" jdbcType="VARCHAR"/>
+
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
@@ -18,20 +17,13 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+
             <if test="condition.id!=null">
                 and A.id=#{condition.id}
             </if>
-            <if test="condition.userid!=null">
-                and A.userid=#{condition.userid}
-            </if>
-            <if test="condition.address != null">
-                and A.address = #{condition.address}
-            </if>
-            <if test="condition.iphone!=null">
-                and A.iphone=#{condition.iphone}
-            </if>
-            <if test="condition.addressLike != null">
-                and A.address like concat('%', #{condition.addressLike}, '%')
+
+            <if test="condition.Content!=null">
+                and A.Content=#{condition.Content}
             </if>
 
             <if test="condition.createdBy != null">
@@ -53,7 +45,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.id, A.userid, A.iphone,A.address,A.createdBy, A.createdDt,
+        A.id, A.Content,A.createdBy, A.createdDt,
         A.updatedBy, A.updatedDt, A.version
     </sql>
 
@@ -63,7 +55,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from HistoryAddress A
+        from CommonComment A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -76,45 +68,40 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
-        from HistoryAddress A
+        from CommonComment A
         where A.id = #{id}
     </select>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from HistoryAddress A
+        select count(*) from CommonComment A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete from HistoryAddress A
+        delete from CommonComment A
         where A.id = #{id}
     </delete>
 
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
-        delete from HistoryAddress A
+        delete from CommonComment A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
 
-    <insert id="insertSelective" parameterType="com.alfa.web.pojo.HistoryAddress">
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.CommonComment">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into HistoryAddress
+        insert into CommonComment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
-            <if test="userid != null">
-                userid,
+            <if test="Content != null">
+                Content,
             </if>
-            <if test="address != null">
-                address,
-            </if>
-            <if test="iphone!=null">
-                iphone,
-            </if>
+
             <if test="createdBy != null">
                 createdBy,
             </if>
@@ -133,14 +120,8 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id},
-            <if test="userid != null">
-                #{userid},
-            </if>
-            <if test="address != null">
-                #{address},
-            </if>
-            <if test="iphone!=null">
-                #{iphone},
+            <if test="Content != null">
+                #{Content},
             </if>
             <if test="createdBy != null">
                 #{createdBy},
@@ -160,18 +141,11 @@
         </trim>
     </insert>
 
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.HistoryAddress">
-        update HistoryAddress
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.CommonComment">
+        update CommonComment
         <set>
-            <if test="userid!=null">
-                userid=#{userid},
-            </if>
-            <if test="address!=null">
-                address=#{address},
-            </if>
-            <if test="iphone != null">
-                iphone=#{iphone},
+            <if test="Content!=null">
+                Content=#{Content},
             </if>
             <if test="createdBy != null">
                 createdBy=#{createdBy},
@@ -195,7 +169,7 @@
 
     <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
         delete from
-        HistoryAddress
+        CommonComment
         where id in
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
             #{item}

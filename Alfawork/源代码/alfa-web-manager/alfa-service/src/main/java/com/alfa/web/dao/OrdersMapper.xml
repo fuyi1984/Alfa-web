@@ -32,7 +32,6 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
-            1=1
             <if test="condition.confirmDt!=null">
                 and A.confirmDt=#{condition.confirmDt}
             </if>
