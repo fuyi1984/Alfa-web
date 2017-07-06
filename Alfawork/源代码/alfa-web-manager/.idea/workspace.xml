@@ -6,26 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/CommonCommentMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/CommonCommentMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/CommonComment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/OrderComment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/CommonCommentService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/CommonCommentServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-python-test/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../alfa-python-test/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysConfigMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysConfigMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysRoleMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysRoleMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysUsersMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysUsersMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VerifyCodeMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VerifyCodeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VwOrderStatusMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VwOrderStatusMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/weixin_usersMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/weixin_usersMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdb" afterPath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" afterPath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml" afterPath="$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonCommentRestImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CommonCommentRestImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+            <state relative-caret-position="-23">
+              <caret line="29" column="28" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#876#877#0" expanded="true" />
@@ -94,6 +77,16 @@
                 <element signature="e#1279#1280#0" expanded="true" />
                 <element signature="e#1306#1307#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rest-services.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/SysUsersService.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/SysUsersServiceImpl.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/mobileuserTest.java" />
@@ -241,6 +233,7 @@
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/CommonCommentServiceImpl.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRest.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java" />
+        <option value="$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml" />
       </list>
     </option>
   </component>
@@ -380,6 +373,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1315,14 +1334,7 @@
       <workItem from="1499218601971" duration="17150000" />
       <workItem from="1499305769497" duration="1846000" />
       <workItem from="1499309156542" duration="6780000" />
-      <workItem from="1499320260769" duration="9333000" />
-    </task>
-    <task id="LOCAL-00110" summary="2017-6-16">
-      <created>1497592017754</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1497592017754</updated>
+      <workItem from="1499320260769" duration="9725000" />
     </task>
     <task id="LOCAL-00111" summary="2017-6-16">
       <created>1497599780686</created>
@@ -1660,7 +1672,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499317341063</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="2017-7-6">
+      <created>1499331540895</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1499331540896</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1696,7 +1715,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1380154000" />
+    <option name="totallyTimeSpent" value="1380546000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1867,13 +1886,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -2333,8 +2345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" column="14" lean-forward="false" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state relative-caret-position="-23">
+          <caret line="29" column="28" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#876#877#0" expanded="true" />
@@ -2344,6 +2356,14 @@
             <element signature="e#1279#1280#0" expanded="true" />
             <element signature="e#1306#1307#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
