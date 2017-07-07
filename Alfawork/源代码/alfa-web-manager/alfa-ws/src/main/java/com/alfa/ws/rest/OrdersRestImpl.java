@@ -137,6 +137,7 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Override
     public Response deleteorder(Orders order) {
+
         String json = "";
         boolean result = this.ordersService.delete(order.getOrderid());
 
@@ -147,6 +148,7 @@ public class OrdersRestImpl implements OrdersRest {
             json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Delete_Failtrue, null));
             return Response.status(Response.Status.OK).entity(json).build();
         }
+
     }
 
     @Override

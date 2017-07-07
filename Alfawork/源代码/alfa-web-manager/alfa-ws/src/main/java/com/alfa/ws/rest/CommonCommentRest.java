@@ -72,7 +72,7 @@ public interface CommonCommentRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
-    public Response findOrder(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+    public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
 
     /**

@@ -209,7 +209,7 @@ function initdatagrid() {
             {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
             {field: 'role_name', title: '角色', width: 80, align: 'center'},
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
-            {field: 'address', title: '地址', width: 120, align: 'center'},
+            {field: 'address', title: '单位地址', width: 120, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 120, align: 'center'},
             {field: 'loginIp', title: 'IP地址', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
