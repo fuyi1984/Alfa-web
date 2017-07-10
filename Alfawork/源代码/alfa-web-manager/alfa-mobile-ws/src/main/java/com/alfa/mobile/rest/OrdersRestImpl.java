@@ -268,6 +268,33 @@ public class OrdersRestImpl implements OrdersRest {
         WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
+
+        //region 设置地址
+
+        String Province,City,Area,Townandstreets;
+
+        for(Orders order:ordersList){
+            if(!StringUtil.isNullOrEmpty(order.getAddressId())){
+
+                //region 地址的相关属性的赋值
+
+                Province=StringUtil.isNullOrEmpty(order.getProvince())?"":order.getProvince();
+
+                City=StringUtil.isNullOrEmpty(order.getCity())?"":order.getCity();
+
+                Area=StringUtil.isNullOrEmpty(order.getArea())?"":order.getArea();
+
+                Townandstreets=StringUtil.isNullOrEmpty(order.getTownandstreets())?"":
+                        order.getTownandstreets();
+
+                //endregion
+
+                order.setAddress(Province+City+Area+Townandstreets);
+            }
+        }
+
+        //endregion
+
         int count = this.ordersService.countByParams(criteria);
 
         Map<String, Object> data = new HashMap<String, Object>();

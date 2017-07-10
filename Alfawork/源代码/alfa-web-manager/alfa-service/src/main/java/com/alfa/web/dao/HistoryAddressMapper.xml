@@ -8,6 +8,11 @@
         <result column="userid" property="userid" jdbcType="BIGINT"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="townandstreets" property="townandstreets" jdbcType="VARCHAR"/>
+        <result column="fulladdress" property="fulladdress" jdbcType="VARCHAR"/>
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
@@ -18,6 +23,21 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.fulladdress!=null">
+                and A.fulladdress=#{condition.fulladdress}
+            </if>
+            <if test="condition.province!=null">
+                and A.province=#{condition.province}
+            </if>
+            <if test="condition.city!=null">
+                and A.city=#{condition.city}
+            </if>
+            <if test="condition.area!=null">
+                and A.area=#{condition.area}
+            </if>
+            <if test="condition.townandstreets!=null">
+                and A.townandstreets=#{condition.townandstreets}
+            </if>
             <if test="condition.id!=null">
                 and A.id=#{condition.id}
             </if>
@@ -53,7 +73,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.id, A.userid, A.iphone,A.address,A.createdBy, A.createdDt,
+        A.fulladdress,A.province,A.city,A.area,A.townandstreets,A.id, A.userid, A.iphone,A.address,A.createdBy, A.createdDt,
         A.updatedBy, A.updatedDt, A.version
     </sql>
 
@@ -109,6 +129,21 @@
             <if test="userid != null">
                 userid,
             </if>
+            <if test="fulladdress!=null">
+                fulladdress,
+            </if>
+            <if test="city!=null">
+                city,
+            </if>
+            <if test="area!=null">
+                area,
+            </if>
+            <if test="townandstreets!=null">
+                townandstreets,
+            </if>
+            <if test="province!=null">
+                province,
+            </if>
             <if test="address != null">
                 address,
             </if>
@@ -135,6 +170,21 @@
             #{id},
             <if test="userid != null">
                 #{userid},
+            </if>
+            <if test="fulladdress!=null">
+                #{fulladdress},
+            </if>
+            <if test="city!=null">
+                #{city},
+            </if>
+            <if test="area!=null">
+                #{area},
+            </if>
+            <if test="townandstreets!=null">
+                #{townandstreets},
+            </if>
+            <if test="province!=null">
+                #{province},
             </if>
             <if test="address != null">
                 #{address},
@@ -166,6 +216,21 @@
         <set>
             <if test="userid!=null">
                 userid=#{userid},
+            </if>
+            <if test="fulladdress!=null">
+                fulladdress=#{fulladdress},
+            </if>
+            <if test="city!=null">
+                city=#{city},
+            </if>
+            <if test="area!=null">
+                area=#{area},
+            </if>
+            <if test="townandstreets!=null">
+                townandstreets=#{townandstreets},
+            </if>
+            <if test="province!=null">
+                province=#{province},
             </if>
             <if test="address!=null">
                 address=#{address},

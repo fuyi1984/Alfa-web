@@ -264,6 +264,13 @@ public class OrdersRestImpl implements OrdersRest {
         WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
+
+        for(Orders order:ordersList){
+            if(StringUtil.isNullOrEmpty(order.getAddressId())){
+                order.setAddress(order.getProvince()+order.getCity()+order.getArea()+order.getTownandstreets());
+            }
+        }
+
         int count = this.ordersService.countByParams(criteria);
 
         Map<String, Object> data = new HashMap<String, Object>();

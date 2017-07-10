@@ -28,6 +28,13 @@
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
 
+        <!--收油地址的相关信息-->
+        <result column="addressId" property="addressId" jdbcType="BIGINT"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="townandstreets" property="townandstreets" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <sql id="Example_Where_Clause">
@@ -95,11 +102,14 @@
             <if test="condition.workerid != null">
                 and A.workerid = #{condition.workerid}
             </if>
+            <if test="condition.addressId!=null">
+                and A.addressId=#{condition.addressId}
+            </if>
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
-        A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
+        A.addressId,A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
     </sql>
@@ -108,9 +118,9 @@
         <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into orders(confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        insert into orders(addressId,confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
         updatedBy,updatedDt,version,workerid)
-        values (#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
+        values (#{addressId},#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
     </insert>
 
@@ -120,6 +130,9 @@
         </selectKey>
         insert into orders
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="addressId!=null">
+                addressId,
+            </if>
             <if test="confirmDt!=null">
                 confirmDt,
             </if>
@@ -170,6 +183,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="addressId!=null">
+                #{addressId},
+            </if>
             <if test="confirmDt!=null">
                 #{confirmDt},
             </if>
@@ -230,11 +246,12 @@
         </if>
 
         <include refid="Base_Column_List"/>
-        ,B.phone,B.realname
+        ,B.phone,B.realname,E.province,E.city,E.area,E.townandstreets
         from orders A
 
         left join sysusers B on(A.workerid = B.userId)
         left join sysrole C on(B.roleId=C.roleId)
+        left join HistoryAddress E on(A.addressId=E.Id)
 
         <if test="condition.roleId != null">
             INNER join sysrole E on(E.roleId=B.roleId and E.roleId=#{condition.roleId})
@@ -301,6 +318,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
         update orders
         <set>
+            <if test="addressId!=null">
+                addressId=#{addressId},
+            </if>
             <if test="confirmDt!=null">
                 confirmDt=#{confirmDt},
             </if>

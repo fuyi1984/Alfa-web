@@ -90,6 +90,71 @@ public class Orders extends Entity implements Serializable {
     private String address;
 
     /**
+     * 收油地址ID
+     */
+    private Long addressId;
+
+    /**
+     * 省份
+     */
+    private String province;
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getTownandstreets() {
+        return townandstreets;
+    }
+
+    public void setTownandstreets(String townandstreets) {
+        this.townandstreets = townandstreets;
+    }
+
+    /**
+     * 市
+     */
+    private String city;
+
+    /**
+     * 区
+     */
+    private String area;
+
+    /**
+     * 城镇街道
+     */
+    private String townandstreets;
+
+    /**
      * 预收数量
      */
     private String num;
