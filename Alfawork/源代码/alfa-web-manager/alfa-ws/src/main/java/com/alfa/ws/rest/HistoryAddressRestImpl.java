@@ -81,6 +81,29 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
         List<HistoryAddress> historyAddressList = this.historyAddressService.selectByParams(criteria);
 
+        //region 拼接收油地址
+
+        String Province,city,area,townandstreets;
+
+        for(HistoryAddress item:historyAddressList){
+
+            //region 地址相关属性的赋值
+
+            Province=StringUtil.isNullOrEmpty(item.getProvince())?"":item.getProvince();
+
+            city=StringUtil.isNullOrEmpty(item.getCity())?"":item.getCity();
+
+            area=StringUtil.isNullOrEmpty(item.getArea())?"":item.getArea();
+
+            townandstreets=StringUtil.isNullOrEmpty(item.getTownandstreets())?"":item.getTownandstreets();
+
+            //endregion
+
+            item.setFulladdress(Province+city+area+townandstreets);
+        }
+
+        //endregion
+
         int count = this.historyAddressService.countByParams(criteria);
 
         Map<String, Object> data = new HashMap<String, Object>();

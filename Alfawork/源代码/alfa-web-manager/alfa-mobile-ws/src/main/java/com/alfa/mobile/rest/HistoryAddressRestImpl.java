@@ -147,23 +147,43 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
         Criteria criteria = new Criteria();
         criteria.put("iphone", record.getIphone());
-        criteria.put("address",record.getAddress());
 
-        List<HistoryAddress> list=this.historyAddressService.selectByParams(criteria);
+        int count=this.historyAddressService.countByParams(criteria);
 
-        if(list.size()>=1){
-            //收油地址已存在,无法再添加
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
-        }else{
-            int result=this.historyAddressService.insertSelective(record);
+        if(count>Integer.parseInt(PropertiesUtil.getProperty("currentUser.address.maxnum"))) {
 
-            if(result>=1){
-                //收油地址插入成功
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
-            }else{
-                //收油地址插入失败
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+            //region test
+
+            if (!StringUtil.isNullOrEmpty(record.getAddress())) {
+                criteria.put("address", record.getAddress());
+            } else {
+                criteria.put("city", record.getCity());
+                criteria.put("province", record.getProvince());
+                criteria.put("area", record.getArea());
+                criteria.put("townandstreets", record.getTownandstreets());
             }
+
+            List<HistoryAddress> list = this.historyAddressService.selectByParams(criteria);
+
+            if (list.size() >= 1) {
+                //收油地址已存在,无法再添加
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+            } else {
+                int result = this.historyAddressService.insertSelective(record);
+
+                if (result >= 1) {
+                    //收油地址插入成功
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
+                } else {
+                    //收油地址插入失败
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+                }
+            }
+
+            //endregion
+        }else {
+            //收油地址数据大于最大数量限制
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "4", null))).build();
         }
     }
 
