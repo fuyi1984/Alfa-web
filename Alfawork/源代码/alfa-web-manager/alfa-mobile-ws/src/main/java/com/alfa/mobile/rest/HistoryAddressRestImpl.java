@@ -150,9 +150,9 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
         int count=this.historyAddressService.countByParams(criteria);
 
-        if(count>Integer.parseInt(PropertiesUtil.getProperty("currentUser.address.maxnum"))) {
+        if(count<Integer.parseInt(PropertiesUtil.getProperty("currentUser.address.maxnum"))) {
 
-            //region test
+            //region 小于规定的范围
 
             if (!StringUtil.isNullOrEmpty(record.getAddress())) {
                 criteria.put("address", record.getAddress());

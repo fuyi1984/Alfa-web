@@ -36,24 +36,38 @@ public class CommonCommentRestImpl implements CommonCommentRest {
     public Response insertCommonComment(CommonComment commonComment) throws Exception {
 
         Criteria criteria=new Criteria();
-        criteria.put("Content",commonComment.getContent());
 
-        List<CommonComment> commonCommentList=this.commonCommentService.selectByParams(criteria);
+        int count=this.commonCommentService.countByParams(criteria);
 
-        if(commonCommentList.size()>0){
+        if(count< Integer.parseInt(PropertiesUtil.getProperty("Comment.Maxnum"))) {
 
-            int result=this.commonCommentService.insertSelective(commonComment);
+            //region test
 
-            if(result>=1){
-                //常用评语插入成功
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
-            }else{
-                //常用评语插入失败
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            criteria.put("Content", commonComment.getContent());
+
+            List<CommonComment> commonCommentList = this.commonCommentService.selectByParams(criteria);
+
+            if (commonCommentList.size() == 0) {
+
+                int result = this.commonCommentService.insertSelective(commonComment);
+
+                if (result >= 1) {
+                    //常用评语插入成功
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                } else {
+                    //常用评语插入失败
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                }
+            } else {
+                //数据已存在
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
             }
+
+            //endregion
+
         }else{
-            //数据已存在
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+            //常用评语大于规定的范围
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "4", null))).build();
         }
     }
 

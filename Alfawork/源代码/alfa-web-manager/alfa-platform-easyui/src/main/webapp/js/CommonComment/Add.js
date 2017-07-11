@@ -17,7 +17,7 @@ function CommonCommentsubmitForm(){
     if(AddValidator()){
 
         var params = {
-            "Content": $("#Content_add").val()
+            "content": $("#Content_add").val()
         }
 
         console.log(params);
@@ -49,6 +49,13 @@ function CommonCommentsubmitForm(){
                             $('#CommonCommentadd').window('close');
                             $('#CommonCommentgrid').datagrid("reload");
                         });
+                    }else if(data.message=="4"){
+                        $.messager.alert('提示', '评语内容数量不能超出最大数量！', 'warning', function () {
+                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                            $('#CommonCommentadd').window('close');
+                            $('#CommonCommentgrid').datagrid("reload");
+                        });
+
                     } else {
                         $.messager.alert('提示', '添加失败！', 'error', function () {
                             //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';

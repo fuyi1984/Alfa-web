@@ -38,49 +38,16 @@ function initdatagrid() {
             text: '添加',
             iconCls: 'icon-add',
             handler: function () {
-                $('#configadd').window('open');
+                $('#CommonCommentadd').window('open');
             }
-        }, '-', {
-            id: 'btnUpdate',
-            text: '修改',
-            iconCls: 'icon-save',
-            handler: function () {
-
-                //var row = $('#configgrid').datagrid('getSelected');
-
-                var rows = $('#configgrid').datagrid('getSelections');
-
-                if (!rows || rows.length == 0) {
-                    $.messager.alert('提示', '请选择要修改的数据');
-                    return;
-                }
-                else{
-
-                    if(rows.length>1){
-                        $.messager.alert('提示', '请选择一条数据');
-                        $('#configgrid').datagrid("clearSelections");
-                        return;
-                    }else {
-                        $('#form2').form('load', {
-                            Id_update: rows[0].id,
-                            configName_update: rows[0].configName,
-                            configKey_update: rows[0].configKey,
-                            configValue_update: rows[0].configValue,
-                            description_update: rows[0].description
-                        });
-                        $('#configupdate').window('open');
-                    }
-                }
-
-            }
-        }, '-', {
+        },'-', {
             id: 'btnDelete',
             text: '删除',
             disabled: false,
             iconCls: 'icon-cut',
             handler: function () {
 
-                var rows = $('#configgrid').datagrid('getSelections');
+                var rows = $('#CommonCommentgrid').datagrid('getSelections');
 
                 if (!rows || rows.length == 0) {
                     $.messager.alert('提示', '请选择要删除的数据');
@@ -114,24 +81,24 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/Sysconfig/batchdeleteConfig?token=' + gtoken,
+                        url: ws_url + '/rest/CommonComment/batchdeleteCommonComment?token=' + gtoken,
                         data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {
                                 $.messager.alert('提示', '删除成功！', "info", function () {
-                                    $('#configgrid').datagrid("clearSelections");
-                                    $('#configgrid').datagrid("reload");
+                                    $('#CommonCommentgrid').datagrid("clearSelections");
+                                    $('#CommonCommentgrid').datagrid("reload");
                                 });
                             } else {
                                 $.messager.alert('错误', '删除失败！', "error", function () {
-                                    $('#configgrid').datagrid("clearSelections");
-                                    $('#configgrid').datagrid("reload");
+                                    $('#CommonCommentgrid').datagrid("clearSelections");
+                                    $('#CommonCommentgrid').datagrid("reload");
                                 });
                             }
                         },
                         error: function (xhr) {
                             console.log(xhr);
-                            $('#configgrid').datagrid("clearSelections");
+                            $('#CommonCommentgrid').datagrid("clearSelections");
                             $.messager.alert('错误', '删除失败！', "error");
                         }
                     });
@@ -146,7 +113,7 @@ function initdatagrid() {
         ]],
 
         columns: [[
-            {field: 'Content', title: '内容', width: 80, align: 'center'},
+            {field: 'content', title: '内容', width: 80, align: 'center'},
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
