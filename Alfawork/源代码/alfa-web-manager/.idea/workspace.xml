@@ -6,10 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRestImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/OrderCommentServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/OrderCommentService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/OrderCommentServiceTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,57 +54,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Init.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Init.js">
+      <file leaf-file-name="OrderCommentServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/OrderCommentServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2058">
-              <caret line="100" column="49" lean-forward="false" selection-start-line="100" selection-start-column="49" selection-end-line="100" selection-end-column="49" />
+            <state relative-caret-position="184">
+              <caret line="57" column="54" lean-forward="false" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
               <folding>
-                <element signature="e#0#48#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1483#1499#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cancel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/cancel.js">
+      <file leaf-file-name="OrderCommentServiceTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/OrderCommentServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="-63">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
-                <element signature="n#!!doc;n#CommonCommentcancel#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrdersRest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRest.java">
+      <file leaf-file-name="mobileuserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/mobileuserTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="21">
-              <caret line="42" column="6" lean-forward="false" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+              <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonCommentRest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRest.java">
+      <file leaf-file-name="HistoryAddressServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/HistoryAddressServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="78" column="15" lean-forward="true" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+            <state relative-caret-position="-126">
+              <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HistoryAddressMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="75" column="63" lean-forward="false" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="63" />
               <folding>
-                <element signature="e#894#904#0" expanded="false" />
+                <marker date="1499656727495" expanded="true" signature="4136:4243" ph="select from HistoryAddress" />
+                <marker date="1499656727495" expanded="true" signature="4378:4415" ph="select count... HistoryAddress" />
+                <marker date="1499656727495" expanded="true" signature="4612:4667" ph="delete from " />
+                <marker date="1499656727495" expanded="true" signature="4772:4800" ph="delete from " />
+                <marker date="1499656727495" expanded="true" signature="7703:9021" ph="update Histo... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonCommentRest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRest.java">
+      <file leaf-file-name="HistoryAddressMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="32" column="119" lean-forward="false" selection-start-line="32" selection-start-column="119" selection-end-line="32" selection-end-column="119" />
+            <state relative-caret-position="231">
+              <caret line="16" column="40" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderCommentService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/OrderCommentService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,59 +137,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rest-services-storage.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml">
+      <file leaf-file-name="SysConfigMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysConfigMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="21" column="70" lean-forward="false" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
+            <state relative-caret-position="147">
+              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommonCommentRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java">
+      <file leaf-file-name="OrderCommentMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="32" column="54" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="32" selection-end-column="54" />
+            <state relative-caret-position="99">
+              <caret line="132" column="61" lean-forward="false" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
+              <folding>
+                <element signature="n#sql#0;n#mapper#0;n#!!top" expanded="false" />
+                <element signature="n#sql#1;n#mapper#0;n#!!top" expanded="false" />
+                <element signature="n#select#0;n#mapper#0;n#!!top" expanded="false" />
+                <element signature="n#delete#0;n#mapper#0;n#!!top" expanded="false" />
+                <element signature="n#delete#1;n#mapper#0;n#!!top" expanded="false" />
+                <element signature="n#select#1;n#mapper#0;n#!!top" expanded="false" />
+                <marker date="1499780754292" expanded="true" signature="2354:2389" ph="select count... ordercomment" />
+                <marker date="1499780754292" expanded="true" signature="2600:2626" ph="delete from " />
+                <marker date="1499780754292" expanded="true" signature="2823:2880" ph="delete from " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderCommentMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonCommentRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRestImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-821">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Add.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Add.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc;n#AddValidator#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrdersRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRestImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-92">
-              <caret line="420" column="9" lean-forward="false" selection-start-line="406" selection-start-column="8" selection-end-line="420" selection-end-column="9" />
-              <folding>
-                <element signature="e#2173#2195#0" expanded="false" />
-                <element signature="e#9075#9094#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -198,12 +208,7 @@
       <find>batchupdateorderstatus</find>
       <find>cors</find>
       <find>selectByPrimaryKey</find>
-      <find>selectByParams</find>
       <find>insertorder</find>
-      <find>countByParams</find>
-      <find>deleteByParams</find>
-      <find>deleteByPrimaryKey</find>
-      <find>insertSelective</find>
       <find>batchdeleteByPrimaryKey</find>
       <find>JSON</find>
       <find>updateByPrimaryKeySelective</find>
@@ -213,6 +218,11 @@
       <find>Ip</find>
       <find>server_addr</find>
       <find>batchdeleteCommonComment</find>
+      <find>countByParams</find>
+      <find>deleteByParams</find>
+      <find>deleteByPrimaryKey</find>
+      <find>insertSelective</find>
+      <find>selectByParams</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -229,12 +239,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/Init.js" />
-        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/order/Init.js" />
-        <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/SysUserRestImpl.java" />
-        <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRestImpl.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/VwOrderStatus.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VwOrderStatus.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/VwOrderStatusMapper.java" />
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/filter/IdentityAuthenticationFilter.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/VwOrderStatusService.java" />
@@ -280,6 +284,12 @@
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRest.java" />
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml" />
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRestImpl.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/OrderCommentService.java" />
+        <option value="$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar!/org/junit/internal/runners/model/ReflectiveCallable.class" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.xml" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/OrderCommentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/OrderCommentServiceTest.java" />
       </list>
     </option>
   </component>
@@ -356,68 +366,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.alfa.web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-platform-easyui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -513,8 +462,18 @@
               <option name="myItemId" value="ws" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rest" />
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -528,55 +487,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -598,7 +509,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -606,7 +517,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -620,7 +539,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -646,7 +565,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -662,11 +581,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
+              <option name="myItemId" value="web" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="rest" />
+              <option name="myItemId" value="vo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -680,7 +599,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-mobile-ws" />
+              <option name="myItemId" value="alfa-service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -696,13 +615,214 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pojo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.alfa.web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-platform-easyui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -757,85 +877,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CommonCommentServiceTest.insertCommonComment">
-    <configuration default="false" name="SysUserServiceTest.loginforweixin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.alfa.web.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="alfa-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.alfa.web" />
-      <option name="MAIN_CLASS_NAME" value="com.alfa.web.SysUserServiceTest" />
-      <option name="METHOD_NAME" value="loginforweixin" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="HistoryAddressServiceTest.Add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.alfa.web.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="alfa-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.alfa.web" />
-      <option name="MAIN_CLASS_NAME" value="com.alfa.web.HistoryAddressServiceTest" />
-      <option name="METHOD_NAME" value="Add" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="HistoryAddressServiceTest.Search" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.alfa.web.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="alfa-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.alfa.web" />
-      <option name="MAIN_CLASS_NAME" value="com.alfa.web.HistoryAddressServiceTest" />
-      <option name="METHOD_NAME" value="Search" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.OrderCommentServiceTest.Batchinsert">
     <configuration default="false" name="HistoryAddressServiceTest.insertHistoryAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -875,6 +917,84 @@
       <option name="PACKAGE_NAME" value="com.alfa.web" />
       <option name="MAIN_CLASS_NAME" value="com.alfa.web.CommonCommentServiceTest" />
       <option name="METHOD_NAME" value="insertCommonComment" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="OrderCommentServiceTest.insertSelective" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.alfa.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="alfa-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.alfa.web" />
+      <option name="MAIN_CLASS_NAME" value="com.alfa.web.OrderCommentServiceTest" />
+      <option name="METHOD_NAME" value="insertSelective" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="OrderCommentServiceTest.Batchinsert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.alfa.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="alfa-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.alfa.web" />
+      <option name="MAIN_CLASS_NAME" value="com.alfa.web.OrderCommentServiceTest" />
+      <option name="METHOD_NAME" value="Batchinsert" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="HistoryAddressServiceTest.Add" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.alfa.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="alfa-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.alfa.web" />
+      <option name="MAIN_CLASS_NAME" value="com.alfa.web.HistoryAddressServiceTest" />
+      <option name="METHOD_NAME" value="Add" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1309,19 +1429,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.SysUserServiceTest.loginforweixin" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Add" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Search" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.insertHistoryAddress" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CommonCommentServiceTest.insertCommonComment" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.insertHistoryAddress" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CommonCommentServiceTest.insertCommonComment" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.OrderCommentServiceTest.insertSelective" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.OrderCommentServiceTest.Batchinsert" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Add" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.CommonCommentServiceTest.insertCommonComment" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.insertHistoryAddress" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Search" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Add" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SysUserServiceTest.loginforweixin" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.OrderCommentServiceTest.Batchinsert" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.OrderCommentServiceTest.insertSelective" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.Add" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CommonCommentServiceTest.insertCommonComment" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.HistoryAddressServiceTest.insertHistoryAddress" />
       </list>
     </recent_temporary>
   </component>
@@ -1509,14 +1629,10 @@
       <workItem from="1499320260769" duration="9774000" />
       <workItem from="1499391374826" duration="17416000" />
       <workItem from="1499652094095" duration="24241000" />
-      <workItem from="1499736164681" duration="14865000" />
-    </task>
-    <task id="LOCAL-00116" summary="2017-6-21">
-      <created>1498034899206</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1498034899208</updated>
+      <workItem from="1499736164681" duration="23175000" />
+      <workItem from="1499763044980" duration="1889000" />
+      <workItem from="1499774645009" duration="4224000" />
+      <workItem from="1499779418807" duration="1938000" />
     </task>
     <task id="LOCAL-00117" summary="2017-6-21">
       <created>1498036478195</created>
@@ -1854,43 +1970,50 @@
       <option name="project" value="LOCAL" />
       <updated>1499752734729</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="2017-7-11">
+      <created>1499753444436</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1499753444436</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CommonCommentServiceTest_insertCommonComment - 2017.07.11 at 12h 55m 25s.xml">
-      <configuration name="CommonCommentServiceTest.insertCommonComment" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 27m 04s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommonCommentServiceTest_insertCommonComment - 2017.07.11 at 12h 58m 55s.xml">
-      <configuration name="CommonCommentServiceTest.insertCommonComment" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 36m 31s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CommonCommentServiceTest_insertCommonComment - 2017.07.11 at 12h 59m 50s.xml">
-      <configuration name="CommonCommentServiceTest.insertCommonComment" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 38m 32s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 10h 40m 26s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 39m 28s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 10h 53m 21s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 44m 52s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 10h 54m 53s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 47m 31s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 10h 55m 28s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 48m 31s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 10h 56m 02s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_Batchinsert - 2017.07.11 at 21h 54m 24s.xml">
+      <configuration name="OrderCommentServiceTest.Batchinsert" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HistoryAddressServiceTest_insertHistoryAddress - 2017.07.11 at 11h 09m 41s.xml">
-      <configuration name="HistoryAddressServiceTest.insertHistoryAddress" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_insertSelective - 2017.07.11 at 21h 28m 41s.xml">
+      <configuration name="OrderCommentServiceTest.insertSelective" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="weixin_usersServiceTest_insert - 2017.07.03 at 10h 54m 03s.xml">
-      <configuration name="weixin_usersServiceTest.insert" configurationId="JUnit" />
+    <history-entry file="OrderCommentServiceTest_insertSelective - 2017.07.11 at 21h 30m 34s.xml">
+      <configuration name="OrderCommentServiceTest.insertSelective" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1437117000" />
+    <option name="totallyTimeSpent" value="1453478000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1908,7 +2031,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38016528" sideWeight="0.5091047" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20257966" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20257966" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1924,10 +2047,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31900826" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4231405" sideWeight="0.4908953" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34380165" sideWeight="0.4908953" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.4969651" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23141123" sideWeight="0.4868421" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24279211" sideWeight="0.4868421" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28528073" sideWeight="0.5131579" order="7" side_tool="true" content_ui="tabs" />
@@ -2052,7 +2175,7 @@
           <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="55" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2061,126 +2184,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1253">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysuser/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-905">
-          <caret line="176" column="26" lean-forward="false" selection-start-line="176" selection-start-column="26" selection-end-line="176" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysconfig/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="85" column="10" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="85" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/cancel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/Add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/order/cancel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="48" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/resources/config/ibatis/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="43" lean-forward="true" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/order/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="197" column="30" lean-forward="false" selection-start-line="197" selection-start-column="30" selection-end-line="197" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4431">
-          <caret line="211" column="41" lean-forward="false" selection-start-line="211" selection-start-column="41" selection-end-line="211" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/RedisTestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/LogForPayService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/LogForLoginService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/HistoryAddressService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-168">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/OrdersTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/SysUserServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="30" column="78" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2188,14 +2195,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="47" column="31" lean-forward="false" selection-start-line="44" selection-start-column="3" selection-end-line="47" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="59" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -2206,32 +2205,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="75" column="63" lean-forward="false" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="63" />
-          <folding>
-            <marker date="1499656727495" expanded="true" signature="4136:4243" ph="select from HistoryAddress" />
-            <marker date="1499656727495" expanded="true" signature="4378:4415" ph="select count... HistoryAddress" />
-            <marker date="1499656727495" expanded="true" signature="4612:4667" ph="delete from " />
-            <marker date="1499656727495" expanded="true" signature="4772:4800" ph="delete from " />
-            <marker date="1499656727495" expanded="true" signature="7703:9021" ph="update Histo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/Orders.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3740">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2239,7 +2216,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-989">
           <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2247,7 +2223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2255,7 +2230,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="614" column="0" lean-forward="false" selection-start-line="614" selection-start-column="0" selection-end-line="614" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2263,7 +2237,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-947">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2271,7 +2244,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-42">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2279,11 +2251,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-          <folding>
-            <element signature="e#96#289#0" expanded="false" />
-            <element signature="e#297#490#0" expanded="false" />
-            <element signature="e#498#693#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2291,7 +2258,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="15" column="80" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="15" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2299,9 +2265,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="28" column="37" lean-forward="false" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2309,15 +2272,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/HistoryAddressServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="25" column="56" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="25" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2325,10 +2279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="145" column="40" lean-forward="false" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="40" />
-          <folding>
-            <element signature="method#findlist#0;class#HistoryAddressRestImpl#0" expanded="false" />
-            <element signature="method#updateHistoryAddress#0;class#HistoryAddressRestImpl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2336,7 +2286,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="96" column="6" lean-forward="false" selection-start-line="96" selection-start-column="6" selection-end-line="96" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2344,9 +2293,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
           <caret line="44" column="43" lean-forward="false" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2354,7 +2300,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2362,7 +2307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2370,7 +2314,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-61">
           <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2378,22 +2321,158 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="164" column="14" lean-forward="false" selection-start-line="164" selection-start-column="14" selection-end-line="164" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="42" column="6" lean-forward="false" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92">
+          <caret line="420" column="9" lean-forward="false" selection-start-line="406" selection-start-column="8" selection-end-line="420" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2058">
+          <caret line="100" column="49" lean-forward="false" selection-start-line="100" selection-start-column="49" selection-end-line="100" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/cancel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="78" column="15" lean-forward="true" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="32" column="119" lean-forward="false" selection-start-line="32" selection-start-column="119" selection-end-line="32" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="32" column="54" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="32" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-821">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="70" lean-forward="false" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/LogForLoginMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/LogForLoginMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysConfigMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499327619098" expanded="true" signature="2558:2664" ph="select from CommonComment" />
-            <marker date="1499327619098" expanded="true" signature="2799:2835" ph="select count... CommonComment" />
-            <marker date="1499327619098" expanded="true" signature="3032:3086" ph="delete from " />
-            <marker date="1499327619098" expanded="true" signature="3191:3218" ph="delete from " />
-            <marker date="1499327619098" expanded="true" signature="4943:5602" ph="update Commo... " />
+            <marker date="1499322769074" expanded="true" signature="3438:3536" ph="select from sysconfig" />
+            <marker date="1499322769074" expanded="true" signature="3628:3674" ph="delete from " />
+            <marker date="1499322769074" expanded="true" signature="4051:4072" ph="delete from " />
+            <marker date="1499322769074" expanded="true" signature="6887:6917" ph="select count... sysconfig" />
+            <marker date="1499322769074" expanded="true" signature="8490:8893" ph="update sysco... " />
+            <marker date="1499322769074" expanded="true" signature="9114:10111" ph="update sysco... " />
+            <marker date="1499322769074" expanded="true" signature="10216:10572" ph="update sysco... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis-spring/1.1.1/mybatis-spring-1.1.1-sources.jar!/org/mybatis/spring/MyBatisExceptionTranslator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="76" column="3" lean-forward="false" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/OrdersServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/LogForPayMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/OrderComment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrdersMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21">
-          <caret line="95" column="42" lean-forward="false" selection-start-line="95" selection-start-column="42" selection-end-line="95" selection-end-column="42" />
+        <state relative-caret-position="1155">
+          <caret line="124" column="13" lean-forward="false" selection-start-line="124" selection-start-column="13" selection-end-line="124" selection-end-column="13" />
           <folding>
-            <element signature="n#insert#0;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#sql#0;n#mapper#0;n#!!top" expanded="false" />
             <element signature="n#insert#1;n#mapper#0;n#!!top" expanded="false" />
             <marker date="1499662487249" expanded="true" signature="10459:10488" ph="select count... orders" />
             <marker date="1499662487249" expanded="true" signature="10724:10839" ph="select from orders" />
@@ -2406,98 +2485,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRest.java">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysAccountMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/SysConfigMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/HistoryAddressServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="75" column="63" lean-forward="false" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="63" />
+          <folding>
+            <marker date="1499656727495" expanded="true" signature="4136:4243" ph="select from HistoryAddress" />
+            <marker date="1499656727495" expanded="true" signature="4378:4415" ph="select count... HistoryAddress" />
+            <marker date="1499656727495" expanded="true" signature="4612:4667" ph="delete from " />
+            <marker date="1499656727495" expanded="true" signature="4772:4800" ph="delete from " />
+            <marker date="1499656727495" expanded="true" signature="7703:9021" ph="update Histo... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/HistoryAddressMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/mobileuserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
-          <caret line="42" column="6" lean-forward="false" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRestImpl.java">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/OrderCommentService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="420" column="9" lean-forward="false" selection-start-line="406" selection-start-column="8" selection-end-line="420" selection-end-column="9" />
-          <folding>
-            <element signature="e#2173#2195#0" expanded="false" />
-            <element signature="e#9075#9094#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2058">
-          <caret line="100" column="49" lean-forward="false" selection-start-line="100" selection-start-column="49" selection-end-line="100" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/cancel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc;n#CommonCommentcancel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc;n#AddValidator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="78" column="15" lean-forward="true" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
-          <folding>
-            <element signature="e#894#904#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="32" column="119" lean-forward="false" selection-start-line="32" selection-start-column="119" selection-end-line="32" selection-end-column="119" />
+        <state relative-caret-position="271">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/CommonCommentRestImpl.java">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="32" column="54" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="32" selection-end-column="54" />
+        <state relative-caret-position="61">
+          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/CommonCommentRestImpl.java">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/OrderCommentMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-821">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="99">
+          <caret line="132" column="61" lean-forward="false" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#sql#0;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#sql#1;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#select#0;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#delete#1;n#mapper#0;n#!!top" expanded="false" />
+            <element signature="n#select#1;n#mapper#0;n#!!top" expanded="false" />
+            <marker date="1499780754292" expanded="true" signature="2354:2389" ph="select count... ordercomment" />
+            <marker date="1499780754292" expanded="true" signature="2600:2626" ph="delete from " />
+            <marker date="1499780754292" expanded="true" signature="2823:2880" ph="delete from " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/resources/rest-services-storage.xml">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/OrderCommentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="70" lean-forward="false" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
-          <folding />
+        <state relative-caret-position="184">
+          <caret line="57" column="54" lean-forward="false" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1483#1499#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/OrderCommentServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-63">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
