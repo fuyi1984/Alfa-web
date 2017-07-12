@@ -40,5 +40,12 @@ public interface OrderCommentService {
      * 根据条件查询记录集
      */
     List<OrderComment> selectByParams(Criteria example);
+
+    /**
+     * 批量删除订单评论
+     * @param list
+     * @return
+     */
+    int batchdeleteordercomment(List<String> list);
 }
 

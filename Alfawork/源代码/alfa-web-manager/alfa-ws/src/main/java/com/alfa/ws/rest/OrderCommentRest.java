@@ -1,7 +1,6 @@
-package com.alfa.mobile.rest;
+package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.OrderComment;
-import com.alfa.web.pojo.Orders;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;

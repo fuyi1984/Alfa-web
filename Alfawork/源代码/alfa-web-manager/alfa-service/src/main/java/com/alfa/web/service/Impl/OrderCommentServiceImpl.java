@@ -34,12 +34,12 @@ public class OrderCommentServiceImpl implements OrderCommentService {
 
     @Override
     public int deleteByParams(Criteria example) {
-        return 0;
+        return this.orderCommentMapper.deleteByParams(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Long orderid) {
-        return 0;
+        return this.orderCommentMapper.deleteByPrimaryKey(orderid);
     }
 
     @Override
@@ -65,5 +65,10 @@ public class OrderCommentServiceImpl implements OrderCommentService {
     @Override
     public List<OrderComment> selectByParams(Criteria example) {
         return this.orderCommentMapper.selectByParams(example);
+    }
+
+    @Override
+    public int batchdeleteordercomment(List<String> list) {
+        return this.orderCommentMapper.batchdeleteordercomment(list);
     }
 }

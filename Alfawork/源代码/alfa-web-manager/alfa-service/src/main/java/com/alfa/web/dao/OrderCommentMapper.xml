@@ -77,6 +77,15 @@
         where Id = #{Id}
     </delete>
 
+    <delete id="batchdeleteordercomment" parameterType="java.util.List">
+        delete from
+        ordercomment
+        where Id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.OrderComment">
         <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()

@@ -57,4 +57,14 @@ public class OrderCommentServiceTest extends TestBase {
         int result=this.orderCommentService.countByParams(criteria);
         System.out.println(result);
     }
+
+    @Test
+    public void batchdeleteordercomment(){
+        List<String> idlist=new ArrayList<String>();
+        idlist.add("5");
+        idlist.add("6");
+        idlist.add("7");
+        idlist.add("8");
+        System.out.println(this.orderCommentService.batchdeleteordercomment(idlist));
+    }
 }

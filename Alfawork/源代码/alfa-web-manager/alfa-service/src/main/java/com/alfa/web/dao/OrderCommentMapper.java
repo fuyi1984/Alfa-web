@@ -43,4 +43,11 @@ public interface OrderCommentMapper {
      */
     List<OrderComment> selectByParams(Criteria example);
 
+    /**
+     * 批量删除订单评论
+     * @param idlist
+     * @return
+     */
+    int batchdeleteordercomment(List<String> idlist);
+
 }

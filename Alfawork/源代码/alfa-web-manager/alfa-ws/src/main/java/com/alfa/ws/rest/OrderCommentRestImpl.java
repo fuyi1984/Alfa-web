@@ -1,15 +1,10 @@
-package com.alfa.mobile.rest;
+package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.OrderComment;
-import com.alfa.web.pojo.Orders;
-import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.service.OrderCommentService;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SmsService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
-import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
@@ -44,10 +39,8 @@ public class OrderCommentRestImpl implements OrderCommentRest{
         int result=this.orderCommentService.Batchinsert(commentlist);
 
         if(result>=1){
-            //插入成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
         }else{
-            //插入失败
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
 
