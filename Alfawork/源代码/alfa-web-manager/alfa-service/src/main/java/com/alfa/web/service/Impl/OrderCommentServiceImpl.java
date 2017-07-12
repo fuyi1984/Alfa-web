@@ -27,7 +27,9 @@ public class OrderCommentServiceImpl implements OrderCommentService {
 
     @Override
     public int countByParams(Criteria example) {
-        return 0;
+        int count=this.orderCommentMapper.countByParams(example);
+        logger.debug("count:{}",count);
+        return count;
     }
 
     @Override
@@ -49,9 +51,9 @@ public class OrderCommentServiceImpl implements OrderCommentService {
     @Override
     public int Batchinsert(List<OrderComment> recordlst) {
 
-        /*for(OrderComment orderComment:recordlst){
+        for(OrderComment orderComment:recordlst){
             WebUtil.prepareInsertParams(orderComment);
-        }*/
+        }
 
         HashMap<String,Object> map=new HashMap<String, Object>();
         map.put("list",recordlst);
@@ -62,6 +64,6 @@ public class OrderCommentServiceImpl implements OrderCommentService {
 
     @Override
     public List<OrderComment> selectByParams(Criteria example) {
-        return null;
+        return this.orderCommentMapper.selectByParams(example);
     }
 }

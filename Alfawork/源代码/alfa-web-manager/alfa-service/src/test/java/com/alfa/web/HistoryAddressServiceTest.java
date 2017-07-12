@@ -103,4 +103,12 @@ public class HistoryAddressServiceTest extends TestBase {
             System.out.println(historyAddress.getFulladdress());
         }
     }
+
+
+    @Test
+    public void deleteHistoryAddress(){
+        HistoryAddress historyAddress=new HistoryAddress();
+        historyAddress.setId(1L);
+        historyAddressService.deleteByPrimaryKey(historyAddress.getId());
+    }
 }

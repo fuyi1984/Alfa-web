@@ -108,8 +108,8 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete from HistoryAddress A
-        where A.id = #{id}
+        delete from HistoryAddress
+        where id = #{id}
     </delete>
 
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">

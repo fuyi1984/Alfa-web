@@ -20,6 +20,7 @@
             <bean class="com.alfa.mobile.rest.HistoryAddressRestImpl"/>
             <bean class="com.alfa.mobile.rest.weixin_usersRestImpl"/>
             <bean class="com.alfa.mobile.rest.CommonCommentRestImpl"/>
+            <bean class="com.alfa.mobile.rest.OrderCommentRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

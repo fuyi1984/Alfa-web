@@ -4,6 +4,7 @@ import com.alfa.web.pojo.OrderComment;
 import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.service.OrderCommentService;
 import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,15 @@ public class OrderCommentServiceTest extends TestBase {
         orderCommentList.add(orderComment2);
 
         orderCommentService.Batchinsert(orderCommentList);
+    }
+
+    @Test
+    public void selectByParams(){
+        Criteria criteria = new Criteria();
+        criteria.put("orderId", "1");
+        List<OrderComment> orderCommentList=this.orderCommentService.selectByParams(criteria);
+        System.out.println(orderCommentList.size());
+        int result=this.orderCommentService.countByParams(criteria);
+        System.out.println(result);
     }
 }
