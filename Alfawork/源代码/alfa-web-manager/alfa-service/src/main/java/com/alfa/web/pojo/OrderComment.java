@@ -12,6 +12,20 @@ public class OrderComment extends Entity implements Serializable {
 
     private Long orderId;
 
+    /**
+     * 订单号
+
+     */
+    private String orderno;
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
     public String getContent() {
         return content;
     }

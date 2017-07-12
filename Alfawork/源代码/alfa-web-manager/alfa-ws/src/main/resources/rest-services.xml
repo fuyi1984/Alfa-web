@@ -19,6 +19,7 @@
             <bean class="com.alfa.ws.rest.OrdersRestImpl"/>
             <bean class="com.alfa.ws.rest.HistoryAddressRestImpl"/>
             <bean class="com.alfa.ws.rest.CommonCommentRestImpl"/>
+            <bean class="com.alfa.ws.rest.OrderCommentRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

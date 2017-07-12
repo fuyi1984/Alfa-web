@@ -25,10 +25,7 @@ import javax.ws.rs.core.Response;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/6/11.
@@ -428,11 +425,13 @@ public class SysUserRestImpl implements SysUserRest {
 
         //String phone = registerUser.getMobile().trim();
         //String Captcha = registerUser.getCaptcha().trim();
+
         String openid = registerUser.getOpenid().trim();
 
         //region 手机号和验证码判断
 
         //手机号验证码为空返回提示
+
         if (StringUtil.isNullOrEmpty(phone) || StringUtil.isNullOrEmpty(Captcha)) {
             /*return Response.status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "请输入手机号和验证码。", null))).build();*/
@@ -567,12 +566,11 @@ public class SysUserRestImpl implements SysUserRest {
             //String json = JsonUtil.toJson(
             //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
-            currentUser.setPassword("");
-            currentUser.setCaptcha("");
-            currentUser.setVerifyCode("");
             currentUser.setToken("");
 
-            String json = JsonUtil.toJson(currentUser);
+            //String json = JsonUtil.toJson(currentUser);
+
+            String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
             response = Response.status(Response.Status.OK).entity(json).build();
 
@@ -592,6 +590,41 @@ public class SysUserRestImpl implements SysUserRest {
 
         //endregion
 
+        return response;
+    }
+
+    @Override
+    public Response logoutUser(HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("resultStatus", "false");
+
+        Response response = Response.status(Response.Status.OK).entity(resultMap).build();
+
+        try {
+            HttpSession session = servletRequest.getSession();
+
+            if (session != null && session.getId() != null && !"".equals(session.getId())) {
+                if (session != null) {
+
+                    Enumeration e = session.getAttributeNames();
+                    while (e.hasMoreElements()) {
+                        String sessionName = (String) e.nextElement();
+                        log.info("logoutUser----------------exits user session name=" + sessionName + " sessionId=" + session.getId());
+                        session.removeAttribute(sessionName);
+                    }
+
+                    session.invalidate();
+                    resultMap = new HashMap<String, Object>();
+                    resultMap.put("resultStatus", "true");
+                    return Response.status(Response.Status.OK).entity(resultMap).build();
+                }
+            }
+
+        } catch (Exception e) {
+            log.error("user logout error---------------" + e.getMessage());
+            e.printStackTrace();
+            return response;
+        }
         return response;
     }
 

@@ -113,6 +113,15 @@ public interface SysUserRest {
                           @Context HttpServletResponse servletResponse) throws ParseException;
 
     /**
+     * 退出手机用户
+     */
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/logout")
+    public Response logoutUser(@Context HttpServletRequest servletRequest,
+                               @Context HttpServletResponse servletResponse);
+
+    /**
      * 获取当前登录用户的信息(微信)
      * @param user
      * @return

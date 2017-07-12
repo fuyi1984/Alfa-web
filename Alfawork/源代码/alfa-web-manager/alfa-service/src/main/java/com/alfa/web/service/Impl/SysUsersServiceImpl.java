@@ -182,6 +182,7 @@ public class SysUsersServiceImpl implements SysUsersService {
         SysRole roles = this.sysRoleMapper.selectByPrimaryKey(currentUser.getRoleId());
 
         session.setMaxInactiveInterval(60 * 60);
+
         // 清空密码
         currentUser.setPassword("");
         currentUser.setCaptcha("");
@@ -220,6 +221,8 @@ public class SysUsersServiceImpl implements SysUsersService {
 
         //清空密码
         currentUser.setPassword("");
+        currentUser.setCaptcha("");
+        currentUser.setVerifyCode("");
 
         userSession=new UserSession();
         userSession.setId(session.getId());
