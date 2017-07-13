@@ -1,8 +1,11 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.Orders;
+import com.alfa.web.pojo.VwSmsStatus;
 import com.alfa.web.service.OrdersService;
+import com.alfa.web.service.SmsService;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.VwSmsStatusService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -13,11 +16,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/6/7.
@@ -28,6 +29,12 @@ public class OrdersTest extends TestBase {
 
     @Autowired
     private OrdersService ordersService;
+
+    @Autowired
+    private VwSmsStatusService vwSmsStatusService;
+
+    @Autowired
+    private SmsService smsService;
 
     @Test
     public void insertOrder(){
@@ -98,6 +105,79 @@ public class OrdersTest extends TestBase {
         System.out.println(map.get("workerid"));
         System.out.println(map.get("orgstatus"));
 
+    }
+
+    @Test
+    public void SendSms() throws UnsupportedEncodingException {
+        logger.info("MonitorSmsStatus Start !!!");
+
+        List<String> idlist = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Criteria criteria = new Criteria();
+        criteria.put("isSms", "0");
+
+        List<VwSmsStatus> vwSmsStatusList = this.vwSmsStatusService.selectByParams(criteria);
+
+        if (vwSmsStatusList.size() > 0) {
+            //region 短信通知
+            if (vwSmsStatusList.size() > 3) {
+                for (int i = 0; i < 3; i++) {
+                    if (PropertiesUtil.getProperty("sms.open").equals("true")) {
+
+                        /*String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),vwSmsStatusList.get(i).getOrgname(),vwSmsStatusList.get(i).getIphone(),vwSmsStatusList.get(i).getConfirmDt(),vwSmsStatusList.get(i).getOrderno()));
+
+                        if (ret == "0") {
+                            logger.info("通知收运人员的短信发送成功!");
+                        } else {
+                            logger.info("通知收运人员的短信发送失败!");
+                        }
+*/
+                        idlist.add(String.valueOf(vwSmsStatusList.get(i).getOrderid()));
+                    }
+                }
+            } else {
+                for (VwSmsStatus item : vwSmsStatusList) {
+                    if (PropertiesUtil.getProperty("sms.open").equals("true")) {
+
+                        /*String ret = this.smsService.sendSMS(item.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),item.getOrgname(),item.getIphone(),item.getConfirmDt(),item.getOrderno()));
+
+                        if (ret == "0") {
+                            logger.info("通知收运人员的短信发送成功!");
+                        } else {
+                            logger.info("通知收运人员的短信发送失败!");
+                        }*/
+
+                        idlist.add(String.valueOf(item.getOrderid()));
+                    }
+                }
+            }
+
+            //endregion
+        }
+
+        if (idlist.size() > 0) {
+
+            //region 更新短信状态
+
+            criteria.clear();
+
+            criteria.put("confirmDt", sdf.format(new Date()));
+            criteria.put("orderidlist",idlist.toArray());
+
+            int result=this.ordersService.batchupdateSmsStatus(criteria);
+
+            if(result>=1){
+                logger.info("update order success!!!");
+            }else{
+                logger.info("update order failure!!!");
+            }
+
+            //endregion
+
+        }
+
+        logger.info("MonitorSmsStatus End !!!");
     }
 
 }

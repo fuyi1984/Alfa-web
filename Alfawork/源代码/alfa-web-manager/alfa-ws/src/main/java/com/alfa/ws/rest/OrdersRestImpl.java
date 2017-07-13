@@ -164,7 +164,7 @@ public class OrdersRestImpl implements OrdersRest {
 
             //region 管理员分配订单给收油人员后发送短信通知
 
-            if(order.getOrgstatus().equals("2")) {
+            /*if(order.getOrgstatus().equals("2")) {
                 if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
                     String ret = this.smsService.sendSMS(order.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),order.getOrgname(),order.getIphone(),order.getCreatedDt()));
@@ -176,7 +176,7 @@ public class OrdersRestImpl implements OrdersRest {
                     }
 
                 }
-            }
+            }*/
 
             //endregion
 
@@ -363,6 +363,8 @@ public class OrdersRestImpl implements OrdersRest {
 
         Map map = WebUtil.getParamsMap(param, "utf-8");
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         Criteria criteria = new Criteria();
 
         if (!StringUtil.isNullOrEmpty(map.get("status"))) {
@@ -383,6 +385,8 @@ public class OrdersRestImpl implements OrdersRest {
             WebUtil.prepareUpdateParams(order);*/
 
         }
+
+        criteria.put("confirmDt", sdf.format(new Date()));
 
         int result = 0;
 

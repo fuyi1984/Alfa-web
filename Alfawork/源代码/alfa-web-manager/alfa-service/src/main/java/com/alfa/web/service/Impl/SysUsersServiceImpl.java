@@ -178,6 +178,14 @@ public class SysUsersServiceImpl implements SysUsersService {
 
     @Override
     public UserSession createSession(HttpSession session, HttpServletResponse servletResponse, String currentPlatformUser, SysUsers currentUser) {
+
+        //存在则删除重建session
+        UserSession userSession = (UserSession) session.getAttribute(WebConstants.CURRENT_PLATFORM_USER);
+
+        if(!StringUtil.isNullOrEmpty(userSession)){
+            session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
+        }
+
         // 放入角色信息
         SysRole roles = this.sysRoleMapper.selectByPrimaryKey(currentUser.getRoleId());
 
@@ -188,7 +196,7 @@ public class SysUsersServiceImpl implements SysUsersService {
         currentUser.setCaptcha("");
         currentUser.setVerifyCode("");
 
-        UserSession userSession = new UserSession();
+        userSession = new UserSession();
         userSession.setId(session.getId());
         userSession.setCreationTime(session.getCreationTime());
         userSession.setUser(currentUser);

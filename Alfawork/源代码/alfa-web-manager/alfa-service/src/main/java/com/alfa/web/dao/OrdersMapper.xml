@@ -16,6 +16,7 @@
         <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="confirmDt" property="confirmDt" jdbcType="TIMESTAMP"/>
+        <result column="isSms" property="isSms" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -39,6 +40,9 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.isSms!=null">
+                and A.isSms=#{condition.isSms}
+            </if>
             <if test="condition.confirmDt!=null">
                 and A.confirmDt=#{condition.confirmDt}
             </if>
@@ -109,7 +113,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.addressId,A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
+        A.isSms,A.addressId,A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
     </sql>
@@ -118,9 +122,11 @@
         <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into orders(addressId,confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        insert into
+        orders(isSms,addressId,confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
         updatedBy,updatedDt,version,workerid)
-        values (#{addressId},#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address}, #{num}, #{orgname},#{orgstatus},
+        values (#{isSms},#{addressId},#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address},
+        #{num}, #{orgname},#{orgstatus},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
     </insert>
 
@@ -318,6 +324,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
         update orders
         <set>
+            <if test="isSms!=null">
+                isSms=#{isSms},
+            </if>
             <if test="addressId!=null">
                 addressId=#{addressId},
             </if>
@@ -409,11 +418,33 @@
     <update id="batchupdateorderWorker" parameterType="com.alfa.web.util.pojo.Criteria">
         update orders A
         set
-        A.orgstatus=#{condition.status},
-        A.workerid=#{condition.worker}
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
+            A.orgstatus=#{condition.status},
+
+            A.workerid=#{condition.worker},
+
+            A.isSms='0',
+
+            A.confirmDt=#{condition.confirmDt}
+
+        where orderid in
+        <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量更新订单分配后的短信发送状态-->
+    <update id="batchupdateSmsStatus" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+
+        A.isSms='1',
+
+        A.confirmDt=#{condition.confirmDt}
+
+        where orderid in
+        <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
     </update>
 
 </mapper>

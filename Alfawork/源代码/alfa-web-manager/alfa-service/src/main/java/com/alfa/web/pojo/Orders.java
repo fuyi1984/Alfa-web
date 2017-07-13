@@ -190,6 +190,19 @@ public class Orders extends Entity implements Serializable {
      */
     private Date confirmDt;
 
+    /**
+     * 是否已经发送订单分配通知短信
+     */
+    private String isSms;
+
+    public String getIsSms() {
+        return isSms;
+    }
+
+    public void setIsSms(String isSms) {
+        this.isSms = isSms;
+    }
+
     public Date getConfirmDt() {
         return confirmDt;
     }

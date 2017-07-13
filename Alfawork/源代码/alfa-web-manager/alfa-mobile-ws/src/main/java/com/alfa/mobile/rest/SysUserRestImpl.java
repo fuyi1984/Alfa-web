@@ -566,11 +566,17 @@ public class SysUserRestImpl implements SysUserRest {
             //String json = JsonUtil.toJson(
             //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
+            currentUser.setPassword("");
+            currentUser.setCaptcha("");
+            currentUser.setVerifyCode("");
             currentUser.setToken("");
 
-            //String json = JsonUtil.toJson(currentUser);
+            this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
-            String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+            String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
+                    "7",currentUser));
+
+            //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
             response = Response.status(Response.Status.OK).entity(json).build();
 

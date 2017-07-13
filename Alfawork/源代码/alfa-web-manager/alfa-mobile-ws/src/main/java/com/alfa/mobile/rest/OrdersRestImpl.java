@@ -167,7 +167,7 @@ public class OrdersRestImpl implements OrdersRest {
         if (result == 1) {
 
             //region 管理员分配订单给收油人员后发送短信通知
-
+            /*
             if(order.getOrgstatus().equals("2")) {
                 if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
@@ -180,8 +180,7 @@ public class OrdersRestImpl implements OrdersRest {
                     }
 
                 }
-            }
-
+            }*/
             //endregion
 
             //订单更新成功
@@ -361,10 +360,20 @@ public class OrdersRestImpl implements OrdersRest {
         }
     }
 
+    /**
+     * 批量分配订单给指定的收运人员
+     * @param param
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @Override
     public Response batchupdateorderWorker(String param, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
 
         Map map = WebUtil.getParamsMap(param, "utf-8");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Criteria criteria = new Criteria();
 
@@ -387,11 +396,16 @@ public class OrdersRestImpl implements OrdersRest {
 
         }
 
+        criteria.put("confirmDt", sdf.format(new Date()));
+        //criteria.put("isSms","0");
+
+
         int result = 0;
 
         result = this.ordersService.batchupdateorderWorker(criteria);
 
         if (result >= 1) {
+
             return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(
                             new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Update_Success, null)))
@@ -404,6 +418,11 @@ public class OrdersRestImpl implements OrdersRest {
         }
     }
 
+    /**
+     * 批量删除订单
+     * @param list
+     * @return
+     */
     @Override
     public Response batchdeleteorder(List<String> list) {
 

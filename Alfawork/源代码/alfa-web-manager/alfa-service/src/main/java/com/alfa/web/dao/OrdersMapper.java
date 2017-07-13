@@ -109,4 +109,11 @@ public interface OrdersMapper {
      * @return
      */
     int batchupdateorderWorker(Criteria example);
+
+    /**
+     * 批量更新订单的短信发送状态
+     * @param example
+     * @return
+     */
+    int batchupdateSmsStatus(Criteria example);
 }

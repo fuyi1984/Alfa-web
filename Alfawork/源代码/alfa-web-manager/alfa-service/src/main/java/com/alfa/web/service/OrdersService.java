@@ -114,4 +114,11 @@ public interface OrdersService {
      */
     int updateWorkerIdByParams(Criteria example);
 
+    /**
+     * 批量更新短信的发送状态
+     * @param example
+     * @return
+     */
+    int batchupdateSmsStatus(Criteria example);
+
 }
