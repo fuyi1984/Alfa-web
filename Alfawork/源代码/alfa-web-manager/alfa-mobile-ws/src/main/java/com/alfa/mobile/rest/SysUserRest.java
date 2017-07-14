@@ -49,7 +49,7 @@ public interface SysUserRest {
     public Response getCaptchaForWorker(@PathParam("mobile") String mobile);
 
     /**
-     * 产废单位获取手机验证码
+     * 产废单位获取手机验证码(注册)
      * @param mobile
      * @return
      */
@@ -58,6 +58,17 @@ public interface SysUserRest {
     @Path("/getCaptchaForFactory/{mobile}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCaptchaForFactory(@PathParam("mobile") String mobile);
+
+    /**
+     * 产废单位获取手机验证码(登录)
+     * @param mobile
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Path("/getCaptchaForFactoryForLogin/{mobile}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCaptchaForFactoryForLogin(@PathParam("mobile") String mobile);
 
     /**
      * 注册，输入验证码

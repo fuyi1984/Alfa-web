@@ -72,6 +72,11 @@ public class SysUserRestImpl implements SysUserRest {
         //endregion
     }
 
+    /**
+     * 收运人员获取手机验证码(登录)
+     * @param mobile
+     * @return
+     */
     @Override
     public Response getCaptchaForWorker(String mobile) {
 
@@ -117,6 +122,11 @@ public class SysUserRestImpl implements SysUserRest {
         //endregion
     }
 
+    /**
+     * 产废单位获取手机验证码(注册)
+     * @param mobile
+     * @return
+     */
     @Override
     public Response getCaptchaForFactory(String mobile) {
 
@@ -131,12 +141,15 @@ public class SysUserRestImpl implements SysUserRest {
 
         if (userList.size() > 0) {
 
-            SysUsers users = userList.get(0);
-            if (users.getRoleId().equals(9L)) {
+            //SysUsers users = userList.get(0);
+
+            /*if (users.getRoleId().equals(9L)) {
                 //region 角色为收运人员,不能获取短信验证码
                 return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
                 //endregion
-            }
+            }*/
+            //手机号已经存在，不能获取短信验证码
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
         }
 
         //endregion
@@ -155,6 +168,60 @@ public class SysUserRestImpl implements SysUserRest {
         }
         //短信发送成功
         return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "3", code)).build();
+
+        //endregion
+    }
+
+    /**
+     * 产废单位获取手机验证码(登录)
+     * @param mobile
+     * @return
+     */
+    @Override
+    public Response getCaptchaForFactoryForLogin(String mobile) {
+        //region 产废单位获取手机验证码
+
+        String code = "";
+
+        Criteria criteria = new Criteria();
+        criteria.put("phone", mobile);
+
+        List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
+
+        if (userList.size() > 0) {
+
+            SysUsers users = userList.get(0);
+
+            if (users.getRoleId().equals(10L)) {
+                //region 短信发送
+
+                try {
+                    VerifyCode vc = new VerifyCode();
+                    vc.setType(WebConstants.VerifyCode.type0);
+                    vc.setBoundAccount(mobile);
+                    code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // 短信发送失败
+                    return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "2")).build();
+                }
+
+                //endregion
+
+                //短信发送成功
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "3", code)).build();
+
+
+            }else{
+                //region 角色非产废单位,不能获取短信验证码
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
+                //endregion
+            }
+        }else{
+            //region 手机号不存在,不能获取短信验证码
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "4")).build();
+            //endregion
+        }
 
         //endregion
     }
