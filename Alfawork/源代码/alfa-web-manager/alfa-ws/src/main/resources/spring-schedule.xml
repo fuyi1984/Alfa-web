@@ -18,7 +18,7 @@
         <property name="cronExpression" value="0 /3 * * * ?"/>
     </bean>
 
-    <!--监控订单通知短信的状态,每1分钟执行一次-->
+    <!--监控订单通知短信的状态,每3分钟执行一次-->
     <bean id="MonitorSmsStatusObject" class="com.alfa.web.job.MonitorSmsStatus"/>
     <bean id="MonitorSmsStatusJob"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -29,7 +29,7 @@
     <bean id="MonitorSmsStatusTrigger"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="MonitorSmsStatusJob"/>
-        <property name="cronExpression" value="0 /1 * * * ?"/>
+        <property name="cronExpression" value="0 /3 * * * ?"/>
     </bean>
 
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">

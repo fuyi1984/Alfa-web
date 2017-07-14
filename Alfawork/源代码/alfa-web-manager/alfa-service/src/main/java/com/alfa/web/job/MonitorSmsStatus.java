@@ -41,70 +41,72 @@ public class MonitorSmsStatus {
 
         logger.info("MonitorSmsStatus Start !!!");
 
-        List<String> idlist = new ArrayList<String>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if (PropertiesUtil.getProperty("sms.open").equals("true")) {
 
-        Criteria criteria = new Criteria();
-        criteria.put("isSms", "0");
+            List<String> idlist = new ArrayList<String>();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        List<VwSmsStatus> vwSmsStatusList = this.vwSmsStatusService.selectByParams(criteria);
+            Criteria criteria = new Criteria();
+            criteria.put("isSms", "0");
 
-        if (vwSmsStatusList.size() > 0) {
-            //region 短信通知
-            if (vwSmsStatusList.size() > 3) {
-                for (int i = 0; i < 3; i++) {
-                    if (PropertiesUtil.getProperty("sms.open").equals("true")) {
+            List<VwSmsStatus> vwSmsStatusList = this.vwSmsStatusService.selectByParams(criteria);
 
-                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),vwSmsStatusList.get(i).getOrgname(),vwSmsStatusList.get(i).getIphone(),vwSmsStatusList.get(i).getConfirmDt(),vwSmsStatusList.get(i).getOrderno()));
+            if (vwSmsStatusList.size() > 0) {
+                //region 短信通知
+                if (vwSmsStatusList.size() > 3) {
+                    for (int i = 0; i < 3; i++) {
 
-                        if (ret == "0") {
+                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), vwSmsStatusList.get(i).getOrgname(), vwSmsStatusList.get(i).getIphone(), vwSmsStatusList.get(i).getConfirmDt().toString(), vwSmsStatusList.get(i).getOrderno()));
+
+                        if (ret.equals("0")) {
                             logger.info("通知收运人员的短信发送成功!");
                         } else {
                             logger.info("通知收运人员的短信发送失败!");
                         }
 
                         idlist.add(String.valueOf(vwSmsStatusList.get(i).getOrderid()));
+
                     }
-                }
-            } else {
-                for (VwSmsStatus item : vwSmsStatusList) {
-                    if (PropertiesUtil.getProperty("sms.open").equals("true")) {
+                } else {
+                    for (VwSmsStatus item : vwSmsStatusList) {
 
-                        String ret = this.smsService.sendSMS(item.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"),item.getOrgname(),item.getIphone(),item.getConfirmDt(),item.getOrderno()));
 
-                        if (ret == "0") {
+                        String ret = this.smsService.sendSMS(item.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), item.getOrgname(), item.getIphone(), item.getConfirmDt().toString(), item.getOrderno()));
+
+                        if (ret.equals("0")) {
                             logger.info("通知收运人员的短信发送成功!");
                         } else {
                             logger.info("通知收运人员的短信发送失败!");
                         }
 
                         idlist.add(String.valueOf(item.getOrderid()));
+
                     }
                 }
+
+                //endregion
             }
 
-            //endregion
-        }
+            if (idlist.size() > 0) {
 
-        if (idlist.size() > 0) {
+                //region 更新短信状态
 
-            //region 更新短信状态
+                criteria.clear();
 
-            criteria.clear();
+                criteria.put("confirmDt", sdf.format(new Date()));
+                criteria.put("orderidlist", idlist.toArray());
 
-            criteria.put("confirmDt", sdf.format(new Date()));
-            criteria.put("orderidlist",idlist.toArray());
+                int result = this.ordersService.batchupdateSmsStatus(criteria);
 
-            int result=this.ordersService.batchupdateSmsStatus(criteria);
+                if (result >= 1) {
+                    logger.info("update order success!!!");
+                } else {
+                    logger.info("update order failure!!!");
+                }
 
-            if(result>=1){
-                logger.info("update order success!!!");
-            }else{
-                logger.info("update order failure!!!");
+                //endregion
+
             }
-
-            //endregion
-
         }
 
         logger.info("MonitorSmsStatus End !!!");

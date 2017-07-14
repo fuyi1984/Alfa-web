@@ -3,11 +3,11 @@
  */
 function configupdateform() {
     var params = {
-        "id": $('#Id_update').val(),
-        "configName": $('#configName_update').val(),
-        "configKey": $('#configKey_update').val(),
-        "configValue": $('#configValue_update').val(),
-        "description": $('#description_update').val()
+        "id": $.trim($('#Id_update').val()),
+        "configName": $.trim($('#configName_update').val()),
+        "configKey": $.trim($('#configKey_update').val()),
+        "configValue": $.trim($('#configValue_update').val()),
+        "description": $.trim($('#description_update').val())
     }
 
     console.log(params);
