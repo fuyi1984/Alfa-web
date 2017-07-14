@@ -56,7 +56,8 @@ public class MonitorSmsStatus {
                 if (vwSmsStatusList.size() > 3) {
                     for (int i = 0; i < 3; i++) {
 
-                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), vwSmsStatusList.get(i).getOrgname(), vwSmsStatusList.get(i).getIphone(), vwSmsStatusList.get(i).getConfirmDt().toString(), vwSmsStatusList.get(i).getOrderno()));
+                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), vwSmsStatusList.get(i).getOrgname(), vwSmsStatusList.get(i).getIphone(),
+                                sdf.format(vwSmsStatusList.get(i).getConfirmDt()), vwSmsStatusList.get(i).getOrderno()));
 
                         if (ret.equals("0")) {
                             logger.info("通知收运人员的短信发送成功!");
@@ -71,7 +72,7 @@ public class MonitorSmsStatus {
                     for (VwSmsStatus item : vwSmsStatusList) {
 
 
-                        String ret = this.smsService.sendSMS(item.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), item.getOrgname(), item.getIphone(), item.getConfirmDt().toString(), item.getOrderno()));
+                        String ret = this.smsService.sendSMS(item.getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), item.getOrgname(), item.getIphone(), sdf.format(item.getConfirmDt()), item.getOrderno()));
 
                         if (ret.equals("0")) {
                             logger.info("通知收运人员的短信发送成功!");

@@ -183,11 +183,11 @@ public class OrdersTest extends TestBase {
     @Test
     public void testSendSms() throws UnsupportedEncodingException {
 
-        //String message=String.format(PropertiesUtil.getProperty("notice.transporter"),"阿尔发石油","15320295813","2017-07-14 09:56:49","SN123");
+        String message=String.format(PropertiesUtil.getProperty("notice.transporter"),"阿尔发石油","15320295813",(new Date()).toString(),"SN123");
 
-        //String ret = this.smsService.sendSMS("15320295813",message);
+        String ret = this.smsService.sendSMS("15320295813",message);
 
-        String ret="0";
+        //String ret="0";
 
         if (ret.equals("0")) {
             logger.info("通知收运人员的短信发送成功!");
