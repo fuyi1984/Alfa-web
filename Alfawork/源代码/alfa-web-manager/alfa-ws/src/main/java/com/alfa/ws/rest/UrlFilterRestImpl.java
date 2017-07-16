@@ -1,7 +1,7 @@
-package com.alfa.ws.rest.Impl;
+package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.OrderComment;
-import com.alfa.web.pojo.UrlFilter;
+import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.UrlFilterService;
 import com.alfa.web.util.JsonUtil;
@@ -42,14 +42,14 @@ public class UrlFilterRestImpl implements UrlFilterRest {
      * @throws Exception
      */
     @Override
-    public Response inserturl(UrlFilter record) throws Exception {
+    public Response inserturl(TotalUrlFilters record) throws Exception {
 
         Criteria criteria=new Criteria();
 
-        criteria.put("Url",record.getUrl());
+        criteria.put("ApiAddress",record.getApiAddress());
         criteria.put("types",record.getTypes());
 
-        List<UrlFilter> urlFilterList=this.urlFilterService.selectByParams(criteria);
+        List<TotalUrlFilters> urlFilterList=this.urlFilterService.selectByParams(criteria);
 
         if(urlFilterList.size()==0){
             WebUtil.prepareInsertParams(record);
@@ -74,7 +74,7 @@ public class UrlFilterRestImpl implements UrlFilterRest {
      * @throws Exception
      */
     @Override
-    public Response deleteturl(UrlFilter record) throws Exception {
+    public Response deleteturl(TotalUrlFilters record) throws Exception {
 
         String json = "";
 
@@ -88,6 +88,33 @@ public class UrlFilterRestImpl implements UrlFilterRest {
             //删除失败
             json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
             return Response.status(Response.Status.OK).entity(json).build();
+        }
+    }
+
+    /**
+     * 批量删除
+     * @param list
+     * @return
+     */
+    @Override
+    public Response batchdeleteurl(List<String> list) {
+
+        int result = 0;
+
+        result=this.urlFilterService.batchdeleteurl(list);
+
+        if (result >= 1) {
+            //批量删除成功
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, "1", null)))
+                    .build();
+        } else {
+            //批量删除失败
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "2", null)))
+                    .build();
         }
     }
 
@@ -140,7 +167,7 @@ public class UrlFilterRestImpl implements UrlFilterRest {
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
-        List<UrlFilter> urlFilterList = this.urlFilterService.selectByParams(criteria);
+        List<TotalUrlFilters> urlFilterList = this.urlFilterService.selectByParams(criteria);
 
         int count = this.urlFilterService.countByParams(criteria);
 

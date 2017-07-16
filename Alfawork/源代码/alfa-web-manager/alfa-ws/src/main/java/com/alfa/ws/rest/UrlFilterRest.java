@@ -1,7 +1,7 @@
 package com.alfa.ws.rest;
 
 import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.UrlFilter;
+import com.alfa.web.pojo.TotalUrlFilters;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -35,7 +36,7 @@ public interface UrlFilterRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/inserturl")
-    public Response inserturl(UrlFilter record) throws Exception;
+    public Response inserturl(TotalUrlFilters record) throws Exception;
 
     /**
      *  删除Url
@@ -48,7 +49,19 @@ public interface UrlFilterRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/deleteurl")
-    public Response deleteturl(UrlFilter record) throws Exception;
+    public Response deleteturl(TotalUrlFilters record) throws Exception;
+
+    /**
+     * 批量删除Url
+     * @param list
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeleteurl")
+    public Response batchdeleteurl(List<String> list);
 
     /**
      * 查询分页Url

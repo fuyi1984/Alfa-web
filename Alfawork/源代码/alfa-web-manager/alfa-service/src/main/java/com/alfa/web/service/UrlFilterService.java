@@ -1,6 +1,6 @@
 package com.alfa.web.service;
 
-import com.alfa.web.pojo.UrlFilter;
+import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.util.pojo.Criteria;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface UrlFilterService {
     /**
      * 根据条件查询记录集
      */
-    List<UrlFilter> selectByParams(Criteria example);
+    List<TotalUrlFilters> selectByParams(Criteria example);
 
     /**
      * 根据主键删除记录
@@ -24,10 +24,17 @@ public interface UrlFilterService {
     /**
      * 保存属性不为空的记录
      */
-    int insertSelective(UrlFilter record);
+    int insertSelective(TotalUrlFilters record);
 
     /**
      * 根据条件查询记录总数
      */
     int countByParams(Criteria example);
+
+    /**
+     * 批量删除Url
+     * @param list
+     * @return
+     */
+    int batchdeleteurl(List<String> list);
 }

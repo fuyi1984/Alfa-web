@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.UrlFilterMapper" >
 
-    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.UrlFilter" >
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.TotalUrlFilters" >
 
-        <id column="Id" property="Id" jdbcType="BIGINT" />
-        <result column="Url" property="Url" jdbcType="VARCHAR" />
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="ApiAddress" property="ApiAddress" jdbcType="VARCHAR" />
         <result column="Apiname" property="Apiname" jdbcType="VARCHAR" />
         <result column="types" property="types" jdbcType="VARCHAR" />
 
@@ -19,11 +19,11 @@
 
     <sql id="Example_Where_Clause" >
         <trim prefix="where" prefixOverrides="and|or" >
-            <if test="condition.Id!=null">
-                and Id=#{condition.Id}
+            <if test="condition.id!=null">
+                and id=#{condition.id}
             </if>
-            <if test="condition.Url != null" >
-                and Url = #{condition.Url}
+            <if test="condition.ApiAddress != null" >
+                and ApiAddress = #{condition.ApiAddress}
             </if>
             <if test="condition.Apiname != null" >
                 and Apiname = #{condition.Apiname}
@@ -50,7 +50,7 @@
     </sql>
 
     <sql id="Base_Column_List" >
-        Id, Url, Apiname, types, createdBy, createdDt, updatedBy, updatedDt,
+        id, ApiAddress, Apiname, types, createdBy, createdDt, updatedBy, updatedDt,
         version
     </sql>
 
@@ -72,18 +72,26 @@
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from UrlFilter
-        where Id = #{Id}
+        where id = #{id}
+    </delete>
+    
+    <delete id="batchdeleteurl" parameterType="java.util.List">
+        delete from UrlFilter
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
     </delete>
 
 
-    <insert id="insertSelective" parameterType="com.alfa.web.pojo.UrlFilter" >
-        <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.TotalUrlFilters" >
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into UrlFilter
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="Url != null" >
-                Url,
+            <if test="ApiAddress != null" >
+                ApiAddress,
             </if>
             <if test="types != null" >
                 types,
@@ -108,8 +116,8 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="Url != null" >
-                #{Url},
+            <if test="ApiAddress != null" >
+                #{ApiAddress},
             </if>
             <if test="types != null" >
                 #{types},

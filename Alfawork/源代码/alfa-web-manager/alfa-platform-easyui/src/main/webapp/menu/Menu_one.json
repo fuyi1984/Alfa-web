@@ -29,6 +29,26 @@
   },
   {
     "MenuId": 2,
+    "MenuName": "Api过滤",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "网站Api",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/url/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },{
+        "MenuId": 2,
+        "MenuNames": "手机Api",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/url/mobileindex.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 3,
     "MenuName": "订单管理",
     "Icon": "icon-sys",
     "MenuInfos": [

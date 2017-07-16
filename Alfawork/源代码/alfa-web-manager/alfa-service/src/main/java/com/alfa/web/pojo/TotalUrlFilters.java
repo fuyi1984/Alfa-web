@@ -6,20 +6,20 @@ import java.io.Serializable;
  * Created by Administrator on 2017/7/14.
  * Url过滤表
  */
-public class UrlFilter extends Entity implements Serializable {
+public class TotalUrlFilters extends Entity implements Serializable {
 
-    private String Url;
+    private String ApiAddress;
 
     private String Apiname;
 
     private String types;
 
-    public String getUrl() {
-        return Url;
+    public String getApiAddress() {
+        return ApiAddress;
     }
 
-    public void setUrl(String url) {
-        Url = url;
+    public void setApiAddress(String apiAddress) {
+        ApiAddress = apiAddress;
     }
 
     public String getApiname() {
@@ -38,12 +38,4 @@ public class UrlFilter extends Entity implements Serializable {
         this.types = types;
     }
 
-    @Override
-    public String toString() {
-        return "UrlFilter{" +
-                "Url='" + Url + '\'' +
-                ", Apiname='" + Apiname + '\'' +
-                ", types='" + types + '\'' +
-                '}';
-    }
 }

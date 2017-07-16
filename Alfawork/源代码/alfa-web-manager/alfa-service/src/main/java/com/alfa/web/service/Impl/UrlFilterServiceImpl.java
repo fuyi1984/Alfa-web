@@ -1,7 +1,7 @@
 package com.alfa.web.service.Impl;
 
 import com.alfa.web.dao.UrlFilterMapper;
-import com.alfa.web.pojo.UrlFilter;
+import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.service.UrlFilterService;
 import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     private UrlFilterMapper urlFilterMapper;
 
     @Override
-    public List<UrlFilter> selectByParams(Criteria example) {
+    public List<TotalUrlFilters> selectByParams(Criteria example) {
         return this.urlFilterMapper.selectByParams(example);
     }
 
@@ -33,7 +33,7 @@ public class UrlFilterServiceImpl implements UrlFilterService {
     }
 
     @Override
-    public int insertSelective(UrlFilter record) {
+    public int insertSelective(TotalUrlFilters record) {
         return this.urlFilterMapper.insertSelective(record);
     }
 
@@ -42,5 +42,10 @@ public class UrlFilterServiceImpl implements UrlFilterService {
         int count = this.urlFilterMapper.countByParams(example);
         logger.debug("count: {}", count);
         return count;
+    }
+
+    @Override
+    public int batchdeleteurl(List<String> list) {
+        return this.urlFilterMapper.batchdeleteurl(list);
     }
 }
