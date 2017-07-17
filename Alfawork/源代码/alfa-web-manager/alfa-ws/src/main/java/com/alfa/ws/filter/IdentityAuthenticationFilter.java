@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.UrlFilterService;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -26,15 +28,24 @@ public class IdentityAuthenticationFilter implements Filter {
 
     private SysUsersService sysUsersService;
 
+    private UrlFilterService urlFilterService;
+
     @Override
     public void init(FilterConfig arg0) throws ServletException {
         ServletContext sc = arg0.getServletContext();
+
         sysUsersService = WebApplicationContextUtils.getRequiredWebApplicationContext(sc).
                 getBean(SysUsersService.class);
+
+        urlFilterService = WebApplicationContextUtils.getRequiredWebApplicationContext(sc).getBean(UrlFilterService.class);
+
     }
 
     @Override
     public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain chain) throws IOException, ServletException {
+
+        //region
+
         HttpServletRequest request = (HttpServletRequest) arg0;
         HttpServletResponse response = (HttpServletResponse) arg1;
 
@@ -43,107 +54,76 @@ public class IdentityAuthenticationFilter implements Filter {
 
         SysUsers platformUser = null;
 
-        //if (!StringUtil.isNullOrEmpty(userSession)) {
-        //    platformUser = userSession.getUser();
-        //}
+        String token = request.getParameter("token");
 
-        /*String mobiletoken = request.getParameter("mobiletoken");
+        log.debug("token:" + token);
 
-        log.debug("mobiletoken:"+mobiletoken);
+        Criteria criteria = new Criteria();
 
-        if(StringUtil.isNullOrEmpty(mobiletoken)) {*/
-            //region 网页Web接口身份验证
-            String token = request.getParameter("token");
+        if (!StringUtil.isNullOrEmpty(token)) {
 
-            log.debug("token:" + token);
-
-            if (!StringUtil.isNullOrEmpty(token)) {
-
-                Criteria criteria = new Criteria();
-                criteria.put("token", token);
-
-                List<SysUsers> users = sysUsersService.selectByParams(criteria);
-                if (users.size() > 0) {
-                    platformUser = users.get(0);
-                    //已经登录则清理session
-                    //session.removeAttribute(WebConstants.CURRENT_PLATFORM_USER);
-                    //重新创建session
-                    //sysUsersService.createSession(request, response, WebConstants.CURRENT_PLATFORM_USER, platformUser);
-                }
-            }
-
-            // 输出请求路径
-            log.debug("URI : " + request.getRequestURI());
-
-            log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
-
-            // 此处过滤的路径为不需要登陆验证的路径
-/*        Boolean urlfilter = request.getRequestURI().contains("/verify")
-                || request.getRequestURI().contains("/logout") //platform logout
-                || request.getRequestURI().contains("/current");*/
-
-            Boolean urlfilter = request.getRequestURI().contains("/verify");
-
-
-            if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
-                if (urlfilter) {
-                    chain.doFilter(arg0, arg1);
-                } else {
-                    if (token.equals(platformUser.getToken())) {
-                        chain.doFilter(arg0, arg1);
-                    } else {
-                        response.setStatus(403);
-                    }
-                }
-            } else {
-                if (urlfilter) {
-                    chain.doFilter(arg0, arg1);
-                } else {
-                    response.setStatus(320);
-                }
-            }
-            //endregion
-        /*}else{
-            //region 手机Web接口身份验证
-            Criteria criteria = new Criteria();
-            criteria.put("mobiletoken", mobiletoken);
+            criteria.put("token", token);
 
             List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
             if (users.size() > 0) {
                 platformUser = users.get(0);
             }
+        }
 
-            // 输出请求路径
-            log.debug("URI : " + request.getRequestURI());
+        Boolean urlfilter=false;
+
+        // 输出请求路径
+        log.debug("URI : " + request.getRequestURI());
+
+        //region 从数据库中获取不需要身份验证的Url地址
+
+        criteria.clear();
+        criteria.put("types", "0");
+
+        List<TotalUrlFilters> totalUrlFiltersList=urlFilterService.selectByParams(criteria);
+
+        if(totalUrlFiltersList.size()>0){
+
+            for (TotalUrlFilters totalUrlFilters:totalUrlFiltersList){
+
+                if(request.getRequestURI().contains(totalUrlFilters.getApiAddress())){
+                    urlfilter=true;
+                    break;
+                }
+                
+            }
+
+        }
+
+        //urlfilter = request.getRequestURI().contains("/verify");
+
+        //ednregion
+
+        //region
+
+        if (!StringUtil.isNullOrEmpty(userSession) && !StringUtil.isNullOrEmpty(platformUser)) {
 
             log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
 
-
-            // 此处过滤的路径为不需要登陆验证的路径
-            Boolean urlfilter = request.getRequestURI().contains("/login")
-                    || request.getRequestURI().contains("/createUser")
-                    || request.getRequestURI().contains("/getCaptcha");
-
-            if (!StringUtil.isNullOrEmpty(platformUser)) {
-                if (urlfilter) {
-                    chain.doFilter(arg0, arg1);
-                } else {
-                    if (mobiletoken.equals(platformUser.getMobiletoken())) {
-                        chain.doFilter(arg0, arg1);
-                    } else {
-                        response.setStatus(403);
-                    }
-                }
+            if (urlfilter) {
+                chain.doFilter(arg0, arg1);
             } else {
-                log.debug("session is null!");
-                if (urlfilter) {
+                if (token.equals(platformUser.getToken())) {
                     chain.doFilter(arg0, arg1);
                 } else {
-                    response.setStatus(320);
+                    response.setStatus(403);
                 }
             }
-            //endregion
-        }*/
+        } else {
+            if (urlfilter) {
+                chain.doFilter(arg0, arg1);
+            } else {
+                response.setStatus(320);
+            }
+        }
+
+        //endregion
     }
 
     @Override

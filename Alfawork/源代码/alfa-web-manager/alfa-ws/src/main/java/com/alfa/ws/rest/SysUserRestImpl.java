@@ -129,6 +129,7 @@ public class SysUserRestImpl implements SysUserRest {
         } else {
             //log.info("user.getSex:"+user.getSex());
             //user.setSexname(user.getSex().equals("0")?"男":"女");
+            user.setStatus("1");
             user.setPassword(WebUtil.encrypt(user.getPassword(), user.getUsername()));
             boolean result = this.sysUsersService.insertUser(user);
             if (result) {
@@ -259,34 +260,53 @@ public class SysUserRestImpl implements SysUserRest {
         // 根据用户名密码查询用户信息
         List<SysUsers> users = sysUsersService.selectByParams(criteria);
 
-        if (users.size() > 0 && users.size() == 1) {
+        if (users.size() >= 1) {
 
             SysUsers currentUser = users.get(0);
 
-            String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
+            if (!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
 
-            log.info("User Login: " + passwordEncrypt + "@" + currentUser.getPassword() + "@" + password);
+                if (currentUser.getStatus().equals("1")) {
+                    //已审核
+                    String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
 
-            if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
-                //if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
+                    log.info("User Login: " + passwordEncrypt + "@" + currentUser.getPassword() + "@" + password);
+
+                    if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
+
+                        //region
+
+                        //if (StringUtil.isNullOrEmpty(user.getToken()) || StringUtil.isNullOrEmpty(currentUser.getToken())) {
 
 
-                currentUser.setToken(StringUtil.getUUID());
-                currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
+                        currentUser.setToken(StringUtil.getUUID());
+                        currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
 
-                sysUsersService.updateByPrimaryKeySelective(currentUser);
+                        sysUsersService.updateByPrimaryKeySelective(currentUser);
 
-                currentUser.setMobiletoken("");
+                        currentUser.setMobiletoken("");
 
-                //
-                // 保存Session和Cookie
-                String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.users_password_verify_success, sysUsersService.createSession(servletRequest,
-                        servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
+                        //
+                        // 保存Session和Cookie
+                        String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.users_password_verify_success, sysUsersService.createSession(servletRequest,
+                                servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
 
-                response = Response.status(Response.Status.OK).entity(json).build();
+                        response = Response.status(Response.Status.OK).entity(json).build();
+
+                        //endregion
+                    } else {
+                        response = Response.status(Response.Status.OK)
+                                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_wrong_password, null))).build();
+                    }
+                } else {
+                    //未审核
+                    response = Response.status(Response.Status.OK)
+                            .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+                }
             } else {
+                //未审核
                 response = Response.status(Response.Status.OK)
-                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.error_users_wrong_password, null))).build();
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
             }
         } else {
             response = Response.status(Response.Status.OK)
@@ -495,6 +515,22 @@ public class SysUserRestImpl implements SysUserRest {
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "error.users.phone.registered", null))).build();
             }
 
+        }
+    }
+
+    @Override
+    public Response batchUpdateUserStatus(List<String> list) {
+
+        int result = 0;
+
+        result = this.sysUsersService.batchUpdateUserStatus(list);
+
+        if (result > 0) {
+            //批量修改成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+        } else {
+            //批量修改失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
     }
 }

@@ -537,4 +537,17 @@
         </if>
     </update>
 
+    <update id="batchUpdateUserStatus" parameterType="java.util.List">
+        update SysUsers
+        <set>
+            status='1'
+        </set>
+        where userId in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
+    </update>
+
+
 </mapper>

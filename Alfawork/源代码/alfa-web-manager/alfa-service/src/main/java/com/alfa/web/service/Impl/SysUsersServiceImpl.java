@@ -262,4 +262,9 @@ public class SysUsersServiceImpl implements SysUsersService {
     public int updateIsFirstPagePromotion(Criteria criteria) {
         return 0;
     }
+
+    @Override
+    public int batchUpdateUserStatus(List<String> list) {
+        return this.sysUsersMapper.batchUpdateUserStatus(list);
+    }
 }

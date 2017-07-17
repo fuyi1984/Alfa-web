@@ -335,6 +335,8 @@ public class SysUserRestImpl implements SysUserRest {
             user.setMobiletoken(StringUtil.getUUID());
             user.setPassword(WebUtil.encrypt(user.getVerifyCode(), user.getUsername()));
             user.setRoleId(10L);
+            //设置用户状态为未审核
+            user.setStatus("0");
 
             result = this.sysUsersService.inserMobileUser(user);
 
@@ -583,69 +585,87 @@ public class SysUserRestImpl implements SysUserRest {
 
             SysUsers currentUser = users.get(0);
 
+            if(!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
 
-            //region 查询OpenId
+                if(currentUser.getStatus().equals("1")) {
 
-            criteria.clear();
+                    //region 用户已审核
 
-            criteria.put("openid",openid);
+                    //region 查询OpenId
 
-            List<td_weixin_users> weixinlist=this.weixin_usersService.selectByParams(criteria);
+                    criteria.clear();
 
-            if(weixinlist.size()>0){
+                    criteria.put("openid", openid);
 
-                //region 用户信息关联微信账号信息
+                    List<td_weixin_users> weixinlist = this.weixin_usersService.selectByParams(criteria);
 
-                td_weixin_users weixin=weixinlist.get(0);
+                    if (weixinlist.size() > 0) {
 
-                currentUser.setWeixinid(weixin.getId());
-                currentUser.setOpenid(weixin.getOpenid());
-                currentUser.setHeadimgurl(weixin.getHeadimgurl());
-                currentUser.setState(weixin.getState());
+                        //region 用户信息关联微信账号信息
 
-                //endregion
+                        td_weixin_users weixin = weixinlist.get(0);
+
+                        currentUser.setWeixinid(weixin.getId());
+                        currentUser.setOpenid(weixin.getOpenid());
+                        currentUser.setHeadimgurl(weixin.getHeadimgurl());
+                        currentUser.setState(weixin.getState());
+
+                        //endregion
+                    } else {
+                        currentUser.setOpenid("");
+                        currentUser.setHeadimgurl("");
+                        currentUser.setState("");
+                    }
+
+                    //endregion
+
+                    currentUser.setCaptcha(Captcha);
+                    currentUser.setVerifyCode(Captcha);
+
+                    /**
+                     * 角色为产废单位的时候用验证码替换用户密码
+                     */
+                    if (currentUser.getRoleId().equals(10L)) {
+                        String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
+                        currentUser.setPassword(passwordEncrypt);
+                    }
+
+                    currentUser.setMobiletoken(StringUtil.getUUID());
+                    currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
+
+                    this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+                    //}
+                    // 保存Session和Cookie
+                    //String json = JsonUtil.toJson(
+                    //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+                    currentUser.setPassword("");
+                    currentUser.setCaptcha("");
+                    currentUser.setVerifyCode("");
+                    currentUser.setToken("");
+
+                    this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+
+                    String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
+                            "7", currentUser));
+
+                    //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+                    response = Response.status(Response.Status.OK).entity(json).build();
+
+                    //endregion
+
+                }else{
+                    //用户未审核
+                    response = Response.status(Response.Status.OK)
+                            .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
+                }
             }else{
-                currentUser.setOpenid("");
-                currentUser.setHeadimgurl("");
-                currentUser.setState("");
+                //用户未审核
+                response = Response.status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
             }
-
-            //endregion
-
-            currentUser.setCaptcha(Captcha);
-            currentUser.setVerifyCode(Captcha);
-
-            /**
-             * 角色为产废单位的时候用验证码替换用户密码
-             */
-            if (currentUser.getRoleId().equals(10L)) {
-                String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
-                currentUser.setPassword(passwordEncrypt);
-            }
-
-            currentUser.setMobiletoken(StringUtil.getUUID());
-            currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
-
-            this.sysUsersService.updateByPrimaryKeySelective(currentUser);
-
-            //}
-            // 保存Session和Cookie
-            //String json = JsonUtil.toJson(
-            //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
-
-            currentUser.setPassword("");
-            currentUser.setCaptcha("");
-            currentUser.setVerifyCode("");
-            currentUser.setToken("");
-
-            this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
-
-            String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
-                    "7",currentUser));
-
-            //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
-
-            response = Response.status(Response.Status.OK).entity(json).build();
 
             //endregion
 

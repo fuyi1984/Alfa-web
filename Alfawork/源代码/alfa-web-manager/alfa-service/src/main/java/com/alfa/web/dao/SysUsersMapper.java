@@ -81,4 +81,11 @@ public interface SysUsersMapper {
      */
     int updateByPrimaryKey(SysUsers record);
 
+    /**
+     * 批量更新用户状态
+     * @param list
+     * @return
+     */
+    int batchUpdateUserStatus(List<String> list);
+
 }

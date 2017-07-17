@@ -1,7 +1,9 @@
 package com.alfa.mobile.filter;
 
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.UrlFilterService;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -25,11 +27,16 @@ public class IdentityAuthenticationFilter implements Filter {
 
     private SysUsersService sysUsersService;
 
+    private UrlFilterService urlFilterService;
+
     @Override
     public void init(FilterConfig arg0) throws ServletException {
         ServletContext sc = arg0.getServletContext();
+
         sysUsersService = WebApplicationContextUtils.getRequiredWebApplicationContext(sc).
                 getBean(SysUsersService.class);
+
+        urlFilterService = WebApplicationContextUtils.getRequiredWebApplicationContext(sc).getBean(UrlFilterService.class);
     }
 
     @Override
@@ -43,6 +50,8 @@ public class IdentityAuthenticationFilter implements Filter {
 
         SysUsers platformUser = null;
 
+        Criteria criteria = new Criteria();
+
         /*if(!StringUtil.isNullOrEmpty(userSession)){
             platformUser = userSession.getUser();
         }*/
@@ -51,7 +60,6 @@ public class IdentityAuthenticationFilter implements Filter {
 
         if (!StringUtil.isNullOrEmpty(mobiletoken)) {
 
-            Criteria criteria = new Criteria();
             criteria.put("mobiletoken", mobiletoken);
 
             List<SysUsers> users = sysUsersService.selectByParams(criteria);
@@ -67,19 +75,44 @@ public class IdentityAuthenticationFilter implements Filter {
         // 输出请求路径
         log.debug("URI : " + request.getRequestURI());
 
-        log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
+        Boolean urlfilter=false;
 
         // 此处过滤的路径为不需要登陆验证的路径
-        Boolean urlfilter = request.getRequestURI().contains("/loginforweixin")
+        /*Boolean urlfilter = request.getRequestURI().contains("/loginforweixin")
                 || request.getRequestURI().contains("/createUser")
                 || request.getRequestURI().contains("/getCaptchaForWorker")
                 || request.getRequestURI().contains("/getCaptchaForFactory")
                 || request.getRequestURI().contains("/getCaptchaForFactoryForLogin")
                 || request.getRequestURI().contains("/insertOpenId")
                 || request.getRequestURI().contains("/updateOpenId")
-                || request.getRequestURI().contains("/GetSingleOpenId");
+                || request.getRequestURI().contains("/GetSingleOpenId");*/
+
+        //region 从数据库中获取不需要身份验证的Url地址
+
+        criteria.clear();
+        criteria.put("types", "1");
+
+        List<TotalUrlFilters> totalUrlFiltersList=urlFilterService.selectByParams(criteria);
+
+        if(totalUrlFiltersList.size()>0){
+
+            for (TotalUrlFilters totalUrlFilters:totalUrlFiltersList){
+
+                if(request.getRequestURI().contains(totalUrlFilters.getApiAddress())){
+                    urlfilter=true;
+                    break;
+                }
+
+            }
+
+        }
+
+        //endregion
 
         if (!StringUtil.isNullOrEmpty(platformUser)) {
+
+            log.info("URI : " + request.getRequestURI() + " current account name:" + (StringUtil.isNullOrEmpty(platformUser) ? "null" : platformUser.getUsername()));
+
             if (urlfilter) {
                 chain.doFilter(arg0, arg1);
             } else {

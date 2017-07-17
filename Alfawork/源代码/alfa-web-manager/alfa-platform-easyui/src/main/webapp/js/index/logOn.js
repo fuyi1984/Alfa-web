@@ -68,7 +68,9 @@ function logOn() {
                         div.html("密码错误，请重试!");
                     }else if(data.message=="error.users.name.notexist"){
                         div.html("帐号不存在，请重试!");
-                    }else {
+                    }else if(data.message=="1"){
+                        div.html("帐号未审核,无法登录!");
+                    } else {
                         div.html("登录失败，请重试!");
                     }
                 }

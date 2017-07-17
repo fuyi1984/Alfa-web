@@ -138,8 +138,7 @@ function initdatagrid() {
 
                 //var parm = {"userId": rows[0].userId};
 
-                for(var i=0;i<rows.length;i++)
-                {
+                for (var i = 0; i < rows.length; i++) {
                     if (rows[i].userId == guserid) {
                         $.messager.alert('提示', '不能删除当前登录用户!');
                         $('#usergrid').datagrid("clearSelections");
@@ -188,7 +187,75 @@ function initdatagrid() {
                 });
 
             }
-        }, '-', {
+        },'-',{
+            id:'btnIsCheck',
+            text:'审核',
+            disabled:false,
+            iconCls:'icon-search',
+            handler:function(){
+
+                var rows = $('#usergrid').datagrid('getSelections');
+
+                if (!rows || rows.length == 0) {
+                    $.messager.alert('提示', '请选择需要审核的用户');
+                    return;
+                }
+
+                console.log(rows);
+                console.log(rows[0].userId);
+
+                for (var i = 0; i < rows.length; i++) {
+
+                    if (rows[i].status == '1') {
+                        $.messager.alert('提示', '当前用户已审核,不需要二次审核!');
+                        $('#usergrid').datagrid("clearSelections");
+                        return;
+                    }
+
+                }
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.userId);
+                });
+
+
+                $.messager.confirm('提示', '是否需要审核这些用户?', function (r) {
+                    if (!r) {
+                        return;
+                    }
+
+                    $.ajax({
+                        cache: false,
+                        datatype: 'json',
+                        contentType: 'application/json;charset=UTF-8',
+                        type: "POST",
+                        url: ws_url + '/rest/user/batchUpdateUserStatus?token=' + gtoken,
+                        data: JSON.stringify(assetList),
+                        success: function (msg) {
+                            if (msg.status == 'success') {
+                                $.messager.alert('提示', '审核成功！', "info", function () {
+                                    $('#usergrid').datagrid("clearSelections");
+                                    $('#usergrid').datagrid("reload");
+                                });
+                            } else {
+                                $.messager.alert('错误', '审核失败！', "error", function () {
+                                    $('#usergrid').datagrid("clearSelections");
+                                    $('#usergrid').datagrid("reload");
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                            $('#usergrid').datagrid("clearSelections");
+                            $.messager.alert('错误', '审核失败！', "error");
+                        }
+                    });
+                });
+            }
+
+        },'-', {
             id: 'btnSearch',
             text: '查询',
             disabled: false,
@@ -208,6 +275,16 @@ function initdatagrid() {
             {field: 'username', title: '用户名', width: 80, align: 'center'},
             {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
             {field: 'role_name', title: '角色', width: 80, align: 'center'},
+            {field: 'status', title: '状态', width: 80, align: 'center',
+                formatter: function (value, rec) {
+                    switch (value) {
+                        case "0":
+                            return '<span style="color:red;">未审核</span>';
+                        case "1":
+                            return '<span style="color:green;">已审核</span>';
+                    }
+                }
+            },
             {field: 'phone', title: ' 联系电话', width: 80, align: 'center'},
             {field: 'address', title: '单位地址', width: 120, align: 'center'},
             {field: 'orgname', title: '单位名称', width: 120, align: 'center'},

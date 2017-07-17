@@ -177,4 +177,16 @@ public interface SysUserRest {
     @Path("/validatMobile")
     public Response validatMobile(SysUsers user);
 
+    /**
+     * 批量更新用户状态
+     * @param list
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchUpdateUserStatus")
+    public Response batchUpdateUserStatus(List<String> list);
+
 }
