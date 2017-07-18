@@ -80,7 +80,7 @@ public interface OrdersRest {
 
 
     /**
-     * 收运人员批量确认订单状态
+     * 批量确认订单状态
      *
      * @param order
      * @return
@@ -93,7 +93,7 @@ public interface OrdersRest {
     public Response batchupdateorderStatus(List<String> orderlist) throws UnsupportedEncodingException;
 
     /**
-     * 库管人员批量完成订单状态
+     * 批量完成订单状态
      *
      * @param order
      * @return
