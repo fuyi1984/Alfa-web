@@ -64,13 +64,13 @@ function initdatagrid() {
                     $.messager.alert('提示', '请选择要修改的数据');
                     return;
                 }
-                else{
+                else {
 
-                    if(rows.length>1){
+                    if (rows.length > 1) {
                         $.messager.alert('提示', '请选择一条数据');
                         $('#rolegrid').datagrid("clearSelections");
                         return;
-                    }else {
+                    } else {
                         //window.location.href = "/UserInfo/View/" + row.ID;
 
                         $('#form2').form('load', {
@@ -106,19 +106,19 @@ function initdatagrid() {
                 //console.log(rows[0].roleId);
 
                 /*if(rows.length>1){
-                    $.messager.alert('提示', '请选择一条数据');
-                    $('#rolegrid').datagrid("clearSelections");
-                    return;
-                }*/
+                 $.messager.alert('提示', '请选择一条数据');
+                 $('#rolegrid').datagrid("clearSelections");
+                 return;
+                 }*/
 
-                for(var i=0;i<rows.length;i++) {
+                for (var i = 0; i < rows.length; i++) {
                     if (rows[i].roleId == groleid) {
                         $.messager.alert('提示', '不能删除当前角色!');
                         $('#rolegrid').datagrid("clearSelections");
                         return;
                     }
 
-                    if (rows[i].roleId == 15 || rows[i].roleId == 9 || rows[i].roleId == 10) {
+                    if (rows[i].roleId == 28 || rows[i].roleId == 27 || rows[i].roleId == 15 || rows[i].roleId == 9 || rows[i].roleId == 10) {
                         $.messager.alert('提示', '不能删除此角色!');
                         $('#rolegrid').datagrid("clearSelections");
                         return;

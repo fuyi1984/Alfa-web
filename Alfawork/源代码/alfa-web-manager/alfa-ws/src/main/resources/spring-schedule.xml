@@ -32,6 +32,20 @@
         <property name="cronExpression" value="0 /3 * * * ?"/>
     </bean>
 
+    <!--监控刚提交的订单然后发送通知短信给系统管理员，通知分配订单任务,每4分钟执行一次-->
+    <bean id="MonitorStartOrderSmsStatusObject" class="com.alfa.web.job.MonitorStartOrderSmsStatus"/>
+    <bean id="MonitorStartOrderSmsStatusJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="MonitorStartOrderSmsStatusObject"/>
+        <property name="targetMethod" value="runjob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="MonitorStartOrderSmsStatusTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="MonitorStartOrderSmsStatusJob"/>
+        <property name="cronExpression" value="0 /4 * * * ?"/>
+    </bean>
+
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="waitForJobsToCompleteOnShutdown" value="true"/>
         <property name="triggers">
@@ -39,6 +53,7 @@
                 <!--<ref bean="cronTrigger"/>-->
                 <ref bean="MonitorSmsStatusTrigger"/>
                 <ref bean="MonitorOrderStatusTrigger"/>
+                <ref bean="MonitorStartOrderSmsStatusTrigger"/>
             </list>
         </property>
         <property name="quartzProperties">

@@ -467,6 +467,7 @@ function Accesscontrol() {
             break;
         //网络运营部
         case 15:
+        case 27:
             $('#btnSave').linkbutton('disable');
             $('#btnSearch').linkbutton('disable');
             $('#btnConfirm').linkbutton('disable');

@@ -41,9 +41,12 @@ public class MonitorSmsStatus {
 
         logger.info("MonitorSmsStatus Start !!!");
 
-        if (PropertiesUtil.getProperty("sms.open").equals("true")) {
+        if (PropertiesUtil.getProperty("order.sms.transporter.open").equals("true")) {
+
+            //region
 
             List<String> idlist = new ArrayList<String>();
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             Criteria criteria = new Criteria();
@@ -108,6 +111,8 @@ public class MonitorSmsStatus {
                 //endregion
 
             }
+
+            //endregion
         }
 
         logger.info("MonitorSmsStatus End !!!");

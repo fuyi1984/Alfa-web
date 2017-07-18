@@ -418,13 +418,13 @@
     <update id="batchupdateorderWorker" parameterType="com.alfa.web.util.pojo.Criteria">
         update orders A
         set
-            A.orgstatus=#{condition.status},
+        A.orgstatus=#{condition.status},
 
-            A.workerid=#{condition.worker},
+        A.workerid=#{condition.worker},
 
-            A.isSms='0',
+        A.isSms='0',
 
-            A.confirmDt=#{condition.confirmDt}
+        A.confirmDt=#{condition.confirmDt}
 
         where orderid in
         <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
@@ -437,9 +437,12 @@
         update orders A
         set
 
-        A.isSms='1',
+        <if test="condition.confirmDt!=null">
+            A.confirmDt=#{condition.confirmDt},
+        </if>
 
-        A.confirmDt=#{condition.confirmDt}
+        A.isSms='1'
+
 
         where orderid in
         <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
