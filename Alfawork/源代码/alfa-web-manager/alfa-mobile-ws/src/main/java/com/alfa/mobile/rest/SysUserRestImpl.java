@@ -487,10 +487,11 @@ public class SysUserRestImpl implements SysUserRest {
 
         HttpSession session = servletRequest.getSession();
 
-        // 获取手机号,验证码和OpenId
+        // 获取手机号,验证码,logintype和OpenId
 
         String phone = new String(Base64Util.decode(registerUser.getMobile().trim()));
         String Captcha = new String(Base64Util.decode(registerUser.getCaptcha().trim()));
+        String logintype=new String(Base64Util.decode(registerUser.getLogintype().trim()));
 
         //String phone = registerUser.getMobile().trim();
         //String Captcha = registerUser.getCaptcha().trim();
@@ -585,86 +586,93 @@ public class SysUserRestImpl implements SysUserRest {
 
             SysUsers currentUser = users.get(0);
 
-            if(!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
+            if(currentUser.getRoleId().equals(Long.parseLong(logintype))) {
 
-                if(currentUser.getStatus().equals("1")) {
+                if (!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
 
-                    //region 用户已审核
+                    if (currentUser.getStatus().equals("1")) {
 
-                    //region 查询OpenId
+                        //region 用户已审核
 
-                    criteria.clear();
+                        //region 查询OpenId
 
-                    criteria.put("openid", openid);
+                        criteria.clear();
 
-                    List<td_weixin_users> weixinlist = this.weixin_usersService.selectByParams(criteria);
+                        criteria.put("openid", openid);
 
-                    if (weixinlist.size() > 0) {
+                        List<td_weixin_users> weixinlist = this.weixin_usersService.selectByParams(criteria);
 
-                        //region 用户信息关联微信账号信息
+                        if (weixinlist.size() > 0) {
 
-                        td_weixin_users weixin = weixinlist.get(0);
+                            //region 用户信息关联微信账号信息
 
-                        currentUser.setWeixinid(weixin.getId());
-                        currentUser.setOpenid(weixin.getOpenid());
-                        currentUser.setHeadimgurl(weixin.getHeadimgurl());
-                        currentUser.setState(weixin.getState());
+                            td_weixin_users weixin = weixinlist.get(0);
+
+                            currentUser.setWeixinid(weixin.getId());
+                            currentUser.setOpenid(weixin.getOpenid());
+                            currentUser.setHeadimgurl(weixin.getHeadimgurl());
+                            currentUser.setState(weixin.getState());
+
+                            //endregion
+                        } else {
+                            currentUser.setOpenid("");
+                            currentUser.setHeadimgurl("");
+                            currentUser.setState("");
+                        }
 
                         //endregion
+
+                        currentUser.setCaptcha(Captcha);
+                        currentUser.setVerifyCode(Captcha);
+
+                        /**
+                         * 角色为产废单位的时候用验证码替换用户密码
+                         */
+                        if (currentUser.getRoleId().equals(10L)) {
+                            String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
+                            currentUser.setPassword(passwordEncrypt);
+                        }
+
+                        currentUser.setMobiletoken(StringUtil.getUUID());
+                        currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
+
+                        this.sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+                        //}
+                        // 保存Session和Cookie
+                        //String json = JsonUtil.toJson(
+                        //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+                        currentUser.setPassword("");
+                        currentUser.setCaptcha("");
+                        currentUser.setVerifyCode("");
+                        currentUser.setToken("");
+
+                        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+
+                        String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
+                                "7", currentUser));
+
+                        //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
+
+                        response = Response.status(Response.Status.OK).entity(json).build();
+
+                        //endregion
+
                     } else {
-                        currentUser.setOpenid("");
-                        currentUser.setHeadimgurl("");
-                        currentUser.setState("");
+                        //用户未审核
+                        response = Response.status(Response.Status.OK)
+                                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
                     }
-
-                    //endregion
-
-                    currentUser.setCaptcha(Captcha);
-                    currentUser.setVerifyCode(Captcha);
-
-                    /**
-                     * 角色为产废单位的时候用验证码替换用户密码
-                     */
-                    if (currentUser.getRoleId().equals(10L)) {
-                        String passwordEncrypt = WebUtil.encrypt(Captcha, currentUser.getUsername());
-                        currentUser.setPassword(passwordEncrypt);
-                    }
-
-                    currentUser.setMobiletoken(StringUtil.getUUID());
-                    currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
-
-                    this.sysUsersService.updateByPrimaryKeySelective(currentUser);
-
-                    //}
-                    // 保存Session和Cookie
-                    //String json = JsonUtil.toJson(
-                    //        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
-
-                    currentUser.setPassword("");
-                    currentUser.setCaptcha("");
-                    currentUser.setVerifyCode("");
-                    currentUser.setToken("");
-
-                    this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
-
-                    String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
-                            "7", currentUser));
-
-                    //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
-
-                    response = Response.status(Response.Status.OK).entity(json).build();
-
-                    //endregion
-
-                }else{
+                } else {
                     //用户未审核
                     response = Response.status(Response.Status.OK)
                             .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
                 }
             }else{
-                //用户未审核
+                //角色不一致
                 response = Response.status(Response.Status.OK)
-                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "15", null))).build();
             }
 
             //endregion

@@ -26,13 +26,26 @@ public class SmsServiceImpl implements SmsService {
     public static String password = "973664";// 密码,请通过亿美销售人员获取
     public static String baseUrl = "http://hprpt2.eucp.b2m.cn:8080/sdkproxy/";*/
 
-    public static String sn = PropertiesUtil.getProperty("verify.sn");// 软件序列号,请通过亿美销售人员获取
-    public static String key = PropertiesUtil.getProperty("verify.key");// 序列号首次激活时自己设定
-    public static String password = PropertiesUtil.getProperty("verify.password");// 密码,请通过亿美销售人员获取
-    public static String baseUrl = PropertiesUtil.getProperty("verify.baseUrl");
+    public static String sn;// 软件序列号,请通过亿美销售人员获取
+    public static String key;// 序列号首次激活时自己设定
+    public static String password;// 密码,请通过亿美销售人员获取
+    public static String baseUrl;
+
+    /*public SmsServiceImpl() {
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+    }*/
 
     @Override
     public String registAndLogout() throws IOException {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         String url = baseUrl + "regist.action";
         String param = "cdkey=" + sn + "&password=" + password;
         String ret = SDKHttpClient.registAndLogout(url, param);
@@ -42,6 +55,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public String getBalance() {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         String param = "cdkey=" + sn + "&password=" + key;
         String url = baseUrl + "querybalance.action";
         String balance = SDKHttpClient.getBalance(url, param);
@@ -51,6 +70,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public String sendSMS(String mdn, String message) throws UnsupportedEncodingException {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         message = URLEncoder.encode(message, "UTF-8");
         String code = "888";
         long seqId = System.currentTimeMillis();
@@ -63,6 +88,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public int getMos() {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         String param = "cdkey=" + sn + "&password=" + key;
         String url = baseUrl + "getmo.action";
         List<Mo> mos = SDKHttpClient.getMos(url, sn, key);
@@ -72,6 +103,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public int getReports() {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         String param = "cdkey=" + sn + "&password=" + key;
         String url = baseUrl + "getreport.action";
         List<StatusReport> srs = SDKHttpClient.getReports(url, sn, key);
@@ -81,6 +118,12 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public String logout() {
+
+        sn=PropertiesUtil.getProperty("verify.sn");
+        key=PropertiesUtil.getProperty("verify.key");
+        password=PropertiesUtil.getProperty("verify.password");
+        baseUrl=PropertiesUtil.getProperty("verify.baseUrl");
+
         String url = baseUrl + "logout.action";
         String param = "cdkey=" + sn + "&password=" + password;
         String ret = SDKHttpClient.registAndLogout(url, param);

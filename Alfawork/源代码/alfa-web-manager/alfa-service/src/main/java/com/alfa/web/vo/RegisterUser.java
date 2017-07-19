@@ -8,6 +8,15 @@ public class RegisterUser {
     private String mobile;
     private String captcha;
     private String openid;
+    private String logintype;
+
+    public String getLogintype() {
+        return logintype;
+    }
+
+    public void setLogintype(String logintype) {
+        this.logintype = logintype;
+    }
 
     public String getMobile() {
         return mobile;

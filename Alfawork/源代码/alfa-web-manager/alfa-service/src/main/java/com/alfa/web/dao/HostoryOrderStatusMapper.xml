@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.HostoryOrderStatusMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.HostoryOrderStatus">
+
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="phone" property="phone" jdbcType="BIGINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="townandstreets" property="townandstreets" jdbcType="VARCHAR"/>
+        <result column="fulladdress" property="fulladdress" jdbcType="VARCHAR"/>
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+</mapper>

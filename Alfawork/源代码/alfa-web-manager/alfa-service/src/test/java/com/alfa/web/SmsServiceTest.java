@@ -29,7 +29,7 @@ public class SmsServiceTest extends TestBase {
 
     @Test
     public void sendSMS() throws UnsupportedEncodingException {
-        String result=smsService.sendSMS("15320353121", PropertiesUtil.getProperty("verify.content") + WebUtil.randomCaptcha(6));
+        String result=smsService.sendSMS("15320295813", PropertiesUtil.getProperty("verify.content") + WebUtil.randomCaptcha(6));
         System.out.println(result);
     }
 
