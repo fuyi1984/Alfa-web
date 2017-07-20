@@ -1,8 +1,10 @@
 package com.alfa.mobile.rest;
 
 import com.alfa.web.pojo.HistoryAddress;
+import com.alfa.web.pojo.HostoryOrderStatus;
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.service.HistoryAddressService;
+import com.alfa.web.service.HostoryOrderStatusService;
 import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.SmsService;
 import com.alfa.web.util.JsonUtil;
@@ -41,6 +43,9 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Autowired
     private SmsService smsService;
+
+    @Autowired
+    private HostoryOrderStatusService hostoryOrderStatusService;
 
     @Autowired
     private HistoryAddressService historyAddressService;
@@ -155,10 +160,11 @@ public class OrdersRestImpl implements OrdersRest {
 
         String Json = "";
 
-        //收运人员确认订单的时候需要记录一个确认时间
+        //region 收运人员确认订单的时候需要记录一个确认时间
         if(order.getOrgstatus().equals("3")){
             order.setConfirmDt(new Date());
         }
+        //endregion
 
         WebUtil.prepareUpdateParams(order);
 
@@ -181,6 +187,25 @@ public class OrdersRestImpl implements OrdersRest {
 
                 }
             }*/
+            //endregion
+
+            //region 订单完成后把记录存放到历史记录表
+
+            if(order.getOrgstatus().equals("4")){
+
+                HostoryOrderStatus hostoryOrderStatus=new HostoryOrderStatus();
+                hostoryOrderStatus.setRealnum(order.getRealnum());
+                hostoryOrderStatus.setOrderid(order.getOrderid());
+
+                result=hostoryOrderStatusService.insertSelective(hostoryOrderStatus);
+
+                if(result==1){
+                    log.info("插入成功!");
+                }else{
+                    log.info("插入失败!");
+                }
+            }
+
             //endregion
 
             //订单更新成功

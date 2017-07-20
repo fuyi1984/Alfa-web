@@ -18,7 +18,7 @@
         <result column="total" property="total" jdbcType="VARCHAR"/>
         <result column="realtotal" property="realtotal" jdbcType="VARCHAR"/>
         <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
-        <result column="username" property="username" jdbcType="VARHCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
 
     </resultMap>
 
@@ -94,19 +94,22 @@
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
 
-        select count(*) from HostoryOrderStatus A
+        select count(*) from
+        (
+            select SUM(B.realnum) as realtotal from HostoryOrderStatus A
 
-        left join orders B on(A.orderid=B.orderid)
+            left join orders B on(A.orderid=B.orderid)
 
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
+            <if test="_parameter != null">
+                <include refid="Example_Where_Clause"/>
+            </if>
 
-        GROUP BY B.iphone
+            GROUP BY B.iphone
 
-        <!--<if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>-->
+            <!--<if test="orderByClause != null">
+                order by ${orderByClause}
+            </if>-->
+        ) as c
 
     </select>
 
