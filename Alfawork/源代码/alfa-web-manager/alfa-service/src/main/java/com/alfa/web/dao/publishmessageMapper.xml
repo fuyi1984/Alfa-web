@@ -126,8 +126,9 @@
 
         left join messageuser B on(A.id = B.messageid)
 
-        <if test="condition.userid != null and condition.isread != null">
-            INNER join messageuser E on(E.userid=#{condition.userid} and E.isread=#{condition.isread})
+        <if test="condition.userid != null and condition.isread != null ">
+            INNER join messageuser E on(E.messageid=A.id and E.userid=#{condition.userid} and
+            E.isread=#{condition.isread})
         </if>
 
         <if test="_parameter != null">
@@ -149,8 +150,9 @@
 
         left join messageuser B on(A.id = B.messageid)
 
-        <if test="condition.userid != null and condition.isread != null">
-            INNER join messageuser E on(E.userid=#{condition.userid} and E.isread=#{condition.isread})
+        <if test="condition.userid != null and condition.isread != null ">
+            INNER join messageuser E on(E.messageid=A.id and E.userid=#{condition.userid} and
+            E.isread=#{condition.isread})
         </if>
 
         <if test="_parameter != null">

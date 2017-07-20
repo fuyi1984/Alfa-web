@@ -1,6 +1,8 @@
 package com.alfa.web.dao;
 
+import com.alfa.web.pojo.messageuser;
 import com.alfa.web.pojo.publishmessage;
+import com.alfa.web.util.pojo.Criteria;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface messageuserMapper {
     /**
      * 保存属性不为空的记录
      */
-    int insertSelective(publishmessage record);
+    int insertSelective(messageuser record);
 
     /**
      * 根据主键批量删除记录
@@ -19,4 +21,9 @@ public interface messageuserMapper {
      * @return
      */
     int batchdeleteByMessageid(List<String> list);
+
+    /**
+     * 根据条件查询记录集
+     */
+    List<messageuser> selectByParams(Criteria example);
 }

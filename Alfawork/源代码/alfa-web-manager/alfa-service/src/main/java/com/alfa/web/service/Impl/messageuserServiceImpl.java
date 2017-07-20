@@ -2,9 +2,11 @@ package com.alfa.web.service.Impl;
 
 import com.alfa.web.dao.LogForPayMapper;
 import com.alfa.web.dao.messageuserMapper;
+import com.alfa.web.pojo.messageuser;
 import com.alfa.web.pojo.publishmessage;
 import com.alfa.web.service.messageuserService;
 import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +26,18 @@ public class messageuserServiceImpl implements messageuserService {
     private static final Logger logger = LoggerFactory.getLogger(messageuserServiceImpl.class);
 
     @Override
-    public int insertSelective(publishmessage record) {
+    public int insertSelective(messageuser record) {
         WebUtil.prepareInsertParams(record);
         return this.messageuserMapper.insertSelective(record);
     }
 
     @Override
     public int batchdeleteByMessageid(List<String> list) {
-        return this.batchdeleteByMessageid(list);
+        return this.messageuserMapper.batchdeleteByMessageid(list);
+    }
+
+    @Override
+    public List<messageuser> selectByParams(Criteria example) {
+        return this.messageuserMapper.selectByParams(example);
     }
 }
