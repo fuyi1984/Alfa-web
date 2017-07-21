@@ -160,7 +160,6 @@
         </if>
     </select>
 
-
     <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
         delete from
         publishmessage

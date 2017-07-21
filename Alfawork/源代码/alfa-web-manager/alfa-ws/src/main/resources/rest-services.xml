@@ -22,6 +22,7 @@
             <bean class="com.alfa.ws.rest.OrderCommentRestImpl"/>
             <bean class="com.alfa.ws.rest.UrlFilterRestImpl"/>
             <bean class="com.alfa.ws.rest.HostoryOrderStatusRestImpl"/>
+            <bean class="com.alfa.ws.rest.publishmessageRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

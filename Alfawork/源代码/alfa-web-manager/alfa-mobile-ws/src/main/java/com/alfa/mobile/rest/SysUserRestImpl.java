@@ -1,13 +1,8 @@
 package com.alfa.mobile.rest;
 
 
-import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.SysUsers;
-import com.alfa.web.pojo.VerifyCode;
-import com.alfa.web.pojo.td_weixin_users;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.VerifyCodeService;
-import com.alfa.web.service.weixin_usersService;
+import com.alfa.web.pojo.*;
+import com.alfa.web.service.*;
 import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -46,6 +41,12 @@ public class SysUserRestImpl implements SysUserRest {
     @Autowired
     private weixin_usersService weixin_usersService;
 
+    @Autowired
+    private messageuserService messageuserService;
+
+    @Autowired
+    private publishmessageService publishmessageService;
+
     @Override
     public Response getCaptcha(String mobile) {
 
@@ -74,6 +75,7 @@ public class SysUserRestImpl implements SysUserRest {
 
     /**
      * 收运人员获取手机验证码(登录)
+     *
      * @param mobile
      * @return
      */
@@ -124,6 +126,7 @@ public class SysUserRestImpl implements SysUserRest {
 
     /**
      * 产废单位获取手机验证码(注册)
+     *
      * @param mobile
      * @return
      */
@@ -174,6 +177,7 @@ public class SysUserRestImpl implements SysUserRest {
 
     /**
      * 产废单位获取手机验证码(登录)
+     *
      * @param mobile
      * @return
      */
@@ -188,12 +192,15 @@ public class SysUserRestImpl implements SysUserRest {
 
         List<SysUsers> userList = this.sysUsersService.selectByParams(criteria);
 
+        //手机号已存在
         if (userList.size() > 0) {
 
             SysUsers users = userList.get(0);
 
+            //角色为产废单位
             if (users.getRoleId().equals(10L)) {
-                //region 短信发送
+
+                //region 短信发送(登录)
 
                 try {
                     VerifyCode vc = new VerifyCode();
@@ -212,14 +219,31 @@ public class SysUserRestImpl implements SysUserRest {
                 return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "3", code)).build();
 
 
-            }else{
+            } else {
                 //region 角色非产废单位,不能获取短信验证码
                 return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "1")).build();
                 //endregion
             }
-        }else{
+        } else {
             //region 手机号不存在,不能获取短信验证码
-            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "4")).build();
+            //return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "4")).build();
+            //endregion
+
+            //region 短信发送(注册)
+
+            try {
+                VerifyCode vc = new VerifyCode();
+                vc.setType(WebConstants.VerifyCode.type0);
+                vc.setBoundAccount(mobile);
+                code = verifyCodeService.insertVerifyCodeAndReturn(vc);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // 短信发送失败
+                return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "20")).build();
+            }
+            //短信发送成功
+            return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "30", code)).build();
+
             //endregion
         }
 
@@ -491,7 +515,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         String phone = new String(Base64Util.decode(registerUser.getMobile().trim()));
         String Captcha = new String(Base64Util.decode(registerUser.getCaptcha().trim()));
-        String logintype=new String(Base64Util.decode(registerUser.getLogintype().trim()));
+        String logintype = new String(Base64Util.decode(registerUser.getLogintype().trim()));
 
         //String phone = registerUser.getMobile().trim();
         //String Captcha = registerUser.getCaptcha().trim();
@@ -513,8 +537,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         //region OpenId为空返回提示
 
-        if(StringUtil.isNullOrEmpty(openid))
-        {
+        if (StringUtil.isNullOrEmpty(openid)) {
             //OpenId不能为空
             return Response.status(Response.Status.OK)
                     .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "6", null))).build();
@@ -586,7 +609,7 @@ public class SysUserRestImpl implements SysUserRest {
 
             SysUsers currentUser = users.get(0);
 
-            if(currentUser.getRoleId().equals(Long.parseLong(logintype))) {
+            if (currentUser.getRoleId().equals(Long.parseLong(logintype))) {
 
                 if (!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
 
@@ -650,12 +673,65 @@ public class SysUserRestImpl implements SysUserRest {
 
                         this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
+                        //region 获取消息通知列表并与用户做绑定,并把消息置为未读
+
+                        /*
+
+                        //region 获取消息通知列表
+
+                        criteria.clear();
+
+                        List<publishmessage> publishmessageList = this.publishmessageService.selectByParams(criteria);
+
+                        //endregion
+
+                        //region 获取未读消息与用户的关系列表
+
+                        criteria.clear();
+
+                        //userid
+                        criteria.put("userid", currentUser.getUserId());
+
+                        //isread
+                        criteria.put("isread", "0");
+
+
+                        List<messageuser> messageuserList = this.messageuserService.selectByParams(criteria);
+
+                        //endregion
+
+                        List<messageuser> messageusers=new ArrayList<messageuser>();
+
+                        for (int j = 0; j < publishmessageList.size(); j++) {
+
+                            for (int i = 0; i < messageuserList.size(); i++) {
+
+                                if (publishmessageList.get(j).getId() == messageuserList.get(i).getMessageid()) {
+
+                                }
+                            }
+                        }
+
+                        int result = this.messageuserService.Batchinsert(messageusers);
+
+                        if (result >= 1) {
+                            log.info("批量插入成功!");
+                        } else {
+                            log.info("批量插入失败!");
+                        }
+
+                        */
+
+                        //endreigon
+
                         String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
                                 "7", currentUser));
 
                         //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
                         response = Response.status(Response.Status.OK).entity(json).build();
+
+                        //endregion
 
                         //endregion
 
@@ -669,7 +745,7 @@ public class SysUserRestImpl implements SysUserRest {
                     response = Response.status(Response.Status.OK)
                             .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
                 }
-            }else{
+            } else {
                 //角色不一致
                 response = Response.status(Response.Status.OK)
                         .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "15", null))).build();
@@ -738,7 +814,7 @@ public class SysUserRestImpl implements SysUserRest {
 
         List<SysUsers> users = this.sysUsersService.selectByParamsForWeixin(criteria);
 
-        if(users.size()>0){
+        if (users.size() > 0) {
 
             SysUsers currentuser = users.get(0);
 
@@ -754,7 +830,7 @@ public class SysUserRestImpl implements SysUserRest {
 
             //用户信息获取成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", currentuser))).build();
-        }else{
+        } else {
             //用户信息获取失败
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }

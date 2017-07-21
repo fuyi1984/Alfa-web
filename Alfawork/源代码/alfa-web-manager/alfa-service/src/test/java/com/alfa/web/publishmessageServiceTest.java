@@ -34,9 +34,9 @@ public class publishmessageServiceTest extends TestBase {
     {
         Criteria criteria = new Criteria();
         criteria.put("userid","18");
-        criteria.put("isread","1");
+        criteria.put("isread","0");
         List<publishmessage> list=this.publishmessageService.selectByParams(criteria);
-        Assert.assertEquals(2,list.size());
+        Assert.assertEquals(1,list.size());
     }
 
     @Test

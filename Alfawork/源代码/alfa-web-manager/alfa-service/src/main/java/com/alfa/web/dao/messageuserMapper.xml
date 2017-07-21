@@ -16,6 +16,14 @@
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
 
+        <!--消息基本信息-->
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+
+        <!--用户基本信息-->
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <sql id="Example_Where_Clause">
@@ -142,7 +150,16 @@
 
         <include refid="Base_Column_List"/>
 
+        ,B.title,B.content,C.realname,C.phone
+
         from messageuser A
+
+        left join publishmessage B on(A.messageid=B.id)
+        left join sysusers C on(A.userid=C.userid)
+
+        <if test="condition.phone != null">
+            INNER join sysusers E on(E.userid=A.userid and E.phone=#{condition.phone})
+        </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -154,6 +171,59 @@
 
         <include refid="common.Mysql_Pagination_Limit"/>
 
+    </select>
+
+    <insert id="insertBatch" parameterType="java.util.HashMap">
+
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        insert into messageuser (userid,messageid,isread，createdBy,createdDt,updatedBy,updatedDt,version)
+
+        values
+
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.userid},
+            #{item.messageid},
+            #{item.isread},
+            #{item.createdBy},
+            #{item.createdDt},
+            #{item.updatedBy},
+            #{item.updatedDt},
+            #{item.version}
+            )
+        </foreach>
+
+
+    </insert>
+
+    <update id="updateByParamsSelective" parameterType="com.alfa.web.pojo.messageuser">
+        update messageuser
+        <set>
+            <if test="isread!=null">
+                isread=#{isread},
+            </if>
+        </set>
+        where userid = #{userid} and messageid=#{messageid}
+    </update>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+
+        select count(*) from messageuser A
+
+        left join publishmessage B on(A.messageid=B.id)
+        left join sysusers C on(A.userid=C.userid)
+
+        <if test="condition.phone != null">
+            INNER join sysusers E on(E.userid=A.userid and E.phone=#{condition.phone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
     </select>
 
 </mapper>

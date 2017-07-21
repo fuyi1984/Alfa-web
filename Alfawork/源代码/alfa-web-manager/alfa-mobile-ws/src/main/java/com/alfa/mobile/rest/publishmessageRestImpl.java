@@ -125,24 +125,24 @@ public class publishmessageRestImpl implements publishmessageRest {
         criteria.put("messageid", user.getMessageid());
 
         //isread
-        criteria.put("isread", user.getIsread());
+        //criteria.put("isread", user.getIsread());
 
 
         List<messageuser> messageuserList = this.messageuserService.selectByParams(criteria);
 
-        if (messageuserList.size() == 0) {
+        if (messageuserList.size() > 0) {
 
-            int result = this.messageuserService.insertSelective(user);
+            int result = this.messageuserService.updateByParamsSelective(user);
 
             if(result>=1){
-                //数据插入成功
+                //数据更新成功
                 return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, "1",null)).build();
             }else{
-                //数据插入失败
+                //数据更新失败
                 return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "2",null)).build();
             }
         }else{
-            //数据已存在
+            //数据不存在
             return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, "3",null)).build();
         }
 
