@@ -5,17 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Init.js" line="98" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="2017-7-22">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MonitorStartOrderSmsStatusTest.java" />
+    <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/message/outbox.js" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/message/outbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_two.json" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_two.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/messageuserMapper.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/messageuserMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/messageuserMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/messageuserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/messageuserServiceImpl.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/messageuserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/messageuserService.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/messageuserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/publishmessageRest.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/publishmessageRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/publishmessageRestImpl.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/publishmessageRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,42 +50,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MonitorSmsStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorSmsStatus.java">
+      <file leaf-file-name="RegisterUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/RegisterUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2060">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            <state relative-caret-position="105">
+              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MonitorOrderStatus.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorOrderStatus.java">
+      <file leaf-file-name="SysUsers.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1010">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MonitorStartOrderSmsStatus.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorStartOrderSmsStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1993">
-              <caret line="115" column="58" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="115" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestByXml.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/RequestByXml.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="273">
+              <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <folding>
+                <element signature="e#540#541#0" expanded="true" />
+                <element signature="e#590#591#0" expanded="true" />
+                <element signature="e#634#635#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/Impl/vwSysUserServiceImpl.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorStartOrderSmsStatus.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/OrdersRest.java" />
@@ -211,6 +186,7 @@
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/message/outbox.js" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_two.json" />
         <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MonitorStartOrderSmsStatusTest.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java" />
       </list>
     </option>
   </component>
@@ -286,7 +262,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,6 +271,186 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pojo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-pay-ws" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-mobile-ws" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -363,6 +518,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1199,14 +1355,8 @@
       <workItem from="1500601605941" duration="13276000" />
       <workItem from="1500621787899" duration="7603000" />
       <workItem from="1500639272877" duration="7880000" />
-      <workItem from="1500699159358" duration="12023000" />
-    </task>
-    <task id="LOCAL-00139" summary="2017-6-30">
-      <created>1498811803167</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1498811803167</updated>
+      <workItem from="1500699159358" duration="12172000" />
+      <workItem from="1500720033896" duration="1257000" />
     </task>
     <task id="LOCAL-00140" summary="2017-6-30">
       <created>1498813445550</created>
@@ -1544,7 +1694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500704728987</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="2017-7-22">
+      <created>1500717560857</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1500717560857</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1580,7 +1737,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1710843000" />
+    <option name="totallyTimeSpent" value="1712249000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1593,6 +1750,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1607,7 +1765,6 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983471" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561985" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1616,7 +1773,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5570248" sideWeight="0.48786038" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.4969651" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18133536" sideWeight="0.4876033" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26100153" sideWeight="0.4876033" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24051593" sideWeight="0.5123967" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24051593" sideWeight="0.51724136" order="7" side_tool="true" content_ui="tabs" />
@@ -1624,6 +1781,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561985" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1740,33 +1898,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2319">
-          <caret line="253" column="20" lean-forward="false" selection-start-line="253" selection-start-column="20" selection-end-line="253" selection-end-column="20" />
-          <folding>
-            <element signature="e#4776#4789#0" expanded="false" />
-            <element signature="e#18301#18319#0" expanded="false" />
-            <element signature="e#18795#18816#0" expanded="false" />
-            <element signature="e#19132#19148#0" expanded="false" />
-            <element signature="e#19851#19871#0" expanded="false" />
-            <element signature="e#21423#21440#0" expanded="false" />
-            <element signature="e#21735#21756#0" expanded="false" />
-            <element signature="e#23816#23849#0" expanded="false" />
-            <marker date="1500623186525" expanded="false" signature="23903:24120" ph="获取消息通知列表" />
-            <marker date="1500623186525" expanded="false" signature="24146:24555" ph="获取未读消息与用户的关系列表" />
-            <marker date="1500623186525" expanded="false" signature="24625:24638" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/Search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysconfig/Update.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1155">
@@ -1785,9 +1916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="36" column="44" lean-forward="false" selection-start-line="35" selection-start-column="3" selection-end-line="36" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1795,9 +1923,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc;n#AddValidator#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1805,10 +1930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="72" column="12" lean-forward="false" selection-start-line="28" selection-start-column="9" selection-end-line="72" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!doc;n#AddValidator#0" expanded="false" />
-            <element signature="e#587#2569#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1816,7 +1937,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="148" column="33" lean-forward="false" selection-start-line="148" selection-start-column="22" selection-end-line="148" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1824,9 +1944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc;n#messagecancel#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1855,7 +1972,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1875,7 +1991,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
           <caret line="41" column="21" lean-forward="false" selection-start-line="40" selection-start-column="7" selection-end-line="41" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1883,9 +1998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="26" column="40" lean-forward="false" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc;n#AddValidator#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1893,12 +2005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="207" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-            <element signature="e#460#5846#0" expanded="false" />
-            <element signature="e#2135#2148#0" expanded="false" />
-            <element signature="n#!!block;n#ajaxfindlist#0;n#!!block;n#initdatagrid#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1906,7 +2012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1914,7 +2019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3066">
           <caret line="156" column="10" lean-forward="false" selection-start-line="156" selection-start-column="10" selection-end-line="156" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1922,7 +2026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1930,7 +2033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1938,7 +2040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1946,7 +2047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1954,7 +2054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1962,7 +2061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1970,22 +2068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="28" column="10" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="28" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#form#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1993,7 +2075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="26" column="40" lean-forward="false" selection-start-line="23" selection-start-column="3" selection-end-line="26" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2001,9 +2082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="171" column="34" lean-forward="false" selection-start-line="171" selection-start-column="24" selection-end-line="171" selection-end-column="34" />
-          <folding>
-            <marker date="1500645989186" expanded="true" signature="5551:6298" ph="update publi... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2027,7 +2105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="30" column="51" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="30" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2035,7 +2112,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="27" column="17" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2043,7 +2119,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
           <caret line="42" column="61" lean-forward="false" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2051,13 +2126,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
           <caret line="178" column="18" lean-forward="false" selection-start-line="178" selection-start-column="18" selection-end-line="178" selection-end-column="18" />
-          <folding>
-            <element signature="method#isread#0;class#publishmessageRestImpl#0" expanded="false" />
-            <element signature="method#insertmessageuser#0;class#publishmessageRestImpl#0" expanded="false" />
-            <element signature="method#InsertPublishMessage#0;class#publishmessageRestImpl#0" expanded="false" />
-            <element signature="method#EditPublishMessage#0;class#publishmessageRestImpl#0" expanded="false" />
-            <element signature="method#BatchDeletePublishMessage#0;class#publishmessageRestImpl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2065,7 +2133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="55" column="33" lean-forward="false" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2073,9 +2140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1232">
           <caret line="63" column="52" lean-forward="false" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#49#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2083,7 +2147,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-189">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2091,7 +2154,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
           <caret line="96" column="3" lean-forward="false" selection-start-line="76" selection-start-column="2" selection-end-line="96" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2099,11 +2161,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="42" column="2" lean-forward="false" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
-          <folding>
-            <element signature="e#4#299#0" expanded="false" />
-            <element signature="e#303#993#0" expanded="false" />
-            <element signature="e#997#1491#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2111,7 +2168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2119,7 +2175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="18" column="83" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2127,9 +2182,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#386#387#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2137,7 +2189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2145,7 +2196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2153,7 +2203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="111">
           <caret line="255" column="0" lean-forward="false" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2161,7 +2210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-288">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2179,23 +2227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-86">
           <caret line="410" column="0" lean-forward="false" selection-start-line="410" selection-start-column="0" selection-end-line="424" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorOrderStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1010">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorSmsStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2060">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2203,15 +2234,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorStartOrderSmsStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1993">
+        <state relative-caret-position="502">
           <caret line="115" column="58" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="115" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorOrderStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorSmsStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/RegisterUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/SysUsers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding>
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#634#635#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
