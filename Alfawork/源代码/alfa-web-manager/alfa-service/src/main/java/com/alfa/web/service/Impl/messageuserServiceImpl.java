@@ -39,6 +39,11 @@ public class messageuserServiceImpl implements messageuserService {
     }
 
     @Override
+    public int batchdeleteByPrimaryKey(List<String> list) {
+        return this.messageuserMapper.batchdeleteByPrimaryKey(list);
+    }
+
+    @Override
     public List<messageuser> selectByParams(Criteria example) {
         return this.messageuserMapper.selectByParams(example);
     }

@@ -17,11 +17,18 @@ public interface messageuserMapper {
     int insertSelective(messageuser record);
 
     /**
-     * 根据主键批量删除记录
+     * 根据Messageid批量删除记录
      * @param list
      * @return
      */
     int batchdeleteByMessageid(List<String> list);
+
+    /**
+     * 根据主键批量删除记录
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
 
     /**
      * 根据条件查询记录集

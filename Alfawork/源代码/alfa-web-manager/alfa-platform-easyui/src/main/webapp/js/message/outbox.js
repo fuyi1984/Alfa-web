@@ -61,7 +61,7 @@ function initdatagrid() {
                         datatype: 'json',
                         contentType: 'application/json;charset=UTF-8',
                         type: "POST",
-                        url: ws_url + '/rest/message/batchdelmessage?token=' + gtoken,
+                        url: ws_url + '/rest/message/batchdeletemessageuserbyid?token=' + gtoken,
                         data: JSON.stringify(assetList),
                         success: function (msg) {
                             if (msg.status == 'success') {

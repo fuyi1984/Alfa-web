@@ -163,6 +163,27 @@ public class publishmessageRestImpl implements publishmessageRest {
 
     }
 
+    @Override
+    public Response batchdeletemessageuserbyid(List<String> list) {
+        int result = 0;
+
+        result = this.messageuserService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            //删除成功
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.SUCCESS, "1", null)))
+                    .build();
+        } else {
+            //删除失败
+            return Response.status(Response.Status.OK).entity(
+                    JsonUtil.toJson(
+                            new RestResult(RestResult.FAILURE, "2", null)))
+                    .build();
+        }
+    }
+
     /**
      * 消息已读未读
      *

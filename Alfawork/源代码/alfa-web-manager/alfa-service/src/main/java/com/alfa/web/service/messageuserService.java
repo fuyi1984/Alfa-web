@@ -25,6 +25,13 @@ public interface messageuserService {
     int batchdeleteByMessageid(List<String> list);
 
     /**
+     * 根据主键批量删除记录
+     * @param list
+     * @return
+     */
+    int batchdeleteByPrimaryKey(List<String> list);
+
+    /**
      * 根据条件查询记录集
      */
     List<messageuser> selectByParams(Criteria example);

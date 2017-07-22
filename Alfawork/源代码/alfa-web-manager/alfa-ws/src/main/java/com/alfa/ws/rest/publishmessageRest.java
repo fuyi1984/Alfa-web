@@ -46,6 +46,16 @@ public interface publishmessageRest {
     public Response findlistoutbox(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
 
+    /**
+     * 根据id批量删除messageuser
+     */
+    @WebMethod
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/batchdeletemessageuserbyid")
+    public Response batchdeletemessageuserbyid(List<String> list);
+
 
     /**
      * 消息已读未读
