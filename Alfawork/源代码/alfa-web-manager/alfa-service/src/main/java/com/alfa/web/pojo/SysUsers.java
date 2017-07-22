@@ -25,19 +25,6 @@ public class SysUsers extends Entity implements Serializable{
     private Long userId;
 
     /**
-     * 注册Id
-     */
-    private Long registerid;
-
-    public Long getRegisterid() {
-        return registerid;
-    }
-
-    public void setRegisterid(Long registerid) {
-        this.registerid = registerid;
-    }
-
-    /**
      * 用户名
      */
     private String username;
