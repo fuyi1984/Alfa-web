@@ -107,6 +107,62 @@ public class publishmessageRestImpl implements publishmessageRest {
         //endregion
     }
 
+    @Override
+    public Response findlistoutbox(String param, HttpServletRequest request, HttpServletResponse response) {
+
+        Map map = WebUtil.getParamsMap(param, "utf-8");
+
+        //region 分页条件
+
+        BasePager pager = new BasePager();
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
+            pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
+            pager.setSortField(map.get("sortdatafield").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortName"))) {
+            pager.setSortField(map.get("sortName").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
+            pager.setSortOrder(map.get("sortorder").toString());
+        }
+
+        //endregion
+
+        //过滤
+        Criteria criteria = new Criteria();
+
+        //phone
+        if (!StringUtil.isNullOrEmpty(map.get("phone"))) {
+            criteria.put("phone", map.get("phone").toString());
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
+
+        List<messageuser> messageuserList = this.messageuserService.selectByParams(criteria);
+
+        int count = this.messageuserService.countByParams(criteria);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        data.put("total", count);
+        data.put("rows", messageuserList);
+
+        String json = JsonUtil.toJson(data);
+
+        return Response.status(Response.Status.OK).entity(json).build();
+
+    }
+
     /**
      * 消息已读未读
      *

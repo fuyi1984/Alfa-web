@@ -36,6 +36,18 @@ public interface publishmessageRest {
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
     /**
+     * 查询分页发件箱中的消息
+     */
+    @WebMethod
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/findlistoutbox")
+    public Response findlistoutbox(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+
+
+    /**
      * 消息已读未读
      */
     @WebMethod

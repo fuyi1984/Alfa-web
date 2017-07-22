@@ -81,9 +81,16 @@
     "MenuInfos": [
       {
         "MenuId": 1,
-        "MenuNames": "消息通知",
+        "MenuNames":"消息通知",
         "Icon": "icon-add",
         "Url": "/alfa-platform/pages/message/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 2,
+        "MenuNames":"发件箱",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/message/outbox.html",
         "CreateTime": "\/Date(1496293240000)\/"
       }
     ]
