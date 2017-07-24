@@ -503,6 +503,14 @@ public class SysUserRestImpl implements SysUserRest {
 
     }
 
+    /**
+     * 微信端手机登录
+     * @param registerUser
+     * @param servletRequest
+     * @param servletResponse
+     * @return
+     * @throws ParseException
+     */
     @Override
     public Response loginforweixin(RegisterUser registerUser, HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ParseException {
         /*Response response = Response.status(500).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "服务器异常，请联系管理员。", null))).build();*/
@@ -722,7 +730,7 @@ public class SysUserRestImpl implements SysUserRest {
 
                         */
 
-                        //endreigon
+                        //endregion
 
                         String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
                                 "7", currentUser));
@@ -730,10 +738,6 @@ public class SysUserRestImpl implements SysUserRest {
                         //String json= JsonUtil.toJson(this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser));
 
                         response = Response.status(Response.Status.OK).entity(json).build();
-
-                        //endregion
-
-                        //endregion
 
                     } else {
                         //用户未审核
@@ -766,6 +770,98 @@ public class SysUserRestImpl implements SysUserRest {
         }
 
         //endregion
+
+        return response;
+    }
+
+    @Override
+    public Response loginforwap(SysUsers user, HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
+
+        //服务器异常，请联系管理员
+        Response response = Response.status(500)
+                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "500", null))).build();
+
+        HttpSession session = servletRequest.getSession();
+
+        //获取用户名和密码
+
+        String account = new String(Base64Util.decode(user.getUsername().trim()));
+        String password = new String(Base64Util.decode(user.getPassword().trim()));
+
+        //用户名密码为空返回提示
+        if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {
+            return Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+        }
+
+        Criteria criteria = new Criteria();
+        criteria.put("username", account);
+        criteria.put("phone", account);
+
+        // 根据用户名密码查询用户信息
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        if (users.size() > 0) {
+
+            SysUsers currentUser = users.get(0);
+
+            if (currentUser.getRoleId().equals(19L)) {
+
+                //region 角色为业务人员
+
+                if (!StringUtil.isNullOrEmpty(currentUser.getStatus())) {
+
+                    if (currentUser.getStatus().equals("1")) {
+
+                        //region 已审核
+
+                        String passwordEncrypt = WebUtil.encrypt(password, currentUser.getUsername());
+
+                        if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
+
+                            currentUser.setMobiletoken(StringUtil.getUUID());
+                            currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
+
+                            sysUsersService.updateByPrimaryKeySelective(currentUser);
+
+                            currentUser.setPassword("");
+                            currentUser.setCaptcha("");
+                            currentUser.setVerifyCode("");
+                            currentUser.setToken("");
+
+                            this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+
+                            String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
+                                    "7", currentUser));
+
+                            response = Response.status(Response.Status.OK).entity(json).build();
+                        }
+
+                        //endregion
+
+                    } else {
+                        //用户未审核
+                        response = Response.status(Response.Status.OK)
+                                .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
+                    }
+
+                } else {
+                    //用户未审核
+                    response = Response.status(Response.Status.OK)
+                            .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "10", null))).build();
+                }
+
+                //endregion
+            }else{
+                //角色非业务人员，不能登录
+                response = Response.status(Response.Status.OK)
+                        .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "8", null))).build();
+            }
+        }else{
+            //手机号不存在
+            response = Response.status(Response.Status.OK)
+                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "5", null))).build();
+        }
 
         return response;
     }

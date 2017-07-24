@@ -99,8 +99,10 @@ public interface SysUserRest {
     /**
      * 退出用户
      */
+    @WebMethod
     @POST
     @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/logout")
     public Response logoutUser(@Context HttpServletRequest servletRequest,
                                @Context HttpServletResponse servletResponse);
@@ -108,8 +110,10 @@ public interface SysUserRest {
     /**
      * 用户登录
      */
+    @WebMethod
     @POST
     @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
     @Path("/verify")
     public Response verifyUser(SysUsers user,
                                @Context HttpServletRequest servletRequest,

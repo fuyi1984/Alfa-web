@@ -20,7 +20,7 @@
         <result column="regrealname" property="regrealname" jdbcType="VARCHAR"/>
         <result column="regphone" property="regphone" jdbcType="VARCHAR"/>
         <result column="regaddress" property="regaddress" jdbcType="VARCHAR"/>
-        <result column="regorgname" property="regorgname" jdbcType="orgname"/>
+        <result column="regorgname" property="regorgname" jdbcType="VARCHAR"/>
 
         <!--业务人员的详细信息-->
         <result column="businessrealname" property="businessrealname" jdbcType="VARCHAR"/>
@@ -61,7 +61,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.userid,A.registerid,A.id
+        A.userid,A.registerid,A.id,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
 
@@ -129,7 +129,7 @@
         <include refid="Base_Column_List"/>
 
         ,C.realname as regrealname,C.phone as regphone,C.address as regaddress,C.orgname as regorgname,
-        B.businessrealname,B.businessphone
+        B.realname as businessrealname,B.phone as businessphone
 
         from userregisterbehavior A
 
@@ -140,8 +140,8 @@
         left join SysUsers C on(A.registerid=C.userId)
 
         <if test="condition.businessphone != null or condition.businessrealname != null ">
-            INNER JOIN SysUsers D ON(D.userId = A.roleId and (D.realname = #{condition.businessrealname} or D.phone=#{
-              condition.businessphone})
+            INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
+              condition.businessphone}))
         </if>
 
         <if test="_parameter != null">
@@ -167,8 +167,8 @@
         left join SysUsers C on(A.registerid=C.userId)
 
         <if test="condition.businessphone != null or condition.businessrealname != null ">
-            INNER JOIN SysUsers D ON(D.userId = A.roleId and (D.realname = #{condition.businessrealname} or D.phone=#{
-              condition.businessphone})
+            INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
+              condition.businessphone}))
         </if>
 
         <if test="_parameter != null">

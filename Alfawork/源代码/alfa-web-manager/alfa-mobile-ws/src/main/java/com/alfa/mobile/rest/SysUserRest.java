@@ -123,9 +123,23 @@ public interface SysUserRest {
     public Response loginforweixin(RegisterUser registerUser, @Context HttpServletRequest servletRequest,
                           @Context HttpServletResponse servletResponse) throws ParseException;
 
+
+    /**
+     * 用户登录(手机WAP)
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/loginforwap")
+    public Response loginforwap(SysUsers user,
+                               @Context HttpServletRequest servletRequest,
+                               @Context HttpServletResponse servletResponse);
+
     /**
      * 退出手机用户
      */
+    @WebMethod
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/logout")
