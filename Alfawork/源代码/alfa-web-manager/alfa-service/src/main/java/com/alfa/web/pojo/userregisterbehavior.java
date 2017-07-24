@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class userregisterbehavior extends Entity implements Serializable {
 
     /**
-     * userid
+     * 业务人员userid
      */
     private Long userid;
 
@@ -22,7 +22,7 @@ public class userregisterbehavior extends Entity implements Serializable {
     }
 
     /**
-     * 注册Id
+     * 被注册用户的userid
      */
     private Long registerid;
 
