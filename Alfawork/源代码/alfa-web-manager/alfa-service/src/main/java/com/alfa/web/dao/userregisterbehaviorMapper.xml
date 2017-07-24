@@ -9,6 +9,7 @@
         <result column="userid" property="userid" jdbcType="BIGINT"/>
         <result column="registerid" property="registerid" jdbcType="BIGINT"/>
 
+        <!--数据的创建和修改时间-->
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
@@ -16,10 +17,14 @@
         <result column="version" property="version" jdbcType="BIGINT"/>
 
         <!-- 注册用户的详细信息 -->
-        <result column="realname" property="realname" jdbcType="VARCHAR"/>
-        <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="address" property="address" jdbcType="VARCHAR"/>
-        <result column="orgname" property="orgname" jdbcType="orgname"/>
+        <result column="regrealname" property="regrealname" jdbcType="VARCHAR"/>
+        <result column="regphone" property="regphone" jdbcType="VARCHAR"/>
+        <result column="regaddress" property="regaddress" jdbcType="VARCHAR"/>
+        <result column="regorgname" property="regorgname" jdbcType="orgname"/>
+
+        <!--业务人员的详细信息-->
+        <result column="businessrealname" property="businessrealname" jdbcType="VARCHAR"/>
+        <result column="businessphone" property="businessphone" jdbcType="VARCHAR"/>
 
     </resultMap>
 
@@ -60,5 +65,125 @@
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
 
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.userregisterbehavior">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into userregisterbehavior
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid!=null">
+                userid,
+            </if>
+            <if test="registerid!=null">
+                registerid,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid!=null">
+                #{userid},
+            </if>
+            <if test="registerid!=null">
+                #{registerid},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        ,C.realname as regrealname,C.phone as regphone,C.address as regaddress,C.orgname as regorgname,
+        B.businessrealname,B.businessphone
+
+        from userregisterbehavior A
+
+        <!--业务人员关联-->
+        left join SysUsers B on(A.userid = B.userId)
+
+        <!--新注册的产废单位关联-->
+        left join SysUsers C on(A.registerid=C.userId)
+
+        <if test="condition.businessphone != null or condition.businessrealname != null ">
+            INNER JOIN SysUsers D ON(D.userId = A.roleId and (D.realname = #{condition.businessrealname} or D.phone=#{
+              condition.businessphone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+        select count(*) from userregisterbehavior A
+
+        <!--业务人员关联-->
+        left join SysUsers B on(A.userid = B.userId)
+
+        <!--新注册的产废单位关联-->
+        left join SysUsers C on(A.registerid=C.userId)
+
+        <if test="condition.businessphone != null or condition.businessrealname != null ">
+            INNER JOIN SysUsers D ON(D.userId = A.roleId and (D.realname = #{condition.businessrealname} or D.phone=#{
+              condition.businessphone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+    </select>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        userregisterbehavior
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
 
 </mapper>

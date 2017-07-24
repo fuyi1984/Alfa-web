@@ -34,4 +34,36 @@ public class userregisterbehavior extends Entity implements Serializable {
         this.registerid = registerid;
     }
 
+    /**
+     * 注册人员的真实姓名
+     */
+    public String regrealname;
+
+    /**
+     *  注册人员的手机号
+     */
+    public String regphone;
+
+    /**
+     *  注册人员的地址
+     */
+    private String regaddress;
+
+    /**
+     *  注册人员的单位名称
+
+     */
+    private String regorgname;
+
+
+    /**
+     * 业务人员的真实姓名
+     */
+    public String businessrealname;
+
+    /**
+     *  业务人员的手机号
+     */
+    public String businessphone;
+
 }

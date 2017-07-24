@@ -1,6 +1,5 @@
-package com.alfa.web.dao;
+package com.alfa.web.service;
 
-import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.userregisterbehavior;
 import com.alfa.web.util.pojo.Criteria;
 
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/7/24.
  */
-public interface userregisterbehaviorMapper {
+public interface userregisterbehaviorService {
 
     /**
      * 保存属性不为空的记录
