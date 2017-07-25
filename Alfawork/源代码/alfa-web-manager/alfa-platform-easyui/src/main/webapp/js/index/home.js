@@ -36,7 +36,7 @@ $(function () {
         });
 
     }else{
-        window.location.href=platform_url+"/pages/home/login.html";
+       window.location.href=platform_url+"/pages/home/login.html";
     }
 })
 
@@ -102,7 +102,7 @@ function logoutUser(){
     $.post(ws_url+"/rest/user/logout?token="+gtoken,function(data){
         //alert("logout:"+data);
         SetCookie("token","");
-        window.location.href=platform_url+"/pages/home/login.html";
+       window.location.href=platform_url+"/pages/home/login.html";
     });
 }
 

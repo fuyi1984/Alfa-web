@@ -61,7 +61,7 @@ function logOn() {
 
                     SetCookie("token",data.data.user.token,1);
                     //window.location.href = platformUrl+"/pages/jsp/redirect.jsp?token="+data.data.user.token;
-                    window.location.href = platform_url+"/pages/home/index.html";
+                    window.location.href=platform_url+"/pages/home/index.html";
                 }
                 else {
                     if(data.message=="error.users.wrong.password"){

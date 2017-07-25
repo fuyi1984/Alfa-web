@@ -86,6 +86,10 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
             users.setUsername(user.getPhone());
             users.setRemarks(user.getRemark());
 
+            //经纬度
+            users.setLongitude(user.getLongitude());
+            users.setLatitude(user.getLatitude());
+
             users.setPassword(WebUtil.encrypt(StringUtil.getUUID(), user.getPhone()));
             users.setRoleId(10L);
             users.setStatus("0");
