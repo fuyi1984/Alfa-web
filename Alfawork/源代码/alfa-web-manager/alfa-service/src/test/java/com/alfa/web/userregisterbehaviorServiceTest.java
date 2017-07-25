@@ -2,13 +2,19 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.userregisterbehavior;
+import com.alfa.web.service.SysUsersService;
 import com.alfa.web.service.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.StringUtil;
+import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.vo.registerbehaviorvo;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +27,9 @@ public class userregisterbehaviorServiceTest extends TestBase {
 
     @Autowired
     private userregisterbehaviorService userregisterbehaviorService;
+
+    @Autowired
+    private SysUsersService sysUsersService;
 
     @Test
     public void insertSelective(){
@@ -62,5 +71,95 @@ public class userregisterbehaviorServiceTest extends TestBase {
        List<String> list=new ArrayList<String>();
        list.add("2");
        this.userregisterbehaviorService.batchdeleteByPrimaryKey(list);
+    }
+
+    @Test
+    public void insertuser() throws Exception {
+
+        registerbehaviorvo user=new registerbehaviorvo();
+        user.setRealname("张三");
+        user.setAddress("重庆");
+        user.setOrgname("中国移动");
+        user.setPhone("12345");
+        user.setUserid(18L);
+
+        Criteria criteria = new Criteria();
+
+        //region 查询条件
+
+        /**
+         * 真实姓名
+         */
+        if (!StringUtil.isNullOrEmpty(user.getRealname())) {
+            criteria.put("realname", user.getRealname());
+        }
+
+        /**
+         * 手机号
+         */
+        if (!StringUtil.isNullOrEmpty(user.getPhone())) {
+            criteria.put("phone", user.getPhone());
+        }
+
+        /**
+         * 单位地址
+         */
+        if (!StringUtil.isNullOrEmpty(user.getAddress())) {
+            criteria.put("address", user.getAddress());
+        }
+
+        /**
+         * 单位名称
+         */
+        if (!StringUtil.isNullOrEmpty(user.getOrgname())) {
+            criteria.put("orgname", user.getOrgname());
+        }
+
+        //endregion
+
+        List<SysUsers> usersList = this.sysUsersService.selectByParams(criteria);
+
+        if (usersList.size() == 0) {
+
+            SysUsers users = new SysUsers();
+
+            users.setRealname(user.getRealname());
+            users.setOrgname(user.getOrgname());
+            users.setPhone(user.getPhone());
+            users.setAddress(user.getAddress());
+            users.setUsername(user.getPhone());
+
+            users.setPassword(WebUtil.encrypt(StringUtil.getUUID(), user.getPhone()));
+            users.setRoleId(10L);
+            users.setStatus("0");
+
+            boolean result = this.sysUsersService.insertUser(users);
+
+            if (result) {
+
+                userregisterbehavior userregisterbehavior = new userregisterbehavior();
+                userregisterbehavior.setUserid(user.getUserid());
+                userregisterbehavior.setRegisterid(users.getUserId());
+
+                int sum = this.userregisterbehaviorService.insertSelective(userregisterbehavior);
+
+                if(sum>0){
+                    //数据添加失败
+                    System.out.println("1");
+                }else{
+                    //数据添加失败
+                    System.out.println("3");
+                }
+
+
+            } else {
+                //数据添加失败
+                System.out.println("3");
+            }
+
+        } else {
+            //数据已存在
+            System.out.println("2");
+        }
     }
 }

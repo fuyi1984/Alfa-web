@@ -39,6 +39,20 @@ public class registerbehaviorvo {
      */
     private String orgname;
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    /**
+     * 备注
+
+     */
+    private String remark;
+
     public String getRealname() {
         return realname;
     }

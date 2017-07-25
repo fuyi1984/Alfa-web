@@ -1,4 +1,4 @@
-package com.alfa.ws.rest;
+package com.alfa.mobile.rest;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.userregisterbehavior;
@@ -7,7 +7,6 @@ import com.alfa.web.service.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
-import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
@@ -152,10 +151,12 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
         Criteria criteria = new Criteria();
 
+        //业务人员电话
         if (!StringUtil.isNullOrEmpty(map.get("businessphone"))) {
             criteria.put("businessphone", map.get("businessphone").toString());
         }
 
+        //业务人员姓名
         if (!StringUtil.isNullOrEmpty(map.get("businessrealname"))) {
             criteria.put("businessrealname", map.get("businessrealname").toString());
         }
