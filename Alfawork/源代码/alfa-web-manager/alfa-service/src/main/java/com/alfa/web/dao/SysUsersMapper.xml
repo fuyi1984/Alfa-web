@@ -41,10 +41,21 @@
         <result column="longitude" property="longitude" jdbcType="VARCHAR"/>
         <!--纬度-->
         <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
+        <!--文件ID(外键)-->
+        <result column="fileid" property="fileid" jdbcType="BIGINT"/>
+
+        <!--文件信息表-->
+        <!--文件的基本信息-->
+        <result column="fileids" property="fileids" jdbcType="BIGINT"/>
+        <result column="regurl" property="regurl" jdbcType="VARCHAR"/>
+        <result column="regtype" property="regtype" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.fileid!=null">
+                and A.fileid=#{condition.fileid}
+            </if>
             <if test="condition.latitude!=null">
                 and A.latitude=#{condition.latitude}
             </if>
@@ -148,7 +159,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.longitude,A.latitude,
+        A.longitude,A.latitude,A.fileid,
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
@@ -159,10 +170,11 @@
         <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into sysusers (latitude,longitude,realname,username, password, phone, sexname,sex,statusname,status,typesname,types,
+        insert into sysusers (fileid,latitude,longitude,realname,username, password, phone,
+        sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
         createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname,captcha,weixinid)
-        values (#{latitude},#{longitude},#{realname},#{username}, #{password}, #{phone},
+        values (#{fileid},#{latitude},#{longitude},#{realname},#{username}, #{password}, #{phone},
         #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname},#{captcha},#{weixinid})
@@ -174,6 +186,9 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileid!=null">
+                fileid,
+            </if>
             <if test="longitude!=null">
                 longitude,
             </if>
@@ -263,6 +278,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileid!=null">
+                #{fileid},
+            </if>
             <if test="longitude!=null">
                 #{longitude},
             </if>
@@ -363,9 +381,13 @@
 
         <include refid="Base_Column_List"/>
         ,B.roleId,B.role_name,B.menuitem
+        ,E.id as fileids,E.url as regurl,E.type as regtype
         from SysUsers A
 
         left join SysRole B on(A.roleId = B.roleId)
+
+        <!--新注册用户关联的上传文件链接-->
+        left join fileinfo E on(A.fileid=E.id)
 
         <if test="condition.roleId != null">
             INNER JOIN SysRole C ON(C.roleId = A.roleId and C.roleId = #{condition.roleId})
@@ -396,10 +418,13 @@
 
         <include refid="Base_Column_List"/>
         ,B.roleId,B.role_name,B.menuitem,D.openid,D.headimgurl,D.state
+        ,E.id as fileids,E.url as regurl,E.type as regtype
         from SysUsers A
 
         left join SysRole B on(A.roleId = B.roleId)
         left join td_weixin_users D on(A.weixinid = D.Id)
+        <!--新注册用户关联的上传文件链接-->
+        left join fileinfo E on(A.fileid=E.id)
 
         <if test="condition.roleId != null">
             INNER JOIN SysRole C ON(C.roleId = A.roleId and C.roleId = #{condition.roleId})
@@ -423,6 +448,9 @@
             resultType="java.lang.Integer">
         select count(*) from SysUsers A
 
+        <!--新注册用户关联的上传文件链接-->
+        left join fileinfo E on(A.fileid=E.id)
+
         <if test="condition.roleId != null">
             INNER JOIN SysRole B ON(B.roleId = A.roleId and B.roleId = #{condition.roleId})
         </if>
@@ -438,7 +466,7 @@
         <include refid="Base_Column_List"/>
         from
         SysUsers A
-        left join SysRole B on(B.roleId = A.roleId )
+        left join SysRole B on(B.roleId = A.roleId)
         where A.userId =
         #{userId}
     </select>
@@ -468,6 +496,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysUsers">
         update SysUsers
         <set>
+            <if test="fileid!=null">
+                fileid=#{fileid},
+            </if>
             <if test="longitude!=null">
                 longitude=#{longitude},
             </if>

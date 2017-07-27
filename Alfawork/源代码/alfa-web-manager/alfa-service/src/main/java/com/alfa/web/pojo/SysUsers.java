@@ -453,4 +453,59 @@ public class SysUsers extends Entity implements Serializable{
         LoginIp = loginIp;
     }
 
+    /**
+     * 文件ID
+     */
+    private Long fileid;
+
+    public Long getFileid() {
+        return fileid;
+    }
+
+    public void setFileid(Long fileid) {
+        this.fileid = fileid;
+    }
+
+
+
+    public Long getFileids() {
+        return fileids;
+    }
+
+    public void setFileids(Long fileids) {
+        this.fileids = fileids;
+    }
+
+    public String getRegurl() {
+        return regurl;
+    }
+
+    public void setRegurl(String regurl) {
+        this.regurl = regurl;
+    }
+
+    public String getRegtype() {
+        return regtype;
+    }
+
+    public void setRegtype(String regtype) {
+        this.regtype = regtype;
+    }
+
+
+    /**
+     * 文件ID
+     */
+    private Long fileids;
+
+    /**
+     * 文件链接
+     */
+    private String regurl;
+
+    /**
+     * 文件类型
+
+     */
+    private String regtype;
 }

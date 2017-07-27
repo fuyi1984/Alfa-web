@@ -147,6 +147,15 @@ public interface SysUserRest {
                                @Context HttpServletResponse servletResponse);
 
     /**
+     * 验证用户是否登录
+     */
+    @WebMethod
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/current")
+    public Response current(@Context HttpServletRequest servletRequest);
+
+    /**
      * 获取当前登录用户的信息(微信)
      * @param user
      * @return

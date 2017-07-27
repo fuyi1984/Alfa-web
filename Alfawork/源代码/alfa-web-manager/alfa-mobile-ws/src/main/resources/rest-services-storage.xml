@@ -23,6 +23,7 @@
             <bean class="com.alfa.mobile.rest.OrderCommentRestImpl"/>
             <bean class="com.alfa.mobile.rest.publishmessageRestImpl"/>
             <bean class="com.alfa.mobile.rest.registerbehaviorRestImpl"/>
+            <bean class="com.alfa.mobile.rest.FileResourceRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

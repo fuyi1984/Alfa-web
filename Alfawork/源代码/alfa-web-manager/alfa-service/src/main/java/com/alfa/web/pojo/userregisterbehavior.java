@@ -39,6 +39,20 @@ public class userregisterbehavior extends Entity implements Serializable {
      */
     private String regorgname;
 
+    public String getRegstatus() {
+        return regstatus;
+    }
+
+    public void setRegstatus(String regstatus) {
+        this.regstatus = regstatus;
+    }
+
+    /**
+     * 注册人员的状态
+     */
+
+    private String regstatus;
+
 
     /**
      * 业务人员的真实姓名
@@ -49,6 +63,46 @@ public class userregisterbehavior extends Entity implements Serializable {
      *  业务人员的手机号
      */
     private String businessphone;
+
+    /**
+     * 文件ID
+     */
+    private Long fileid;
+
+    /**
+     * 文件链接
+     */
+    private String regurl;
+
+    public String getRegtype() {
+        return regtype;
+    }
+
+    public void setRegtype(String regtype) {
+        this.regtype = regtype;
+    }
+
+    /**
+     * 文件类型
+
+     */
+    private String regtype;
+
+    public Long getFileid() {
+        return fileid;
+    }
+
+    public void setFileid(Long fileid) {
+        this.fileid = fileid;
+    }
+
+    public String getRegurl() {
+        return regurl;
+    }
+
+    public void setRegurl(String regurl) {
+        this.regurl = regurl;
+    }
 
     public Long getUserid() {
         return userid;

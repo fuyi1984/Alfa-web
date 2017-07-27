@@ -7,6 +7,8 @@ public interface WebConstants {
 
     public static final String CURRENT_PLATFORM_USER = "CURRENT_PLATFORM_USER";
 
+    public static final String CURRENT_MOBILE_USER="CURRENT_MOBILE_USER";
+
     /**
      * 性别
      */

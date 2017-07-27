@@ -7,6 +7,8 @@ import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.util.pojo.UserManager;
+import com.alfa.web.util.pojo.UserSession;
 import com.alfa.web.vo.MobileUser;
 import com.alfa.web.vo.ModifyPwdUser;
 import com.alfa.web.vo.RegisterUser;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,6 +49,9 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Autowired
     private publishmessageService publishmessageService;
+
+    @Autowired
+    private fileinfoService fileinfoService;
 
     @Override
     public Response getCaptcha(String mobile) {
@@ -901,6 +907,30 @@ public class SysUserRestImpl implements SysUserRest {
         return response;
     }
 
+    /**
+     * 验证用户是否登录
+     */
+    @Override
+    public Response current(HttpServletRequest servletRequest) {
+        try {
+            log.debug("start");
+            // 当前用户信息已在验证用户登录时放入UserManager中
+            UserSession currentUser = UserManager.getUserSession();
+
+            log.debug("start2");
+            if (currentUser != null && currentUser.getId() != null && currentUser.getUser() != null) {
+                return Response.status(Response.Status.OK).entity(currentUser).build();
+            } else {
+                currentUser = new UserSession();
+                currentUser.setId(null);
+                return Response.status(Response.Status.OK).entity(currentUser).build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("").build();
+        }
+    }
+
     @Override
     public Response GetCurrentUserInfoForWeiXin(SysUsers user) {
 
@@ -935,16 +965,51 @@ public class SysUserRestImpl implements SysUserRest {
     @Override
     public Response editUser(SysUsers user) {
 
-        WebUtil.prepareUpdateParams(user);
+        fileinfo fileinfo=new fileinfo();
 
-        int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+        if(!StringUtil.isNullOrEmpty(user.getRegurl()))
+        {
+            File file=new File(user.getRegurl());
 
-        if (result == 1) {
-            //用户信息更新成功
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
-        } else {
-            //用户信息更新失败
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            fileinfo.setUrl(user.getRegurl());
+            fileinfo.setType("image");
+            fileinfo.setFile_name(file.getName());
+
+            int result=this.fileinfoService.insertSelective(fileinfo);
+
+            if(result==1){
+                log.info("文件信息表插入成功!");
+            }else{
+                log.info("文件信息表插入失败!");
+            }
+        }
+
+        if(!StringUtil.isNullOrEmpty(fileinfo.getId())){
+            user.setFileid(fileinfo.getId());
+        }
+
+        Criteria criteria=new Criteria();
+        criteria.put("username", user.getPhone());
+        criteria.put("phone", user.getPhone());
+
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        if(users.size()==0) {
+
+            WebUtil.prepareUpdateParams(user);
+
+            int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+            if (result == 1) {
+                //用户信息更新成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+            } else {
+                //用户信息更新失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            }
+        }else{
+            //联系电话已存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
         }
     }
 

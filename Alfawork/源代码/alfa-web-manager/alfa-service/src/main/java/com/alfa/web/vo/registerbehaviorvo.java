@@ -39,6 +39,31 @@ public class registerbehaviorvo {
      */
     private String orgname;
 
+
+    //收油地址
+    private String targetaddress;
+
+    /**
+     * 文件url
+     */
+    private String fileurl;
+
+    public String getFileurl() {
+        return fileurl;
+    }
+
+    public void setFileurl(String fileurl) {
+        this.fileurl = fileurl;
+    }
+
+    public String getTargetaddress() {
+        return targetaddress;
+    }
+
+    public void setTargetaddress(String targetaddress) {
+        this.targetaddress = targetaddress;
+    }
+
     public String getRemark() {
         return remark;
     }

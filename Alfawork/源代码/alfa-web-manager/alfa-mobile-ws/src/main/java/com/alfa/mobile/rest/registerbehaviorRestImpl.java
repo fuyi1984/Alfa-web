@@ -1,8 +1,12 @@
 package com.alfa.mobile.rest;
 
+import com.alfa.web.pojo.HistoryAddress;
 import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.pojo.fileinfo;
 import com.alfa.web.pojo.userregisterbehavior;
+import com.alfa.web.service.HistoryAddressService;
 import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.fileinfoService;
 import com.alfa.web.service.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
@@ -17,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -35,8 +40,33 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
     @Autowired
     private SysUsersService sysUsersService;
 
+    @Autowired
+    private HistoryAddressService historyAddressService;
+
+    @Autowired
+    private fileinfoService fileinfoService;
+
     @Override
     public Response insertUser(registerbehaviorvo user) throws Exception {
+
+        fileinfo fileinfo=new fileinfo();
+
+        if(!StringUtil.isNullOrEmpty(user.getFileurl())){
+
+            File file=new File(user.getFileurl());
+
+            fileinfo.setUrl(user.getFileurl());
+            fileinfo.setType("image");
+            fileinfo.setFile_name(file.getName());
+
+            int result=this.fileinfoService.insertSelective(fileinfo);
+
+            if(result>0){
+                log.info("文件信息表插入成功");
+            }else{
+                log.info("文件信息表插入失败");
+            }
+        }
 
         Criteria criteria = new Criteria();
 
@@ -76,6 +106,8 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
         if (usersList.size() == 0) {
 
+            //region 添加用户数据
+
             SysUsers users = new SysUsers();
 
             users.setRealname(user.getRealname());
@@ -89,15 +121,50 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
             users.setLongitude(user.getLongitude());
             users.setLatitude(user.getLatitude());
 
+            //用户表和文件信息表建立关联
+            if(!StringUtil.isNullOrEmpty(fileinfo.getId())) {
+                users.setFileid(fileinfo.getId());
+            }
+
             users.setPassword(WebUtil.encrypt(StringUtil.getUUID(), user.getPhone()));
             users.setRoleId(10L);
             users.setStatus("0");
 
-            boolean result = this.sysUsersService.insertUser(users);
+            boolean userresult = this.sysUsersService.insertUser(users);
 
-            if (result) {
+            //endregion
 
-                log.info("数据添加成功!");
+            //region 添加收油地址历史记录
+
+            criteria.clear();
+            criteria.put("iphone", user.getPhone());
+            criteria.put("address", user.getTargetaddress());
+
+            List<HistoryAddress> historyAddressList=this.historyAddressService.selectByParams(criteria);
+
+            if(historyAddressList.size()==0) {
+
+                HistoryAddress historyAddress = new HistoryAddress();
+                historyAddress.setIphone(user.getPhone());
+                historyAddress.setAddress(user.getTargetaddress());
+                int historyresult = this.historyAddressService.insertSelective(historyAddress);
+                if(historyresult>0){
+                    log.info("收油地址添加成功!");
+                }else{
+                    log.info("收油地址添加失败!");
+                }
+
+            }
+
+            //endregion
+
+            //region 结果判断
+
+            if (userresult) {
+
+                //region 业务人员与注册用户建立关联
+
+                log.info("用户数据添加成功!");
 
                 userregisterbehavior userregisterbehavior = new userregisterbehavior();
                 userregisterbehavior.setUserid(user.getUserid());
@@ -105,19 +172,22 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
                 int sum = this.userregisterbehaviorService.insertSelective(userregisterbehavior);
 
-                if(sum>0){
+                if (sum > 0) {
                     //数据添加失败
                     return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
-                }else{
+                } else {
                     //数据添加失败
                     return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
                 }
 
+                //endregion
 
             } else {
                 //数据添加失败
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
             }
+
+            //endregion
 
         } else {
             //数据已存在

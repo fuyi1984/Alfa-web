@@ -21,6 +21,12 @@
         <result column="regphone" property="regphone" jdbcType="VARCHAR"/>
         <result column="regaddress" property="regaddress" jdbcType="VARCHAR"/>
         <result column="regorgname" property="regorgname" jdbcType="VARCHAR"/>
+        <result column="regstatus" property="regstatus" jdbcType="VARCHAR"/>
+
+        <!--文件的基本信息-->
+        <result column="fileid" property="fileid" jdbcType="BIGINT"/>
+        <result column="regurl" property="regurl" jdbcType="VARCHAR"/>
+        <result column="regtype" property="regtype" jdbcType="VARCHAR"/>
 
         <!--业务人员的详细信息-->
         <result column="businessrealname" property="businessrealname" jdbcType="VARCHAR"/>
@@ -128,8 +134,10 @@
 
         <include refid="Base_Column_List"/>
 
-        ,C.realname as regrealname,C.phone as regphone,C.address as regaddress,C.orgname as regorgname,
-        B.realname as businessrealname,B.phone as businessphone
+        ,C.realname as regrealname,C.phone as regphone,C.address as regaddress,C.orgname as regorgname,C.status as
+        regstatus,
+        B.realname as businessrealname,B.phone as businessphone,
+        E.id as fileid,E.url as regurl,E.type as regtype
 
         from userregisterbehavior A
 
@@ -138,6 +146,9 @@
 
         <!--新注册的产废单位关联-->
         left join SysUsers C on(A.registerid=C.userId)
+
+        <!--新注册用户关联的上传文件链接-->
+        left join fileinfo E on(C.fileid=E.id)
 
         <if test="condition.businessphone != null or condition.businessrealname != null ">
             INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
@@ -165,6 +176,9 @@
 
         <!--新注册的产废单位关联-->
         left join SysUsers C on(A.registerid=C.userId)
+
+        <!--新注册用户关联的上传文件链接-->
+        left join fileinfo E on(C.fileid=E.id)
 
         <if test="condition.businessphone != null or condition.businessrealname != null ">
             INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
