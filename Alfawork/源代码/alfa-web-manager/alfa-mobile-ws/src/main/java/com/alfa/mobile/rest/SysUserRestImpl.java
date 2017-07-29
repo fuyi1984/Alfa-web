@@ -484,6 +484,8 @@ public class SysUserRestImpl implements SysUserRest {
 
             this.sysUsersService.updateByPrimaryKeySelective(currentUser);
 
+            this.sysUsersService.createSession(servletRequest,
+                    servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
             //}
             // 保存Session和Cookie
             //String json = JsonUtil.toJson(
@@ -685,7 +687,10 @@ public class SysUserRestImpl implements SysUserRest {
                         currentUser.setVerifyCode("");
                         currentUser.setToken("");
 
-                        this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+                        //this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+
+                        this.sysUsersService.createSession(servletRequest,
+                                servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
                         //region 获取消息通知列表并与用户做绑定,并把消息置为未读
 
@@ -794,6 +799,9 @@ public class SysUserRestImpl implements SysUserRest {
         String account = new String(Base64Util.decode(user.getUsername().trim()));
         String password = new String(Base64Util.decode(user.getPassword().trim()));
 
+        //String account = user.getUsername().trim();
+        //String password = user.getPassword().trim();
+
         //用户名密码为空返回提示
         if (StringUtil.isNullOrEmpty(account) || StringUtil.isNullOrEmpty(password)) {
             return Response.status(Response.Status.OK)
@@ -835,10 +843,17 @@ public class SysUserRestImpl implements SysUserRest {
                             currentUser.setVerifyCode("");
                             currentUser.setToken("");
 
-                            this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+                            //this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
+
+                            /*this.sysUsersService.createSession(servletRequest,
+                                    servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
                             String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
-                                    "7", currentUser));
+                                    "7", currentUser));*/
+
+                            String json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS,
+                                    "7", this.sysUsersService.createSession(servletRequest,
+                                    servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
 
                             response = Response.status(Response.Status.OK).entity(json).build();
                         }
@@ -965,6 +980,7 @@ public class SysUserRestImpl implements SysUserRest {
     @Override
     public Response editUser(SysUsers user) {
 
+        //region 文件信息表的数据插入
         fileinfo fileinfo=new fileinfo();
 
         if(!StringUtil.isNullOrEmpty(user.getRegurl()))
@@ -983,6 +999,7 @@ public class SysUserRestImpl implements SysUserRest {
                 log.info("文件信息表插入失败!");
             }
         }
+        //endregion
 
         if(!StringUtil.isNullOrEmpty(fileinfo.getId())){
             user.setFileid(fileinfo.getId());
@@ -994,7 +1011,11 @@ public class SysUserRestImpl implements SysUserRest {
 
         List<SysUsers> users = sysUsersService.selectByParams(criteria);
 
-        if(users.size()==0) {
+        if(users.size() == 0) {
+
+            //region  没有查询到相同的手机号
+
+            user.setUsername(user.getPhone());
 
             WebUtil.prepareUpdateParams(user);
 
@@ -1005,11 +1026,40 @@ public class SysUserRestImpl implements SysUserRest {
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
             } else {
                 //用户信息更新失败
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
             }
+
+            //endregion
+
         }else{
-            //联系电话已存在
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+
+            //region 查询到相同的手机号
+
+            SysUsers tmp=users.get(0);
+
+            if(!tmp.getUserId().equals(user.getUserId())){
+
+                //联系电话已存在
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+
+            }else{
+
+                user.setUsername(user.getPhone());
+
+                WebUtil.prepareUpdateParams(user);
+
+                int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+                if (result == 1) {
+                    //用户信息更新成功
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                } else {
+                    //用户信息更新失败
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+                }
+            }
+
+            //endregion
         }
     }
 

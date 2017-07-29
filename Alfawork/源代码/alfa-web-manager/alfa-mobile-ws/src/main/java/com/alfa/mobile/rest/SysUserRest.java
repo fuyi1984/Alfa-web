@@ -150,10 +150,11 @@ public interface SysUserRest {
      * 验证用户是否登录
      */
     @WebMethod
-    @GET
+    @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/current")
     public Response current(@Context HttpServletRequest servletRequest);
+
 
     /**
      * 获取当前登录用户的信息(微信)

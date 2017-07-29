@@ -4,7 +4,20 @@
     <list default="true" id="d68d766e-27c7-4a22-b82d-8298fe960264" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/HostoryOrderStatusMapper.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/HostoryOrderStatusMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/filter/IdentityAuthenticationFilter.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/filter/IdentityAuthenticationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/FileResourceRestImpl.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/FileResourceRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRest.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRestImpl.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/SysUserRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysuser/Update.js" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-platform-easyui/src/main/webapp/js/sysuser/Update.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRelevanceMapper.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRelevanceMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRelevanceMapper.xml" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/dao/SysRelevanceMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/pojo/EMenuInfos.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/main/java/com/alfa/web/pojo/EMenuInfos.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/SysUserServiceTest.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-service/src/test/java/com/alfa/web/SysUserServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/filter/IdentityAuthenticationFilter.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/filter/IdentityAuthenticationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysUserRestImpl.java" afterPath="$PROJECT_DIR$/../alfa-web-manager/alfa-ws/src/main/java/com/alfa/ws/rest/SysUserRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdb" afterPath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" afterPath="$PROJECT_DIR$/../数据库设计关系图/Alfadb.pdm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../数据库设计关系图/Workspace.sws" afterPath="$PROJECT_DIR$/../数据库设计关系图/Workspace.sws" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,19 +29,23 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/alfa_python_test$maxFact.coverage" NAME="maxFact Coverage Results" MODIFIED="1497708093136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch08" />
     <SUITE FILE_PATH="coverage/alfa_python_test$updateorders.coverage" NAME="updateorders Coverage Results" MODIFIED="1499153361843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/order" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$709.coverage" NAME="709 Coverage Results" MODIFIED="1501329051447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
     <SUITE FILE_PATH="coverage/alfa_python_test$findlist.coverage" NAME="findlist Coverage Results" MODIFIED="1497430844681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/order" />
     <SUITE FILE_PATH="coverage/alfa_python_test$findrole.coverage" NAME="findrole Coverage Results" MODIFIED="1497586473447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/sysrole" />
     <SUITE FILE_PATH="coverage/alfa_python_test$getCaptchaForWorker.coverage" NAME="getCaptchaForWorker Coverage Results" MODIFIED="1500442079980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
     <SUITE FILE_PATH="coverage/alfa_python_test$4_1.coverage" NAME="4-1 Coverage Results" MODIFIED="1494659413635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/Chapter04" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$7_10.coverage" NAME="7-10 Coverage Results" MODIFIED="1501329987541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
     <SUITE FILE_PATH="coverage/alfa_python_test$TestupdateConfig.coverage" NAME="TestupdateConfig Coverage Results" MODIFIED="1494406313809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/sysconfig" />
     <SUITE FILE_PATH="coverage/alfa_python_test$8_3.coverage" NAME="8-3 Coverage Results" MODIFIED="1494659965535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/Chapter04" />
     <SUITE FILE_PATH="coverage/alfa_python_test$14_2.coverage" NAME="14-2 Coverage Results" MODIFIED="1495519514811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/Chapter14" />
     <SUITE FILE_PATH="coverage/alfa_python_test$loginforweixin.coverage" NAME="loginforweixin Coverage Results" MODIFIED="1499001681226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$7_8.coverage" NAME="7-8 Coverage Results" MODIFIED="1501327813596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
     <SUITE FILE_PATH="coverage/alfa_python_test$14_1.coverage" NAME="14-1 Coverage Results" MODIFIED="1495519184604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/Chapter14" />
     <SUITE FILE_PATH="coverage/alfa_python_test$deleterole.coverage" NAME="deleterole Coverage Results" MODIFIED="1495702943582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/sysrole" />
     <SUITE FILE_PATH="coverage/alfa_python_test$userpw.coverage" NAME="userpw Coverage Results" MODIFIED="1497760886130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch07" />
     <SUITE FILE_PATH="coverage/alfa_python_test$insertOpenId.coverage" NAME="insertOpenId Coverage Results" MODIFIED="1498984225789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
     <SUITE FILE_PATH="coverage/alfa_python_test$Unittests_in_test_py.coverage" NAME="Unittests in test.py Coverage Results" MODIFIED="1499158043752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch08" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$7_11.coverage" NAME="7-11 Coverage Results" MODIFIED="1501331114520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
     <SUITE FILE_PATH="coverage/alfa_python_test$createUser.coverage" NAME="createUser Coverage Results" MODIFIED="1498568048877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
     <SUITE FILE_PATH="coverage/alfa_python_test$call_myModule.coverage" NAME="call_myModule Coverage Results" MODIFIED="1498635801035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch07" />
     <SUITE FILE_PATH="coverage/alfa_python_test$7_2.coverage" NAME="7-2 Coverage Results" MODIFIED="1499332629834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch07" />
@@ -42,12 +59,85 @@
     <SUITE FILE_PATH="coverage/alfa_python_test$getCaptcha.coverage" NAME="getCaptcha Coverage Results" MODIFIED="1500434147054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
     <SUITE FILE_PATH="coverage/alfa_python_test$TestinsertConfig.coverage" NAME="TestinsertConfig Coverage Results" MODIFIED="1495695806297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/sysconfig" />
     <SUITE FILE_PATH="coverage/alfa_python_test$login.coverage" NAME="login Coverage Results" MODIFIED="1498564411912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$5_12.coverage" NAME="5-12 Coverage Results" MODIFIED="1501323495305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
     <SUITE FILE_PATH="coverage/alfa_python_test$getCaptchaForFactory.coverage" NAME="getCaptchaForFactory Coverage Results" MODIFIED="1498988939000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
     <SUITE FILE_PATH="coverage/alfa_python_test$7_1.coverage" NAME="7-1 Coverage Results" MODIFIED="1499332477696" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/ch07" />
+    <SUITE FILE_PATH="coverage/alfa_python_test$7_12.coverage" NAME="7-12 Coverage Results" MODIFIED="1501332309772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com/alfa/web/chapter05" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="5-12.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/5-12.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-175">
+              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="7-8.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-8.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="709.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/709.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="7-10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-10.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="7-11.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-11.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="7-12.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-12.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myModule.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/myModule.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,6 +190,13 @@
         <option value="$PROJECT_DIR$/com/alfa/web/ch07/7-3.py" />
         <option value="$PROJECT_DIR$/com/alfa/mobile/sysuser/getCaptcha.py" />
         <option value="$PROJECT_DIR$/com/alfa/mobile/sysuser/getCaptchaForWorker.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/myModule.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/5-12.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/7-8.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/709.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/7-10.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/7-11.py" />
+        <option value="$PROJECT_DIR$/com/alfa/web/chapter05/7-12.py" />
       </list>
     </option>
   </component>
@@ -110,8 +207,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="1279" />
+    <option name="y" value="122" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -133,7 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -165,6 +261,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="alfa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-python-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chapter05" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,6 +389,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -252,6 +397,9 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Alfa\Alfawork\源代码\alfa-python-test\com\alfa\web\chapter05" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Alfa\Alfawork\源代码\alfa-python-test\com\alfa\web\Chapter14" />
     </key>
@@ -268,97 +416,97 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.getCaptchaForWorker">
-    <configuration default="false" name="7-1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.7-12">
+    <configuration default="false" name="7-8" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/ch07" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/chapter05" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="alfa-python-test" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/ch07/7-1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/chapter05/7-8.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="7-2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="709" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/ch07" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/chapter05" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="alfa-python-test" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/ch07/7-2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/chapter05/709.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="7-3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="7-10" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/ch07" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/chapter05" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="alfa-python-test" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/ch07/7-3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/chapter05/7-10.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="getCaptcha" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="7-11" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/chapter05" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="alfa-python-test" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/mobile/sysuser/getCaptcha.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/chapter05/7-11.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="getCaptchaForWorker" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="7-12" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/mobile/sysuser" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com/alfa/web/chapter05" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="alfa-python-test" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/mobile/sysuser/getCaptchaForWorker.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com/alfa/web/chapter05/7-12.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -513,19 +661,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.7-1" />
-      <item index="1" class="java.lang.String" itemvalue="Python.7-2" />
-      <item index="2" class="java.lang.String" itemvalue="Python.7-3" />
-      <item index="3" class="java.lang.String" itemvalue="Python.getCaptcha" />
-      <item index="4" class="java.lang.String" itemvalue="Python.getCaptchaForWorker" />
+      <item index="0" class="java.lang.String" itemvalue="Python.7-8" />
+      <item index="1" class="java.lang.String" itemvalue="Python.709" />
+      <item index="2" class="java.lang.String" itemvalue="Python.7-10" />
+      <item index="3" class="java.lang.String" itemvalue="Python.7-11" />
+      <item index="4" class="java.lang.String" itemvalue="Python.7-12" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.getCaptchaForWorker" />
-        <item index="1" class="java.lang.String" itemvalue="Python.getCaptcha" />
-        <item index="2" class="java.lang.String" itemvalue="Python.7-3" />
-        <item index="3" class="java.lang.String" itemvalue="Python.7-2" />
-        <item index="4" class="java.lang.String" itemvalue="Python.7-1" />
+        <item index="0" class="java.lang.String" itemvalue="Python.7-12" />
+        <item index="1" class="java.lang.String" itemvalue="Python.7-11" />
+        <item index="2" class="java.lang.String" itemvalue="Python.7-10" />
+        <item index="3" class="java.lang.String" itemvalue="Python.709" />
+        <item index="4" class="java.lang.String" itemvalue="Python.7-8" />
       </list>
     </recent_temporary>
   </component>
@@ -584,19 +732,20 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1279" y="122" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2859304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.290469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24222586" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24222586" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -651,69 +800,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestupdateConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/Test2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestupdateConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestupdateConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/Test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/alfa/web/sysconfig/TestinsertConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/com/alfa/web/Chapter04/8-3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -970,7 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -978,7 +1063,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="15" lean-forward="false" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -986,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -994,7 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1002,7 +1084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="7" column="71" lean-forward="false" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1010,6 +1091,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/5-12.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/hello.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/hello2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/myModule.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="41" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-8.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/709.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-11.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/alfa/web/chapter05/7-12.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -6,6 +6,7 @@ import com.alfa.web.util.PropertiesUtil;
 import org.apache.cxf.helpers.FileUtils;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
+import org.apache.http.entity.FileEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 

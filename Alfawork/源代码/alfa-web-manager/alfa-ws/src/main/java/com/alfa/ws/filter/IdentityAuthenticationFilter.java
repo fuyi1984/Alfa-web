@@ -112,7 +112,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 if (token.equals(platformUser.getToken())) {
                     chain.doFilter(arg0, arg1);
                 } else {
-                    response.setStatus(403);
+                    response.setStatus(320);
                 }
             }
         } else {

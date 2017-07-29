@@ -173,6 +173,8 @@ public class SysUserRestImpl implements SysUserRest {
     @Override
     public Response editUser(SysUsers user) {
 
+        //region
+
         Criteria criteria = new Criteria();
         criteria.put("workerid", user.getUserId());
 
@@ -182,14 +184,55 @@ public class SysUserRestImpl implements SysUserRest {
             this.ordersService.updateWorkerIdByParams(criteria);
         }
 
-        WebUtil.prepareUpdateParams(user);
+        //endregion
 
-        int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+        criteria.clear();
+        criteria.put("username", user.getPhone());
+        criteria.put("phone", user.getPhone());
 
-        if (result == 1) {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
-        } else {
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        if(users.size() == 0) {
+
+            //region 没有查询到相同的手机号
+
+            user.setUsername(user.getPhone());
+
+            WebUtil.prepareUpdateParams(user);
+
+            int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+            if (result == 1) {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
+            } else {
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+            }
+
+            //endregion
+        }else{
+            //region 查询到相同的手机号
+
+            SysUsers tmp=users.get(0);
+
+            if(!tmp.getUserId().equals(user.getUserId())){
+                //联系电话已存在
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            }else{
+
+                user.setUsername(user.getPhone());
+
+                WebUtil.prepareUpdateParams(user);
+
+                int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+                if (result == 1) {
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.USER_EDIT_SUCCESS, null))).build();
+                } else {
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.USER_EDIT_FAILURE, null))).build();
+                }
+            }
+
+            //endregion
         }
 
     }

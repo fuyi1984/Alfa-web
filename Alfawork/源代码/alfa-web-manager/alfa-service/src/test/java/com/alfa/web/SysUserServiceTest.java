@@ -169,4 +169,69 @@ public class SysUserServiceTest extends TestBase {
         }
 
     }
+
+    @Test
+    public void edituser(){
+
+        SysUsers user=new SysUsers();
+        user.setUserId(32L);
+        //user.setPhone("13062317530");
+        user.setPhone("18581043708");
+        user.setRemarks("11111111111");
+
+        Criteria criteria=new Criteria();
+        criteria.put("username", user.getPhone());
+        criteria.put("phone", user.getPhone());
+
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        if(users.size() == 0) {
+
+            //region  没有查询到相同的手机号
+
+            user.setUsername(user.getPhone());
+
+            WebUtil.prepareUpdateParams(user);
+
+            int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+            if (result == 1) {
+                //用户信息更新成功
+                System.out.println("1");
+            } else {
+                //用户信息更新失败
+                System.out.println("3");
+            }
+
+            //endregion
+
+        }else{
+
+            //region 查询到相同的手机号
+
+            SysUsers tmp=users.get(0);
+
+            if(!tmp.getUserId().equals(user.getUserId())){
+                //联系电话已存在
+                System.out.println("2");
+            }else{
+
+                user.setUsername(user.getPhone());
+
+                WebUtil.prepareUpdateParams(user);
+
+                int result = this.sysUsersService.updateByPrimaryKeySelective(user);
+
+                if (result == 1) {
+                    //用户信息更新成功
+                    System.out.println("1");
+                } else {
+                    //用户信息更新失败
+                    System.out.println("3");
+                }
+            }
+
+            //endregion
+        }
+    }
 }

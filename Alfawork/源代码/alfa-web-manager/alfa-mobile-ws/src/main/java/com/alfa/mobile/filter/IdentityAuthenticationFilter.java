@@ -119,7 +119,7 @@ public class IdentityAuthenticationFilter implements Filter {
                 if (mobiletoken.equals(platformUser.getMobiletoken())) {
                     chain.doFilter(arg0, arg1);
                 } else {
-                    response.setStatus(403);
+                    response.setStatus(320);
                 }
             }
         } else {

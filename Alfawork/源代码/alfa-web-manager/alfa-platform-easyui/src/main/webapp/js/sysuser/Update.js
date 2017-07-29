@@ -65,14 +65,21 @@ function userupdateform(){
                     $('#usergrid').datagrid("reload");
                 });
             }else if(data.status=='failure'){
-
-                $.messager.alert('提示', '修改失败！', 'error', function () {
-                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                    $('#userupdate').window('close');
-                    $('#usergrid').datagrid("clearSelections");
-                    $('#usergrid').datagrid("reload");
-                });
-
+                if (data.message == '2') {
+                    $.messager.alert('提示', '手机号已存在！', 'warning', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#userupdate').window('close');
+                        $('#usergrid').datagrid("clearSelections");
+                        $('#usergrid').datagrid("reload");
+                    });
+                }else {
+                    $.messager.alert('提示', '修改失败！', 'error', function () {
+                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                        $('#userupdate').window('close');
+                        $('#usergrid').datagrid("clearSelections");
+                        $('#usergrid').datagrid("reload");
+                    });
+                }
             }
         },
         error: function (xhr) {

@@ -31,12 +31,12 @@ public class EMenuInfos extends Entity implements Serializable
     /**
      * 父节点
      */
-    private String ParentId;
+    private Long ParentId;
 
     /**
      * 节点
      */
-    private String CascadeId;
+    private Long CascadeId;
 
     public Long getMenuId() {
         return MenuId;
