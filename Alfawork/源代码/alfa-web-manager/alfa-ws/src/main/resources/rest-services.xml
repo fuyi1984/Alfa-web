@@ -24,6 +24,7 @@
             <bean class="com.alfa.ws.rest.HostoryOrderStatusRestImpl"/>
             <bean class="com.alfa.ws.rest.publishmessageRestImpl"/>
             <bean class="com.alfa.ws.rest.registerbehaviorRestImpl"/>
+            <bean class="com.alfa.ws.rest.Sys.EMenuInfosRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
