@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.EMenuInfosMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.fileinfo">
+
+        <!--目录ID-->
+        <id column="MenuId" property="MenuId" jdbcType="BIGINT"/>
+
+        <!--基本信息-->
+        <result column="MenuName" property="MenuName" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="Icon" property="Icon" jdbcType="VARCHAR"/>
+        <result column="ParentId" property="ParentId" jdbcType="BIGINT"/>
+        <result column="CascadeId" property="CascadeId" jdbcType="BIGINT"/>
+
+        <!--附加信息-->
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <trim prefix="where" prefixOverrides="and|or" >
+
+            <if test="condition.MenuId != null" >
+                and MenuId != ${condition.MenuId}
+            </if>
+
+            <if test="condition.MenuName != null" >
+                and MenuName != ${condition.MenuName}
+            </if>
+            <if test="condition.url != null" >
+                and url = #{condition.url}
+            </if>
+            <if test="condition.urlLike != null">
+                and url like concat('%',
+                #{condition.urlLike}, '%')
+            </if>
+            <if test="condition.type != null" >
+                and type = #{condition.type}
+            </if>
+            <if test="condition.Icon != null" >
+                and Icon = #{condition.Icon}
+            </if>
+            <if test="condition.ParentId != null" >
+                and ParentId = #{condition.ParentId}
+            </if>
+            <if test="condition.CascadeId != null" >
+                and CascadeId = #{condition.CascadeId}
+            </if>
+
+            <if test="condition.createdBy != null" >
+                and createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        MenuId, MenuName,url,type,Icon,ParentId,CascadeId,createdBy,createdDt,updatedBy,updatedDt,
+        version
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.EMenuInfos" >
+        <selectKey keyProperty="MenuId" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into EMenuInfos
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="MenuName != null" >
+                MenuName,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="Icon != null" >
+                Icon,
+            </if>
+            <if test="ParentId != null" >
+                ParentId,
+            </if>
+            <if test="CascadeId != null" >
+                CascadeId,
+            </if>
+
+            <if test="createdBy != null" >
+                createdBy,
+            </if>
+            <if test="createdDt != null" >
+                createdDt,
+            </if>
+            <if test="updatedBy != null" >
+                updatedBy,
+            </if>
+            <if test="updatedDt != null" >
+                updatedDt,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="MenuName != null" >
+                #{MenuName},
+            </if>
+            <if test="url != null" >
+                #{url},
+            </if>
+            <if test="type != null" >
+                #{type},
+            </if>
+            <if test="status != null" >
+                #{status},
+            </if>
+            <if test="Icon != null" >
+                #{Icon},
+            </if>
+            <if test="ParentId != null" >
+                #{ParentId},
+            </if>
+            <if test="CascadeId != null" >
+                #{CascadeId},
+            </if>
+
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
+
+        select
+
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+
+        from EMenuInfos A
+
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit" />
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer" >
+        select count(*) from EMenuInfos A
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from EMenuInfos
+        where MenuId = #{MenuId}
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.EMenuInfos" >
+        update EMenuInfos
+        <set >
+
+            <if test="MenuName != null" >
+                MenuName=#{MenuName},
+            </if>
+            <if test="url != null" >
+                url=#{url},
+            </if>
+            <if test="type != null" >
+                type=#{type},
+            </if>
+            <if test="status != null" >
+                status=#{status},
+            </if>
+            <if test="Icon != null" >
+                Icon=#{Icon},
+            </if>
+            <if test="ParentId != null" >
+                ParentId=#{ParentId},
+            </if>
+            <if test="CascadeId != null" >
+                CascadeId=#{CascadeId},
+            </if>
+
+            <if test="createdBy != null" >
+                createdBy = #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                createdDt = #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                updatedBy = #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                updatedDt = #{updatedDt},
+            </if>
+            <if test="version != null" >
+                version = #{version},
+            </if>
+        </set>
+        where MenuId = #{MenuId}
+    </update>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List" >
+        delete from EMenuInfos
+        where MenuId in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+
+</mapper>
