@@ -59,7 +59,7 @@ public interface EMenuInfosRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/editmenu")
-    public Response editRole(EMenuInfos menu);
+    public Response editmenu(EMenuInfos menu);
 
     /**
      * 查询分页目录
