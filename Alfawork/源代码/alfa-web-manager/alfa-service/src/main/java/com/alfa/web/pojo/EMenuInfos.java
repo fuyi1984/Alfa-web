@@ -70,19 +70,19 @@ public class EMenuInfos extends Entity implements Serializable
         Url = url;
     }
 
-    public String getParentId() {
+    public Long getParentId() {
         return ParentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(Long parentId) {
         ParentId = parentId;
     }
 
-    public String getCascadeId() {
+    public Long getCascadeId() {
         return CascadeId;
     }
 
-    public void setCascadeId(String cascadeId) {
+    public void setCascadeId(Long cascadeId) {
         CascadeId = cascadeId;
     }
 }
