@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/7/21.
  */
 
-function AddValidator(){
+function messagepublishValidator(){
 
     if ($("#phone").val() == "") {
         $.messager.alert('提示', '手机号不能为空');
@@ -13,7 +13,7 @@ function AddValidator(){
 }
 
 function messagepublishForm(){
-    if(AddValidator()){
+    if(messagepublishValidator()){
 
         var params = {
             "phone":$('#phone').val(),

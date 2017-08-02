@@ -95,8 +95,8 @@ function initdatagrid() {
         ]],
 
         columns: [[
-            {field: 'realname', title: '发件人姓名', width: 80, align: 'center'},
-            {field: 'phone', title: '发件人电话', width: 80, align: 'center'},
+            {field: 'realname', title: '收件人姓名', width: 80, align: 'center'},
+            {field: 'phone', title: '收件人电话', width: 80, align: 'center'},
             {field: 'title', title: '标题', width: 80, align: 'center'},
             {field: 'content', title: '内容', width: 200, align: 'center'},
             {

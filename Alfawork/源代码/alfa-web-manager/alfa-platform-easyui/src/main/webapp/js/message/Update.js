@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/7/21.
  */
 
-function AddValidator(){
+function messageeditValidator(){
     if ($("#titleedit").val() == "") {
         $.messager.alert('提示', '标题不能为空');
         return false;
@@ -16,7 +16,7 @@ function AddValidator(){
     return true;
 }
 
-function messageeditForm()
+function messageeditValidator()
 {
      if(AddValidator()){
 

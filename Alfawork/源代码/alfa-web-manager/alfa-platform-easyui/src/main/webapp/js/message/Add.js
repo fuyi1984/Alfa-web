@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/7/21.
  */
-function AddValidator(){
+function messagesubmitValidator(){
     if ($("#titleadd").val() == "") {
         $.messager.alert('提示', '标题不能为空');
         return false;
@@ -16,7 +16,7 @@ function AddValidator(){
 }
 
 function messagesubmitForm(){
-    if(AddValidator()){
+    if(messagesubmitValidator()){
 
         var params = {
             "title": $("#titleadd").val(),
