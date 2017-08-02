@@ -14,7 +14,7 @@ public interface SysRelevanceMapper {
 
     int insertSelective(SysRelevance record);
 
-    //List<SysRelevance> selectByParams(Criteria condition);
+    List<SysRelevance> selectByParams(Criteria condition);
 
     int updateByParamsSelective(SysRelevance record);
 }

@@ -387,6 +387,12 @@ function initdatagrid() {
                 field: 'createdDt', title: '申报时间', width: 100, align: 'center'
             },
             {
+                field: 'confirmDt', title: '确认时间', width: 100, align: 'center'
+            },
+            {
+                field: 'updatedDt', title: '完成时间', width: 100, align: 'center'
+            },
+            {
                 field: 'remark', title: '备注', width: 100, align: 'center'
             }
             /*{field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
