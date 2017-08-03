@@ -3,20 +3,33 @@
 <mapper namespace="com.alfa.web.dao.weixin_usersMapper">
 
     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.td_weixin_users">
+
         <id column="Id" property="id" jdbcType="BIGINT"/>
         <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR"/>
         <result column="state" property="state" jdbcType="VARCHAR"/>
+
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="mobiletoken" property="mobiletoken" jdbcType="VARCHAR"/>
+
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
         <result column="version" property="version" jdbcType="BIGINT"/>
+
         <result column="userid" property="userid" jdbcType="BIGINT"/>
+
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.mobile!=null">
+                and mobile=#{condition.mobile}
+            </if>
+            <if test="condition.mobiletoken!=null">
+                and mobiletoken=#{condition.mobiletoken}
+            </if>
             <if test="condition.Id != null">
                 and Id = #{condition.Id}
             </if>
@@ -52,10 +65,10 @@
 
     <sql id="Base_Column_List">
         Id, openid, headimgurl, state, userid,createdBy, createdDt,
-        updatedBy, updatedDt, version
+        updatedBy, updatedDt, version,mobile,mobiletoken
     </sql>
 
-    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"    resultType="java.lang.Integer">
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
         select count(*) from td_weixin_users
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -108,6 +121,12 @@
             <if test="version != null">
                 version,
             </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
+            <if test="mobiletoken!=null">
+                mobiletoken
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{id},
@@ -138,29 +157,35 @@
             <if test="version != null">
                 #{version},
             </if>
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
+            <if test="mobiletoken!=null">
+                #{mobiletoken}
+            </if>
         </trim>
     </insert>
 
-    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from td_weixin_users
-        <if test="_parameter != null" >
-            <include refid="Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
-        <include refid="common.Mysql_Pagination_Limit" />
+        <include refid="common.Mysql_Pagination_Limit"/>
     </select>
 
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from td_weixin_users
         where id = #{id}
     </select>
@@ -168,9 +193,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.td_weixin_users">
         update td_weixin_users
         <set>
-            <if test="openid!=null">
-                openid=#{openid},
-            </if>
             <if test="headimgurl!=null">
                 headimgurl=#{headimgurl},
             </if>
@@ -193,18 +215,17 @@
                 updatedDt=#{updatedDt},
             </if>
             <if test="version != null">
-                version=#{version}
+                version=#{version},
+            </if>
+            <if test="mobile != null">
+                mobile=#{mobile},
+            </if>
+            <if test="mobiletoken != null">
+                mobiletoken=#{mobiletoken}
             </if>
         </set>
-        where 1=1
-        <if test="id!=null">
-            and id=#{id}
-        </if>
-        <if test="openid!=null">
-            and openid=#{openid}
-        </if>
+        where openid=#{openid}
     </update>
-
 
 
 </mapper>

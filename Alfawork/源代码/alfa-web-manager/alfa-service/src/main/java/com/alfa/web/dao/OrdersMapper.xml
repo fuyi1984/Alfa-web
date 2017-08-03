@@ -187,6 +187,9 @@
             <if test="workerid != null">
                 workerid,
             </if>
+            <if test="isSms!=null">
+                isSms
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="addressId!=null">
@@ -239,6 +242,9 @@
             </if>
             <if test="workerid != null">
                 #{workerid},
+            </if>
+            <if test="isSms!=null">
+                #{isSms}
             </if>
         </trim>
     </insert>

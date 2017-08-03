@@ -26,6 +26,26 @@ public class td_weixin_users extends Entity implements Serializable {
 
     private Long userid;
 
+    private String mobile;
+
+    private String mobiletoken;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getMobiletoken() {
+        return mobiletoken;
+    }
+
+    public void setMobiletoken(String mobiletoken) {
+        this.mobiletoken = mobiletoken;
+    }
+
     public Long getUserid() {
         return userid;
     }

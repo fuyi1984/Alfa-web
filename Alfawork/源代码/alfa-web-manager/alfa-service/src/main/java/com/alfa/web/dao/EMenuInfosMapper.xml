@@ -10,7 +10,6 @@
         <!--基本信息-->
         <result column="MenuName" property="MenuName" jdbcType="VARCHAR"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
-        <result column="type" property="type" jdbcType="VARCHAR"/>
         <result column="Icon" property="Icon" jdbcType="VARCHAR"/>
         <result column="ParentId" property="ParentId" jdbcType="BIGINT"/>
         <result column="CascadeId" property="CascadeId" jdbcType="BIGINT"/>
@@ -40,9 +39,6 @@
             <if test="condition.urlLike != null">
                 and url like concat('%',
                 #{condition.urlLike}, '%')
-            </if>
-            <if test="condition.type != null" >
-                and type = #{condition.type}
             </if>
             <if test="condition.Icon != null" >
                 and Icon = #{condition.Icon}
@@ -74,7 +70,7 @@
     </sql>
 
     <sql id="Base_Column_List" >
-        MenuId, MenuName,url,type,Icon,ParentId,CascadeId,createdBy,createdDt,updatedBy,updatedDt,
+        MenuId, MenuName,url,Icon,ParentId,CascadeId,createdBy,createdDt,updatedBy,updatedDt,
         version
     </sql>
 
@@ -90,9 +86,6 @@
             </if>
             <if test="url != null" >
                 url,
-            </if>
-            <if test="type != null" >
-                type,
             </if>
             <if test="status != null" >
                 status,
@@ -130,9 +123,6 @@
             </if>
             <if test="url != null" >
                 #{url},
-            </if>
-            <if test="type != null" >
-                #{type},
             </if>
             <if test="status != null" >
                 #{status},
@@ -209,9 +199,6 @@
             </if>
             <if test="url != null" >
                 url=#{url},
-            </if>
-            <if test="type != null" >
-                type=#{type},
             </if>
             <if test="status != null" >
                 status=#{status},

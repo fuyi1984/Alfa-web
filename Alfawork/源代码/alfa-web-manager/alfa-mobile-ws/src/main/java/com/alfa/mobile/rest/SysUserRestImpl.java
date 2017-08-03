@@ -631,6 +631,8 @@ public class SysUserRestImpl implements SysUserRest {
 
                     if (currentUser.getStatus().equals("1")) {
 
+                        String token=StringUtil.getUUID();
+
                         //region 用户已审核
 
                         //region 查询OpenId
@@ -646,6 +648,10 @@ public class SysUserRestImpl implements SysUserRest {
                             //region 用户信息关联微信账号信息
 
                             td_weixin_users weixin = weixinlist.get(0);
+                            weixin.setMobile(phone);
+                            weixin.setMobiletoken(token);
+
+                            this.weixin_usersService.updateByPrimaryKeySelective(weixin);
 
                             currentUser.setWeixinid(weixin.getId());
                             currentUser.setOpenid(weixin.getOpenid());
@@ -672,7 +678,7 @@ public class SysUserRestImpl implements SysUserRest {
                             currentUser.setPassword(passwordEncrypt);
                         }
 
-                        currentUser.setMobiletoken(StringUtil.getUUID());
+                        currentUser.setMobiletoken(token);
                         currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
 
                         this.sysUsersService.updateByPrimaryKeySelective(currentUser);

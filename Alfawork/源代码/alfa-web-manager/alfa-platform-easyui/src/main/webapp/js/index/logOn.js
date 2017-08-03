@@ -59,7 +59,7 @@ function logOn() {
 
                     div.html("登陆成功");
 
-                    SetCookie("token",data.data.user.token,1);
+                    SetCookie("token",data.data.user.token,60);
                     //window.location.href = platformUrl+"/pages/jsp/redirect.jsp?token="+data.data.user.token;
                     window.location.href=platform_url+"/pages/home/index.html";
                 }
