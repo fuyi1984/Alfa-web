@@ -20,63 +20,68 @@
 
         <result column="userid" property="userid" jdbcType="BIGINT"/>
 
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="sysuserid" property="sysuserid" jdbcType="BIGINT"/>
+
     </resultMap>
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
             <if test="condition.mobile!=null">
-                and mobile=#{condition.mobile}
+                and A.mobile=#{condition.mobile}
             </if>
             <if test="condition.mobiletoken!=null">
-                and mobiletoken=#{condition.mobiletoken}
+                and A.mobiletoken=#{condition.mobiletoken}
             </if>
             <if test="condition.Id != null">
-                and Id = #{condition.Id}
+                and A.Id = #{condition.Id}
             </if>
             <if test="condition.openid != null">
-                and openid = #{condition.openid}
+                and A.openid = #{condition.openid}
             </if>
             <if test="condition.headimgurl != null">
-                and headimgurl = #{condition.headimgurl}
+                and A.headimgurl = #{condition.headimgurl}
             </if>
             <if test="condition.state != null">
-                and state = #{condition.state}
+                and A.state = #{condition.state}
             </if>
             <if test="condition.createdBy != null">
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null">
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null">
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null">
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null">
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
             <if test="condition.userid != null">
-                and userid = #{condition.userid}
+                and A.userid = #{condition.userid}
             </if>
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
-        Id, openid, headimgurl, state, userid,createdBy, createdDt,
-        updatedBy, updatedDt, version,mobile,mobiletoken
+        A.Id, A.openid, A.headimgurl,A.state, A.userid,A.createdBy, A.createdDt,
+        A.updatedBy, A.updatedDt, A.version,A.mobile,A.mobiletoken
     </sql>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from td_weixin_users
+        select count(*) from td_weixin_users A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
 
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
-        delete from td_weixin_users
+        delete from td_weixin_users A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -172,7 +177,11 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from td_weixin_users
+        ,B.userid as sysuserid,B.address,B.orgname,B.realname
+        from td_weixin_users A
+
+        left join SysUsers B on(A.mobile = B.phone)
+
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -186,7 +195,7 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
-        from td_weixin_users
+        from td_weixin_users A
         where id = #{id}
     </select>
 

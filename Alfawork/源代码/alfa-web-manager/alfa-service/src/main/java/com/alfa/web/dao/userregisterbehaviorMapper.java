@@ -32,4 +32,10 @@ public interface userregisterbehaviorMapper {
      * @return
      */
     int batchdeleteByPrimaryKey(List<String> list);
+
+
+    /**
+     * 根据条件删除记录
+     */
+    int deleteByParams(Criteria example);
 }

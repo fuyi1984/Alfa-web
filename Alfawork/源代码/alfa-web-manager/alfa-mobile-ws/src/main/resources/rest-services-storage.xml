@@ -15,15 +15,15 @@
 
     <jaxrs:server id="restServer" address="/" staticSubresourceResolution="true">
         <jaxrs:serviceBeans>
-            <bean class="com.alfa.mobile.rest.SysUserRestImpl"/>
-            <bean class="com.alfa.mobile.rest.OrdersRestImpl"/>
-            <bean class="com.alfa.mobile.rest.HistoryAddressRestImpl"/>
-            <bean class="com.alfa.mobile.rest.weixin_usersRestImpl"/>
-            <bean class="com.alfa.mobile.rest.CommonCommentRestImpl"/>
-            <bean class="com.alfa.mobile.rest.OrderCommentRestImpl"/>
-            <bean class="com.alfa.mobile.rest.publishmessageRestImpl"/>
-            <bean class="com.alfa.mobile.rest.registerbehaviorRestImpl"/>
-            <bean class="com.alfa.mobile.rest.FileResourceRestImpl"/>
+            <bean class="com.alfa.mobile.rest.sys.SysUserRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.OrdersRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.HistoryAddressRestImpl"/>
+            <bean class="com.alfa.mobile.rest.sys.weixin_usersRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.CommonCommentRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.OrderCommentRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.publishmessageRestImpl"/>
+            <bean class="com.alfa.mobile.rest.sys.registerbehaviorRestImpl"/>
+            <bean class="com.alfa.mobile.rest.order.FileResourceRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

@@ -200,4 +200,11 @@
         </foreach>
     </delete>
 
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from userregisterbehavior A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
 </mapper>

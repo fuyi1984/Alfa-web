@@ -30,6 +30,46 @@ public class td_weixin_users extends Entity implements Serializable {
 
     private String mobiletoken;
 
+    private String realname;
+
+    private Long sysuserid;
+
+    public Long getSysuserid() {
+        return sysuserid;
+    }
+
+    public void setSysuserid(Long sysuserid) {
+        this.sysuserid = sysuserid;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getOrgname() {
+        return orgname;
+    }
+
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    private String orgname;
+
+    private String address;
+
     public String getMobile() {
         return mobile;
     }

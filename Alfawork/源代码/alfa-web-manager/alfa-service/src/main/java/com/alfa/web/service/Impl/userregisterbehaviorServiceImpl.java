@@ -48,4 +48,9 @@ public class userregisterbehaviorServiceImpl implements userregisterbehaviorServ
     public int batchdeleteByPrimaryKey(List<String> list) {
         return this.userregisterbehaviorMapper.batchdeleteByPrimaryKey(list);
     }
+
+    @Override
+    public int deleteByParams(Criteria example) {
+        return this.userregisterbehaviorMapper.deleteByParams(example);
+    }
 }
