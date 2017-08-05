@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title>
+
+    <link href="../../InsdepTheme/themes/insdep/easyui.css" rel="stylesheet" type="text/css"/>
+    <link href="../../InsdepTheme/themes/insdep/icon.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../../InsdepTheme/themes/insdep/jquery.insdep-extend.min.js" type="text/javascript"></script>
+
+    <script src="../../easyui/jquery.min.js" type="text/javascript"></script>
+    <script src="../../easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+
+    <script src="../../js/common/constant.js" type="text/javascript"></script>
+    <script src="../../js/common/common.js" type="text/javascript"></script>
+
+    <script src="../../js/url/urlconstant.js" type="text/javascript"></script>
+    <script src="../../js/url/Init.js" type="text/javascript"></script>
+    <script src="../../js/url/Add.js" type="text/javascript"></script>
+    <script src="../../js/url/cancel.js" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout">
+    <div region="center" style="padding: 5px;" border="false">
+        <table id="urlgrid">
+        </table>
+    </div>
+    <div id="urladd" class="easyui-window" title="添加url"
+         data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
+         style="width:400px;height:200px;padding:10px;">
+        <form id="form1">
+            <div style="padding: 15px 10px 10px 25px;">
+
+                <table style="text-align: center; width: auto" cellpadding="2px">
+                    <tr>
+                        <td>
+                            url:
+                        </td>
+                        <td>
+                            <input style="width: 250px;"
+                                   class="easyui-textbox" type="text" data-options="required:true"
+                                   name="url_add" id="url_add"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Api名称:
+                        </td>
+                        <td>
+                            <input style="width: 250px;" class="easyui-textbox" type="text"
+                                   data-options="required:true" name="Apiname_add" id="Apiname_add"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:urlsubmitForm()" id="submit"
+                   iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                                 onclick="javascript:urlcancel()"
+                                                 iconcls="icon-cancel">返回</a>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

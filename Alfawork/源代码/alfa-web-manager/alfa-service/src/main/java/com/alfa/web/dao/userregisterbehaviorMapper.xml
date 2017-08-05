@@ -43,8 +43,23 @@
             <if test="condition.userid != null">
                 and A.userid = #{condition.userid}
             </if>
+
+            <if test="condition.useridlist != null">
+                and A.userid in
+                <foreach item="item" index="index" collection="condition.useridlist" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+
             <if test="condition.registerid != null">
                 and A.registerid = #{condition.registerid}
+            </if>
+
+            <if test="condition.registeridlist != null">
+                and A.registerid in
+                <foreach item="item" index="index" collection="condition.registeridlist" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
             </if>
 
             <if test="condition.createdBy != null">
@@ -201,9 +216,19 @@
     </delete>
 
     <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
-        delete from userregisterbehavior A
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
+        delete from userregisterbehavior
+        where
+        <if test="condition.useridlist != null">
+             userid in
+            <foreach item="item" index="index" collection="condition.useridlist" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="condition.registeridlist != null">
+            registerid in
+            <foreach item="item" index="index" collection="condition.registeridlist" open="(" separator="," close=")">
+                #{item}
+            </foreach>
         </if>
     </delete>
 

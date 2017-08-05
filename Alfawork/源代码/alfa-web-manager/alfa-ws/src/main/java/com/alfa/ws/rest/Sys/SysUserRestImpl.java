@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Response;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/5/26.
@@ -159,6 +156,43 @@ public class SysUserRestImpl implements SysUserRest {
 
     @Override
     public Response batchdeleteUser(List<String> list) {
+
+        Criteria criteria=new Criteria();
+        criteria.put("userIdlist",list);
+
+        List<SysUsers> sysUsersList=this.sysUsersService.selectByParams(criteria);
+
+        if(sysUsersList.size()>0){
+
+            List<String> usersList=new ArrayList<String>();
+            List<String> registerlist=new ArrayList<String>();
+
+            for(SysUsers user:sysUsersList){
+
+                if(user.getRoleId().equals(10L)){
+                    //产废单位
+                    registerlist.add(String.valueOf(user.getUserId()));
+
+                }else if(user.getRoleId().equals(19L)){
+                    //业务人员
+                    usersList.add(String.valueOf(user.getUserId()));
+                }
+
+            }
+
+            if(usersList.size()>0){
+                criteria.clear();
+                criteria.put("useridlist",usersList);
+                this.userregisterbehaviorService.deleteByParams(criteria);
+            }
+
+            if(registerlist.size()>0){
+                criteria.clear();
+                criteria.put("registeridlist",registerlist);
+                this.userregisterbehaviorService.deleteByParams(criteria);
+            }
+
+        }
 
         int result = 0;
 

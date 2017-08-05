@@ -5,6 +5,7 @@ import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.SysRoleService;
 import com.alfa.web.service.SysUsersService;
 import com.alfa.web.service.weixin_usersService;
+import com.alfa.web.service.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,9 @@ public class SysUserServiceTest extends TestBase {
 
     @Autowired
     private com.alfa.web.service.weixin_usersService weixin_usersService;
+
+    @Autowired
+    private userregisterbehaviorService userregisterbehaviorService;
 
     @Test
     public void InsertUser() throws Exception {
@@ -234,4 +239,50 @@ public class SysUserServiceTest extends TestBase {
             //endregion
         }
     }
+
+    @Test
+    public void test1(){
+
+        List<String> list=new ArrayList<String>();
+        list.add("19");
+
+        Criteria criteria=new Criteria();
+        criteria.put("userIdlist",list);
+
+        List<SysUsers> sysUsersList=this.sysUsersService.selectByParams(criteria);
+
+        if(sysUsersList.size()>0){
+
+            List<String> usersList=new ArrayList<String>();
+            List<String> registerlist=new ArrayList<String>();
+
+            for(SysUsers user:sysUsersList){
+
+                if(user.getRoleId().equals(10L)){
+                    //产废单位
+                    registerlist.add(String.valueOf(user.getUserId()));
+
+                }else if(user.getRoleId().equals(15L)){
+                    //业务人员
+                    usersList.add(String.valueOf(user.getUserId()));
+                }
+
+            }
+
+            if(usersList.size()>0){
+                criteria.clear();
+                criteria.put("useridlist",usersList);
+                this.userregisterbehaviorService.deleteByParams(criteria);
+            }
+
+            if(registerlist.size()>0){
+                criteria.clear();
+                criteria.put("registeridlist",registerlist);
+                this.userregisterbehaviorService.deleteByParams(criteria);
+            }
+
+        }
+
+    }
+
 }
