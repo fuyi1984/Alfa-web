@@ -282,6 +282,8 @@ function initdatagrid() {
                             return '<span style="color:red;">未审核</span>';
                         case "1":
                             return '<span style="color:green;">已审核</span>';
+                        case "-1":
+                            return '<span style="color:orangered;">数据不完整</span>';
                     }
                 }
             },

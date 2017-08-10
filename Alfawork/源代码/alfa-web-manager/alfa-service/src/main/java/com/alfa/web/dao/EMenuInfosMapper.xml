@@ -27,11 +27,11 @@
         <trim prefix="where" prefixOverrides="and|or" >
 
             <if test="condition.MenuId != null" >
-                and MenuId != ${condition.MenuId}
+                and MenuId = ${condition.MenuId}
             </if>
 
             <if test="condition.MenuName != null" >
-                and MenuName != ${condition.MenuName}
+                and MenuName = ${condition.MenuName}
             </if>
             <if test="condition.url != null" >
                 and url = #{condition.url}

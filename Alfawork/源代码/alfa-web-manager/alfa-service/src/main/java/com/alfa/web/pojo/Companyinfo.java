@@ -8,6 +8,16 @@ import java.io.Serializable;
  */
 public class Companyinfo extends Entity implements Serializable {
 
+    private Long companyid;
+
+    public Long getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(Long companyid) {
+        this.companyid = companyid;
+    }
+
     /**
      * 企业名称
      */

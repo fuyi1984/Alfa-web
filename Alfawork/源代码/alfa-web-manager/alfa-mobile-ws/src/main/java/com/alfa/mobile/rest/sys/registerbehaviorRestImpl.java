@@ -78,10 +78,10 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
         /**
          * 真实姓名
-         */
         if (!StringUtil.isNullOrEmpty(user.getRealname())) {
             criteria.put("realname", user.getRealname());
         }
+         */
 
         /**
          * 手机号
@@ -99,10 +99,11 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
         /**
          * 单位名称
-         */
+
         if (!StringUtil.isNullOrEmpty(user.getOrgname())) {
             criteria.put("orgname", user.getOrgname());
         }
+         */
 
         //endregion
 
@@ -132,7 +133,13 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
             users.setPassword(WebUtil.encrypt(StringUtil.getUUID(), user.getPhone()));
             users.setRoleId(10L);
-            users.setStatus("0");
+
+            if(StringUtil.isNullOrEmpty(user.getRealname())||StringUtil.isNullOrEmpty(user.getOrgname())||StringUtil.isNullOrEmpty(user.getPhone())||StringUtil.isNullOrEmpty(user.getAddress()))
+            {
+                users.setStatus("-1");
+            }else {
+                users.setStatus("0");
+            }
 
             boolean userresult = this.sysUsersService.insertUser(users);
 
