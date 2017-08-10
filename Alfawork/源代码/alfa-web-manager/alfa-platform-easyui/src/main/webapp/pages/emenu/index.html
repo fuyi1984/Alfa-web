@@ -15,17 +15,84 @@
     <script src="../../js/common/constant.js" type="text/javascript"></script>
     <script src="../../js/common/common.js" type="text/javascript"></script>
     <script src="../../js/emenu/Init.js" type="text/javascript"></script>
+    <script src="../../js/emenu/Add.js" type="text/javascript"></script>
+    <script src="../../js/emenu/cancel.js" type="text/javascript"></script>
 
 </head>
 <body class="easyui-layout">
-<div region="left" style="padding: 5px;" border="false">
-    <table id="menu">
-        111111
-    </table>
-</div>
+
+<!--菜单列表-->
 <div region="center" style="padding: 5px;" border="false">
     <table id="menugrid">
     </table>
+</div>
+
+<!--添加菜单信息-->
+<div id="menuadd" class="easyui-window" title="添加菜单信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
+     style="width:400px;height:350px;padding:10px;">
+    <form id="form1">
+        <div style="padding: 15px 10px 10px 25px;">
+
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        节点:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               name="CascadeId_add" id="CascadeId_add"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        菜单名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true" name="MenuName_add" id="MenuName_add"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        图标:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true"
+                               name="Icon_add" id="Icon_add"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Url:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="required:true"
+                               style=" width:250px;" name="Url_add" id="Url_add">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        父节点:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="required:true"
+                               style=" width:250px;" name="ParentId_add" id="ParentId_add">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:menusubmitForm()" id="submit"
+               iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="javascript:menucancel()"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
 </div>
 </body>
 </html>

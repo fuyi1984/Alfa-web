@@ -3,14 +3,14 @@
  */
 $(function () {
 
-    gtoken=ReadCookie("token");
+    gtoken = ReadCookie("token");
 
-    if(gtoken!="") {
+    if (gtoken != "") {
         setCurrentUser();
 
         initdatagrid();
-    }else{
-        window.location.href=platform_url+"/pages/home/login.html";
+    } else {
+        window.location.href = platform_url + "/pages/home/login.html";
     }
 
 });
@@ -31,23 +31,30 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        /*toolbar: ['-', {
-         id: 'btnDelete',
-         text: '删除',
-         disabled: false,
-         iconCls: 'icon-cut',
-         handler: function () {
+        toolbar: ['-', {
+            id: 'btnSave',
+            text: '添加',
+            iconCls: 'icon-add',
+            handler: function () {
+                $('#menuadd').window('open');
+            }
+        }, '-', {
+            id: 'btnDelete',
+            text: '删除',
+            disabled: false,
+            iconCls: 'icon-cut',
+            handler: function () {
 
-         var rows = $('#urlgrid').datagrid('getSelections');
+                var rows = $('#menugrid').datagrid('getSelections');
 
-         if (!rows || rows.length == 0) {
-         $.messager.alert('提示', '请选择要删除的数据');
-         return;
-         }
+                if (!rows || rows.length == 0) {
+                    $.messager.alert('提示', '请选择要删除的数据');
+                    return;
+                }
 
-         $.messager.alert('提示', rows[0].id);
-         }
-         }, '-'],*/
+                $.messager.alert('提示', rows[0].id);
+            }
+        }, '-'],
 
         idField: 'MenuId',
 
