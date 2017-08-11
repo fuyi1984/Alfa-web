@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.EMenuInfosMapper">
 
-    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.fileinfo">
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.EMenuInfos">
 
         <!--目录ID-->
         <id column="MenuId" property="MenuId" jdbcType="BIGINT"/>
 
         <!--基本信息-->
         <result column="MenuName" property="MenuName" jdbcType="VARCHAR"/>
-        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="Url" property="Url" jdbcType="VARCHAR"/>
         <result column="Icon" property="Icon" jdbcType="VARCHAR"/>
         <result column="ParentId" property="ParentId" jdbcType="BIGINT"/>
         <result column="CascadeId" property="CascadeId" jdbcType="BIGINT"/>
@@ -34,10 +34,10 @@
                 and MenuName = ${condition.MenuName}
             </if>
             <if test="condition.url != null" >
-                and url = #{condition.url}
+                and Url = #{condition.Url}
             </if>
             <if test="condition.urlLike != null">
-                and url like concat('%',
+                and Url like concat('%',
                 #{condition.urlLike}, '%')
             </if>
             <if test="condition.Icon != null" >
@@ -70,7 +70,7 @@
     </sql>
 
     <sql id="Base_Column_List" >
-        MenuId, MenuName,url,Icon,ParentId,CascadeId,createdBy,createdDt,updatedBy,updatedDt,
+        MenuId, MenuName,Url,Icon,ParentId,CascadeId,createdBy,createdDt,updatedBy,updatedDt,
         version
     </sql>
 
@@ -84,8 +84,8 @@
             <if test="MenuName != null" >
                 MenuName,
             </if>
-            <if test="url != null" >
-                url,
+            <if test="Url != null" >
+                Url,
             </if>
             <if test="status != null" >
                 status,
@@ -121,8 +121,8 @@
             <if test="MenuName != null" >
                 #{MenuName},
             </if>
-            <if test="url != null" >
-                #{url},
+            <if test="Url != null" >
+                #{Url},
             </if>
             <if test="status != null" >
                 #{status},
@@ -197,8 +197,8 @@
             <if test="MenuName != null" >
                 MenuName=#{MenuName},
             </if>
-            <if test="url != null" >
-                url=#{url},
+            <if test="Url != null" >
+                Url=#{Url},
             </if>
             <if test="status != null" >
                 status=#{status},
