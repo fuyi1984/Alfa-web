@@ -40,7 +40,7 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
     public Response insertmenu(EMenuInfos menu) throws Exception {
 
         Criteria criteria = new Criteria();
-        criteria.put("MenuName", menu.getMenuName());
+        criteria.put("menuname", menu.getMenuname());
         criteria.put("url", menu.getUrl());
 
         List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
@@ -79,7 +79,7 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
     public Response editmenu(EMenuInfos menu) {
 
         Criteria criteria = new Criteria();
-        criteria.put("MenuName", menu.getMenuName());
+        criteria.put("menuname", menu.getMenuname());
         criteria.put("url", menu.getUrl());
 
         List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
@@ -128,8 +128,8 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
 
         Criteria criteria = new Criteria();
 
-        if (!StringUtil.isNullOrEmpty(map.get("MenuName"))) {
-            criteria.put("MenuName",  map.get("MenuName").toString());
+        if (!StringUtil.isNullOrEmpty(map.get("menuname"))) {
+            criteria.put("menuname",  map.get("menuname").toString());
         }
         if (!StringUtil.isNullOrEmpty(map.get("url"))) {
             criteria.put("urlLike",  map.get("url").toString());

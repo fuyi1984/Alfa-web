@@ -11,78 +11,78 @@ public class EMenuInfos extends Entity implements Serializable
     /**
      * 目录ID
      */
-    private Long MenuId;
+    private Long menuid;
 
     /**
      * 目录名
      */
-    private String MenuName;
+    private String menuname;
 
     /**
      * 图标
      */
-    private String Icon;
+    private String icon;
 
     /**
      * Url
      */
-    private String Url;
+    private String url;
 
     /**
      * 父节点
      */
-    private Long ParentId;
+    private String parentid;
 
     /**
      * 节点
      */
-    private Long CascadeId;
+    private String cascadeid;
 
-    public Long getMenuId() {
-        return MenuId;
+    public Long getMenuid() {
+        return menuid;
     }
 
-    public void setMenuId(Long menuId) {
-        MenuId = menuId;
+    public void setMenuid(Long menuid) {
+        this.menuid = menuid;
     }
 
-    public String getMenuName() {
-        return MenuName;
+    public String getMenuname() {
+        return menuname;
     }
 
-    public void setMenuName(String menuName) {
-        MenuName = menuName;
+    public void setMenuname(String menuname) {
+        this.menuname = menuname;
     }
 
     public String getIcon() {
-        return Icon;
+        return icon;
     }
 
     public void setIcon(String icon) {
-        Icon = icon;
+        this.icon = icon;
     }
 
     public String getUrl() {
-        return Url;
+        return url;
     }
 
     public void setUrl(String url) {
-        Url = url;
+        this.url = url;
     }
 
-    public Long getParentId() {
-        return ParentId;
+    public String getParentid() {
+        return parentid;
     }
 
-    public void setParentId(Long parentId) {
-        ParentId = parentId;
+    public void setParentid(String parentid) {
+        this.parentid = parentid;
     }
 
-    public Long getCascadeId() {
-        return CascadeId;
+    public String getCascadeid() {
+        return cascadeid;
     }
 
-    public void setCascadeId(Long cascadeId) {
-        CascadeId = cascadeId;
+    public void setCascadeid(String cascadeid) {
+        this.cascadeid = cascadeid;
     }
 }
