@@ -94,5 +94,75 @@
         </div>
     </form>
 </div>
+
+<!--更新菜单信息-->
+<div id="menuedit" class="easyui-window" title="修改菜单信息"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+     style="width:400px;height:350px;padding:10px;">
+    <form id="form2">
+        <div style="padding: 15px 10px 10px 25px;">
+            <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
+                   data-options="required:true"
+                   name="Idedit" id="Idedit"/>
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        节点:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               name="CascadeIdedit" id="CascadeIdedit"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        菜单名称:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true" name="MenuNameedit" id="MenuNameedit"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        图标:
+                    </td>
+                    <td>
+                        <input style="width: 250px;" class="easyui-textbox" type="text"
+                               data-options="required:true"
+                               name="Iconedit" id="Iconedit"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Url:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="required:true"
+                               style=" width:250px;" name="Urledit" id="Urledit">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        父节点:
+                    </td>
+                    <td>
+                        <input class="easyui-textbox" data-options="required:true"
+                               style=" width:250px;" name="ParentIdedit" id="ParentIdedit">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:menueditForm()" id="edit"
+               iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="javascript:menucancel()"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
 </body>
 </html>
