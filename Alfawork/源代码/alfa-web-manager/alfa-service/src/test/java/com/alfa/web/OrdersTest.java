@@ -196,5 +196,18 @@ public class OrdersTest extends TestBase {
         }
     }
 
+    @Test
+    public void countByParams(){
+        Criteria criteria = new Criteria();
+
+        criteria.put("phone","18580043708");
+        criteria.put("roleId","9");
+        criteria.put("orgstatus","4");
+
+        int count = this.ordersService.countByParams(criteria);
+
+        System.out.println(count);
+    }
+
 
 }

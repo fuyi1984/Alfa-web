@@ -56,11 +56,12 @@ function initdatagrid() {
                         return;
                     }else {
                         $('#form2').form('load', {
-                            Idedit: rows[0].id,
-                            CascadeIdedit: rows[0].configName,
-                            MenuNameedit: rows[0].configKey,
-                            Iconedit: rows[0].configValue,
-                            description_update: rows[0].description
+                            Idedit: rows[0].menuid,
+                            CascadeIdedit: rows[0].cascadeid,
+                            MenuNameedit: rows[0].menuname,
+                            Iconedit: rows[0].icon,
+                            Urledit:rows[0].url,
+                            ParentIdedit: rows[0].parentid
                         });
                         $('#menuedit').window('open');
                     }
@@ -92,11 +93,11 @@ function initdatagrid() {
 
         columns: [[
 
-            {field: 'CascadeId', title: '节点', width: 80, align: 'center'},
-            {field: 'MenuName', title: '菜单名称', width: 80, align: 'center'},
-            {field: 'Icon', title: '图标', width: 80, align: 'center'},
-            {field: 'Url', title: 'Url', width: 80, align: 'center'},
-            {field: 'ParentId', title: '父节点', width: 80, align: 'center'},
+            {field: 'cascadeid', title: '节点', width: 80, align: 'center'},
+            {field: 'menuname', title: '菜单名称', width: 80, align: 'center'},
+            {field: 'icon', title: '图标', width: 80, align: 'center'},
+            {field: 'url', title: 'Url', width: 80, align: 'center'},
+            {field: 'parentid', title: '父节点', width: 80, align: 'center'},
 
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {

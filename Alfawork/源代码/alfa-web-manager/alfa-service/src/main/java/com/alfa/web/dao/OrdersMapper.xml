@@ -266,7 +266,7 @@
         left join HistoryAddress E on(A.addressId=E.Id)
 
         <if test="condition.roleId != null">
-            INNER join sysrole E on(E.roleId=B.roleId and E.roleId=#{condition.roleId})
+            INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
         </if>
 
         <if test="condition.phone != null">
@@ -289,11 +289,25 @@
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
             resultType="java.lang.Integer">
+
         select count(*) from orders A
+
+        left join sysusers B on(A.workerid = B.userId)
+        left join sysrole C on(B.roleId=C.roleId)
+        left join HistoryAddress E on(A.addressId=E.Id)
+
+        <if test="condition.roleId != null">
+            INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
+        </if>
+
+        <if test="condition.phone != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
+
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"

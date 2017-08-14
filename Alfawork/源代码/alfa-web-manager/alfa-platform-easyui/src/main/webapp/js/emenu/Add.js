@@ -30,11 +30,11 @@ function menusubmitForm(){
     if(menusubmitValidator()){
 
         var params = {
-            "CascadeId": $("#CascadeId_add").val(),
-            "MenuName": $("#MenuName_add").val(),
-            "Url":$("#Url_add").val(),
-            "ParentId":$("#ParentId_add").val(),
-            "Icon":$("#Icon_add").val()
+            "cascadeid": $("#CascadeId_add").val(),
+            "menuname": $("#MenuName_add").val(),
+            "url":$("#Url_add").val(),
+            "parentid":$("#ParentId_add").val(),
+            "icon":$("#Icon_add").val()
         }
 
         console.log(params);

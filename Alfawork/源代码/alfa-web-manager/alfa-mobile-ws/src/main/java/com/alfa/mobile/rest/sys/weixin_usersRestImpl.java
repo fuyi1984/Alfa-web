@@ -1,6 +1,7 @@
 package com.alfa.mobile.rest.sys;
 
 import com.alfa.web.pojo.td_weixin_users;
+import com.alfa.web.service.OrdersService;
 import com.alfa.web.service.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.pojo.Criteria;
@@ -15,7 +16,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/6/30.
@@ -31,6 +34,8 @@ public class weixin_usersRestImpl implements weixin_usersRest {
     @Autowired
     private weixin_usersService weixin_usersService;
 
+    @Autowired
+    private OrdersService ordersService;
 
     @Override
     public Response insertOpenId(td_weixin_users td_weixin_users) throws Exception {
@@ -95,6 +100,40 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             td_weixin_users users=list.get(0);
             //查询成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();
+
+        }else{
+            //查询失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+    }
+
+    @Override
+    public Response GetSingleOpenIdForMobile(td_weixin_users td_weixin_users) throws UnsupportedEncodingException {
+        Criteria criteria = new Criteria();
+        criteria.put("mobile", td_weixin_users.getMobile());
+        //criteria.put("mobiletoken",td_weixin_users.getMobiletoken());
+
+        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
+
+        if(list.size()>=1) {
+
+            criteria.clear();
+
+            criteria.put("phone",td_weixin_users.getMobile());
+            criteria.put("roleId","9");
+            criteria.put("orgstatus","4");
+
+            int count = this.ordersService.countByParams(criteria);
+
+            td_weixin_users users=list.get(0);
+
+            Map<String, Object> data = new HashMap<String, Object>();
+
+            data.put("total", count);
+            data.put("rows", users);
+
+            //查询成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", data))).build();
 
         }else{
             //查询失败
