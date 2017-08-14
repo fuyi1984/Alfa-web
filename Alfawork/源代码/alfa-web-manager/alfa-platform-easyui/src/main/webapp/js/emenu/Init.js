@@ -38,7 +38,35 @@ function initdatagrid() {
             handler: function () {
                 $('#menuadd').window('open');
             }
-        }, '-', {
+        },'-',{
+            id: 'btnUpdate',
+            text: '修改',
+            iconCls: 'icon-save',
+            handler:function(){
+
+                var rows = $('#menugrid').datagrid('getSelections');
+
+                if (!rows || rows.length == 0) {
+                    $.messager.alert('提示', '请选择要修改的数据');
+                    return;
+                }else{
+                    if(rows.length>1){
+                        $.messager.alert('提示', '请选择一条数据');
+                        $('#menugrid').datagrid("clearSelections");
+                        return;
+                    }else {
+                        $('#form2').form('load', {
+                            Idedit: rows[0].id,
+                            CascadeIdedit: rows[0].configName,
+                            MenuNameedit: rows[0].configKey,
+                            Iconedit: rows[0].configValue,
+                            description_update: rows[0].description
+                        });
+                        $('#menuedit').window('open');
+                    }
+                }
+            }
+        },'-', {
             id: 'btnDelete',
             text: '删除',
             disabled: false,
