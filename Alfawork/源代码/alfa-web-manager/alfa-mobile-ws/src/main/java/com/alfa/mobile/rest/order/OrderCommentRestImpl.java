@@ -36,6 +36,12 @@ public class OrderCommentRestImpl implements OrderCommentRest{
 
         //region
 
+        for(OrderComment item:commentlist)
+        {
+            int sum=(Integer.parseInt(item.getOne())+Integer.parseInt(item.getTwo())+Integer.parseInt(item.getThree()))/3;
+            item.setAverage(String.valueOf(sum));
+        }
+
         int result=this.orderCommentService.Batchinsert(commentlist);
 
         if(result>=1){
@@ -88,6 +94,11 @@ public class OrderCommentRestImpl implements OrderCommentRest{
         //订单ID
         if (!StringUtil.isNullOrEmpty(map.get("orderId"))) {
             criteria.put("orderId", map.get("orderId").toString());
+        }
+
+        //收运人员手机号
+        if(!StringUtil.isNullOrEmpty(map.get("mobile"))){
+            criteria.put("mobile",map.get("mobile").toString());
         }
 
         //endregion

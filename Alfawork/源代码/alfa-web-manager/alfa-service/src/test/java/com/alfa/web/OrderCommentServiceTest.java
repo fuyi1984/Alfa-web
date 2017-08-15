@@ -34,16 +34,13 @@ public class OrderCommentServiceTest extends TestBase {
         List<OrderComment> orderCommentList=new ArrayList<OrderComment>();
 
         OrderComment orderComment=new OrderComment();
-        orderComment.setContent("1243");
-        orderComment.setOrderId(1L);
+        orderComment.setOne("1");
+        orderComment.setTwo("2");
+        orderComment.setThree("4");
+        orderComment.setFour("3");
+        orderComment.setMobile("18580043708");
         WebUtil.prepareInsertParams(orderComment);
         orderCommentList.add(orderComment);
-
-        OrderComment orderComment2=new OrderComment();
-        orderComment2.setContent("124333");
-        orderComment2.setOrderId(2L);
-        WebUtil.prepareInsertParams(orderComment2);
-        orderCommentList.add(orderComment2);
 
         orderCommentService.Batchinsert(orderCommentList);
     }

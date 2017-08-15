@@ -7,6 +7,12 @@
         <!--订单评论信息-->
         <id column="Id" property="id" jdbcType="BIGINT"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="one" property="one" jdbcType="VARCHAR"/>
+        <result column="two" property="two" jdbcType="VARCHAR"/>
+        <result column="three" property="three" jdbcType="VARCHAR"/>
+        <result column="four" property="four" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="average" property="average" jdbcType="VARCHAR"/>
         <result column="orderId" property="orderId" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
 
@@ -20,7 +26,24 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
-
+            <if test="condition.average!=null">
+                and A.average = #{condition.average}
+            </if>
+            <if test="condition.mobile!=null">
+                and A.mobile = #{condition.mobile}
+            </if>
+            <if test="condition.four!=null">
+                and A.four = #{condition.four}
+            </if>
+            <if test="condition.three!=null">
+                and A.three = #{condition.three}
+            </if>
+            <if test="condition.two!=null">
+                and A.two = #{condition.two}
+            </if>
+            <if test="condition.one!=null">
+                and A.one = #{condition.one}
+            </if>
             <if test="condition.orderId != null">
                 and A.orderId = #{condition.orderId}
             </if>
@@ -51,7 +74,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.orderId,A.content, A.Id,
+        A.orderId,A.content,A.Id,A.one,A.two,A.three,A.four,A.mobile,A.average,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
 
@@ -92,6 +115,24 @@
         </selectKey>
         insert into ordercomment
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="average!=null">
+                average,
+            </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
+            <if test="four!=null">
+                four,
+            </if>
+            <if test="three!=null">
+                three,
+            </if>
+            <if test="two!=null">
+                two,
+            </if>
+            <if test="one!=null">
+                one,
+            </if>
             <if test="content!=null">
                 content,
             </if>
@@ -115,6 +156,24 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="average!=null">
+                #{average},
+            </if>
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
+            <if test="four!=null">
+                #{four},
+            </if>
+            <if test="three!=null">
+                #{three},
+            </if>
+            <if test="two!=null">
+                #{two},
+            </if>
+            <if test="one!=null">
+                #{one},
+            </if>
             <if test="content!=null">
                 #{content},
             </if>
@@ -145,12 +204,18 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
 
-        insert into ordercomment (content,orderId,createdBy,createdDt,updatedBy,updatedDt,version)
+        insert into ordercomment (average,one,two,three,four,mobile,content,orderId,createdBy,createdDt,updatedBy,updatedDt,version)
 
         values
 
             <foreach collection="list" item="item" index="index" separator=",">
                 (
+                #{item.average},
+                #{item.one},
+                #{item.two},
+                #{item.three},
+                #{item.four},
+                #{item.mobile},
                 #{item.content},
                 #{item.orderId},
                 #{item.createdBy},
