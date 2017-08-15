@@ -10,12 +10,33 @@ public class OrderComment extends Entity implements Serializable {
 
     private String content;
 
+    /**
+     * 评论1
+     */
     private String one;
 
+    /**
+     * 评论2
+     */
     private String two;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * 评论3
+
+     */
     private String three;
 
+    /**
+     * 平均分
+     */
     private String average;
 
     public String getAverage() {
@@ -26,9 +47,47 @@ public class OrderComment extends Entity implements Serializable {
         this.average = average;
     }
 
+    /**
+     * 自定义评论
+     */
     private String four;
 
+    /**
+     * 收运人员电话
+     */
     private String mobile;
+
+    /**
+     * 产废单位电话
+     */
+    private String phone;
+
+    /**
+     * 收运人员的微信头像
+     */
+    private String mobileheadimgurl;
+
+    public String getMobileheadimgurl() {
+        return mobileheadimgurl;
+    }
+
+    public void setMobileheadimgurl(String mobileheadimgurl) {
+        this.mobileheadimgurl = mobileheadimgurl;
+    }
+
+    public String getPhoneheadimgurl() {
+        return phoneheadimgurl;
+    }
+
+    public void setPhoneheadimgurl(String phoneheadimgurl) {
+        this.phoneheadimgurl = phoneheadimgurl;
+    }
+
+    /**
+     * 产废单位的微信头像
+
+     */
+    private String phoneheadimgurl;
 
     public String getOne() {
         return one;

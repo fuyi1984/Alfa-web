@@ -7,12 +7,22 @@
         <!--订单评论信息-->
         <id column="Id" property="id" jdbcType="BIGINT"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+
+        <!--评论1-->
         <result column="one" property="one" jdbcType="VARCHAR"/>
+        <!--评论2-->
         <result column="two" property="two" jdbcType="VARCHAR"/>
+        <!--评论3-->
         <result column="three" property="three" jdbcType="VARCHAR"/>
+        <!--自定义评论-->
         <result column="four" property="four" jdbcType="VARCHAR"/>
+        <!--收运人电话-->
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <!--平均分-->
         <result column="average" property="average" jdbcType="VARCHAR"/>
+        <!--产废单位电话-->
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+
         <result column="orderId" property="orderId" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
 
@@ -26,6 +36,9 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.phone!=null">
+                and A.phone = #{condition.phone}
+            </if>
             <if test="condition.average!=null">
                 and A.average = #{condition.average}
             </if>
@@ -74,7 +87,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.orderId,A.content,A.Id,A.one,A.two,A.three,A.four,A.mobile,A.average,
+        A.phone,A.orderId,A.content,A.Id,A.one,A.two,A.three,A.four,A.mobile,A.average,
         A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
     </sql>
 
@@ -109,12 +122,16 @@
         </foreach>
     </delete>
 
+    <!--单条数据插入-->
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.OrderComment">
         <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into ordercomment
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="phone!=null">
+                phone,
+            </if>
             <if test="average!=null">
                 average,
             </if>
@@ -156,6 +173,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="phone!=null">
+                #{phone},
+            </if>
             <if test="average!=null">
                 #{average},
             </if>
@@ -198,18 +218,20 @@
         </trim>
     </insert>
 
+    <!--批量插入-->
     <insert id="insertBatch" parameterType="java.util.HashMap">
 
         <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
 
-        insert into ordercomment (average,one,two,three,four,mobile,content,orderId,createdBy,createdDt,updatedBy,updatedDt,version)
+        insert into ordercomment (phone,average,one,two,three,four,mobile,content,orderId,createdBy,createdDt,updatedBy,updatedDt,version)
 
         values
 
             <foreach collection="list" item="item" index="index" separator=",">
                 (
+                #{item.phone},
                 #{item.average},
                 #{item.one},
                 #{item.two},
@@ -229,6 +251,7 @@
 
     </insert>
 
+    <!--条件查询-->
     <select id="selectByParams" resultMap="BaseResultMap"
             parameterType="com.alfa.web.util.pojo.Criteria">
 
@@ -239,10 +262,15 @@
         </if>
 
         <include refid="Base_Column_List"/>
-        ,B.orderno
+        ,B.orderno,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl
         from ordercomment A
 
         left join orders B on(A.orderId = B.orderid)
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
