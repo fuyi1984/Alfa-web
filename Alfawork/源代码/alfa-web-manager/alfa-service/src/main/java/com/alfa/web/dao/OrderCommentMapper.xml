@@ -6,6 +6,7 @@
 
         <!--订单评论信息-->
         <id column="Id" property="id" jdbcType="BIGINT"/>
+
         <result column="content" property="content" jdbcType="VARCHAR"/>
 
         <!--评论1-->
@@ -94,6 +95,11 @@
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
             resultType="java.lang.Integer">
         select count(*) from ordercomment A
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -262,10 +268,8 @@
         </if>
 
         <include refid="Base_Column_List"/>
-        ,B.orderno,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl
+        ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl
         from ordercomment A
-
-        left join orders B on(A.orderId = B.orderid)
 
         <!--收运人员关联-->
         left join td_weixin_users C on(A.mobile=C.mobile)

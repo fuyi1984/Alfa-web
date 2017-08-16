@@ -101,6 +101,11 @@ public class OrderCommentRestImpl implements OrderCommentRest{
             criteria.put("mobile",map.get("mobile").toString());
         }
 
+        //收运人员手机号
+        if(!StringUtil.isNullOrEmpty(map.get("phone"))){
+            criteria.put("phone",map.get("phone").toString());
+        }
+
         //endregion
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
