@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.AttachmentMapper;
+import com.alfa.web.dao.file.AttachmentMapper;
 import com.alfa.web.pojo.Attachment;
 import com.alfa.web.service.AttachmentService;
 import com.alfa.web.util.pojo.Criteria;

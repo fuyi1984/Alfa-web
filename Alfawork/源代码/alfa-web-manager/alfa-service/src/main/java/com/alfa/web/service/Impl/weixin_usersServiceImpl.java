@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.weixin_usersMapper;
+import com.alfa.web.dao.weixin.weixin_usersMapper;
 import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.weixin_usersService;
 import com.alfa.web.util.WebUtil;

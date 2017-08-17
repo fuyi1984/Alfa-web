@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.common.SysRelevanceMapper">
+
+     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.SysRelevance">
+
+         <id column="RelevanceId" property="RelevanceId" jdbcType="BIGINT"/>
+         <result column="Description" property="Description" jdbcType="VARCHAR"/>
+         <result column="MappKey" property="MappKey" jdbcType="VARCHAR"/>
+         <result column="Status" property="Status" jdbcType="VARCHAR"/>
+         <result column="Statusname" property="Statusname" jdbcType="VARCHAR"/>
+         <result column="OperatorTime" property="OperatorTime" jdbcType="TIMESTAMP"/>
+         <result column="FirstId" property="FirstId" jdbcType="BIGINT"/>
+         <result column="SecondId" property="SecondId" jdbcType="BIGINT"/>
+
+         <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
+         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP" />
+         <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
+         <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP" />
+         <result column="version" property="version" jdbcType="BIGINT" />
+
+     </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+
+            <if test="condition.RelevanceId != null">
+                and RelevanceId = #{condition.RelevanceId}
+            </if>
+            <if test="condition.Description != null">
+                and Description = #{condition.Description}
+            </if>
+            <if test="condition.MappKey != null">
+                and MappKey = #{condition.MappKey}
+            </if>
+            <if test="condition.Status != null">
+                and Status = #{condition.Status}
+            </if>
+            <if test="condition.Statusname != null">
+                and Statusname = #{condition.Statusname}
+            </if>
+            <if test="condition.OperatorTime != null">
+                and OperatorTime = #{condition.OperatorTime}
+            </if>
+            <if test="condition.OperatorId != null">
+                and OperatorId = #{condition.OperatorId}
+            </if>
+            <if test="condition.FirstId != null">
+                and FirstId = #{condition.FirstId}
+            </if>
+            <if test="condition.SecondId != null">
+                and SecondId = #{condition.SecondId}
+            </if>
+
+            <if test="condition.createdBy != null" >
+                and createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        RelevanceId,Description,MappKey,Status,Statusname,OperatorTime,OperatorId,FirstId,SecondId,createdBy,createdDt, updatedBy, updatedDt,version
+    </sql>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria" >
+        delete from SysRelevance
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.SysRelevance" >
+        insert into SysRelevance
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="Description != null" >
+                Description,
+            </if>
+            <if test="MappKey != null" >
+                MappKey,
+            </if>
+            <if test="Status != null" >
+                Status,
+            </if>
+            <if test="Statusname != null" >
+                Statusname,
+            </if>
+            <if test="OperatorTime != null" >
+                OperatorTime,
+            </if>
+            <if test="OperatorId != null" >
+                OperatorId,
+            </if>
+            <if test="FirstId != null" >
+                FirstId,
+            </if>
+            <if test="SecondId != null" >
+                SecondId,
+            </if>
+            <if test="createdBy != null" >
+                createdBy,
+            </if>
+            <if test="createdDt != null" >
+                createdDt,
+            </if>
+            <if test="updatedBy != null" >
+                updatedBy,
+            </if>
+            <if test="updatedDt != null" >
+                updatedDt,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="Description != null" >
+                #{Description},
+            </if>
+            <if test="MappKey != null" >
+                #{MappKey},
+            </if>
+            <if test="Status != null" >
+                #{Status},
+            </if>
+            <if test="Statusname != null" >
+                #{Statusname},
+            </if>
+            <if test="OperatorTime != null" >
+                #{OperatorTime},
+            </if>
+            <if test="OperatorId != null" >
+                #{OperatorId},
+            </if>
+            <if test="FirstId != null" >
+                #{FirstId},
+            </if>
+            <if test="SecondId != null" >
+                #{SecondId},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByParamsSelective" parameterType="map" >
+        update SysRelevance
+        <set >
+            <if test="Description != null" >
+                Description=#{Description},
+            </if>
+            <if test="MappKey != null" >
+                MappKey=#{MappKey},
+            </if>
+            <if test="Status != null" >
+                Status=#{Status},
+            </if>
+            <if test="Statusname != null" >
+                Statusname=#{Statusname},
+            </if>
+            <if test="OperatorTime != null" >
+                OperatorTime=#{OperatorTime},
+            </if>
+            <if test="OperatorId != null" >
+                OperatorId=#{OperatorId},
+            </if>
+            <if test="FirstId != null" >
+                FirstId=#{FirstId},
+            </if>
+            <if test="SecondId != null" >
+                SecondId=#{SecondId},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </update>
+</mapper>

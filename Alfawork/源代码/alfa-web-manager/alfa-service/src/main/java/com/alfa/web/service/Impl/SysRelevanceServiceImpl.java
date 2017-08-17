@@ -1,10 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.SysRelevanceMapper;
 import com.alfa.web.service.SysRelevanceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

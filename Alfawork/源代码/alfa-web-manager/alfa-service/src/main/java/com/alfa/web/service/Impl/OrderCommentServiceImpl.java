@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.OrderCommentMapper;
-import com.alfa.web.dao.OrdersMapper;
+import com.alfa.web.dao.comment.OrderCommentMapper;
 import com.alfa.web.pojo.OrderComment;
 import com.alfa.web.service.OrderCommentService;
 import com.alfa.web.util.WebUtil;

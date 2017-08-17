@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.VwOrderStatusMapper;
+import com.alfa.web.dao.order.VwOrderStatusMapper;
 import com.alfa.web.pojo.VwOrderStatus;
 import com.alfa.web.service.VwOrderStatusService;
 import com.alfa.web.util.pojo.Criteria;

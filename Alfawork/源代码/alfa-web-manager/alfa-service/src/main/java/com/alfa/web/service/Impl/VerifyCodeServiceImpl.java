@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.VerifyCodeMapper;
+import com.alfa.web.dao.sms.VerifyCodeMapper;
 import com.alfa.web.pojo.VerifyCode;
 import com.alfa.web.service.SmsService;
 import com.alfa.web.service.VerifyCodeService;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by Administrator on 2017/6/11.

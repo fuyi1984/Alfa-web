@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.CommonCommentMapper;
+import com.alfa.web.dao.comment.CommonCommentMapper;
 import com.alfa.web.pojo.CommonComment;
 import com.alfa.web.service.CommonCommentService;
 import com.alfa.web.util.WebUtil;

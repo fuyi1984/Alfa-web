@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.message.publishmessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.publishmessage">
+
+        <!--消息通知-->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.id!=null">
+                and A.id=#{condition.id}
+            </if>
+            <if test="condition.title!=null">
+                and A.title=#{condition.title}
+            </if>
+            <if test="condition.content!=null">
+                and A.content=#{condition.content}
+            </if>
+
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.id,A.title,A.content,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.publishmessage">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into publishmessage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="title!=null">
+                title,
+            </if>
+            <if test="content!=null">
+                content,
+            </if>
+
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="title!=null">
+                #{title},
+            </if>
+            <if test="content!=null">
+                #{content},
+            </if>
+
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        from publishmessage A
+
+        left join messageuser B on(A.id = B.messageid)
+
+        <if test="condition.userid != null and condition.isread != null ">
+            INNER join messageuser E on(E.messageid=A.id and E.userid=#{condition.userid} and
+            E.isread=#{condition.isread})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+
+        select count(*) from publishmessage A
+
+        left join messageuser B on(A.id = B.messageid)
+
+        <if test="condition.userid != null and condition.isread != null ">
+            INNER join messageuser E on(E.messageid=A.id and E.userid=#{condition.userid} and
+            E.isread=#{condition.isread})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        publishmessage
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.publishmessage">
+        update publishmessage
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>

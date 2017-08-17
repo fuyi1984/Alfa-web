@@ -1,8 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.SysUsersMapper;
-import com.alfa.web.dao.userregisterbehaviorMapper;
-import com.alfa.web.pojo.SysUsers;
+import com.alfa.web.dao.sys.userregisterbehaviorMapper;
 import com.alfa.web.pojo.userregisterbehavior;
 import com.alfa.web.service.userregisterbehaviorService;
 import com.alfa.web.util.WebUtil;

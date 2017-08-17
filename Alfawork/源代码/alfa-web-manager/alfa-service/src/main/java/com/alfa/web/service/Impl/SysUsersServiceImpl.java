@@ -1,7 +1,7 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.SysRoleMapper;
-import com.alfa.web.dao.SysUsersMapper;
+import com.alfa.web.dao.sys.SysRoleMapper;
+import com.alfa.web.dao.sys.SysUsersMapper;
 import com.alfa.web.pojo.SysRole;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.service.SysUsersService;

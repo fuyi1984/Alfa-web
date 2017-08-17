@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.LogForLoginMapper;
-import com.alfa.web.dao.SysAccountMapper;
+import com.alfa.web.dao.log.LogForLoginMapper;
 import com.alfa.web.service.LogForLoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

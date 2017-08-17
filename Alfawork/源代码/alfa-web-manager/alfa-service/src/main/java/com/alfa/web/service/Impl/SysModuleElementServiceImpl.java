@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.SysModuleElementMapper;
-import com.alfa.web.dao.SysModulesMapper;
+import com.alfa.web.dao.sys.SysModuleElementMapper;
 import com.alfa.web.service.SysModuleElementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -46,7 +46,7 @@
 
     <!-- mybatis接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.alfa.web.dao"/>
+        <property name="basePackage" value="com.alfa.web.dao.*"/>
     </bean>
 
     <!-- 配置Spring ehcache 注入-->

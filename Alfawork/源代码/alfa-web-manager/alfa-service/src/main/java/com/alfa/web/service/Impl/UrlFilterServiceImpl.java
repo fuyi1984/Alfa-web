@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.UrlFilterMapper;
+import com.alfa.web.dao.url.UrlFilterMapper;
 import com.alfa.web.pojo.TotalUrlFilters;
 import com.alfa.web.service.UrlFilterService;
 import com.alfa.web.util.pojo.Criteria;

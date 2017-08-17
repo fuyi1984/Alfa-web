@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.comment.CommentReplyMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.CommentReply">
+
+        <!--回复ID-->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <!--基本信息-->
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="commentid" property="commentid" jdbcType="BIGINT"/>
+
+        <!--附加信息-->
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <trim prefix="where" prefixOverrides="and|or" >
+
+            <if test="condition.content != null" >
+                and A.content = ${condition.content}
+            </if>
+            <if test="condition.mobile != null" >
+                and A.mobile = ${condition.mobile}
+            </if>
+            <if test="condition.phone != null" >
+                and A.phone = #{condition.phone}
+            </if>
+
+            <if test="condition.commentid != null" >
+                and A.commentid = #{condition.commentid}
+            </if>
+
+            <if test="condition.createdBy != null" >
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and A.version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, content,mobile,phone,commentid,createdBy,createdDt,updatedBy,updatedDt,
+        version
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.CommentReply" >
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into commentreply
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="phone != null" >
+                phone,
+            </if>
+            <if test="commentid != null" >
+                commentid,
+            </if>
+            <if test="createdBy != null" >
+                createdBy,
+            </if>
+            <if test="createdDt != null" >
+                createdDt,
+            </if>
+            <if test="updatedBy != null" >
+                updatedBy,
+            </if>
+            <if test="updatedDt != null" >
+                updatedDt,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="content != null" >
+                #{content},
+            </if>
+            <if test="mobile != null" >
+                #{mobile},
+            </if>
+            <if test="phone != null" >
+                #{phone},
+            </if>
+            <if test="commentid != null" >
+                #{commentid},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria" >
+
+        select
+
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+
+        ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl
+
+        from commentreply A
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
+
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+
+        GROUP BY A.id
+
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit" />
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer" >
+
+        select count(*) from commentreply A
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
+
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+
+    </select>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        commentreply
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

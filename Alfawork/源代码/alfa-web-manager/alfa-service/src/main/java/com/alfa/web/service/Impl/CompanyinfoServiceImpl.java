@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.CompanyinfoMapper;
+import com.alfa.web.dao.common.CompanyinfoMapper;
 import com.alfa.web.pojo.Companyinfo;
 import com.alfa.web.service.CompanyinfoService;
 import com.alfa.web.util.pojo.Criteria;

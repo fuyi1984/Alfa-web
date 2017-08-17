@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.order.OrdersMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.Orders">
+
+        <!--订单信息-->
+        <id column="orderid" property="orderid" jdbcType="BIGINT"/>
+        <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
+        <result column="realnum" property="realnum" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="num" property="num" jdbcType="VARCHAR"/>
+        <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
+        <result column="orgstatus" property="orgstatus" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="confirmDt" property="confirmDt" jdbcType="TIMESTAMP"/>
+        <result column="isSms" property="isSms" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+        <!--收运人员的相关信息-->
+        <result column="workerid" property="workerid" jdbcType="BIGINT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+
+        <!--收油地址的相关信息-->
+        <result column="addressId" property="addressId" jdbcType="BIGINT"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="townandstreets" property="townandstreets" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.isSms!=null">
+                and A.isSms=#{condition.isSms}
+            </if>
+            <if test="condition.confirmDt!=null">
+                and A.confirmDt=#{condition.confirmDt}
+            </if>
+            <if test="condition.remark!=null">
+                and A.remark=#{condition.remark}
+            </if>
+            <if test="condition.realnum!=null">
+                and A.realnum=#{condition.realnum}
+            </if>
+            <if test="condition.orderno!=null">
+                and A.orderno=#{condition.orderno}
+            </if>
+            <if test="condition.orderid != null">
+                and A.orderid = #{condition.orderid}
+            </if>
+            <if test="condition.orderidlist!=null">
+                and A.orderid in
+                <foreach collection="condition.orderidlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="condition.username != null">
+                and A.username = #{condition.username}
+            </if>
+            <if test="condition.usernameLike != null">
+                and A.username like concat('%', #{condition.usernameLike}, '%')
+            </if>
+            <if test="condition.iphone != null">
+                and A.iphone = #{condition.iphone}
+            </if>
+            <if test="condition.address != null">
+                and A.address = #{condition.address}
+            </if>
+            <if test="condition.num != null">
+                and A.num = #{condition.num}
+            </if>
+            <if test="condition.orgname != null">
+                and A.orgname = #{condition.orgname}
+            </if>
+            <if test="condition.orgstatus != null">
+                and A.orgstatus = #{condition.orgstatus}
+            </if>
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.createdDtLike != null">
+                and A.createdDt like concat('%', #{condition.createdDtLike}, '%')
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+            <if test="condition.workerid != null">
+                and A.workerid = #{condition.workerid}
+            </if>
+            <if test="condition.addressId!=null">
+                and A.addressId=#{condition.addressId}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.isSms,A.addressId,A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
+        A.orgstatus,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
+    </sql>
+
+    <insert id="insert" parameterType="com.alfa.web.pojo.Orders">
+        <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into
+        orders(isSms,addressId,confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
+        updatedBy,updatedDt,version,workerid)
+        values (#{isSms},#{addressId},#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address},
+        #{num}, #{orgname},#{orgstatus},
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.Orders">
+        <selectKey keyProperty="orderid" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into orders
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="addressId!=null">
+                addressId,
+            </if>
+            <if test="confirmDt!=null">
+                confirmDt,
+            </if>
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="remark!=null">
+                remark,
+            </if>
+            <if test="realnum!=null">
+                realnum,
+            </if>
+            <if test="orderno!=null">
+                orderno,
+            </if>
+            <if test="iphone != null">
+                iphone,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="orgname != null">
+                orgname,
+            </if>
+            <if test="orgstatus != null">
+                orgstatus,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="workerid != null">
+                workerid,
+            </if>
+            <if test="isSms!=null">
+                isSms
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="addressId!=null">
+                #{addressId},
+            </if>
+            <if test="confirmDt!=null">
+                #{confirmDt},
+            </if>
+            <if test="username!=null">
+                #{username},
+            </if>
+            <if test="remark!=null">
+                #{remark},
+            </if>
+            <if test="realnum!=null">
+                #{realnum},
+            </if>
+            <if test="orderno!=null">
+                #{orderno},
+            </if>
+            <if test="iphone != null">
+                #{iphone},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="num != null">
+                #{num},
+            </if>
+            <if test="orgname != null">
+                #{orgname},
+            </if>
+            <if test="orgstatus != null">
+                #{orgstatus},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+            <if test="workerid != null">
+                #{workerid},
+            </if>
+            <if test="isSms!=null">
+                #{isSms}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+        ,B.phone,B.realname,E.province,E.city,E.area,E.townandstreets
+        from orders A
+
+        left join sysusers B on(A.workerid = B.userId)
+        left join sysrole C on(B.roleId=C.roleId)
+        left join HistoryAddress E on(A.addressId=E.Id)
+
+        <if test="condition.roleId != null">
+            INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
+        </if>
+
+        <if test="condition.phone != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.orderid
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+
+        select count(*) from orders A
+
+        left join sysusers B on(A.workerid = B.userId)
+        left join sysrole C on(B.roleId=C.roleId)
+        left join HistoryAddress E on(A.addressId=E.Id)
+
+        <if test="condition.roleId != null">
+            INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
+        </if>
+
+        <if test="condition.phone != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        orders A
+        where A.orderid=#{orderid}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from
+        orders
+        where orderid = #{orderid}
+    </delete>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        orders
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from orders A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
+        update orders
+        <set>
+            <if test="isSms!=null">
+                isSms=#{isSms},
+            </if>
+            <if test="addressId!=null">
+                addressId=#{addressId},
+            </if>
+            <if test="confirmDt!=null">
+                confirmDt=#{confirmDt},
+            </if>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="remark!=null">
+                remark=#{remark},
+            </if>
+            <if test="realnum!=null">
+                realnum=#{realnum},
+            </if>
+            <if test="orderno!=null">
+                orderno=#{orderno},
+            </if>
+            <if test="iphone != null">
+                iphone=#{iphone},
+            </if>
+            <if test="address != null">
+                address=#{address},
+            </if>
+            <if test="num != null">
+                num=#{num},
+            </if>
+            <if test="orgname != null">
+                orgname=#{orgname},
+            </if>
+            <if test="orgstatus != null">
+                orgstatus=#{orgstatus},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version},
+            </if>
+            <if test="workerid != null">
+                workerid=#{workerid},
+            </if>
+        </set>
+        where orderid = #{orderid}
+    </update>
+
+    <update id="updateWorkerIdByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+        workerid = 0
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </update>
+
+
+    <!--收运人员批量确认完成订单-->
+    <update id="batchupdateorderStatus" parameterType="java.util.List">
+        update orders
+        set
+        orgstatus='3'
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--库管人员批量确认完成订单-->
+    <update id="batchcompleteorderStatus" parameterType="java.util.List">
+        update orders
+        set
+        orgstatus='4'
+        where orderid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量分配订单-->
+    <update id="batchupdateorderWorker" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+        A.orgstatus=#{condition.status},
+
+        A.workerid=#{condition.worker},
+
+        A.isSms='0',
+
+        A.confirmDt=#{condition.confirmDt}
+
+        where orderid in
+        <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <!--批量更新订单分配后的短信发送状态-->
+    <update id="batchupdateSmsStatus" parameterType="com.alfa.web.util.pojo.Criteria">
+        update orders A
+        set
+
+        <if test="condition.confirmDt!=null">
+            A.confirmDt=#{condition.confirmDt},
+        </if>
+
+        A.isSms='1'
+
+
+        where orderid in
+        <foreach collection="condition.orderidlist" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

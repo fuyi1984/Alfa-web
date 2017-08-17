@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.HistoryAddressMapper;
-import com.alfa.web.dao.fileinfoMapper;
+import com.alfa.web.dao.file.fileinfoMapper;
 import com.alfa.web.pojo.fileinfo;
 import com.alfa.web.service.fileinfoService;
 import com.alfa.web.util.WebUtil;

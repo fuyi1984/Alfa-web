@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.HistoryAddressMapper;
-import com.alfa.web.dao.HostoryOrderStatusMapper;
+import com.alfa.web.dao.order.HostoryOrderStatusMapper;
 import com.alfa.web.pojo.HostoryOrderStatus;
 import com.alfa.web.service.HostoryOrderStatusService;
 import com.alfa.web.util.WebUtil;

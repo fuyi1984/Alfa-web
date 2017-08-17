@@ -1,6 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.EMenuInfosMapper;
+import com.alfa.web.dao.sys.EMenuInfosMapper;
 import com.alfa.web.pojo.EMenuInfos;
 import com.alfa.web.service.EMenuInfosService;
 import com.alfa.web.util.WebUtil;

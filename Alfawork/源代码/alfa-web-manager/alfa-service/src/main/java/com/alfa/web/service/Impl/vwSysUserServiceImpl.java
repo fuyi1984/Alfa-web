@@ -1,7 +1,6 @@
 package com.alfa.web.service.Impl;
 
-import com.alfa.web.dao.VwSmsStatusMapper;
-import com.alfa.web.dao.vwSysUserMapper;
+import com.alfa.web.dao.sys.vwSysUserMapper;
 import com.alfa.web.pojo.vwSysUser;
 import com.alfa.web.service.vwSysUserService;
 import com.alfa.web.util.pojo.Criteria;
