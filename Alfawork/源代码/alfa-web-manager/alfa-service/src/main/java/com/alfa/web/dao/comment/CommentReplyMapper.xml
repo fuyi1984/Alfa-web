@@ -59,8 +59,8 @@
     </sql>
 
     <sql id="Base_Column_List" >
-        id, content,mobile,phone,commentid,createdBy,createdDt,updatedBy,updatedDt,
-        version
+        A.id, A.content,A.mobile,A.phone,A.commentid,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
+        A.version
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.CommentReply" >

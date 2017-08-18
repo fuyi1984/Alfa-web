@@ -28,6 +28,33 @@ public class CommentReply extends Entity implements Serializable {
      */
     private Long commentid;
 
+    /**
+     * 收运人员的微信头像
+     */
+    private String mobileheadimgurl;
+
+    /**
+     * 产废单位的微信头像
+
+     */
+    private String phoneheadimgurl;
+
+    public String getMobileheadimgurl() {
+        return mobileheadimgurl;
+    }
+
+    public void setMobileheadimgurl(String mobileheadimgurl) {
+        this.mobileheadimgurl = mobileheadimgurl;
+    }
+
+    public String getPhoneheadimgurl() {
+        return phoneheadimgurl;
+    }
+
+    public void setPhoneheadimgurl(String phoneheadimgurl) {
+        this.phoneheadimgurl = phoneheadimgurl;
+    }
+
     public String getContent() {
         return content;
     }
