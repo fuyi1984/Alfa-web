@@ -2,15 +2,15 @@
  * Created by Administrator on 2017/7/27.
  */
 $(function () {
-    gtoken = ReadCookie("token");
-
-    if (gtoken != "") {
-        setCurrentUser();
+    // gtoken = ReadCookie("token");
+    //
+    // if (gtoken != "") {
+    //     setCurrentUser();
 
         initdatagrid();
-    } else {
-        window.location.href = platform_url + "/pages/home/login.html";
-    }
+    // } else {
+    //     window.location.href = platform_url + "/pages/home/login.html";
+    // }
 });
 
 function initdatagrid() {
@@ -28,12 +28,15 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        toolbar: ['-', {
+        //region
+
+        /*toolbar: ['-', {
             id: 'btnDelete',
             text: '删除',
             disabled: false,
             iconCls: 'icon-cut',
             handler: function () {
+                //region
 
                 var rows = $('#registerbehaviorgrid').datagrid('getSelections');
 
@@ -80,8 +83,14 @@ function initdatagrid() {
                         }
                     });
                 });
+
+                //endregion
             }
-        }, '-'],
+        }, '-'],*/
+
+        //endregion
+
+        toolbar:"#tb",
 
         idField: 'id',
 
@@ -157,4 +166,53 @@ function initdatagrid() {
             }
         });
     }
+}
+
+function doDelete(){
+
+    var rows = $('#registerbehaviorgrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要删除的数据');
+        return;
+    }
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.id);
+    });
+
+    $.messager.confirm('提示', '是否删除这些数据?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/registerbehavior/batchdeleteUser?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '删除成功！', "info", function () {
+                        $('#registerbehaviorgrid').datagrid("clearSelections");
+                        $('#registerbehaviorgrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '删除失败！', "error", function () {
+                        $('#registerbehaviorgrid').datagrid("clearSelections");
+                        $('#registerbehaviorgrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#registerbehaviorgrid').datagrid("clearSelections");
+                $.messager.alert('错误', '删除失败！', "error");
+            }
+        });
+    });
 }
