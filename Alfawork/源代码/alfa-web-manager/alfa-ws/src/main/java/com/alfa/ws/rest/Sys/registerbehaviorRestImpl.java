@@ -163,6 +163,18 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
             criteria.put("businessrealname", map.get("businessrealname").toString());
         }
 
+        if(!StringUtil.isNullOrEmpty(map.get("regaddress"))){
+            criteria.put("regaddress",map.get("regaddress").toString());
+        }
+
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
 
         List<userregisterbehavior> userregisterbehaviorList = this.userregisterbehaviorService.selectByParams(criteria);

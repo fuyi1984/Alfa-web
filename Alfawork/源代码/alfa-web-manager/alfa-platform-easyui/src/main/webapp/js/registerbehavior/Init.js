@@ -2,15 +2,15 @@
  * Created by Administrator on 2017/7/27.
  */
 $(function () {
-    // gtoken = ReadCookie("token");
-    //
-    // if (gtoken != "") {
-    //     setCurrentUser();
+    gtoken = ReadCookie("token");
+
+    if (gtoken != "") {
+        setCurrentUser();
 
         initdatagrid();
-    // } else {
-    //     window.location.href = platform_url + "/pages/home/login.html";
-    // }
+    } else {
+        window.location.href = platform_url + "/pages/home/login.html";
+    }
 });
 
 function initdatagrid() {
@@ -153,7 +153,7 @@ function initdatagrid() {
             url: ws_url + '/rest/registerbehavior/findlist?token=' + gtoken,
             type: "post",
             /*data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',*/
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone='+$('#bphone').val()+'&businessrealname='+$('#brealname').val()+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone='+$('#bphone').val()+'&businessrealname='+$('#brealname').val()+'&regaddress='+$('#address').val()+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

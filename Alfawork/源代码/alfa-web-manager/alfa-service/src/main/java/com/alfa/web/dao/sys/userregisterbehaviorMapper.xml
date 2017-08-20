@@ -62,6 +62,13 @@
                 </foreach>
             </if>
 
+            <if test="condition.createDtFrom != null">
+                and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null">
+                and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+
             <if test="condition.createdBy != null">
                 and A.createdBy = #{condition.createdBy}
             </if>
@@ -165,9 +172,15 @@
         <!--新注册用户关联的上传文件链接-->
         left join fileinfo E on(C.fileid=E.id)
 
+        <!--查询条件为业务人员姓名和电话-->
         <if test="condition.businessphone != null or condition.businessrealname != null ">
             INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
               condition.businessphone}))
+        </if>
+
+        <!--查询条件为注册人员的单位地址-->
+        <if test="condition.regaddress!=null">
+            INNER JOIN SysUsers F ON(F.userId = A.registerid and F.address like concat('%', #{condition.regaddress}, '%'))
         </if>
 
         <if test="_parameter != null">
@@ -198,6 +211,10 @@
         <if test="condition.businessphone != null or condition.businessrealname != null ">
             INNER JOIN SysUsers D ON(D.userId = A.userid and (D.realname = #{condition.businessrealname} or D.phone=#{
               condition.businessphone}))
+        </if>
+
+        <if test="condition.regaddress!=null">
+            INNER JOIN SysUsers F ON(F.userId = A.registerid and F.address like concat('%', #{condition.regaddress}, '%'))
         </if>
 
         <if test="_parameter != null">
