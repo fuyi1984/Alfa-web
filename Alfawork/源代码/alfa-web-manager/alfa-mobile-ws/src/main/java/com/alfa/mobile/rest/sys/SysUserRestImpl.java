@@ -838,6 +838,8 @@ public class SysUserRestImpl implements SysUserRest {
 
                         if (currentUser.getPassword().equals(password) || currentUser.getPassword().equals(passwordEncrypt)) {
 
+                            //region
+
                             currentUser.setMobiletoken(StringUtil.getUUID());
                             currentUser.setLoginIp(WebUtil.GetCustomIpAddr(servletRequest));
 
@@ -861,6 +863,12 @@ public class SysUserRestImpl implements SysUserRest {
                                     servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser)));
 
                             response = Response.status(Response.Status.OK).entity(json).build();
+
+                            //endregion
+                        }else{
+                            //密码错误
+                            response = Response.status(Response.Status.OK)
+                                    .entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "11", null))).build();
                         }
 
                         //endregion

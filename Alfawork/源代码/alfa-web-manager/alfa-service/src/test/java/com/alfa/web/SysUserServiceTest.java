@@ -285,4 +285,18 @@ public class SysUserServiceTest extends TestBase {
 
     }
 
+    @Test
+    public void loginforwap(){
+
+        Criteria criteria = new Criteria();
+        criteria.put("username", "15320295813");
+        criteria.put("phone", "15320295813");
+
+        List<SysUsers> users = sysUsersService.selectByParams(criteria);
+
+        System.out.println(users);
+
+
+    }
+
 }
