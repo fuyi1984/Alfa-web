@@ -262,6 +262,21 @@ public class OrdersRestImpl implements OrdersRest {
             criteria.put("orderid", map.get("orderid").toString());
         }
 
+        //真实姓名
+        if (!StringUtil.isNullOrEmpty(map.get("realname"))) {
+            criteria.put("realname", map.get("realname").toString());
+        }
+
+        //开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        //结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);

@@ -130,5 +130,20 @@
         </div>
     </form>
 </div>
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="doAllocat()">分配</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="doDelete()">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="doConfirm()">确认</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="doComplete()">完成</a>
+    </div>
+    <div>
+        收运人员姓名:<input id="brealname" class="easyui-textbox" style="width:80px">
+        开始时间: <input id="startDt" class="easyui-datebox" style="width:80px">
+        结束时间: <input id="endDt" class="easyui-datebox" style="width:80px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+    </div>
+</div>
 </body>
 </html>

@@ -85,6 +85,12 @@
             <if test="condition.orgstatus != null">
                 and A.orgstatus = #{condition.orgstatus}
             </if>
+            <if test="condition.createDtFrom != null">
+                and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null">
+                and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
             <if test="condition.createdBy != null">
                 and A.createdBy = #{condition.createdBy}
             </if>
@@ -269,8 +275,9 @@
             INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
         </if>
 
-        <if test="condition.phone != null">
-            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        <if test="condition.phone != null or condition.realname != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and (D.phone = #{condition.phone} or
+            D.realname like concat('%',#{condition.realname},'%')))
         </if>
 
         <if test="_parameter != null">
@@ -300,8 +307,9 @@
             INNER join sysrole F on(F.roleId=B.roleId and F.roleId=#{condition.roleId})
         </if>
 
-        <if test="condition.phone != null">
-            INNER JOIN sysusers D ON(D.userId = A.workerid and D.phone = #{condition.phone})
+        <if test="condition.phone != null or condition.realname != null">
+            INNER JOIN sysusers D ON(D.userId = A.workerid and (D.phone = #{condition.phone} or
+            D.realname like concat('%',#{condition.realname},'%')))
         </if>
 
         <if test="_parameter != null">
