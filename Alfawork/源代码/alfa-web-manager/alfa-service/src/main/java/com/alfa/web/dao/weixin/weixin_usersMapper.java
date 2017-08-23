@@ -42,6 +42,8 @@ public interface weixin_usersMapper {
      */
     List<td_weixin_users> selectByParams(Criteria example);
 
+    List<td_weixin_users> selectByParamsForMobile(Criteria example);
+
     /**
      * 根据主键查询记录
      */

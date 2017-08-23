@@ -109,31 +109,19 @@ public class weixin_usersRestImpl implements weixin_usersRest {
 
     @Override
     public Response GetSingleOpenIdForMobile(td_weixin_users td_weixin_users) throws UnsupportedEncodingException {
+
         Criteria criteria = new Criteria();
         criteria.put("mobile", td_weixin_users.getMobile());
         //criteria.put("mobiletoken",td_weixin_users.getMobiletoken());
 
-        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
+        List<td_weixin_users> list=this.weixin_usersService.selectByParamsForMobile(criteria);
 
         if(list.size()>=1) {
 
-            criteria.clear();
-
-            criteria.put("phone",td_weixin_users.getMobile());
-            criteria.put("roleId","9");
-            criteria.put("orgstatus","4");
-
-            int count = this.ordersService.countByParams(criteria);
-
             td_weixin_users users=list.get(0);
 
-            Map<String, Object> data = new HashMap<String, Object>();
-
-            data.put("total", count);
-            data.put("rows", users);
-
             //查询成功
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", data))).build();
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();
 
         }else{
             //查询失败

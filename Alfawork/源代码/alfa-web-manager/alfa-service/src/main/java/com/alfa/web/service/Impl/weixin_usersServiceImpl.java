@@ -52,6 +52,11 @@ public class weixin_usersServiceImpl implements weixin_usersService {
     }
 
     @Override
+    public List<td_weixin_users> selectByParamsForMobile(Criteria example) {
+        return this.weixin_usersMapper.selectByParamsForMobile(example);
+    }
+
+    @Override
     public td_weixin_users selectByPrimaryKey(Long id) {
         return this.weixin_usersMapper.selectByPrimaryKey(id);
     }
