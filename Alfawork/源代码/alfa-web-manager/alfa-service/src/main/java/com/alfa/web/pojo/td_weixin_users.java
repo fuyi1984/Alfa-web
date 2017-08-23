@@ -117,4 +117,44 @@ public class td_weixin_users extends Entity implements Serializable {
     public void setState(String state) {
         this.state = state;
     }
+
+    private String totalrealnum;
+
+    private String totalaverage;
+
+    private String realnum;
+
+    private String average;
+
+    public String getTotalrealnum() {
+        return totalrealnum;
+    }
+
+    public void setTotalrealnum(String totalrealnum) {
+        this.totalrealnum = totalrealnum;
+    }
+
+    public String getTotalaverage() {
+        return totalaverage;
+    }
+
+    public void setTotalaverage(String totalaverage) {
+        this.totalaverage = totalaverage;
+    }
+
+    public String getRealnum() {
+        return realnum;
+    }
+
+    public void setRealnum(String realnum) {
+        this.realnum = realnum;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
 }

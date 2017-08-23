@@ -3,9 +3,11 @@ package com.alfa.web;
 import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.VerifyCodeService;
 import com.alfa.web.service.weixin_usersService;
+import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.annotate.JacksonStdImpl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,11 +36,22 @@ public class weixin_usersServiceTest extends TestBase {
     public void Search(){
         Criteria criteria = new Criteria();
 
-        criteria.put("openid", "1");
+        criteria.put("openid", "2");
 
         List<td_weixin_users> list=weixin_usersService.selectByParams(criteria);
 
-        System.out.println(list);
+        System.out.println(JsonUtil.toJson(list));
+    }
+
+    @Test
+    public void selectByParams(){
+        Criteria criteria = new Criteria();
+
+        //criteria.put("mobile", "1");
+
+        List<td_weixin_users> list=weixin_usersService.selectByParams(criteria);
+
+        System.out.println(JsonUtil.toJson(list));
     }
 
     @Test

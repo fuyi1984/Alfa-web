@@ -178,13 +178,18 @@
         </if>
         <include refid="Base_Column_List"/>
         ,B.userid as sysuserid,B.address,B.orgname,B.realname
+        ,SUM(C.realnum) as totalrealnum,SUM(D.average) as totalaverage
         from td_weixin_users A
 
+
         left join SysUsers B on(A.mobile = B.phone)
+        left join orders C on(B.userId=C.workerid)
+        left join ordercomment D on(B.phone=D.mobile and C.orderid=D.orderId)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
+        GROUP BY A.id
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
