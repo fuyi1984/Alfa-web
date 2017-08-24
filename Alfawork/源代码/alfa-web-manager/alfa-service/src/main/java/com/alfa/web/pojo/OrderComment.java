@@ -160,4 +160,30 @@ public class OrderComment extends Entity implements Serializable {
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
+
+    /*
+     收运人员真实姓名
+     */
+    private String mobilerealname;
+
+    /*
+     产废人员真实姓名
+     */
+    private String phonerealname;
+
+    public String getMobilerealname() {
+        return mobilerealname;
+    }
+
+    public void setMobilerealname(String mobilerealname) {
+        this.mobilerealname = mobilerealname;
+    }
+
+    public String getPhonerealname() {
+        return phonerealname;
+    }
+
+    public void setPhonerealname(String phonerealname) {
+        this.phonerealname = phonerealname;
+    }
 }

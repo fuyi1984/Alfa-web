@@ -106,8 +106,14 @@ function initdatagrid() {
         ]],
 
         columns: [[
-            {field: 'content', title: '评论内容', width: 180, align: 'center'},
-            {field: 'orderno', title: '订单号', width: 50, align: 'center'},
+            {field: 'phonerealname', title: '评论人姓名', width: 80, align: 'center'},
+            {field: 'phone', title: '评论人电话', width: 80, align: 'center'},
+            {field: 'one', title: 'one', width: 50, align: 'center'},
+            {field: 'two', title: 'two', width: 50, align: 'center'},
+            {field: 'three', title: 'three', width: 50, align: 'center'},
+            {field: 'four', title: '评论内容', width: 100, align: 'center'},
+            {field: 'mobilerealname', title: '被评论人姓名', width: 80, align: 'center'},
+            {field: 'mobile', title: '被评论人电话', width: 80, align: 'center'},
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
             }

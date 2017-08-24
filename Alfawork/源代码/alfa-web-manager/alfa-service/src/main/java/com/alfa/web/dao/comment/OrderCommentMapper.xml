@@ -268,13 +268,18 @@
         </if>
 
         <include refid="Base_Column_List"/>
-        ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl
+        ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl,
+        E.realname as mobilerealname,F.realname as phonerealname
         from ordercomment A
 
         <!--收运人员关联-->
         left join td_weixin_users C on(A.mobile=C.mobile)
         <!--产废人员关联-->
         left join td_weixin_users D on(A.phone=D.mobile)
+        <!---收运人员 -->
+        left join sysusers E on(A.mobile=E.phone)
+        <!--产废人员-->
+        left join sysusers F on(A.phone=F.phone)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
