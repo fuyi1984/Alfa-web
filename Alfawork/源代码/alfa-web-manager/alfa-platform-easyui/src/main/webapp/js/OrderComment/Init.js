@@ -108,9 +108,9 @@ function initdatagrid() {
         columns: [[
             {field: 'phonerealname', title: '评论人姓名', width: 80, align: 'center'},
             {field: 'phone', title: '评论人电话', width: 80, align: 'center'},
-            {field: 'one', title: 'one', width: 50, align: 'center'},
-            {field: 'two', title: 'two', width: 50, align: 'center'},
-            {field: 'three', title: 'three', width: 50, align: 'center'},
+            {field: 'one', title: '服务态度', width: 50, align: 'center'},
+            {field: 'two', title: '收油速度', width: 50, align: 'center'},
+            {field: 'three', title: '收油价格', width: 50, align: 'center'},
             {field: 'four', title: '评论内容', width: 100, align: 'center'},
             {field: 'mobilerealname', title: '被评论人姓名', width: 80, align: 'center'},
             {field: 'mobile', title: '被评论人电话', width: 80, align: 'center'},
