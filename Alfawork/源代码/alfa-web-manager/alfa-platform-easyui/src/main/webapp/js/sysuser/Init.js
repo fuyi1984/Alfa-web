@@ -5,10 +5,10 @@
 
 $(function () {
 
-    // gtoken = ReadCookie("token");
-    //
-    // if (gtoken != "") {
-    //     setCurrentUser();
+    gtoken = ReadCookie("token");
+
+    if (gtoken != "") {
+        setCurrentUser();
 
         $('#useradd').window('close');
         $('#userupdate').window('close');
@@ -17,9 +17,9 @@ $(function () {
         initdatagrid();
 
         initcombobox();
-    // } else {
-    //    window.location.href=platform_url+"/pages/home/login.html";
-    // }
+    } else {
+       window.location.href=platform_url+"/pages/home/login.html";
+    }
 
 
 });
@@ -341,7 +341,7 @@ function initdatagrid() {
 }
 
 function initcombobox() {
-    $('#rolelist_update').combobox({
+    $('#rolelist_update,#rolename,#rolelist').combobox({
             url: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
             method: 'get',
             valueField: 'roleId',
@@ -357,7 +357,7 @@ function initcombobox() {
         }
     )
 
-    $('#rolelist').combobox({
+    /*$('#rolelist').combobox({
             url: ws_url + '/rest/roles/findAllRole?token=' + gtoken,
             method: 'get',
             valueField: 'roleId',
@@ -371,7 +371,8 @@ function initcombobox() {
                 }
             }]
         }
-    )
+    )*/
+
 }
 
 /**
