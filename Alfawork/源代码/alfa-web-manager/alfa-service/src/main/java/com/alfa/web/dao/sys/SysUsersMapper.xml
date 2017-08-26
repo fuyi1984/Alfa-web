@@ -68,6 +68,9 @@
             <if test="condition.realname!=null">
                 and A.realname=#{condition.realname}
             </if>
+            <if test="condition.realnamelike!=null">
+                and A.realname like concat('%', #{condition.realnamelike}, '%')
+            </if>
             <if test="condition.captcha!=null">
                 and A.captcha=#{condition.captcha}
             </if>
@@ -116,8 +119,14 @@
             <if test="condition.address != null">
                 and A.address = #{condition.address}
             </if>
+            <if test="condition.addresslike != null">
+                and A.address like concat('%', #{condition.addresslike}, '%')
+            </if>
             <if test="condition.orgname!=null">
                 and A.orgname = #{condition.orgname}
+            </if>
+            <if test="condition.orgnamelike!=null">
+                and A.orgname like concat('%', #{condition.orgnamelike}, '%')
             </if>
             <if test="condition.remarks != null">
                 and A.remarks = #{condition.remarks}

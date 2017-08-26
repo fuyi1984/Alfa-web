@@ -17,6 +17,8 @@ $(function () {
         initdatagrid();
 
         initcombobox();
+
+        //$("#status").combobox('select', '全部');
     } else {
        window.location.href=platform_url+"/pages/home/login.html";
     }
@@ -324,7 +326,7 @@ function initdatagrid() {
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize='
             + pagesize + '&recordstartindex=' + recordstartindex
-            + '&recordendindex=' + recordendindex + '&username=' + $('#username_search').val() + '',
+            + '&recordendindex=' + recordendindex + '&username=' + $('#busername').val() +'&realname='+$("#brealname").val()+'&roleId='+$("#rolename").combobox('getValue')+'&status='+$("#status").combobox('getValue')+'&org='+$("#org").val()+'&address='+$('#address').val()+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

@@ -441,12 +441,54 @@ public class SysUserRestImpl implements SysUserRest {
         //过滤
         Criteria criteria = new Criteria();
 
+        //用户名
         if (!StringUtil.isNullOrEmpty(map.get("username"))) {
             criteria.put("usernameLike", map.get("username").toString());
         }
-       /* if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
+
+        //角色
+        if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
             criteria.put("roleId",  map.get("roleId").toString());
-        }*/
+        }
+
+        /**
+         * 真实姓名
+         */
+        if (!StringUtil.isNullOrEmpty(map.get("realname"))) {
+            criteria.put("realnamelike",  map.get("realname").toString());
+        }
+
+        /**
+         * 状态
+         */
+        if (!StringUtil.isNullOrEmpty(map.get("status"))) {
+
+            if(!map.get("status").toString().equals("2")) {
+                criteria.put("status", map.get("status").toString());
+            }
+        }
+
+        /**
+         * 单位名称
+         */
+        if (!StringUtil.isNullOrEmpty(map.get("org"))) {
+            criteria.put("orgnamelike",  map.get("org").toString());
+        }
+
+        /**
+         * 单位地址
+         */
+        if (!StringUtil.isNullOrEmpty(map.get("address"))) {
+            criteria.put("addresslike",  map.get("address").toString());
+        }
+
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 

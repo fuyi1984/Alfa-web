@@ -240,7 +240,11 @@
     <div>
         用户名:<input id="busername" class="easyui-textbox" style="width:90px">
         姓名:<input id="brealname" class="easyui-textbox" style="width:90px">
-        状态:<input id="status" class="easyui-textbox" style="width:90px">
+        状态:<input id="status" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/sysuserstatus.json',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'">
         角色:<input id="rolename" class="easyui-combobox" data-options="panelHeight:'auto'" style="width:90px">
         单位名称:<input id="org" class="easyui-textbox" style="width:90px">
         单位地址:<input id="address" class="easyui-textbox" style="width:90px">

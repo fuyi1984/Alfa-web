@@ -5,3 +5,7 @@ function usersearchform() {
     $('#usersearch').window('close');
     initdatagrid();
 }
+
+function doSearch(){
+    initdatagrid();
+}
