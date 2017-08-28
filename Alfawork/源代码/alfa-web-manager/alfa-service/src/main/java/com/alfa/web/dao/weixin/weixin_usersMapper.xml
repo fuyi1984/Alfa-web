@@ -178,7 +178,11 @@
         </if>
         <include refid="Base_Column_List"/>
 
+        ,B.userid as sysuserid,B.address,B.orgname,B.realname
+
         from td_weixin_users A
+
+        left join SysUsers B on(A.mobile = B.phone)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
