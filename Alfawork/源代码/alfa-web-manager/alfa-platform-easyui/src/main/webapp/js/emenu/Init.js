@@ -81,14 +81,54 @@ function initdatagrid() {
                     return;
                 }
 
-                $.messager.alert('提示', rows[0].id);
+                console.log(rows);
+                console.log(rows[0].menuid);
+
+                var assetList = new Array();
+
+                $.each(rows, function (i, n) {
+                    assetList.push(n.menuid);
+                });
+
+                $.messager.confirm('提示', '是否删除这些数据?', function (r) {
+                    if (!r) {
+                        return;
+                    }
+
+                    $.ajax({
+                        cache: false,
+                        datatype: 'json',
+                        contentType: 'application/json;charset=UTF-8',
+                        type: "POST",
+                        url: ws_url + '/rest/menu/batchdeletemenu?token=' + gtoken,
+                        data: JSON.stringify(assetList),
+                        success: function (msg) {
+                            if (msg.status == 'success') {
+                                $.messager.alert('提示', '删除成功！', "info", function () {
+                                    $('#menugrid').datagrid("clearSelections");
+                                    $('#menugrid').datagrid("reload");
+                                });
+                            } else {
+                                $.messager.alert('错误', '删除失败！', "error", function () {
+                                    $('#menugrid').datagrid("clearSelections");
+                                    $('#menugrid').datagrid("reload");
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log(xhr);
+                            $('#menugrid').datagrid("clearSelections");
+                            $.messager.alert('错误', '删除失败！', "error");
+                        }
+                    });
+                });
             }
         }, '-'],
 
-        idField: 'MenuId',
+        idField: 'menuid',
 
         frozenColumns: [[
-            {field: 'MenuId', checkbox: true}
+            {field: 'menuid', checkbox: true}
         ]],
 
         columns: [[
