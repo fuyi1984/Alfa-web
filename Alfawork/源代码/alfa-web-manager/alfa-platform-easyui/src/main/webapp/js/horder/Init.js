@@ -10,7 +10,8 @@ $(function () {
 
         initdatagrid();
     }else{
-       window.location.href=platform_url+"/pages/home/login.html";
+       //top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href=platform_url + "/pages/home/login.html";
     }
 
 });

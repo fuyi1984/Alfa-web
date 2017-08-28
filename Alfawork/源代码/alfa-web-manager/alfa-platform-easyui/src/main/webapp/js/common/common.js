@@ -72,7 +72,7 @@ function setCurrentUser() {
             console.log(data);
             if (typeof data != "undefined" && null != data) {
                 if(data.id==null){
-                    window.location.href=platform_url+"/pages/home/login.html";
+                    top.location.href=platform_url + "/pages/home/login.html";
                 }else if(data.id!=null){
                     // if(urlcustom.indexOf("/home/")>0||urlcustom.indexOf("login.html")>0) {
                         grealname = data.user.realname;
@@ -84,14 +84,14 @@ function setCurrentUser() {
                         gaddress=data.user.address;
                         gorgname=data.user.orgname;
                     // }else {
-                    //     window.location.href=platform_url+"/pages/home/login.html";
+                    //     top.location.href=platform_url + "/pages/home/login.html";
                     // }
                 }
             }
         },
         error: function(xhr) {
             console.log(xhr);
-            window.location.href=platform_url+"/pages/home/login.html";
+            top.location.href=platform_url + "/pages/home/login.html";
         }
     });
 

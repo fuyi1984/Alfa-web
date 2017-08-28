@@ -12,7 +12,7 @@ $(function () {
         initcombobox();
         //Accesscontrol();
     } else {
-       window.location.href=platform_url+"/pages/home/login.html";
+        top.location.href=platform_url + "/pages/home/login.html";
     }
 });
 

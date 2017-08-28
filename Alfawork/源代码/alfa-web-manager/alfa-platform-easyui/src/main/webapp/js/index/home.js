@@ -36,7 +36,8 @@ $(function () {
         });
 
     }else{
-       window.location.href=platform_url+"/pages/home/login.html";
+       //top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href=platform_url + "/pages/home/login.html";
     }
 })
 
@@ -102,7 +103,8 @@ function logoutUser(){
     $.post(ws_url+"/rest/user/logout?token="+gtoken,function(data){
         //alert("logout:"+data);
         SetCookie("token","");
-       window.location.href=platform_url+"/pages/home/login.html";
+       //top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href=platform_url + "/pages/home/login.html";
     });
 }
 
@@ -169,7 +171,8 @@ function changePassword() {
                     $("#iptOldPassword").val("");
                     $("#iptPassword").val("");
                     $("#iptNewPassword").val("");
-                    window.location.href=platform_url+"/pages/home/login.html";
+                    //top.location.href=platform_url + "/pages/home/login.html";
+                    top.location.href=platform_url + "/pages/home/login.html";
                 });
             } else {
                 $.messager.alert('提示', '密码错误，请重新输入！', "info");
