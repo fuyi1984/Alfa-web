@@ -1,13 +1,10 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.td_weixin_users;
-import com.alfa.web.service.VerifyCodeService;
-import com.alfa.web.service.weixin_usersService;
+import com.alfa.web.service.weixin.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
-import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.annotate.JacksonStdImpl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -2,10 +2,8 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.td_weixin_users;
-import com.alfa.web.service.SysRoleService;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.weixin_usersService;
-import com.alfa.web.service.userregisterbehaviorService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.sys.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -15,11 +13,9 @@ import com.alfa.web.util.pojo.RestResult;
 import com.alfa.web.util.pojo.UserManager;
 import com.alfa.web.util.pojo.UserSession;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +32,7 @@ public class SysUserServiceTest extends TestBase {
     private SysUsersService sysUsersService;
 
     @Autowired
-    private com.alfa.web.service.weixin_usersService weixin_usersService;
+    private com.alfa.web.service.weixin.weixin_usersService weixin_usersService;
 
     @Autowired
     private userregisterbehaviorService userregisterbehaviorService;

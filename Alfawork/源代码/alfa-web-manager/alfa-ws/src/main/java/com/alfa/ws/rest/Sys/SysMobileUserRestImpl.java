@@ -2,8 +2,8 @@ package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.VerifyCode;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.VerifyCodeService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.sms.VerifyCodeService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

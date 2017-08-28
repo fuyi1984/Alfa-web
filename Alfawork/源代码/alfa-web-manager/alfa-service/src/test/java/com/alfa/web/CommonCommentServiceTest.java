@@ -1,17 +1,13 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.CommonComment;
-import com.alfa.web.service.CommonCommentService;
-import com.alfa.web.service.HistoryAddressService;
-import com.alfa.web.util.JsonUtil;
+import com.alfa.web.service.comment.CommonCommentService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**

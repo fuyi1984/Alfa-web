@@ -1,18 +1,14 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.VerifyCode;
-import com.alfa.web.service.SmsService;
-import com.alfa.web.service.VerifyCodeService;
-import com.alfa.web.util.JsonUtil;
+import com.alfa.web.service.sms.VerifyCodeService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

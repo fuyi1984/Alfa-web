@@ -1,7 +1,6 @@
 package com.alfa.web;
 
-import com.alfa.web.service.RedisTestService;
-import org.junit.Assert;
+import com.alfa.web.service.common.RedisTestService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

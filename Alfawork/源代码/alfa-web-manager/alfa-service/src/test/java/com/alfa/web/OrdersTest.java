@@ -2,14 +2,11 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.VwSmsStatus;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SmsService;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.VwSmsStatusService;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.SmsService;
+import com.alfa.web.service.sms.VwSmsStatusService;
 import com.alfa.web.util.PropertiesUtil;
-import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
-import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Assert;

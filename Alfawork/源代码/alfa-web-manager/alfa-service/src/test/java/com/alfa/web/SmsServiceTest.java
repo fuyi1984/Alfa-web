@@ -1,7 +1,6 @@
 package com.alfa.web;
 
-import com.alfa.web.service.SmsService;
-import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.sms.SmsService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.WebUtil;
 import org.apache.log4j.Logger;

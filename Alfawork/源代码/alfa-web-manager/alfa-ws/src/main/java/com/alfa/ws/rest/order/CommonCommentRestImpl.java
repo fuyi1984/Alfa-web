@@ -1,7 +1,7 @@
 package com.alfa.ws.rest.order;
 
 import com.alfa.web.pojo.CommonComment;
-import com.alfa.web.service.CommonCommentService;
+import com.alfa.web.service.comment.CommonCommentService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;

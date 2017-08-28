@@ -2,19 +2,17 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.userregisterbehavior;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.userregisterbehaviorService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.sys.userregisterbehaviorService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import com.alfa.web.vo.registerbehaviorvo;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.publishmessage;
-import com.alfa.web.service.publishmessageService;
+import com.alfa.web.service.message.publishmessageService;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Assert;

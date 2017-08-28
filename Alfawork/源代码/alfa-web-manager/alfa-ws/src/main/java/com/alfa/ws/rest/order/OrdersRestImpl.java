@@ -1,9 +1,9 @@
 package com.alfa.ws.rest.order;
 
 import com.alfa.web.pojo.Orders;
-import com.alfa.web.service.HistoryAddressService;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SmsService;
+import com.alfa.web.service.order.HistoryAddressService;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.SmsService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;

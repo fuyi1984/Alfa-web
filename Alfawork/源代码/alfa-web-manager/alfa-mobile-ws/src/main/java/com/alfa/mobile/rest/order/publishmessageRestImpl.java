@@ -2,8 +2,8 @@ package com.alfa.mobile.rest.order;
 
 import com.alfa.web.pojo.messageuser;
 import com.alfa.web.pojo.publishmessage;
-import com.alfa.web.service.messageuserService;
-import com.alfa.web.service.publishmessageService;
+import com.alfa.web.service.message.messageuserService;
+import com.alfa.web.service.message.publishmessageService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

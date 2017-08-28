@@ -1,6 +1,6 @@
 package com.alfa.web;
 
-import com.alfa.web.service.EhCacheTestService;
+import com.alfa.web.service.common.EhCacheTestService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

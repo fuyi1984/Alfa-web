@@ -2,7 +2,8 @@ package com.alfa.mobile.rest.sys;
 
 
 import com.alfa.web.pojo.*;
-import com.alfa.web.service.*;
+import com.alfa.web.service.sms.VerifyCodeService;
+import com.alfa.web.service.sys.SysUsersService;
 import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
@@ -41,16 +42,16 @@ public class SysUserRestImpl implements SysUserRest {
     private VerifyCodeService verifyCodeService;
 
     @Autowired
-    private weixin_usersService weixin_usersService;
+    private com.alfa.web.service.weixin.weixin_usersService weixin_usersService;
 
     @Autowired
-    private messageuserService messageuserService;
+    private com.alfa.web.service.message.messageuserService messageuserService;
 
     @Autowired
-    private publishmessageService publishmessageService;
+    private com.alfa.web.service.message.publishmessageService publishmessageService;
 
     @Autowired
-    private fileinfoService fileinfoService;
+    private com.alfa.web.service.file.fileinfoService fileinfoService;
 
     @Override
     public Response getCaptcha(String mobile) {

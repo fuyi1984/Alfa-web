@@ -2,17 +2,14 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.messageuser;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.messageuserService;
-import com.alfa.web.service.publishmessageService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.message.messageuserService;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package com.alfa.web.job;
 
-import com.alfa.web.pojo.SysUsers;
-import com.alfa.web.pojo.VwSmsStatus;
 import com.alfa.web.pojo.orderSmsVw;
 import com.alfa.web.pojo.vwSysUser;
-import com.alfa.web.service.*;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.SmsService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;
@@ -12,9 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,10 +25,10 @@ public class MonitorStartOrderSmsStatus {
     private OrdersService ordersService;
 
     @Autowired
-    private orderSmsVwService orderSmsVwService;
+    private com.alfa.web.service.sms.orderSmsVwService orderSmsVwService;
 
     @Autowired
-    private vwSysUserService vwSysUserService;
+    private com.alfa.web.service.sys.vwSysUserService vwSysUserService;
 
     @Autowired
     private SmsService smsService;

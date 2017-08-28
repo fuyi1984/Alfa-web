@@ -1,8 +1,7 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.HostoryOrderStatus;
-import com.alfa.web.service.HostoryOrderStatusService;
-import com.alfa.web.service.OrderCommentService;
+import com.alfa.web.service.order.HostoryOrderStatusService;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Test;

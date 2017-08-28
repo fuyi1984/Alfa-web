@@ -2,10 +2,8 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.orderSmsVw;
 import com.alfa.web.pojo.vwSysUser;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SmsService;
-import com.alfa.web.service.orderSmsVwService;
-import com.alfa.web.service.vwSysUserService;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.SmsService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
@@ -27,10 +25,10 @@ public class MonitorStartOrderSmsStatusTest extends TestBase {
     private OrdersService ordersService;
 
     @Autowired
-    private com.alfa.web.service.orderSmsVwService orderSmsVwService;
+    private com.alfa.web.service.sms.orderSmsVwService orderSmsVwService;
 
     @Autowired
-    private com.alfa.web.service.vwSysUserService vwSysUserService;
+    private com.alfa.web.service.sys.vwSysUserService vwSysUserService;
 
     @Autowired
     private SmsService smsService;

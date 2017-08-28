@@ -1,7 +1,7 @@
 package com.alfa.mobile.rest.order;
 
 import com.alfa.web.pojo.HistoryAddress;
-import com.alfa.web.service.HistoryAddressService;
+import com.alfa.web.service.order.HistoryAddressService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;

@@ -3,20 +3,17 @@ package com.alfa.web;
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.VerifyCode;
 import com.alfa.web.pojo.td_weixin_users;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.VerifyCodeService;
-import com.alfa.web.service.weixin_usersService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.sms.VerifyCodeService;
 import com.alfa.web.util.*;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import com.alfa.web.vo.MobileUser;
 import com.alfa.web.vo.RegisterUser;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +33,7 @@ public class mobileuserTest extends TestBase {
     private VerifyCodeService verifyCodeService;
 
     @Autowired
-    private com.alfa.web.service.weixin_usersService weixin_usersService;
+    private com.alfa.web.service.weixin.weixin_usersService weixin_usersService;
 
     @Test
     public void createuser(){

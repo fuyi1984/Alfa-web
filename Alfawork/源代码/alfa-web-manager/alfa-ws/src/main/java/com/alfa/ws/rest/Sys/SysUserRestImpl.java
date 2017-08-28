@@ -1,7 +1,10 @@
 package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.*;
-import com.alfa.web.service.*;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.VerifyCodeService;
+import com.alfa.web.service.sys.SysRoleService;
+import com.alfa.web.service.sys.SysUsersService;
 import com.alfa.web.util.Base64Util;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
@@ -41,7 +44,7 @@ public class SysUserRestImpl implements SysUserRest {
     private VerifyCodeService verifyCodeService;
 
     @Autowired
-    private userregisterbehaviorService userregisterbehaviorService;
+    private com.alfa.web.service.sys.userregisterbehaviorService userregisterbehaviorService;
 
     @Override
     public Response getCaptcha(String mobile) {

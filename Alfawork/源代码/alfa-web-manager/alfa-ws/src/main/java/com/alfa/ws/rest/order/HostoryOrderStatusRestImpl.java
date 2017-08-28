@@ -1,7 +1,7 @@
 package com.alfa.ws.rest.order;
 
 import com.alfa.web.pojo.HostoryOrderStatus;
-import com.alfa.web.service.HostoryOrderStatusService;
+import com.alfa.web.service.order.HostoryOrderStatusService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

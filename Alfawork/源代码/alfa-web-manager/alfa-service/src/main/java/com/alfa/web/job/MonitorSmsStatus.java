@@ -1,11 +1,9 @@
 package com.alfa.web.job;
 
-import com.alfa.web.pojo.VwOrderStatus;
 import com.alfa.web.pojo.VwSmsStatus;
-import com.alfa.web.service.OrdersService;
-import com.alfa.web.service.SmsService;
-import com.alfa.web.service.VwOrderStatusService;
-import com.alfa.web.service.VwSmsStatusService;
+import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sms.SmsService;
+import com.alfa.web.service.sms.VwSmsStatusService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;

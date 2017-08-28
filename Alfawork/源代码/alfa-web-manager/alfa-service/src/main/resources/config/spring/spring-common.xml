@@ -133,7 +133,7 @@
     <aop:config>
         <!-- 定义一个切入点 -->
         <aop:pointcut
-                expression="execution (* com.alfa.web.service.*.*(..))"
+                expression="execution (* com.alfa.web.service.*.Impl.*.*(..))"
                 id="services"/>
     </aop:config>
 

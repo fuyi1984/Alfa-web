@@ -2,19 +2,16 @@ package com.alfa.mobile.filter;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.TotalUrlFilters;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.UrlFilterService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.url.UrlFilterService;
 import com.alfa.web.util.StringUtil;
-import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.UserSession;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 

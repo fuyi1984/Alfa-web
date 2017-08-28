@@ -9,14 +9,13 @@ import java.util.List;
 
 import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.TotalUrlFilters;
-import com.alfa.web.service.SysUsersService;
-import com.alfa.web.service.UrlFilterService;
+import com.alfa.web.service.sys.SysUsersService;
+import com.alfa.web.service.url.UrlFilterService;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.UserSession;
 import org.apache.log4j.Logger;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**

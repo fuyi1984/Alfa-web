@@ -1,10 +1,8 @@
 package com.alfa.web.util;
 
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.ClassLoaderUtil;
-import com.alfa.web.util.SpringContextHolder;
 import com.alfa.web.pojo.SysConfig;
-import com.alfa.web.service.SysconfigService;
+import com.alfa.web.service.sys.SysconfigService;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,14 +1,10 @@
 package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.EMenuInfos;
-import com.alfa.web.pojo.SysConfig;
-import com.alfa.web.pojo.SysUsers;
-import com.alfa.web.service.EMenuInfosService;
-import com.alfa.web.service.SysRoleService;
+import com.alfa.web.service.sys.EMenuInfosService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
-import com.alfa.web.util.constant.WebConstants;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
@@ -78,13 +74,13 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
     @Override
     public Response editmenu(EMenuInfos menu) {
 
-        Criteria criteria = new Criteria();
-        criteria.put("menuname", menu.getMenuname());
-        criteria.put("url", menu.getUrl());
-
-        List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
-
-        if(eMenuInfosList.size()>0){
+//        Criteria criteria = new Criteria();
+//        criteria.put("menuname", menu.getMenuname());
+//        criteria.put("url", menu.getUrl());
+//
+//        List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
+//
+//        if(eMenuInfosList.size()>0){
             int result=this.eMenuInfosService.updateByPrimaryKeySelective(menu);
             if(result>0){
                 //更新成功
@@ -93,10 +89,10 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
                 //更新失败
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
             }
-        }else{
-            //数据不存在
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
-        }
+//        }else{
+//            //数据不存在
+//            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+//        }
     }
 
     @Override

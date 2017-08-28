@@ -1,7 +1,7 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.SysConfig;
-import com.alfa.web.service.SysconfigService;
+import com.alfa.web.service.sys.SysconfigService;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;
 import org.junit.Assert;

@@ -1,7 +1,7 @@
 package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.SysRole;
-import com.alfa.web.service.SysRoleService;
+import com.alfa.web.service.sys.SysRoleService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

@@ -1,8 +1,7 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.CommentReply;
-import com.alfa.web.service.CommentReplyService;
-import com.alfa.web.service.CommonCommentService;
+import com.alfa.web.service.comment.CommentReplyService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.apache.log4j.Logger;

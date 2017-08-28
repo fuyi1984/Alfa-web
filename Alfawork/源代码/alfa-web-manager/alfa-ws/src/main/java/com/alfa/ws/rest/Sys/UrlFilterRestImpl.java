@@ -1,7 +1,7 @@
 package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.TotalUrlFilters;
-import com.alfa.web.service.UrlFilterService;
+import com.alfa.web.service.url.UrlFilterService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

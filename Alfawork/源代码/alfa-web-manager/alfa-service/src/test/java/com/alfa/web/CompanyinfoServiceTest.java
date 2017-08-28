@@ -2,8 +2,8 @@ package com.alfa.web;
 
 import com.alfa.web.pojo.Companyinfo;
 import com.alfa.web.pojo.SysUsers;
-import com.alfa.web.service.CompanyinfoService;
-import com.alfa.web.service.SysUsersService;
+import com.alfa.web.service.common.CompanyinfoService;
+import com.alfa.web.service.sys.SysUsersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;

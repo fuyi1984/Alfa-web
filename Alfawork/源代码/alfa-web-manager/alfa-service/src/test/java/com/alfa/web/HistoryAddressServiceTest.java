@@ -1,18 +1,15 @@
 package com.alfa.web;
 
 import com.alfa.web.pojo.HistoryAddress;
-import com.alfa.web.service.HistoryAddressService;
-import com.alfa.web.util.JsonUtil;
+import com.alfa.web.service.order.HistoryAddressService;
 import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
