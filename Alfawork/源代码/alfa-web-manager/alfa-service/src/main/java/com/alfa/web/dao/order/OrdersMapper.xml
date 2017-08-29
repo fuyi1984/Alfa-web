@@ -10,6 +10,8 @@
         <result column="realnum" property="realnum" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="xphone" property="xphone" jdbcType="VARCHAR"/>
+        <result column="iscomment" property="iscomment" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="num" property="num" jdbcType="VARCHAR"/>
         <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
@@ -40,6 +42,12 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.xphone!=null">
+                and A.xphone=#{condition.xphone}
+            </if>
+            <if test="condition.iscomment!=null">
+                and A.iscomment=#{condition.iscomment}
+            </if>
             <if test="condition.isSms!=null">
                 and A.isSms=#{condition.isSms}
             </if>
@@ -121,7 +129,7 @@
     <sql id="Base_Column_List">
         A.isSms,A.addressId,A.confirmDt,A.remark,A.realnum,A.orderid, A.orderno,A.username, A.iphone, A.address, A.num, A.orgname,
         A.orgstatus,
-        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version,A.workerid,A.xphone,A.iscomment
     </sql>
 
     <insert id="insert" parameterType="com.alfa.web.pojo.Orders">
@@ -130,10 +138,10 @@
         </selectKey>
         insert into
         orders(isSms,addressId,confirmDt,remark,realnum,orderno,username,iphone,address,num,orgname,orgstatus,createdBy,createdDt,
-        updatedBy,updatedDt,version,workerid)
+        updatedBy,updatedDt,version,workerid,xphone,iscomment)
         values (#{isSms},#{addressId},#{confirmDt},#{remark},#{realnum},#{orderno},#{username},#{iphone}, #{address},
         #{num}, #{orgname},#{orgstatus},
-        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid})
+        #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{workerid},#{xphone},#{iscomment})
     </insert>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.Orders">
@@ -142,6 +150,12 @@
         </selectKey>
         insert into orders
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="iscomment!=null">
+                iscomment,
+            </if>
+            <if test="xphone!=null">
+                xphone,
+            </if>
             <if test="addressId!=null">
                 addressId,
             </if>
@@ -198,6 +212,12 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="iscomment!=null">
+                #{iscomment},
+            </if>
+            <if test="xphone!=null">
+                #{xphone},
+            </if>
             <if test="addressId!=null">
                 #{addressId},
             </if>
@@ -352,6 +372,12 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.Orders">
         update orders
         <set>
+            <if test="iscomment!=null">
+                iscomment=#{iscomment},
+            </if>
+            <if test="xphone!=null">
+                xphone=#{xphone},
+            </if>
             <if test="isSms!=null">
                 isSms=#{isSms},
             </if>

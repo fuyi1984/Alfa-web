@@ -75,6 +75,32 @@ public class Orders extends Entity implements Serializable {
      */
     private String iphone;
 
+    /**
+     * 产废单位第三方电话
+     */
+    private String xphone;
+
+    /**
+     * 是否已经评论
+     */
+    private String iscomment;
+
+    public String getIscomment() {
+        return iscomment;
+    }
+
+    public void setIscomment(String iscomment) {
+        this.iscomment = iscomment;
+    }
+
+    public String getXphone() {
+        return xphone;
+    }
+
+    public void setXphone(String xphone) {
+        this.xphone = xphone;
+    }
+
     public String getRealnum() {
         return realnum;
     }

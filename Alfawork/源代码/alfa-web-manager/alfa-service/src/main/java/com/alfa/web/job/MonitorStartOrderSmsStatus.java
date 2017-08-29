@@ -41,6 +41,8 @@ public class MonitorStartOrderSmsStatus {
 
         if (PropertiesUtil.getProperty("order.sms.admin.open").equals("true")) {
 
+            //region
+
             List<String> idlist = new ArrayList<String>();
 
             Criteria criteria = new Criteria();
@@ -108,6 +110,8 @@ public class MonitorStartOrderSmsStatus {
                 //endregion
 
             }
+
+            //endregion
         }
 
         logger.info("MonitorStartOrderSmsStatus End !!!");

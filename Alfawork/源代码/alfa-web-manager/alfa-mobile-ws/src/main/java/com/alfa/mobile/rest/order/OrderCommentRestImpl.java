@@ -1,7 +1,9 @@
 package com.alfa.mobile.rest.order;
 
 import com.alfa.web.pojo.OrderComment;
+import com.alfa.web.pojo.Orders;
 import com.alfa.web.service.comment.OrderCommentService;
+import com.alfa.web.service.order.OrdersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -31,6 +33,9 @@ public class OrderCommentRestImpl implements OrderCommentRest{
     @Autowired
     private OrderCommentService orderCommentService;
 
+    @Autowired
+    private OrdersService ordersService;
+
     @Override
     public Response batchinsertordercomment(List<OrderComment> commentlist) throws Exception {
 
@@ -45,6 +50,9 @@ public class OrderCommentRestImpl implements OrderCommentRest{
         int result=this.orderCommentService.Batchinsert(commentlist);
 
         if(result>=1){
+
+            Orders order=new Orders();
+            
             //插入成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
         }else{
