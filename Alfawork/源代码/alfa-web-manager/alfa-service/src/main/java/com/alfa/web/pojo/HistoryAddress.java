@@ -14,6 +14,16 @@ public class HistoryAddress extends Entity implements Serializable {
 
     private String iphone;
 
+    private String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
     /**
      * 省份
      */

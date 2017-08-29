@@ -7,6 +7,7 @@
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="userid" property="userid" jdbcType="BIGINT"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
@@ -23,6 +24,9 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.mobile!=null">
+                and A.mobile=#{condition.mobile}
+            </if>
             <if test="condition.fulladdress!=null">
                 and A.fulladdress=#{condition.fulladdress}
             </if>
@@ -74,7 +78,7 @@
 
     <sql id="Base_Column_List">
         A.fulladdress,A.province,A.city,A.area,A.townandstreets,A.id, A.userid, A.iphone,A.address,A.createdBy, A.createdDt,
-        A.updatedBy, A.updatedDt, A.version
+        A.updatedBy, A.updatedDt, A.version,A.mobile
     </sql>
 
     <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
@@ -129,6 +133,9 @@
             <if test="userid != null">
                 userid,
             </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
             <if test="fulladdress!=null">
                 fulladdress,
             </if>
@@ -170,6 +177,9 @@
             #{id},
             <if test="userid != null">
                 #{userid},
+            </if>
+            <if test="mobile!=null">
+                #{mobile},
             </if>
             <if test="fulladdress!=null">
                 #{fulladdress},
@@ -216,6 +226,9 @@
         <set>
             <if test="userid!=null">
                 userid=#{userid},
+            </if>
+            <if test="mobile!=null">
+                mobile=#{mobile},
             </if>
             <if test="fulladdress!=null">
                 fulladdress=#{fulladdress},
