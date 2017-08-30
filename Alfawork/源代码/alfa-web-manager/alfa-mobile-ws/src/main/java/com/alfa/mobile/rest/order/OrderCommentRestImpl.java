@@ -51,7 +51,15 @@ public class OrderCommentRestImpl implements OrderCommentRest{
 
         if(result>=1){
 
-            Orders order=new Orders();
+            for(OrderComment item:commentlist) {
+
+                Orders order = new Orders();
+                order.setOrderid(item.getOrderId());
+                order.setIscomment("1");
+
+                this.ordersService.updateByPrimaryKeySelective(order);
+            }
+
             
             //插入成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();

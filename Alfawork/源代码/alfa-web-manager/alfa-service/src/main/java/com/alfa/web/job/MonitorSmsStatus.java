@@ -5,6 +5,7 @@ import com.alfa.web.service.order.OrdersService;
 import com.alfa.web.service.sms.SmsService;
 import com.alfa.web.service.sms.VwSmsStatusService;
 import com.alfa.web.util.PropertiesUtil;
+import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.pojo.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,9 +56,12 @@ public class MonitorSmsStatus {
             if (vwSmsStatusList.size() > 0) {
                 //region 短信通知
                 if (vwSmsStatusList.size() > 3) {
+
                     for (int i = 0; i < 3; i++) {
 
-                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), vwSmsStatusList.get(i).getOrgname(), vwSmsStatusList.get(i).getIphone(),
+                        String targetPhone= StringUtil.isNullOrEmpty(vwSmsStatusList.get(i).getXphone())?vwSmsStatusList.get(i).getIphone():vwSmsStatusList.get(i).getXphone();
+
+                        String ret = this.smsService.sendSMS(vwSmsStatusList.get(i).getPhone(), String.format(PropertiesUtil.getProperty("notice.transporter"), vwSmsStatusList.get(i).getOrgname(), targetPhone,
                                 sdf.format(vwSmsStatusList.get(i).getConfirmDt()), vwSmsStatusList.get(i).getOrderno()));
 
                         if (ret.equals("0")) {

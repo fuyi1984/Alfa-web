@@ -21,6 +21,19 @@ public class VwSmsStatus {
     private String iphone;
 
     /**
+     * 产废单位第三方电话
+     */
+    private String xphone;
+
+    public String getXphone() {
+        return xphone;
+    }
+
+    public void setXphone(String xphone) {
+        this.xphone = xphone;
+    }
+
+    /**
      * 单位名称
      */
     private String orgname;
