@@ -29,6 +29,7 @@
         <module name="alfa-ws" />
         <module name="platform-springmvc" />
         <module name="platform-struct2" />
+        <module name="platform-strut2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -52,6 +53,7 @@
       <module name="alfa-ws" target="1.6" />
       <module name="platform-springmvc" target="1.6" />
       <module name="platform-struct2" target="1.6" />
+      <module name="platform-strut2" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

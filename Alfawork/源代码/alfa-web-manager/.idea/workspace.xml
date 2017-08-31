@@ -6,18 +6,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_springmvc_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_springmvc_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform-springmvc/platform-springmvc.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform-springmvc/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform-struct2/platform-struct2.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platform-struct2/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_struct2_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_struct2_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_strut2_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/platform_strut2_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platform-springmvc/platform-springmvc.iml" afterPath="$PROJECT_DIR$/platform-springmvc/platform-springmvc.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/platform-struct2/platform-struct2.iml" afterPath="$PROJECT_DIR$/platform-strut2/platform-strut2.iml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/platform-struct2/pom.xml" afterPath="$PROJECT_DIR$/platform-strut2/pom.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,6 +41,7 @@
     <ignored path="$PROJECT_DIR$/alfa-platform-easyui/target/" />
     <ignored path="$PROJECT_DIR$/platform-springmvc/target/" />
     <ignored path="$PROJECT_DIR$/platform-struct2/target/" />
+    <ignored path="$PROJECT_DIR$/platform-strut2/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,20 +75,30 @@
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/platform-struct2/pom.xml">
+        <entry file="file://$PROJECT_DIR$/platform-strut2/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="420">
+              <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="platform-struct2.iml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/platform-struct2/platform-struct2.iml">
+      <file leaf-file-name="alfa-web-manager.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-web-manager.iml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5546">
+              <caret line="155" column="25" lean-forward="true" selection-start-line="155" selection-start-column="25" selection-end-line="155" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -161,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/userregisterbehaviorMapper.xml" />
-        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/registerbehavior/index.html" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/registerbehavior/Search.js" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/registerbehaviorRestImpl.java" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/registerbehavior/Init.js" />
@@ -212,6 +222,8 @@
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/comment/OrderCommentMapper.xml" />
         <option value="$PROJECT_DIR$/platform-springmvc/pom.xml" />
         <option value="$PROJECT_DIR$/platform-struct2/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-strut2/pom.xml" />
       </list>
     </option>
   </component>
@@ -1345,14 +1357,7 @@
       <workItem from="1503886387678" duration="20885000" />
       <workItem from="1503972040362" duration="15209000" />
       <workItem from="1504059017625" duration="11973000" />
-      <workItem from="1504146797920" duration="3148000" />
-    </task>
-    <task id="LOCAL-00193" summary="2017-7-24">
-      <created>1500881376177</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1500881376177</updated>
+      <workItem from="1504146797920" duration="3592000" />
     </task>
     <task id="LOCAL-00194" summary="2017-7-24">
       <created>1500908964437</created>
@@ -1690,7 +1695,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504080257355</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="2017-8-31">
+      <created>1504151151289</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1504151151290</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1726,7 +1738,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2263399000" />
+    <option name="totallyTimeSpent" value="2263843000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1739,6 +1751,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1763,7 +1776,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55041325" sideWeight="0.48786038" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.4969651" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33687404" sideWeight="0.48099172" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33687404" sideWeight="0.48099172" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24051593" sideWeight="0.5123967" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2936267" sideWeight="0.5190083" order="7" side_tool="true" content_ui="tabs" />
@@ -1846,7 +1859,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="2017-7-30" />
     <MESSAGE value="2017-7-31" />
     <MESSAGE value="2017-8-2" />
     <MESSAGE value="2017-8-3" />
@@ -1871,7 +1883,8 @@
     <MESSAGE value="2017-8-28" />
     <MESSAGE value="2017-8-29" />
     <MESSAGE value="2017-8-30" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017-8-30" />
+    <MESSAGE value="2017-8-31" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017-8-31" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1916,20 +1929,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/HistoryAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/HistoryAddressServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysconfig/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2265,18 +2264,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platform-struct2/pom.xml">
+    <entry file="file://$PROJECT_DIR$/platform-strut2/platform-strut2.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platform-struct2/platform-struct2.iml">
+    <entry file="file://$PROJECT_DIR$/platform-strut2/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-web-manager.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5546">
+          <caret line="155" column="25" lean-forward="true" selection-start-line="155" selection-start-column="25" selection-end-line="155" selection-end-column="25" />
           <folding />
         </state>
       </provider>
