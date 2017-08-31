@@ -37,7 +37,7 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
 
         Criteria criteria = new Criteria();
         criteria.put("menuname", menu.getMenuname());
-        criteria.put("url", menu.getUrl());
+        //criteria.put("url", menu.getUrl());
 
         List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
 

@@ -114,6 +114,12 @@
             <if test="condition.updatedDt != null">
                 and A.updatedDt = #{condition.updatedDt}
             </if>
+            <if test="condition.updatedDtFrom != null">
+                and A.updatedDt <![CDATA[ >=str_to_date(#{condition.updatedDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.updatedDtTo != null">
+                and A.updatedDt <![CDATA[ <=str_to_date(#{condition.updatedDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
             <if test="condition.version != null">
                 and A.version = #{condition.version}
             </if>

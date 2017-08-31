@@ -269,7 +269,8 @@
 
         <include refid="Base_Column_List"/>
         ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl,
-        E.realname as mobilerealname,F.realname as phonerealname
+        E.realname as mobilerealname,F.realname as phonerealname,
+        G.realnum
         from ordercomment A
 
         <!--收运人员关联-->
@@ -280,6 +281,9 @@
         left join sysusers E on(A.mobile=E.phone)
         <!--产废人员-->
         left join sysusers F on(A.phone=F.phone)
+
+        <!--外接订单表-->
+        left join orders G on(A.orderId=G.orderid)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>

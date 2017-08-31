@@ -13,10 +13,10 @@ function menusubmitValidator(){
         return false;
     }
 
-    if ($("#Url_add").val() == "") {
+    /*if ($("#Url_add").val() == "") {
         $.messager.alert('提示', 'Url不能为空');
         return false;
-    }
+    }*/
 
     if ($("#ParentId_add").val() == "") {
         $.messager.alert('提示', '父节点不能为空');

@@ -171,6 +171,20 @@ public class OrderComment extends Entity implements Serializable {
      */
     private String phonerealname;
 
+    public String getRealnum() {
+        return realnum;
+    }
+
+    public void setRealnum(String realnum) {
+        this.realnum = realnum;
+    }
+
+    /**
+     * 实际油量
+
+     */
+    private String realnum;
+
     public String getMobilerealname() {
         return mobilerealname;
     }

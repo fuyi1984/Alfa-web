@@ -157,4 +157,30 @@ public class td_weixin_users extends Entity implements Serializable {
     public void setAverage(String average) {
         this.average = average;
     }
+
+    /**
+     * 评论数
+     */
+    private String commentnum;
+
+    public String getCommentnum() {
+        return commentnum;
+    }
+
+    public void setCommentnum(String commentnum) {
+        this.commentnum = commentnum;
+    }
+
+    /**
+     * 总的评论平均分除以评论数
+     */
+    private String nototalaverage;
+
+    public String getNototalaverage() {
+        return nototalaverage;
+    }
+
+    public void setNototalaverage(String nototalaverage) {
+        this.nototalaverage = nototalaverage;
+    }
 }

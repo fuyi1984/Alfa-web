@@ -202,7 +202,7 @@
         </if>
         <include refid="Base_Column_List"/>
         ,B.userid as sysuserid,B.address,B.orgname,B.realname
-        ,SUM(C.realnum) as totalrealnum,SUM(D.average) as totalaverage
+        ,SUM(C.realnum) as totalrealnum,SUM(D.average) as totalaverage,COUNT(D.Id) as commentnum
         from td_weixin_users A
 
 

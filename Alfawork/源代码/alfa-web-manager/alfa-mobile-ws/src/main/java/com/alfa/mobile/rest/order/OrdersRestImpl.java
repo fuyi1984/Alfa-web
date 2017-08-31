@@ -289,12 +289,38 @@ public class OrdersRestImpl implements OrdersRest {
             criteria.put("orderid", map.get("orderid").toString());
         }
 
+        //真实姓名
+        if (!StringUtil.isNullOrEmpty(map.get("realname"))) {
+            criteria.put("realname", map.get("realname").toString());
+        }
+
+        //提交开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        //提交结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
+        //完成开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startUpdateDt"))){
+            criteria.put("updatedDtFrom",map.get("startUpdateDt").toString()+" 00:00:00");
+        }
+
+        //完成结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endUpdateDt"))){
+            criteria.put("updatedDtTo",map.get("endUpdateDt").toString()+" 23:59:59");
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
 
         //region 设置地址
 
+        /*
         String Province,City,Area,Townandstreets;
 
         for(Orders order:ordersList){
@@ -316,6 +342,7 @@ public class OrdersRestImpl implements OrdersRest {
                 order.setAddress(Province+City+Area+Townandstreets);
             }
         }
+        */
 
         //endregion
 

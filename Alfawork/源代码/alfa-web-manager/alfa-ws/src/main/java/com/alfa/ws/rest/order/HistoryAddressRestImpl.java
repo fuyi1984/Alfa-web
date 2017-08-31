@@ -72,6 +72,11 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
             criteria.put("addressLike", map.get("addressLike").toString());
         }
 
+        //Id
+        if (!StringUtil.isNullOrEmpty(map.get("id"))) {
+            criteria.put("id", map.get("id").toString());
+        }
+
         //endregion
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
@@ -82,6 +87,7 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
         //region 拼接收油地址
 
+        /*
         String Province,city,area,townandstreets;
 
         for(HistoryAddress item:historyAddressList){
@@ -100,6 +106,7 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
             item.setFulladdress(Province+city+area+townandstreets);
         }
+        */
 
         //endregion
 

@@ -75,6 +75,11 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
             criteria.put("addressLike", map.get("addressLike").toString());
         }
 
+        //Id
+        if (!StringUtil.isNullOrEmpty(map.get("id"))) {
+            criteria.put("id", map.get("id").toString());
+        }
+
         //endregion
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
@@ -85,6 +90,7 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
         //region 拼接收油地址
 
+        /*
         String Province,city,area,townandstreets;
 
         for(HistoryAddress item:historyAddressList){
@@ -103,6 +109,7 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
             item.setFulladdress(Province+city+area+townandstreets);
         }
+        */
 
         //endregion
 
@@ -124,6 +131,39 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
     public Response updateHistoryAddress(HistoryAddress record) throws UnsupportedEncodingException {
 
         String Json = "";
+
+        String city="",province="",area="",townandstreets="",fulladdress="";
+
+        //region 查询条件
+
+        if(!StringUtil.isNullOrEmpty(record.getCity())) {
+            //市
+            city=record.getCity();
+        }
+
+        if(!StringUtil.isNullOrEmpty(record.getProvince())) {
+            //省
+            province=record.getProvince();
+        }
+
+        if(!StringUtil.isNullOrEmpty(record.getArea())) {
+            //区
+            area=record.getArea();
+        }
+
+        if(!StringUtil.isNullOrEmpty(record.getTownandstreets())) {
+            //街道
+            townandstreets=record.getTownandstreets();
+        }
+
+        if(!StringUtil.isNullOrEmpty(record.getFulladdress())) {
+            //详细地址
+            fulladdress=record.getFulladdress();
+        }
+
+        //endregion
+
+        record.setAddress(province+city+area+townandstreets+fulladdress);
 
         WebUtil.prepareUpdateParams(record);
 
@@ -152,14 +192,63 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
 
             //region 小于规定的范围
 
+            //region
+
+            /*
             if (!StringUtil.isNullOrEmpty(record.getAddress())) {
                 criteria.put("address", record.getAddress());
             } else {
+
+                //市
                 criteria.put("city", record.getCity());
+                //省
                 criteria.put("province", record.getProvince());
+                //区
                 criteria.put("area", record.getArea());
+                //街道
                 criteria.put("townandstreets", record.getTownandstreets());
+                //详细地址
+                criteria.put("fulladdress",record.getFulladdress());
             }
+            */
+
+            //endregion
+
+            String city="",province="",area="",townandstreets="",fulladdress="";
+
+            //region 查询条件
+
+            if(!StringUtil.isNullOrEmpty(record.getCity())) {
+                //市
+                criteria.put("city", record.getCity());
+                city=record.getCity();
+            }
+
+            if(!StringUtil.isNullOrEmpty(record.getProvince())) {
+                //省
+                criteria.put("province", record.getProvince());
+                province=record.getProvince();
+            }
+
+            if(!StringUtil.isNullOrEmpty(record.getArea())) {
+                //区
+                criteria.put("area", record.getArea());
+                area=record.getArea();
+            }
+
+            if(!StringUtil.isNullOrEmpty(record.getTownandstreets())) {
+                //街道
+                criteria.put("townandstreets", record.getTownandstreets());
+                townandstreets=record.getTownandstreets();
+            }
+
+            if(!StringUtil.isNullOrEmpty(record.getFulladdress())) {
+                //详细地址
+                criteria.put("fulladdress", record.getFulladdress());
+                fulladdress=record.getFulladdress();
+            }
+
+            //endregion
 
             List<HistoryAddress> list = this.historyAddressService.selectByParams(criteria);
 
@@ -167,6 +256,9 @@ public class HistoryAddressRestImpl implements HistoryAddressRest {
                 //收油地址已存在,无法再添加
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
             } else {
+
+                record.setAddress(province+city+area+townandstreets+fulladdress);
+
                 int result = this.historyAddressService.insertSelective(record);
 
                 if (result >= 1) {
