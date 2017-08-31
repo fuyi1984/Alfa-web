@@ -27,6 +27,8 @@
         <module name="alfa-schedule" />
         <module name="alfa-service" />
         <module name="alfa-ws" />
+        <module name="platform-springmvc" />
+        <module name="platform-struct2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -48,6 +50,8 @@
       <module name="alfa-timer" target="1.6" />
       <module name="alfa-web-manager" target="1.5" />
       <module name="alfa-ws" target="1.6" />
+      <module name="platform-springmvc" target="1.6" />
+      <module name="platform-struct2" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
