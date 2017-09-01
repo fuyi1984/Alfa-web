@@ -287,7 +287,13 @@ public class OrdersRestImpl implements OrdersRest {
             criteria.put("updatedDtTo",map.get("endUpdateDt").toString()+" 23:59:59");
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "orgstatus,createdDt desc");
+        //订单状态
+        if(!StringUtil.isNullOrEmpty(map.get("orgstatus"))){
+            criteria.put("orgstatus", map.get("orgstatus").toString());
+        }
+
+
+        WebUtil.preparePageParams(request, pager, criteria, "orgstatus，createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
 
