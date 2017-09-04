@@ -424,7 +424,7 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/order/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleId=' + groleid + '&phone=' + gphone + '&iphone=' + gphone + '&realname='+$('#brealname').val()+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleId=' + groleid + '&phone=' + gphone + '&iphone=' + gphone + '&realname='+$('#brealname').val()+'&orgstatus='+$('#orderstatus').combobox('getValue')+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

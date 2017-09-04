@@ -289,11 +289,12 @@ public class OrdersRestImpl implements OrdersRest {
 
         //订单状态
         if(!StringUtil.isNullOrEmpty(map.get("orgstatus"))){
-            criteria.put("orgstatus", map.get("orgstatus").toString());
+            if(!map.get("orgstatus").toString().equals("0")) {
+                criteria.put("orgstatus", map.get("orgstatus").toString());
+            }
         }
 
-
-        WebUtil.preparePageParams(request, pager, criteria, "orgstatus，createdDt desc");
+        WebUtil.preparePageParams(request, pager, criteria, "A.orgstatus,A.createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);
 
