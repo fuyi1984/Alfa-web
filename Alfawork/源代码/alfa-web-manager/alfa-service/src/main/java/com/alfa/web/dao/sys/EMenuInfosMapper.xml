@@ -27,11 +27,11 @@
         <trim prefix="where" prefixOverrides="and|or" >
 
             <if test="condition.menuid != null" >
-                and menuid = ${condition.menuid}
+                and menuid = #{condition.menuid}
             </if>
 
             <if test="condition.menuname != null" >
-                and menuname = ${condition.menuname}
+                and menuname = #{condition.menuname}
             </if>
             <if test="condition.url != null" >
                 and url = #{condition.url}
@@ -156,9 +156,10 @@
         <if test="distinct" >
             distinct
         </if>
+
         <include refid="Base_Column_List" />
 
-        from EMenuInfos A
+        from EMenuInfos
 
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />

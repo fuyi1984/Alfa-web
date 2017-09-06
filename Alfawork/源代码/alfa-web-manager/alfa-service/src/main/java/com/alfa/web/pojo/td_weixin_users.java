@@ -34,6 +34,16 @@ public class td_weixin_users extends Entity implements Serializable {
 
     private Long sysuserid;
 
+    private Long roleId;
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
     public Long getSysuserid() {
         return sysuserid;
     }
