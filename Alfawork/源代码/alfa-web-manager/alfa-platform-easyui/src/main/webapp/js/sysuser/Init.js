@@ -349,12 +349,13 @@ function initcombobox() {
             method: 'get',
             idField: 'roleId',
             textField: 'role_name',
-			panelWidth:320,
-			panelHeight:'auto',
+            panelWidth: 320,
+            panelHeight: 'auto',
             columns: [[
                 {field: 'role_name', title: '角色名称', width: 120},
                 {field: 'roleDesc', title: ' 角色描述', width: 200}
-            ]]
+            ]],
+            fitColumns: true
         }
     )
 
@@ -423,8 +424,8 @@ function doUpdate() {
                 address_update: rows[0].address,
                 orgname_update: rows[0].orgname
             });
-			
-			$('#rolelist_update').combogrid('setValue',rows[0].role_name);
+
+            $('#rolelist_update').combogrid('setValue', rows[0].role_name);
 
             $('#userupdate').window('open');
         }

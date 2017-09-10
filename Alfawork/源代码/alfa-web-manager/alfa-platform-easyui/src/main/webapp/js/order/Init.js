@@ -441,19 +441,19 @@ function initdatagrid() {
 }
 
 function initcombobox() {
-    $("#workerlist").combobox({
+    $("#workerlist").combogrid({
         url: ws_url + '/rest/user/findAllTransporter?token=' + gtoken,
         method: 'get',
-        valueField: 'userId',
+        idField: 'userId',
         textField: 'realname',
-        icons: [{
-            iconCls: 'icon-reload',
-            handler: function () {
-                $("#workerlist").combobox({
-                    reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
-                })
-            }
-        }]
+        panelWidth:500,
+        panelHeight:500,
+        columns: [[
+            {field: 'realname', title: '真实姓名', width: 100},
+            {field: 'phone', title: ' 联系电话', width: 100},
+            {field: 'address', title: '单位地址', width: 200},
+        ]],
+        fitColumns: true
     })
 }
 
