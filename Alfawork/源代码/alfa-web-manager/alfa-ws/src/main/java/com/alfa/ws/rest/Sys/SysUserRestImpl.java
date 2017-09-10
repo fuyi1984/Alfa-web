@@ -615,6 +615,15 @@ public class SysUserRestImpl implements SysUserRest {
     }
 
     @Override
+    public Response findAllAdmin() {
+        Criteria criteria = new Criteria();
+        criteria.put("roleId", "27");
+        List<SysUsers> UserList = this.sysUsersService.selectByParams(criteria);
+        String json = JsonUtil.toJson(UserList);
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
     public Response validatMobile(SysUsers user) {
         if (StringUtil.isNullOrEmpty(user.getPhone())) {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "error.vr.parameter.wrong", null))).build();

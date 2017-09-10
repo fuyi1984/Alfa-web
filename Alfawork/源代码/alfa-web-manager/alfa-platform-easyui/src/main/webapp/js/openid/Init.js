@@ -3,16 +3,20 @@
  */
 $(function () {
 
-    /*gtoken = ReadCookie("token");
+    gtoken = ReadCookie("token");
 
     if (gtoken != "") {
-        setCurrentUser();*/
+        setCurrentUser();
+
+        $('#bindadmin').window('close');
+
+        initcombobox();
 
         initdatagrid();
-   /* } else {
+    } else {
         //window.location.href = platform_url + "/pages/home/login.html";
-        top.location.href=platform_url + "/pages/home/login.html";
-    }*/
+        top.location.href = platform_url + "/pages/home/login.html";
+    }
 
 });
 
@@ -35,19 +39,19 @@ function initdatagrid() {
         //region
 
         /*
-        toolbar: ['-', {
-            id: 'btnSave',
-            text: '添加',
-            iconCls: 'icon-add',
-            handler: function () {
-                alert("add");
-            }
-        },'-'],
-        */
+         toolbar: ['-', {
+         id: 'btnSave',
+         text: '添加',
+         iconCls: 'icon-add',
+         handler: function () {
+         alert("add");
+         }
+         },'-'],
+         */
 
         //endregion
 
-        toolbar:"#tb",
+        toolbar: "#tb",
 
         idField: 'Id',
 
@@ -59,7 +63,8 @@ function initdatagrid() {
 
             {field: 'openid', title: 'openid', width: 150, align: 'center'},
 
-            {field: 'headimgurl', title: '微信头像', width: 50, align: 'center',
+            {
+                field: 'headimgurl', title: '微信头像', width: 50, align: 'center',
                 formatter: function (value, rec) {
                     /*switch (value) {
                      case "0":
@@ -70,7 +75,7 @@ function initdatagrid() {
                      return '<span style="color:orangered;">数据不完整</span>';
                      }*/
 
-                    return '<img src="'+value+'" width="60" height="60" border="0">';
+                    return '<img src="' + value + '" width="60" height="60" border="0">';
                 }
             },
 
@@ -84,7 +89,7 @@ function initdatagrid() {
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
             },
-            
+
         ]],
         pagination: true,
         rownumbers: true
@@ -103,7 +108,7 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/OpenId/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&nickname='+$("#nickname").val()+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&nickname=' + $("#nickname").val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -119,7 +124,131 @@ function initdatagrid() {
     }
 }
 
-
-function doSearch(){
+/**
+ * 查询
+ */
+function doSearch() {
     initdatagrid();
+}
+
+function initcombobox() {
+    $('#adminlist').combogrid({
+            url: ws_url + '/rest/user/findAllAdmin?token=' + gtoken,
+            method: 'post',
+            idField: 'phone',
+            textField: 'realname',
+            panelWidth: 450,
+            panelHeight: 300,
+            columns: [[
+                {field: 'realname', title: '真实姓名', width: 150},
+                {field: 'phone', title: ' 联系电话', width: 100},
+                {field: 'address', title: '单位地址', width: 200},
+            ]]
+        }
+    )
+}
+
+/**
+ * 弹出绑定界面
+ */
+function doIsCheck() {
+
+    var rows = $('#openidgrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择需要绑定的微信用户');
+        return;
+    }else{
+        if (rows.length > 1) {
+            $.messager.alert('提示', '请选择一条数据');
+            $('#openidgrid').datagrid("clearSelections");
+            return;
+        }else{
+            $('#form2').form('load', {
+                id: rows[0].openid
+            });
+
+            $('#bindadmin').window('open');
+        }
+    }
+}
+
+function bindAdminValidator(){
+
+    var admin=$('#adminlist').combogrid('getValue');
+
+    if(admin=="")
+    {
+        $.messager.alert('提示', '管理人员不能为空');
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * 绑定管理员
+ */
+function bindadmin() {
+   if(bindAdminValidator()){
+
+       var params={
+        "openid":$("#id").val(),
+        "mobile":$('#adminlist').combogrid('getValue'),
+        };
+
+
+       $.ajax({
+           url: ws_url+'/rest/OpenId/updateOpenId?token='+gtoken,
+           contentType: 'application/json;charset=UTF-8',
+           type: 'post',
+           datatype: 'json',
+           data:JSON.stringify(params),
+           /*data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combogrid('getValue')+'&status=2',*/
+           cache:false,
+           success: function (data) {
+
+               console.log(data.status);
+               console.log(data.message);
+
+               $('#form2').form('clear');
+
+               if(data.status=='success'){
+                   $.messager.alert('提示', '修改成功！', 'info', function () {
+                       //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                       $('#bindadmin').window('close');
+                       $('#openidgrid').datagrid("clearSelections");
+                       $('#openidgrid').datagrid("reload");
+                   });
+               }else if(data.status=='failure'){
+                   if (data.message == '3') {
+                       $.messager.alert('提示', '数据不存在！', 'warning', function () {
+                           //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                           $('#bindadmin').window('close');
+                           $('#openidgrid').datagrid("clearSelections");
+                           $('#openidgrid').datagrid("reload");
+                       });
+                   }else {
+                       $.messager.alert('提示', '修改失败！', 'error', function () {
+                           //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                           $('#bindadmin').window('close');
+                           $('#openidgrid').datagrid("clearSelections");
+                           $('#openidgrid').datagrid("reload");
+                       });
+                   }
+               }
+           },
+           error: function (xhr) {
+               console.log(xhr);
+           }
+       });
+   }
+}
+
+/**
+ * 退出
+ */
+function bindcancel() {
+    $('#bindadmin').window('close');
+    $("#openidgrid").datagrid("clearSelections");
 }

@@ -1,5 +1,6 @@
 package com.alfa.ws.rest.Sys;
 
+import com.alfa.web.pojo.td_weixin_users;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by Administrator on 2017/9/7.
@@ -31,5 +33,18 @@ public interface weixin_usersRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+    /**
+     * 更新OpenId
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/updateOpenId")
+    public Response updateOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException;
+
 
 }

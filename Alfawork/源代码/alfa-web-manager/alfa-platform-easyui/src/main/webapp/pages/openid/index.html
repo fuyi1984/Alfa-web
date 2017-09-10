@@ -32,5 +32,35 @@
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
         </div>
     </div>
+    <div id="bindadmin" class="easyui-window" title="绑定管理员"
+         data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+         style="width:400px;height:170px;padding:10px;">
+        <form id="form2">
+            <div style="padding: 15px 10px 10px 25px;">
+                <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
+                       data-options="required:true"
+                       name="id" id="id"/>
+                <table style="text-align: center; width: auto" cellpadding="2px">
+                    <tr>
+                        <td>
+                            管理员:
+                        </td>
+                        <td>
+                            <input class="easyui-combogrid"
+                                   style="width: 250px" name="adminlist" id="adminlist" required="true"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:bindadmin()" id="updateForm"
+                   iconcls="icon-save">绑定</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                                 onclick="javascript:bindcancel()"
+                                                 iconcls="icon-cancel">返回</a>
+
+            </div>
+        </form>
+    </div>
 </body>
 </html>

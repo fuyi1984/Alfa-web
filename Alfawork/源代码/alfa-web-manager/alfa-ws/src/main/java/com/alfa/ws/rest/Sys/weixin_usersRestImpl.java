@@ -2,18 +2,21 @@ package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.EMenuInfos;
 import com.alfa.web.pojo.td_weixin_users;
+import com.alfa.web.service.sys.SysUsersService;
 import com.alfa.web.service.weixin.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,9 @@ public class weixin_usersRestImpl implements weixin_usersRest {
 
     @Autowired
     private com.alfa.web.service.weixin.weixin_usersService weixin_usersService;
+
+    @Autowired
+    private SysUsersService sysUsersService;
 
 
     @Override
@@ -78,5 +84,35 @@ public class weixin_usersRestImpl implements weixin_usersRest {
         String json = JsonUtil.toJson(data);
 
         return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
+    public Response updateOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException {
+
+        Criteria criteria = new Criteria();
+        criteria.put("openid", td_weixin_users.getOpenid());
+
+        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
+
+        if(list.size()>=1) {
+
+            String Json = "";
+
+            int result = this.weixin_usersService.updateByPrimaryKeySelective(td_weixin_users);
+
+            if (result >= 1) {
+                //OpenId更新成功
+                Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+            } else {
+                //OpenId更新失败
+                Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+            }
+
+            return Response.status(Response.Status.OK).entity(Json).build();
+
+        }else{
+            //OpenId不存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+        }
     }
 }

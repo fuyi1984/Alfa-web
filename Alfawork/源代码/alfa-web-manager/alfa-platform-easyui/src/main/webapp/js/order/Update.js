@@ -4,7 +4,7 @@
 
 function allocatValidator(){
 
-    var worker=$('#workerlist').combobox('getValue');
+    var worker=$('#workerlist').combogrid('getValue');
 
     if(worker=="")
     {
@@ -33,7 +33,7 @@ function orderallocatform(){
             type: 'post',
             datatype: 'json',
             /*data:JSON.stringify(params),*/
-            data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combobox('getValue')+'&status=2',
+            data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combogrid('getValue')+'&status=2',
             cache:false,
             success: function (data) {
 

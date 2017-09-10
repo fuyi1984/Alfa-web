@@ -172,6 +172,19 @@ public interface SysUserRest {
     @Path("/findAllTransporter")
     public Response findAllTransporter();
 
+    /**
+     * 查找所有的管理员
+     * @return
+     */
+    @WebMethod
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/findAllAdmin")
+    public Response findAllAdmin();
+
+
+
 
     /**
      * 验证手机是否存在
