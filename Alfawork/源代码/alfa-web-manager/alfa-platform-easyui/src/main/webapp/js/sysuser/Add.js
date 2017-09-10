@@ -9,7 +9,7 @@ function usersubmitForm(){
     var password=$('#password_add').val();
     var repassword=$('#repassword').val();
     //var sex=$('#sexlist').combobox('getValue');
-    var role=$('#rolelist').combobox('getValue');
+    var role=$('#rolelist').combogrid('getValue');
     var address=$('#address_add').val();
     var realname=$('#realname_add').val();
     var orgname=$('#orgname_add').val();

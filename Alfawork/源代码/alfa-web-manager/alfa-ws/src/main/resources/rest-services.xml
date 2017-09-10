@@ -25,6 +25,7 @@
             <bean class="com.alfa.ws.rest.order.publishmessageRestImpl"/>
             <bean class="com.alfa.ws.rest.Sys.registerbehaviorRestImpl"/>
             <bean class="com.alfa.ws.rest.Sys.EMenuInfosRestImpl"/>
+            <bean class="com.alfa.ws.rest.Sys.weixin_usersRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

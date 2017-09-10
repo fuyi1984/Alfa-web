@@ -8,7 +8,7 @@ function userupdateform(){
     var userId=$('#userId_update').val();
     var username=$('#phone_update').val();
     var phone=$('#phone_update').val();
-    var role=$('#rolelist_update').combobox('getValue');
+    var role=$('#rolelist_update').combogrid('getValue');
     var address=$('#address_update').val();
     var realname=$('#realname_update').val();
     var orgname=$('#orgname_update').val();

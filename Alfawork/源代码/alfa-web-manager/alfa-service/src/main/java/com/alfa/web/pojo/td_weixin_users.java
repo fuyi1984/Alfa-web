@@ -18,11 +18,38 @@ public class td_weixin_users extends Entity implements Serializable {
                 "openid='" + openid + '\'' +
                 ", headimgurl='" + headimgurl + '\'' +
                 ", state='" + state + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", userid=" + userid +
+                ", mobile='" + mobile + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
+                ", realname='" + realname + '\'' +
+                ", sysuserid=" + sysuserid +
+                ", roleId=" + roleId +
+                ", orgname='" + orgname + '\'' +
+                ", address='" + address + '\'' +
+                ", totalrealnum='" + totalrealnum + '\'' +
+                ", totalaverage='" + totalaverage + '\'' +
+                ", realnum='" + realnum + '\'' +
+                ", average='" + average + '\'' +
+                ", commentnum='" + commentnum + '\'' +
+                ", nototalaverage='" + nototalaverage + '\'' +
                 '}';
     }
 
     private String state;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    /**
+     * 微信昵称
+     */
+    private String nickname;
 
     private Long userid;
 
@@ -35,6 +62,19 @@ public class td_weixin_users extends Entity implements Serializable {
     private Long sysuserid;
 
     private Long roleId;
+
+    /**
+     * 角色名
+     */
+    private String role_name;
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
+    }
 
     public Long getRoleId() {
         return roleId;

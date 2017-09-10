@@ -4,27 +4,30 @@ import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.order.OrdersService;
 import com.alfa.web.service.weixin.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.StringUtil;
+import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/6/30.
  */
-@Path("/OpenId")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-@Scope("singleton")
 public class weixin_usersRestImpl implements weixin_usersRest {
 
     private final Logger log = Logger.getLogger(this.getClass());
@@ -125,5 +128,60 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             //查询失败
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
+    }
+
+    @Override
+    public Response findlist(String param, HttpServletRequest request, HttpServletResponse response) {
+
+        //region
+
+        Map map= WebUtil.getParamsMap(param,"utf-8");
+
+        BasePager pager=new BasePager();
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
+            pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("pagesize"))) {
+            pager.setPageSize(Integer.parseInt(map.get("pagesize").toString()));
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortdatafield"))) {
+            pager.setSortField(map.get("sortdatafield").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortName"))) {
+            pager.setSortField(map.get("sortName").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
+            pager.setSortOrder(map.get("sortorder").toString());
+        }
+
+        Criteria criteria = new Criteria();
+
+        if (!StringUtil.isNullOrEmpty(map.get("nickname"))) {
+            criteria.put("nickname",  map.get("nickname").toString());
+        }
+        if (!StringUtil.isNullOrEmpty(map.get("roleId"))) {
+            criteria.put("roleId",  map.get("roleId").toString());
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+
+        List<td_weixin_users> td_weixin_usersList = this.weixin_usersService.selectByParams(criteria);
+        int count = this.weixin_usersService.countByParams(criteria);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        data.put("total", count);
+        data.put("rows", td_weixin_usersList);
+
+        String json = JsonUtil.toJson(data);
+
+        return Response.status(Response.Status.OK).entity(json).build();
+
+        //endregion
     }
 }
