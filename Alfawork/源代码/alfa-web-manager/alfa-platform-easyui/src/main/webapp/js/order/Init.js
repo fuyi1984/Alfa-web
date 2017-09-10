@@ -446,14 +446,13 @@ function initcombobox() {
         method: 'get',
         idField: 'userId',
         textField: 'realname',
-        panelWidth:500,
-        panelHeight:500,
+        panelWidth:450,
+        panelHeight:400,
         columns: [[
-            {field: 'realname', title: '真实姓名', width: 100},
+            {field: 'realname', title: '真实姓名', width: 150},
             {field: 'phone', title: ' 联系电话', width: 100},
             {field: 'address', title: '单位地址', width: 200},
-        ]],
-        fitColumns: true
+        ]]
     })
 }
 
@@ -625,9 +624,9 @@ function doAllocat(){
         //     return;
         // } else {
 
-        $("#workerlist").combobox({
-            reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
-        });
+        //$("#workerlist").combobox({
+        //    reload: ws_url + '/rest/user/findAllTransporter?token=' + gtoken
+        //});
 
         // $('#form2').form('load', {
         //     orderid_allocating: rows[0].orderid

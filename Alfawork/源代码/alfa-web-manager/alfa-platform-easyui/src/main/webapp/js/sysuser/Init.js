@@ -354,8 +354,7 @@ function initcombobox() {
             columns: [[
                 {field: 'role_name', title: '角色名称', width: 120},
                 {field: 'roleDesc', title: ' 角色描述', width: 200}
-            ]],
-            fitColumns: true
+            ]]
         }
     )
 
