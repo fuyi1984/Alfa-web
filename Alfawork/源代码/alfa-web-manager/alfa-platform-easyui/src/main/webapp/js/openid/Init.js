@@ -183,66 +183,73 @@ function doNotIsCheck(){
         $.messager.alert('提示', '请选择需要绑定的微信用户');
         return;
     }else{
+
         if (rows.length > 1) {
             $.messager.alert('提示', '请选择一条数据');
             $('#openidgrid').datagrid("clearSelections");
             return;
         }else{
-
-            //region
-
-            var params={
-                "openid":rows[0].openid,
-                "mobile":"",
-                "mobiletoken":""
-            };
-
-            $.ajax({
-                url: ws_url+'/rest/OpenId/updateOpenId?token='+gtoken,
-                contentType: 'application/json;charset=UTF-8',
-                type: 'post',
-                datatype: 'json',
-                data:JSON.stringify(params),
-                /*data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combogrid('getValue')+'&status=2',*/
-                cache:false,
-                success: function (data) {
-
-                    console.log(data.status);
-                    console.log(data.message);
-
-                    $('#form2').form('clear');
-
-                    if(data.status=='success'){
-                        $.messager.alert('提示', '修改成功！', 'info', function () {
-                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                            $('#bindadmin').window('close');
-                            $('#openidgrid').datagrid("clearSelections");
-                            $('#openidgrid').datagrid("reload");
-                        });
-                    }else if(data.status=='failure'){
-                        if (data.message == '3') {
-                            $.messager.alert('提示', '数据不存在！', 'warning', function () {
-                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                                $('#bindadmin').window('close');
-                                $('#openidgrid').datagrid("clearSelections");
-                                $('#openidgrid').datagrid("reload");
-                            });
-                        }else {
-                            $.messager.alert('提示', '修改失败！', 'error', function () {
-                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                                $('#bindadmin').window('close');
-                                $('#openidgrid').datagrid("clearSelections");
-                                $('#openidgrid').datagrid("reload");
-                            });
-                        }
-                    }
-                },
-                error: function (xhr) {
-                    console.log(xhr);
+            $.messager.confirm('提示', '是否解绑这些微信用户?', function (r) {
+                if (!r) {
+                    return;
                 }
-            });
 
-            //endregion
+                //region 解绑
+
+                var params = {
+                    "openid": rows[0].openid,
+                    "mobile": "",
+                    "mobiletoken": ""
+                };
+
+                $.ajax({
+                    url: ws_url + '/rest/OpenId/updateOpenId?token=' + gtoken,
+                    contentType: 'application/json;charset=UTF-8',
+                    type: 'post',
+                    datatype: 'json',
+                    data: JSON.stringify(params),
+                    /*data:'orderidlist='+$("#orderid_allocating").val()+'&worker='+$('#workerlist').combogrid('getValue')+'&status=2',*/
+                    cache: false,
+                    success: function (data) {
+
+                        console.log(data.status);
+                        console.log(data.message);
+
+                        $('#form2').form('clear');
+
+                        if (data.status == 'success') {
+                            $.messager.alert('提示', '修改成功！', 'info', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#bindadmin').window('close');
+                                $('#openidgrid').datagrid("clearSelections");
+                                $('#openidgrid').datagrid("reload");
+                            });
+                        } else if (data.status == 'failure') {
+                            if (data.message == '3') {
+                                $.messager.alert('提示', '数据不存在！', 'warning', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#bindadmin').window('close');
+                                    $('#openidgrid').datagrid("clearSelections");
+                                    $('#openidgrid').datagrid("reload");
+                                });
+                            } else {
+                                $.messager.alert('提示', '修改失败！', 'error', function () {
+                                    //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                    $('#bindadmin').window('close');
+                                    $('#openidgrid').datagrid("clearSelections");
+                                    $('#openidgrid').datagrid("reload");
+                                });
+                            }
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+
+                //endregion
+
+            });
         }
     }
 }

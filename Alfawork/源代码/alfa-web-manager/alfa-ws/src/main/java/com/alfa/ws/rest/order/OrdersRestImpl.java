@@ -294,6 +294,16 @@ public class OrdersRestImpl implements OrdersRest {
             }
         }
 
+        //单位地址
+        if(!StringUtil.isNullOrEmpty(map.get("sendername"))){
+           criteria.put("addressLike",map.get("sendername").toString());
+        }
+
+        //单位名称
+        if(!StringUtil.isNullOrEmpty(map.get("orgname"))){
+            criteria.put("orgnameLike",map.get("orgname").toString());
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "A.orgstatus,A.createdDt desc");
 
         List<Orders> ordersList = this.ordersService.selectByParams(criteria);

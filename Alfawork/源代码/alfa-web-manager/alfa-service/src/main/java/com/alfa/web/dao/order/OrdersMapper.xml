@@ -84,11 +84,17 @@
             <if test="condition.address != null">
                 and A.address = #{condition.address}
             </if>
+            <if test="condition.addressLike != null">
+                and A.address like concat('%',#{condition.addressLike},'%')
+            </if>
             <if test="condition.num != null">
                 and A.num = #{condition.num}
             </if>
             <if test="condition.orgname != null">
                 and A.orgname = #{condition.orgname}
+            </if>
+            <if test="condition.orgnameLike != null">
+                and A.orgname like concat('%',#{condition.orgnameLike},'%')
             </if>
             <if test="condition.orgstatus != null">
                 and A.orgstatus = #{condition.orgstatus}
