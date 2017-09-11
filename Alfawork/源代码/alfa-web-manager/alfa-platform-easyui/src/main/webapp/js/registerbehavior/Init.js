@@ -31,66 +31,66 @@ function initdatagrid() {
         //region
 
         /*toolbar: ['-', {
-            id: 'btnDelete',
-            text: '删除',
-            disabled: false,
-            iconCls: 'icon-cut',
-            handler: function () {
-                //region
+         id: 'btnDelete',
+         text: '删除',
+         disabled: false,
+         iconCls: 'icon-cut',
+         handler: function () {
+         //region
 
-                var rows = $('#registerbehaviorgrid').datagrid('getSelections');
+         var rows = $('#registerbehaviorgrid').datagrid('getSelections');
 
-                if (!rows || rows.length == 0) {
-                    $.messager.alert('提示', '请选择要删除的数据');
-                    return;
-                }
+         if (!rows || rows.length == 0) {
+         $.messager.alert('提示', '请选择要删除的数据');
+         return;
+         }
 
-                var assetList = new Array();
+         var assetList = new Array();
 
-                $.each(rows, function (i, n) {
-                    assetList.push(n.id);
-                });
+         $.each(rows, function (i, n) {
+         assetList.push(n.id);
+         });
 
-                $.messager.confirm('提示', '是否删除这些数据?', function (r) {
-                    if (!r) {
-                        return;
-                    }
+         $.messager.confirm('提示', '是否删除这些数据?', function (r) {
+         if (!r) {
+         return;
+         }
 
-                    $.ajax({
-                        cache: false,
-                        datatype: 'json',
-                        contentType: 'application/json;charset=UTF-8',
-                        type: "POST",
-                        url: ws_url + '/rest/registerbehavior/batchdeleteUser?token=' + gtoken,
-                        data: JSON.stringify(assetList),
-                        success: function (msg) {
-                            if (msg.status == 'success') {
-                                $.messager.alert('提示', '删除成功！', "info", function () {
-                                    $('#registerbehaviorgrid').datagrid("clearSelections");
-                                    $('#registerbehaviorgrid').datagrid("reload");
-                                });
-                            } else {
-                                $.messager.alert('错误', '删除失败！', "error", function () {
-                                    $('#registerbehaviorgrid').datagrid("clearSelections");
-                                    $('#registerbehaviorgrid').datagrid("reload");
-                                });
-                            }
-                        },
-                        error: function (xhr) {
-                            console.log(xhr);
-                            $('#registerbehaviorgrid').datagrid("clearSelections");
-                            $.messager.alert('错误', '删除失败！', "error");
-                        }
-                    });
-                });
+         $.ajax({
+         cache: false,
+         datatype: 'json',
+         contentType: 'application/json;charset=UTF-8',
+         type: "POST",
+         url: ws_url + '/rest/registerbehavior/batchdeleteUser?token=' + gtoken,
+         data: JSON.stringify(assetList),
+         success: function (msg) {
+         if (msg.status == 'success') {
+         $.messager.alert('提示', '删除成功！', "info", function () {
+         $('#registerbehaviorgrid').datagrid("clearSelections");
+         $('#registerbehaviorgrid').datagrid("reload");
+         });
+         } else {
+         $.messager.alert('错误', '删除失败！', "error", function () {
+         $('#registerbehaviorgrid').datagrid("clearSelections");
+         $('#registerbehaviorgrid').datagrid("reload");
+         });
+         }
+         },
+         error: function (xhr) {
+         console.log(xhr);
+         $('#registerbehaviorgrid').datagrid("clearSelections");
+         $.messager.alert('错误', '删除失败！', "error");
+         }
+         });
+         });
 
-                //endregion
-            }
-        }, '-'],*/
+         //endregion
+         }
+         }, '-'],*/
 
         //endregion
 
-        toolbar:"#tb",
+        toolbar: "#tb",
 
         idField: 'id',
 
@@ -106,7 +106,7 @@ function initdatagrid() {
             }, {
                 title: '产废单位',
                 align: 'center',
-                colspan: 9
+                colspan: 7
             }],
             [
                 {field: 'businessrealname', title: '真实姓名', width: 80, align: 'center'},
@@ -126,14 +126,28 @@ function initdatagrid() {
                         }
                     }
                 },
-                {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
+                {
+                    field: 'regurl', title: '照片', width: 150, align: 'center',
+                    formatter: function (value, rec) {
+                        /*switch (value) {
+                         case "0":
+                         return '<span style="color:red;">未审核</span>';
+                         case "1":
+                         return '<span style="color:green;">已审核</span>';
+                         case "-1":
+                         return '<span style="color:orangered;">数据不完整</span>';
+                         }*/
+
+                        return '<img src="'+"http://"+window.location.host+"/" + value + '" width="150" height="150" border="0">';
+                    }
+                },
                 {
                     field: 'createdDt', title: '创建时间', width: 100, align: 'center'
                 },
-                {field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
-                {
-                    field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
-                }
+                /*{field: 'updatedBy', title: '更新人', width: 80, align: 'center'},
+                 {
+                 field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
+                 }*/
             ]],
         pagination: true,
         rownumbers: true
@@ -153,7 +167,7 @@ function initdatagrid() {
             url: ws_url + '/rest/registerbehavior/findlist?token=' + gtoken,
             type: "post",
             /*data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',*/
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone='+$('#bphone').val()+'&businessrealname='+$('#brealname').val()+'&regaddress='+$('#address').val()+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone=' + $('#bphone').val() + '&businessrealname=' + $('#brealname').val() + '&regaddress=' + $('#address').val() + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -168,7 +182,7 @@ function initdatagrid() {
     }
 }
 
-function doDelete(){
+function doDelete() {
 
     var rows = $('#registerbehaviorgrid').datagrid('getSelections');
 

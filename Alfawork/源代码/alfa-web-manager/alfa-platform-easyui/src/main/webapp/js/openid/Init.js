@@ -134,7 +134,7 @@ function doSearch() {
 function initcombobox() {
     $('#adminlist').combogrid({
             url: ws_url + '/rest/user/findAllAdmin?token=' + gtoken,
-            method: 'post',
+            method: 'get',
             idField: 'phone',
             textField: 'realname',
             panelWidth: 450,
