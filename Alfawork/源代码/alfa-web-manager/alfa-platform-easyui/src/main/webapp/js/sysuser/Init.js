@@ -424,7 +424,7 @@ function doUpdate() {
                 orgname_update: rows[0].orgname
             });
 
-            $('#rolelist_update').combogrid('setValue', rows[0].role_name);
+            $('#rolelist_update').combogrid('setValue', rows[0].roleId);
 
             $('#userupdate').window('open');
         }

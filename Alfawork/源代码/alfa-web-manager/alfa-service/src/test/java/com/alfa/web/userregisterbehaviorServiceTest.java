@@ -49,8 +49,7 @@ public class userregisterbehaviorServiceTest extends TestBase {
     @Test
     public void selectByParams(){
         Criteria criteria = new Criteria();
-        criteria.put("businessphone","15320295813");
-        criteria.put("businessrealname","付益");
+        criteria.put("regstatus","0");
         List<userregisterbehavior> userregisterbehaviorlist = this.userregisterbehaviorService.selectByParams(criteria);
         System.out.println(JsonUtil.toJson(userregisterbehaviorlist));
     }

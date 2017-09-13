@@ -31,6 +31,11 @@
         <div>
             业务人员姓名:<input id="brealname" class="easyui-textbox" style="width:80px">
             业务人员电话:<input id="bphone" class="easyui-textbox" style="width: 80px">
+            状态:<input id="status" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/sysuserstatus.json',
+					method:'get',
+					valueField:'id',
+					textField:'text',
+					panelHeight:'auto'">
             地址:<input id="address" class="easyui-textbox" style="width:80px">
             开始时间: <input id="startDt" class="easyui-datebox" style="width:80px">
             结束时间: <input id="endDt" class="easyui-datebox" style="width:80px">

@@ -167,6 +167,16 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
             criteria.put("regaddress",map.get("regaddress").toString());
         }
 
+        /**
+         * 状态
+         */
+        if (!StringUtil.isNullOrEmpty(map.get("status"))) {
+
+            if(!map.get("status").toString().equals("2")) {
+                criteria.put("regstatus", map.get("status").toString());
+            }
+        }
+
         if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
             criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
         }

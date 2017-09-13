@@ -167,7 +167,7 @@ function initdatagrid() {
             url: ws_url + '/rest/registerbehavior/findlist?token=' + gtoken,
             type: "post",
             /*data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&configName=' + $('#configName_search').val() + '&configKey=' + $('#configKey_search').val() + '',*/
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone=' + $('#bphone').val() + '&businessrealname=' + $('#brealname').val() + '&regaddress=' + $('#address').val() + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&businessphone=' + $('#bphone').val() + '&businessrealname=' + $('#brealname').val() + '&regaddress=' + $('#address').val() + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue')+'&status=' + $("#status").combobox('getValue')+ '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

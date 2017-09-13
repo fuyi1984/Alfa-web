@@ -33,7 +33,7 @@ public class weixin_usersServiceTest extends TestBase {
     public void Search(){
         Criteria criteria = new Criteria();
 
-        criteria.put("roleId", "9");
+        //criteria.put("roleId", "9");
 
         List<td_weixin_users> list=weixin_usersService.selectByParams(criteria);
 
@@ -44,7 +44,7 @@ public class weixin_usersServiceTest extends TestBase {
     public void selectByParams(){
         Criteria criteria = new Criteria();
 
-        criteria.put("mobile", "13883906635");
+        //criteria.put("mobile", "13883906635");
 
         List<td_weixin_users> list=weixin_usersService.selectByParamsForMobile(criteria);
 
