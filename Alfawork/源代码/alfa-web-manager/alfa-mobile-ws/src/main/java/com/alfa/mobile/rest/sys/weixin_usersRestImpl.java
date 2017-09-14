@@ -50,6 +50,7 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             //OpenId已存在
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
         }else{
+            td_weixin_users.setIsdownload("0");
             int result=this.weixin_usersService.insertSelective(td_weixin_users);
             if(result>=1){
                 //OpenId插入成功

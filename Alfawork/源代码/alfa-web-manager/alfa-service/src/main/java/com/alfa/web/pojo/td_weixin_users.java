@@ -233,4 +233,31 @@ public class td_weixin_users extends Entity implements Serializable {
     public void setNototalaverage(String nototalaverage) {
         this.nototalaverage = nototalaverage;
     }
+
+    /**
+     * 是否已下载
+     */
+    private String isdownload;
+
+
+    /**
+     * 本地Url路径
+     */
+    private String localurl;
+
+    public String getIsdownload() {
+        return isdownload;
+    }
+
+    public void setIsdownload(String isdownload) {
+        this.isdownload = isdownload;
+    }
+
+    public String getLocalurl() {
+        return localurl;
+    }
+
+    public void setLocalurl(String localurl) {
+        this.localurl = localurl;
+    }
 }
