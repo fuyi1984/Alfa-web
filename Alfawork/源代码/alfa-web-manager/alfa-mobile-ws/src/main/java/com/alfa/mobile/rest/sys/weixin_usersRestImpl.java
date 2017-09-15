@@ -100,6 +100,11 @@ public class weixin_usersRestImpl implements weixin_usersRest {
 
         if(list.size()>=1) {
             td_weixin_users users=list.get(0);
+
+            if(!StringUtil.isNullOrEmpty(users.getMobiletoken())){
+                users.setMobiletoken(WebUtil.encryptBase64(users.getMobiletoken()));
+            }
+
             //查询成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();
 
@@ -121,6 +126,10 @@ public class weixin_usersRestImpl implements weixin_usersRest {
         if(list.size()>=1) {
 
             td_weixin_users users=list.get(0);
+
+            if(!StringUtil.isNullOrEmpty(users.getMobiletoken())){
+                users.setMobiletoken(WebUtil.encryptBase64(users.getMobiletoken()));
+            }
 
             //查询成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();

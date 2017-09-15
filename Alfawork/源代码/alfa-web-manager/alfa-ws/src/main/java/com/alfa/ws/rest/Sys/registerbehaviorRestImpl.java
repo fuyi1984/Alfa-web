@@ -185,7 +185,7 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
             criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
+        WebUtil.preparePageParams(request, pager, criteria, "null");
 
         List<userregisterbehavior> userregisterbehaviorList = this.userregisterbehaviorService.selectByParams(criteria);
 

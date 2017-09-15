@@ -1,11 +1,14 @@
 package com.alfa.web.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/9/14.
  * 微信头像视图
  */
-public class Vwweixinheadfile {
+public class Vwweixinheadfile{
 
+    private String openid;
     /**
      * 微信头像
      */
@@ -30,5 +33,13 @@ public class Vwweixinheadfile {
 
     public void setIsdownload(String isdownload) {
         this.isdownload = isdownload;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

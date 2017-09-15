@@ -27,6 +27,8 @@ function initdatagrid() {
         singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
+        //pageSize: 6,
+        //pageList: [6,12,18],
         nowrap: false,
         striped: true,
         loader: ajaxfindlist,
@@ -64,18 +66,14 @@ function initdatagrid() {
             {field: 'openid', title: 'openid', width: 150, align: 'center'},
 
             {
-                field: 'headimgurl', title: '微信头像', width: 50, align: 'center',
+                field: 'headimgurl', title: '微信头像', width: 60, align: 'center',
                 formatter: function (value, rec) {
-                    /*switch (value) {
-                     case "0":
-                     return '<span style="color:red;">未审核</span>';
-                     case "1":
-                     return '<span style="color:green;">已审核</span>';
-                     case "-1":
-                     return '<span style="color:orangered;">数据不完整</span>';
-                     }*/
-
-                    return '<img src="' + value + '" width="60" height="60" border="0">';
+                    if (isNull(value)) {
+                        return '<img src="' + value + '" width="60" height="60" border="0">';
+                    }
+                    else{
+                        return '';
+                    }
                 }
             },
 
@@ -83,13 +81,31 @@ function initdatagrid() {
 
             {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
 
-            {field: 'role_name', title: '角色名', width: 80, align: 'center'},
-
-
+            {field: 'roleId', title: '角色名', width: 80, align: 'center',
+                formatter: function (value, rec) {
+                    if(isNull(value)){
+                        switch (value) {
+                            case 15:
+                                return '网络运营部';
+                            case 9:
+                                return '收运人员';
+                            case 10:
+                                return '产废单位';
+                            case 28:
+                                return '超级管理员';
+                            case 27:
+                                return '系统管理员';
+                            default:
+                                return '';
+                        }
+                    }else{
+                        return ''
+                    }
+                }
+            },
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
-            },
-
+            }
         ]],
         pagination: true,
         rownumbers: true
@@ -106,6 +122,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
+            cache:true,
             url: ws_url + '/rest/OpenId/findlist?token=' + gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&nickname=' + $("#nickname").val() + '',
@@ -122,6 +139,10 @@ function initdatagrid() {
             }
         });
     }
+}
+
+function isNull(data){
+    return (data == "" || data == undefined || data == null) ? false: true;
 }
 
 /**

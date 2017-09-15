@@ -33,6 +33,9 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <!--<if test="condition.xmobile==-1">
+                and A.mobile IS NULL or A.mobile = ''
+            </if>-->
             <if test="condition.nicknamelike!=null">
                 and A.nickname like concat('%', #{condition.nicknamelike}, '%')
             </if>
@@ -93,11 +96,9 @@
 
         select count(*) from td_weixin_users A
 
-        left join SysUsers B on(A.mobile = B.phone)
-        left join SysRole D on(B.roleId=D.roleId)
-
         <if test="condition.roleId != null">
-            INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})
+            <!--INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})-->
+            INNER JOIN SysUsers C ON(C.phone=A.mobile and C.roleId = #{condition.roleId})
         </if>
 
         <if test="_parameter != null">
@@ -224,15 +225,16 @@
 
         <include refid="Base_Column_List"/>
 
-        ,B.userid as sysuserid,B.address,B.orgname,B.realname,B.roleId,D.role_name
+        ,B.userid as sysuserid,B.address,B.orgname,B.realname,B.roleId
 
         from td_weixin_users A
 
         left join SysUsers B on(A.mobile = B.phone)
-        left join SysRole D on(B.roleId=D.roleId)
+        <!--left join SysRole D on(B.roleId=D.roleId)-->
 
         <if test="condition.roleId != null">
-            INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})
+            <!--INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})-->
+            INNER JOIN SysUsers C ON(C.phone= A.mobile and C.roleId = #{condition.roleId})
         </if>
 
         <if test="_parameter != null">
@@ -270,7 +272,9 @@
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
+
         GROUP BY A.id
+
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>

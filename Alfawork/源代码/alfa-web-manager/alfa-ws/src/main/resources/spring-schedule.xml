@@ -4,6 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
        default-lazy-init="true">
 
+    <!--监控微信头像下载状态,并把微信头像下载到本地服务器，每1分钟执行一次-->
+    <bean id="weixinheadfiledownloadObject" class="com.alfa.web.job.weixinheadfiledownload"/>
+    <bean id="weixinheadfiledownloadJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="weixinheadfiledownloadObject"/>
+        <property name="targetMethod" value="dojob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="weixinheadfiledownloadTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="weixinheadfiledownloadJob"/>
+        <property name="cronExpression" value="0 /1 * * * ?"/>
+    </bean>
+
     <!--监控订单状态,根据设定的时间范围，自动完成已经确认的订单，每3分钟执行一次-->
     <bean id="MonitorOrderStatusObject" class="com.alfa.web.job.MonitorOrderStatus"/>
     <bean id="MonitorOrderStatusJob"

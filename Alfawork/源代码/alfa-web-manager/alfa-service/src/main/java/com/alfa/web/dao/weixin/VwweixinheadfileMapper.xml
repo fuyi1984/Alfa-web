@@ -4,6 +4,7 @@
 
     <resultMap id="BaseResultMap" type="com.alfa.web.pojo.Vwweixinheadfile">
 
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR"/>
         <result column="isdownload" property="isdownload" jdbcType="VARCHAR"/>
 
@@ -17,10 +18,14 @@
             <if test="condition.isdownload != null">
                 and A.isdownload = #{condition.isdownload}
             </if>
+            <if test="condition.openid != null">
+                and A.openid = #{condition.openid}
+            </if>
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
+        A.openid,
         A.headimgurl,
         A.isdownload
     </sql>
