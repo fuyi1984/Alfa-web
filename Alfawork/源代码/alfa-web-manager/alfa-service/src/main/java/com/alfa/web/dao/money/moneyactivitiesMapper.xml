@@ -2,5 +2,87 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.alfa.web.dao.money.moneyactivitiesMapper">
 
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.moneyactivities">
+
+        <id column="Id" property="id" jdbcType="BIGINT"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="money" property="money" jdbcType="VARCHAR"/>
+        <result column="totalnum" property="totalnum" jdbcType="VARCHAR"/>
+        <result column="sendednum" property="sendednum" jdbcType="VARCHAR"/>
+        <result column="remainingnum" property="remainingnum" jdbcType="VARCHAR"/>
+        <result column="starttime" property="starttime" jdbcType="VARCHAR"/>
+        <result column="endtime" property="endtime" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+
+            <if test="condition.titlelike!=null">
+                and title like concat('%', #{condition.titlelike}, '%')
+            </if>
+            <if test="condition.title!=null">
+                and title = #{condition.title}
+            </if>
+
+            <if test="condition.contentlike!=null">
+                and content like concat('%', #{condition.contentlike}, '%')
+            </if>
+            <if test="condition.content!=null">
+                and content=#{condition.content}
+            </if>
+
+
+            <if test="condition.money!=null">
+                and money=#{condition.money}
+            </if>
+            <if test="condition.totalnum!=null">
+                and totalnum=#{condition.totalnum}
+            </if>
+            <if test="condition.sendednum!=null">
+                and sendednum=#{condition.sendednum}
+            </if>
+            <if test="condition.remainingnum!=null">
+                and remainingnum=#{condition.remainingnum}
+            </if>
+
+            <if test="condition.starttime != null">
+                and starttime = #{condition.starttime}
+            </if>
+            <if test="condition.endtime != null">
+                and endtime = #{condition.endtime}
+            </if>
+
+            <if test="condition.createdBy != null">
+                and createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        Id, title, content,money, totalnum,createdBy,createdDt,
+        updatedBy, updatedDt, version,sendednum,remainingnum,starttime,endtime
+    </sql>
 
 </mapper>
