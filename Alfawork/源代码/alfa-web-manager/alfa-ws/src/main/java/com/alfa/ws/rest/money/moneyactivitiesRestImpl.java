@@ -1,6 +1,5 @@
 package com.alfa.ws.rest.money;
 
-import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.service.money.moneyactivitiesServcie;
 import com.alfa.web.util.JsonUtil;
