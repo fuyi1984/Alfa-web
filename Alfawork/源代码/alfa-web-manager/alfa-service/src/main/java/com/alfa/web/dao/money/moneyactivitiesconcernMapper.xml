@@ -148,7 +148,13 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from moneyactivitiesconcern
+
+        ,B.title,B.content
+
+        from moneyactivitiesconcern A
+
+        left join moneyactivities B on(A.activitiesid = B.id)
+
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
