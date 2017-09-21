@@ -9,6 +9,7 @@ import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -86,16 +87,70 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
 
     @Override
     public Response insertmoneyactivitiesconcern(moneyactivitiesconcern money) {
-        return null;
+
+        //region
+
+        Criteria criteria = new Criteria();
+        criteria.put("openid", money.getOpenid());
+        criteria.put("activitiesid",money.getActivitiesid());
+
+        List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
+
+        if (moneyactivitiesconcernList.size() > 0) {
+            //数据已存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
+        } else {
+            int result = this.moneyactivitiesconcernService.insertSelective(money);
+            if (result > 0) {
+                //插入成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
+            } else {
+                //插入失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+            }
+        }
+
+        //endregion
     }
 
     @Override
     public Response updatemoneyactivitiesconcern(moneyactivitiesconcern money) {
-        return null;
+        //region
+
+        String Json="";
+
+        int result=this.moneyactivitiesconcernService.updateByPrimaryKeySelective(money);
+
+        if(result==1){
+            //更新成功
+            Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1",null));
+        }else{
+            //更新失败
+            Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,"2",null));
+        }
+
+        return Response.status(Response.Status.OK).entity(Json).build();
+
+        //endregion
     }
 
     @Override
     public Response batchdeletemoneyactivitiesconcern(List<String> list) {
-        return null;
+
+        //region
+
+        int result = 0;
+
+        result=this.moneyactivitiesconcernService.batchdeleteByPrimaryKey(list);
+
+        if (result >= 1) {
+            //删除成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+        } else {
+            //删除失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+
+        //endregion
     }
 }
