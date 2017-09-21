@@ -13,7 +13,7 @@ public class moneyactivitiesconcern extends Entity implements Serializable {
     /**
      * 活动ID
      */
-    private String activitiesid;
+    private Long activitiesid;
 
     public String getOpenid() {
         return openid;
@@ -23,11 +23,11 @@ public class moneyactivitiesconcern extends Entity implements Serializable {
         this.openid = openid;
     }
 
-    public String getActivitiesid() {
+    public Long getActivitiesid() {
         return activitiesid;
     }
 
-    public void setActivitiesid(String activitiesid) {
+    public void setActivitiesid(Long activitiesid) {
         this.activitiesid = activitiesid;
     }
 

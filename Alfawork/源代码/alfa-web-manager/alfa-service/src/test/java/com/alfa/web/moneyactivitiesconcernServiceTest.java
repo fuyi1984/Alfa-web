@@ -26,7 +26,7 @@ public class moneyactivitiesconcernServiceTest extends TestBase {
     public void insert(){
         moneyactivitiesconcern money=new moneyactivitiesconcern();
         money.setOpenid("1");
-        money.setActivitiesid("2");
+        money.setActivitiesid(2L);
         this.moneyactivitiesconcernServcie.insertSelective(money);
     }
 
@@ -49,7 +49,7 @@ public class moneyactivitiesconcernServiceTest extends TestBase {
         moneyactivitiesconcern money=new moneyactivitiesconcern();
         money.setId(2l);
         money.setOpenid("2");
-        money.setActivitiesid("2");
+        money.setActivitiesid(2L);
         this.moneyactivitiesconcernServcie.updateByPrimaryKeySelective(money);
     }
 }
