@@ -1,5 +1,7 @@
 package com.alfa.ws.rest.money;
 
+import com.alfa.web.pojo.SysConfig;
+import com.alfa.web.pojo.moneyactivities;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -12,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/20.
@@ -31,4 +34,45 @@ public interface moneyactivitiesRest  {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+    /**
+     * 新增红包活动
+     *
+     * @param moneyactivities
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/insertmoneyactivities")
+    public Response insertmoneyactivities(moneyactivities money);
+
+
+    /**
+     * 更新红包活动
+     *
+     * @param moneyactivities
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/updatemoneyactivities")
+    public Response updatemoneyactivities(moneyactivities money);
+
+    /**
+     * 批量删除红包活动
+     *
+     * @param configSid
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdeletemoneyactivities")
+    public Response batchdeletemoneyactivities(List<String> list);
+
 }
