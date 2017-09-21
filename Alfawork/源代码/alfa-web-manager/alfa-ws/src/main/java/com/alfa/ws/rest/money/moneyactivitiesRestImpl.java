@@ -67,7 +67,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //过滤
         Criteria criteria = new Criteria();
 
-        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
+        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);
         int count = this.moneyactivitiesService.countByParams(criteria);
