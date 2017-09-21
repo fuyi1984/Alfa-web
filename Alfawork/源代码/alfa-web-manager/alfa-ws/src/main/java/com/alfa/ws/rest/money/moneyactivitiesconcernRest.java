@@ -1,7 +1,7 @@
 package com.alfa.ws.rest.money;
 
-import com.alfa.web.pojo.SysConfig;
 import com.alfa.web.pojo.moneyactivities;
+import com.alfa.web.pojo.moneyactivitiesconcern;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -17,16 +17,16 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/20.
+ * Created by Administrator on 2017/9/21.
  */
-@Path("/money")
+@Path("/moneyconcern")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Scope("singleton")
-public interface moneyactivitiesRest  {
+public interface moneyactivitiesconcernRest {
 
     /**
-     * 分页查询分页红包活动
+     * 分页查询分页红包活动关注
      */
     @WebMethod
     @POST
@@ -36,7 +36,21 @@ public interface moneyactivitiesRest  {
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
     /**
-     * 新增红包活动
+     * 新增红包活动关注
+     *
+     * @param moneyactivitiesconcern
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/insertmoneyactivitiesconcern")
+    public Response insertmoneyactivitiesconcern(moneyactivitiesconcern money);
+
+
+    /**
+     * 更新红包活动关注
      *
      * @param moneyactivities
      * @return
@@ -45,34 +59,20 @@ public interface moneyactivitiesRest  {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/insertmoneyactivities")
-    public Response insertmoneyactivities(moneyactivities money);
+    @Path("/updatemoneyactivitiesconcern")
+    public Response updatemoneyactivitiesconcern(moneyactivitiesconcern money);
 
 
     /**
-     * 更新红包活动
+     * 批量删除红包活动关注
      *
-     * @param moneyactivities
+     * @param id
      * @return
      */
     @WebMethod
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/updatemoneyactivities")
-    public Response updatemoneyactivities(moneyactivities money);
-
-    /**
-     * 批量删除红包活动
-     *
-     * @param configSid
-     * @return
-     */
-    @WebMethod
-    @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/batchdeletemoneyactivities")
-    public Response batchdeletemoneyactivities(List<String> list);
-
+    @Path("/batchdeletemoneyactivitiesconcern")
+    public Response batchdeletemoneyactivitiesconcern(List<String> list);
 }
