@@ -7,7 +7,7 @@ import com.alfa.web.util.pojo.Criteria;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/18.
+ * 红包活动
  */
 public interface moneyactivitiesMapper {
 

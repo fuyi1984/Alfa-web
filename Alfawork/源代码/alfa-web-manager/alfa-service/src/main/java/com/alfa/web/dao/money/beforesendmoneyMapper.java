@@ -1,20 +1,19 @@
 package com.alfa.web.dao.money;
 
-import com.alfa.web.pojo.moneyactivities;
-import com.alfa.web.pojo.moneyactivitiesconcern;
+import com.alfa.web.pojo.beforesendmoney;
 import com.alfa.web.util.pojo.Criteria;
 
 import java.util.List;
 
 /**
- * 红包活动关注
+ * 红包发送前的准备
  */
-public interface moneyactivitiesconcernMapper {
+public interface beforesendmoneyMapper {
 
     /**
      * 保存属性不为空的记录
      */
-    int insertSelective(moneyactivitiesconcern record);
+    int insertSelective(beforesendmoney record);
 
     /**
      * 根据条件查询记录总数
@@ -29,10 +28,10 @@ public interface moneyactivitiesconcernMapper {
     /**
      * 根据主键更新属性不为空的记录
      */
-    int updateByPrimaryKeySelective(moneyactivitiesconcern record);
+    int updateByPrimaryKeySelective(beforesendmoney record);
 
     /**
      * 根据条件查询记录集
      */
-    List<moneyactivitiesconcern> selectByParams(Criteria example);
+    List<beforesendmoney> selectByParams(Criteria example);
 }

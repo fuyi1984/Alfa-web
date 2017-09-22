@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/18.
+ * 红包活动关注
  */
 @Service
 public class moneyactivitiesconcernServcieImpl implements moneyactivitiesconcernServcie {
