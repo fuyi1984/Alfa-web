@@ -49,6 +49,12 @@ public class activitiesorderServiceImpl implements activitiesorderService {
     }
 
     @Override
+    public int updateByOrderid(activitiesorder record) {
+        WebUtil.prepareUpdateParams(record);
+        return this.activitiesorderMapper.updateByOrderid(record);
+    }
+
+    @Override
     public List<activitiesorder> selectByParams(Criteria example) {
         return this.activitiesorderMapper.selectByParams(example);
     }

@@ -9,6 +9,7 @@
         <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="orderid" property="orderid" jdbcType="BIGINT"/>
         <result column="activitiesid" property="activitiesid" jdbcType="BIGINT"/>
+        <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -22,6 +23,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.orderno!=null">
+                and orderno = #{condition.orderno}
+            </if>
             <if test="condition.openid!=null">
                 and openid = #{condition.openid}
             </if>
@@ -53,7 +57,7 @@
 
     <sql id="Base_Column_List">
         Id, openid, orderid,activitiesid,createdBy,createdDt,
-        updatedBy, updatedDt, version
+        updatedBy, updatedDt, version,orderno
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.beforesendmoney">
@@ -62,6 +66,9 @@
         </selectKey>
         insert into beforesendmoney
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderno != null">
+                orderno,
+            </if>
             <if test="openid != null">
                 openid,
             </if>
@@ -88,6 +95,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderno != null">
+                #{orderno},
+            </if>
             <if test="openid != null">
                 #{openid},
             </if>
@@ -133,6 +143,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.beforesendmoney">
         update beforesendmoney
         <set>
+            <if test="orderno != null">
+                orderno=#{orderno},
+            </if>
             <if test="openid != null">
                 openid=#{openid},
             </if>

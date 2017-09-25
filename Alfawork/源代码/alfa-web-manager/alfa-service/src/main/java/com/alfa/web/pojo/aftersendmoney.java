@@ -23,6 +23,20 @@ public class aftersendmoney extends Entity implements Serializable {
      */
     private Long orderid;
 
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
+    /**
+     * 订单号
+
+     */
+    private String orderno;
+
     public String getOpenid() {
         return openid;
     }

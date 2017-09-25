@@ -32,6 +32,13 @@ public interface activitiesorderMapper {
     int updateByPrimaryKeySelective(activitiesorder record);
 
     /**
+     * 根据订单ID更新状态
+     * @param record
+     * @return
+     */
+    int updateByOrderid(activitiesorder record);
+
+    /**
      * 根据条件查询记录集
      */
     List<activitiesorder> selectByParams(Criteria example);

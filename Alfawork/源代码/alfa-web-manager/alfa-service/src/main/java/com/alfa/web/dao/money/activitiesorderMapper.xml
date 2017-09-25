@@ -10,6 +10,7 @@
         <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="orderid" property="orderid" jdbcType="BIGINT"/>
         <result column="activitiesid" property="activitiesid" jdbcType="BIGINT"/>
+        <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
 
         <result column="isfollow" property="isfollow" jdbcType="VARCHAR"/>
         <result column="issubmit" property="issubmit" jdbcType="VARCHAR"/>
@@ -26,6 +27,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.orderno!=null">
+                and orderno = #{condition.orderno}
+            </if>
             <if test="condition.openid!=null">
                 and openid = #{condition.openid}
             </if>
@@ -67,7 +71,7 @@
 
     <sql id="Base_Column_List">
         Id, openid, orderid,activitiesid, isfollow,issubmit,isfinish,createdBy,createdDt,
-        updatedBy, updatedDt, version
+        updatedBy, updatedDt, version, orderno
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.activitiesorder">
@@ -76,6 +80,9 @@
         </selectKey>
         insert into activitiesorder
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderno != null">
+                orderno,
+            </if>
             <if test="openid != null">
                 openid,
             </if>
@@ -111,6 +118,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderno != null">
+                #{orderno},
+            </if>
             <if test="openid != null">
                 #{openid},
             </if>
@@ -165,6 +175,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.activitiesorder">
         update activitiesorder
         <set>
+            <if test="orderno != null">
+                orderno=#{orderno},
+            </if>
             <if test="openid != null">
                 openid=#{openid},
             </if>
@@ -174,7 +187,6 @@
             <if test="activitiesid != null">
                 activitiesid=#{activitiesid},
             </if>
-
             <if test="isfollow != null">
                 isfollow=#{isfollow},
             </if>
@@ -184,7 +196,6 @@
             <if test="isfinish != null">
                 isfinish=#{isfinish},
             </if>
-
             <if test="createdBy != null">
                 createdBy = #{createdBy},
             </if>
@@ -202,6 +213,46 @@
             </if>
         </set>
         where id = #{id}
+    </update>
+
+    <update id="updateByOrderid" parameterType="com.alfa.web.pojo.activitiesorder">
+        update activitiesorder
+        <set>
+            <if test="orderno != null">
+                orderno=#{orderno},
+            </if>
+            <if test="openid != null">
+                openid=#{openid},
+            </if>
+            <if test="activitiesid != null">
+                activitiesid=#{activitiesid},
+            </if>
+            <if test="isfollow != null">
+                isfollow=#{isfollow},
+            </if>
+            <if test="issubmit != null">
+                issubmit=#{issubmit},
+            </if>
+            <if test="isfinish != null">
+                isfinish=#{isfinish},
+            </if>
+            <if test="createdBy != null">
+                createdBy = #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt = #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy = #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt = #{updatedDt},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+        </set>
+        where orderid=#{orderid}
     </update>
 
     <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">

@@ -114,9 +114,10 @@ public class OrdersRestImpl implements OrdersRest {
 
                             activitiesorder aorder=activitiesorderlist.get(0);
 
-                            if(StringUtil.isNullOrEmpty(aorder.getOrderid()))
+                            if(StringUtil.isNullOrEmpty(aorder.getOrderno()))
                             {
                                 aorder.setOrderid(order.getOrderid());
+                                aorder.setOrderno(order.getOrderno());
                                 aorder.setIssubmit("1");
                                 this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                             }
@@ -212,6 +213,23 @@ public class OrdersRestImpl implements OrdersRest {
                     log.info("插入成功!");
                 }else{
                     log.info("插入失败!");
+                }
+            }
+
+            //endregion
+
+            //region 订单完成后更新参加了红包活动订单的状态
+
+            if(order.getOrgstatus().equals("4")){
+
+                Criteria criteria=new Criteria();
+                criteria.put("orderid",order.getOrderid());
+
+                List<activitiesorder> activitiesorderlist=this.activitiesorderService.selectByParams(criteria);
+
+                for (activitiesorder orderitem:activitiesorderlist) {
+                    orderitem.setIsfinish("3");
+                    this.activitiesorderService.updateByPrimaryKeySelective(orderitem);
                 }
             }
 
