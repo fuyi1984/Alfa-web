@@ -116,7 +116,7 @@ public class OrdersRestImpl implements OrdersRest {
 
                             if(StringUtil.isNullOrEmpty(aorder.getOrderid()))
                             {
-                                aorder.setOrderid(order.getId());
+                                aorder.setOrderid(order.getOrderid());
                                 aorder.setIssubmit("1");
                                 this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                             }
