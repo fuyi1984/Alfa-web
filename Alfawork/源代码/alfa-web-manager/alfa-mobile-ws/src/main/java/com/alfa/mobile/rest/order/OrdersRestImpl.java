@@ -2,6 +2,10 @@ package com.alfa.mobile.rest.order;
 
 import com.alfa.web.pojo.HostoryOrderStatus;
 import com.alfa.web.pojo.Orders;
+import com.alfa.web.pojo.activitiesorder;
+import com.alfa.web.pojo.moneyactivitiesconcern;
+import com.alfa.web.service.money.activitiesorderService;
+import com.alfa.web.service.money.moneyactivitiesconcernServcie;
 import com.alfa.web.service.order.HistoryAddressService;
 import com.alfa.web.service.order.HostoryOrderStatusService;
 import com.alfa.web.service.order.OrdersService;
@@ -49,6 +53,12 @@ public class OrdersRestImpl implements OrdersRest {
     @Autowired
     private HistoryAddressService historyAddressService;
 
+    @Autowired
+    private activitiesorderService activitiesorderService;
+
+    @Autowired
+    private moneyactivitiesconcernServcie moneyactivitiesconcernServcie;
+
     //region 单项操作
 
     @Override
@@ -84,38 +94,42 @@ public class OrdersRestImpl implements OrdersRest {
 
             if (result) {
 
-                //region 记录订单的收油地址历史记录
+                //region 红包活动
 
-                /*
-                criteria.clear();
-                criteria.put("iphone", order.getIphone());
-                criteria.put("address", order.getAddress());
+                if(!StringUtil.isNullOrEmpty(order.getCopenid())) {
 
-                num = this.historyAddressService.countByParams(criteria);
+                    criteria.clear();
+                    criteria.put("openid", order.getCopenid());
 
-                if (num == 0) {
+                    //获取用户关注的红包活动
+                    List<moneyactivitiesconcern> moneyactivitiesconcernlist=this.moneyactivitiesconcernServcie.selectByParams(criteria);
 
-                    HistoryAddress historyAddress = new HistoryAddress();
-                    historyAddress.setIphone(order.getIphone());
-                    historyAddress.setAddress(order.getAddress());
+                    for (moneyactivitiesconcern item:moneyactivitiesconcernlist) {
 
-                    num = this.historyAddressService.insertSelective(historyAddress);
+                        criteria.put("activitiesid",item.getActivitiesid());
 
-                    if (num >= 1) {
-                        log.debug("收油地址历史记录插入成功!");
-                    } else {
-                        log.debug("收油地址历史记录插入失败!");
+                        List<activitiesorder> activitiesorderlist=this.activitiesorderService.selectByParams(criteria);
+
+                        if(activitiesorderlist.size()>0){
+
+                            activitiesorder aorder=activitiesorderlist.get(0);
+
+                            if(StringUtil.isNullOrEmpty(aorder.getOrderid()))
+                            {
+                                aorder.setOrderid(order.getId());
+                                aorder.setIssubmit("1");
+                                this.activitiesorderService.updateByPrimaryKeySelective(aorder);
+                            }
+                        }
                     }
+
                 }
-                */
 
                 //endregion
 
-                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.Order_Insert_Success, null))).build();*/
                 //订单插入成功
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
             } else {
-                /*return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.Order_Insert_Failtrue, null))).build();*/
                 //订单插入失败
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
             }
@@ -125,11 +139,6 @@ public class OrdersRestImpl implements OrdersRest {
         } else {
 
             //region 大于规定的范围
-
-          /*  return Response.status(Response.Status.OK).entity(
-                    JsonUtil.toJson(
-                            new RestResult(RestResult.FAILURE, "Order num is maxnum", null)
-                    )).build();*/
 
             return Response.status(Response.Status.OK).entity(
                     JsonUtil.toJson(

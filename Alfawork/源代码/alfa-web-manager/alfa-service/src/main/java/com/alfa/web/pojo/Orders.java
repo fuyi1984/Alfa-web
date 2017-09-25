@@ -317,4 +317,16 @@ public class Orders extends Entity implements Serializable {
         this.realname = realname;
     }
 
+    /**
+     * 产废单位的openid
+     */
+    private String copenid;
+
+    public String getCopenid() {
+        return copenid;
+    }
+
+    public void setCopenid(String copenid) {
+        this.copenid = copenid;
+    }
 }
