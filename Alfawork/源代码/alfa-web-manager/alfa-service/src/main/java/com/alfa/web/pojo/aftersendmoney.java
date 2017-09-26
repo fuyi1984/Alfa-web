@@ -60,4 +60,17 @@ public class aftersendmoney extends Entity implements Serializable {
     public void setOrderid(Long orderid) {
         this.orderid = orderid;
     }
+
+    /**
+     * 金额
+     */
+    private String money;
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
 }
