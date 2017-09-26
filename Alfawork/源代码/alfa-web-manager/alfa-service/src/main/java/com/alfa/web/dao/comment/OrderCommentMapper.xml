@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.comment.OrderCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.OrderComment">
+
+        <!--订单评论信息-->
+        <id column="Id" property="id" jdbcType="BIGINT"/>
+
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+
+        <!--评论1-->
+        <result column="one" property="one" jdbcType="VARCHAR"/>
+        <!--评论2-->
+        <result column="two" property="two" jdbcType="VARCHAR"/>
+        <!--评论3-->
+        <result column="three" property="three" jdbcType="VARCHAR"/>
+        <!--自定义评论-->
+        <result column="four" property="four" jdbcType="VARCHAR"/>
+        <!--收运人电话-->
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <!--平均分-->
+        <result column="average" property="average" jdbcType="VARCHAR"/>
+        <!--产废单位电话-->
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+
+        <result column="orderId" property="orderId" jdbcType="BIGINT"/>
+        <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.phone!=null">
+                and A.phone = #{condition.phone}
+            </if>
+            <if test="condition.average!=null">
+                and A.average = #{condition.average}
+            </if>
+            <if test="condition.mobile!=null">
+                and A.mobile = #{condition.mobile}
+            </if>
+            <if test="condition.four!=null">
+                and A.four = #{condition.four}
+            </if>
+            <if test="condition.three!=null">
+                and A.three = #{condition.three}
+            </if>
+            <if test="condition.two!=null">
+                and A.two = #{condition.two}
+            </if>
+            <if test="condition.one!=null">
+                and A.one = #{condition.one}
+            </if>
+            <if test="condition.orderId != null">
+                and A.orderId = #{condition.orderId}
+            </if>
+            <if test="condition.content != null">
+                and A.content = #{condition.content}
+            </if>
+            <if test="condition.Id!=null">
+                and A.Id=#{condition.Id}
+            </if>
+
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.phone,A.orderId,A.content,A.Id,A.one,A.two,A.three,A.four,A.mobile,A.average,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
+    </sql>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+        select count(*) from ordercomment A
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from ordercomment A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from
+        ordercomment
+        where Id = #{Id}
+    </delete>
+
+    <delete id="batchdeleteordercomment" parameterType="java.util.List">
+        delete from
+        ordercomment
+        where Id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!--单条数据插入-->
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.OrderComment">
+        <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into ordercomment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="phone!=null">
+                phone,
+            </if>
+            <if test="average!=null">
+                average,
+            </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
+            <if test="four!=null">
+                four,
+            </if>
+            <if test="three!=null">
+                three,
+            </if>
+            <if test="two!=null">
+                two,
+            </if>
+            <if test="one!=null">
+                one,
+            </if>
+            <if test="content!=null">
+                content,
+            </if>
+            <if test="orderId!=null">
+                orderId,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="phone!=null">
+                #{phone},
+            </if>
+            <if test="average!=null">
+                #{average},
+            </if>
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
+            <if test="four!=null">
+                #{four},
+            </if>
+            <if test="three!=null">
+                #{three},
+            </if>
+            <if test="two!=null">
+                #{two},
+            </if>
+            <if test="one!=null">
+                #{one},
+            </if>
+            <if test="content!=null">
+                #{content},
+            </if>
+            <if test="orderId!=null">
+                #{orderId},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+    <!--批量插入-->
+    <insert id="insertBatch" parameterType="java.util.HashMap">
+
+        <selectKey keyProperty="Id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        insert into ordercomment (phone,average,one,two,three,four,mobile,content,orderId,createdBy,createdDt,updatedBy,updatedDt,version)
+
+        values
+
+            <foreach collection="list" item="item" index="index" separator=",">
+                (
+                #{item.phone},
+                #{item.average},
+                #{item.one},
+                #{item.two},
+                #{item.three},
+                #{item.four},
+                #{item.mobile},
+                #{item.content},
+                #{item.orderId},
+                #{item.createdBy},
+                #{item.createdDt},
+                #{item.updatedBy},
+                #{item.updatedDt},
+                #{item.version}
+                )
+            </foreach>
+
+
+    </insert>
+
+    <!--条件查询-->
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+        ,C.headimgurl as mobileheadimgurl,D.headimgurl as phoneheadimgurl,
+        E.realname as mobilerealname,F.realname as phonerealname,
+        G.realnum
+        from ordercomment A
+
+        <!--收运人员关联-->
+        left join td_weixin_users C on(A.mobile=C.mobile)
+        <!--产废人员关联-->
+        left join td_weixin_users D on(A.phone=D.mobile)
+        <!---收运人员 -->
+        left join sysusers E on(A.mobile=E.phone)
+        <!--产废人员-->
+        left join sysusers F on(A.phone=F.phone)
+
+        <!--外接订单表-->
+        left join orders G on(A.orderId=G.orderid)
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.Id
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+</mapper>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.order.HistoryAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.HistoryAddress">
+
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="userid" property="userid" jdbcType="BIGINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="iphone" property="iphone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="townandstreets" property="townandstreets" jdbcType="VARCHAR"/>
+        <result column="fulladdress" property="fulladdress" jdbcType="VARCHAR"/>
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.mobile!=null">
+                and A.mobile=#{condition.mobile}
+            </if>
+            <if test="condition.fulladdress!=null">
+                and A.fulladdress=#{condition.fulladdress}
+            </if>
+            <if test="condition.province!=null">
+                and A.province=#{condition.province}
+            </if>
+            <if test="condition.city!=null">
+                and A.city=#{condition.city}
+            </if>
+            <if test="condition.area!=null">
+                and A.area=#{condition.area}
+            </if>
+            <if test="condition.townandstreets!=null">
+                and A.townandstreets=#{condition.townandstreets}
+            </if>
+            <if test="condition.id!=null">
+                and A.id=#{condition.id}
+            </if>
+            <if test="condition.userid!=null">
+                and A.userid=#{condition.userid}
+            </if>
+            <if test="condition.address != null">
+                and A.address = #{condition.address}
+            </if>
+            <if test="condition.iphone!=null">
+                and A.iphone=#{condition.iphone}
+            </if>
+            <if test="condition.addressLike != null">
+                and A.address like concat('%', #{condition.addressLike}, '%')
+            </if>
+
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.fulladdress,A.province,A.city,A.area,A.townandstreets,A.id, A.userid, A.iphone,A.address,A.createdBy, A.createdDt,
+        A.updatedBy, A.updatedDt, A.version,A.mobile
+    </sql>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from HistoryAddress A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <include refid="common.Mysql_Pagination_Limit"/>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from HistoryAddress A
+        where A.id = #{id}
+    </select>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
+        select count(*) from HistoryAddress A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from HistoryAddress
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from HistoryAddress A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.HistoryAddress">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into HistoryAddress
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
+            <if test="fulladdress!=null">
+                fulladdress,
+            </if>
+            <if test="city!=null">
+                city,
+            </if>
+            <if test="area!=null">
+                area,
+            </if>
+            <if test="townandstreets!=null">
+                townandstreets,
+            </if>
+            <if test="province!=null">
+                province,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="iphone!=null">
+                iphone,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id},
+            <if test="userid != null">
+                #{userid},
+            </if>
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
+            <if test="fulladdress!=null">
+                #{fulladdress},
+            </if>
+            <if test="city!=null">
+                #{city},
+            </if>
+            <if test="area!=null">
+                #{area},
+            </if>
+            <if test="townandstreets!=null">
+                #{townandstreets},
+            </if>
+            <if test="province!=null">
+                #{province},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="iphone!=null">
+                #{iphone},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.HistoryAddress">
+        update HistoryAddress
+        <set>
+            <if test="userid!=null">
+                userid=#{userid},
+            </if>
+            <if test="mobile!=null">
+                mobile=#{mobile},
+            </if>
+            <if test="fulladdress!=null">
+                fulladdress=#{fulladdress},
+            </if>
+            <if test="city!=null">
+                city=#{city},
+            </if>
+            <if test="area!=null">
+                area=#{area},
+            </if>
+            <if test="townandstreets!=null">
+                townandstreets=#{townandstreets},
+            </if>
+            <if test="province!=null">
+                province=#{province},
+            </if>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="iphone != null">
+                iphone=#{iphone},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version}
+            </if>
+        </set>
+        where id = #{id}
+
+    </update>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        HistoryAddress
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+
+</mapper>

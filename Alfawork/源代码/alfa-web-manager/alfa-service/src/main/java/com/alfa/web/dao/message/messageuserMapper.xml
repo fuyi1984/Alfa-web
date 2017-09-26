@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.message.messageuserMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.messageuser">
+
+        <!--消息用户关系表-->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="userid" property="userid" jdbcType="BIGINT"/>
+        <result column="messageid" property="messageid" jdbcType="BIGINT"/>
+        <result column="isread" property="isread" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+        <!--消息基本信息-->
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+
+        <!--用户基本信息-->
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+
+            <if test="condition.id!=null">
+                and A.id=#{condition.id}
+            </if>
+            <if test="condition.userid!=null">
+                and A.userid=#{condition.userid}
+            </if>
+            <if test="condition.messageid!=null">
+                and A.messageid=#{condition.messageid}
+            </if>
+            <if test="condition.isread!=null">
+                and A.isread=#{condition.isread}
+            </if>
+
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.id,A.userid,A.messageid,A.isread,
+        A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,A.version
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.messageuser">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into messageuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="userid!=null">
+                userid,
+            </if>
+            <if test="messageid!=null">
+                messageid,
+            </if>
+            <if test="isread!=null">
+                isread,
+            </if>
+
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+            <if test="userid!=null">
+                #{userid},
+            </if>
+            <if test="messageid!=null">
+                #{messageid},
+            </if>
+            <if test="isread!=null">
+                #{isread},
+            </if>
+
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+
+        </trim>
+    </insert>
+
+    <delete id="batchdeleteByMessageid" parameterType="java.util.List">
+        delete from
+        messageuser
+        where messageid in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from
+        messageuser
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectByParams" resultMap="BaseResultMap"
+            parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        ,B.title,B.content,C.realname,C.phone
+
+        from messageuser A
+
+        left join publishmessage B on(A.messageid=B.id)
+        left join sysusers C on(A.userid=C.userid)
+
+        <if test="condition.phone != null">
+            INNER join sysusers E on(E.userid=A.userid and E.phone=#{condition.phone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+
+    </select>
+
+    <insert id="insertBatch" parameterType="java.util.HashMap">
+
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        insert into messageuser (userid,messageid,isread，createdBy,createdDt,updatedBy,updatedDt,version)
+
+        values
+
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.userid},
+            #{item.messageid},
+            #{item.isread},
+            #{item.createdBy},
+            #{item.createdDt},
+            #{item.updatedBy},
+            #{item.updatedDt},
+            #{item.version}
+            )
+        </foreach>
+
+
+    </insert>
+
+    <update id="updateByParamsSelective" parameterType="com.alfa.web.pojo.messageuser">
+        update messageuser
+        <set>
+            <if test="isread!=null">
+                isread=#{isread},
+            </if>
+        </set>
+        where userid = #{userid} and messageid=#{messageid}
+    </update>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria"
+            resultType="java.lang.Integer">
+
+        select count(*) from messageuser A
+
+        left join publishmessage B on(A.messageid=B.id)
+        left join sysusers C on(A.userid=C.userid)
+
+        <if test="condition.phone != null">
+            INNER join sysusers E on(E.userid=A.userid and E.phone=#{condition.phone})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+</mapper>

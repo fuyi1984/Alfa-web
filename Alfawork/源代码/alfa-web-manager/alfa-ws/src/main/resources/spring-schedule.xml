@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-lazy-init="true">
+
+    <!--监控微信头像下载状态,并把微信头像下载到本地服务器，每1分钟执行一次-->
+    <bean id="weixinheadfiledownloadObject" class="com.alfa.web.job.weixinheadfiledownload"/>
+    <bean id="weixinheadfiledownloadJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="weixinheadfiledownloadObject"/>
+        <property name="targetMethod" value="dojob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="weixinheadfiledownloadTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="weixinheadfiledownloadJob"/>
+        <property name="cronExpression" value="0 /1 * * * ?"/>
+    </bean>
+
+    <!--监控订单状态,根据设定的时间范围，自动完成已经确认的订单，每3分钟执行一次-->
+    <bean id="MonitorOrderStatusObject" class="com.alfa.web.job.MonitorOrderStatus"/>
+    <bean id="MonitorOrderStatusJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="MonitorOrderStatusObject"/>
+        <property name="targetMethod" value="FromConfirmToCompleted"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="MonitorOrderStatusTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="MonitorOrderStatusJob"/>
+        <property name="cronExpression" value="0 /3 * * * ?"/>
+    </bean>
+
+    <!--监控订单通知短信的状态,每3分钟执行一次-->
+    <bean id="MonitorSmsStatusObject" class="com.alfa.web.job.MonitorSmsStatus"/>
+    <bean id="MonitorSmsStatusJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="MonitorSmsStatusObject"/>
+        <property name="targetMethod" value="runjob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="MonitorSmsStatusTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="MonitorSmsStatusJob"/>
+        <property name="cronExpression" value="0 /3 * * * ?"/>
+    </bean>
+
+    <!--监控刚提交的订单然后发送通知短信给系统管理员，通知分配订单任务,每4分钟执行一次-->
+    <bean id="MonitorStartOrderSmsStatusObject" class="com.alfa.web.job.MonitorStartOrderSmsStatus"/>
+    <bean id="MonitorStartOrderSmsStatusJob"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="MonitorStartOrderSmsStatusObject"/>
+        <property name="targetMethod" value="runjob"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="MonitorStartOrderSmsStatusTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="MonitorStartOrderSmsStatusJob"/>
+        <property name="cronExpression" value="0 /4 * * * ?"/>
+    </bean>
+
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="waitForJobsToCompleteOnShutdown" value="true"/>
+        <property name="triggers">
+            <list>
+                <!--<ref bean="cronTrigger"/>-->
+                <ref bean="MonitorSmsStatusTrigger"/>
+                <ref bean="MonitorOrderStatusTrigger"/>
+                <ref bean="MonitorStartOrderSmsStatusTrigger"/>
+            </list>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

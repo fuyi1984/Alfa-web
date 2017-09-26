@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.weixin.weixin_usersMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.td_weixin_users">
+
+        <id column="Id" property="id" jdbcType="BIGINT"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+
+        <result column="isdownload" property="isdownload" jdbcType="VARCHAR"/>
+        <result column="localurl" property="localurl" jdbcType="VARCHAR"/>
+
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="mobiletoken" property="mobiletoken" jdbcType="VARCHAR"/>
+
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+        <result column="userid" property="userid" jdbcType="BIGINT"/>
+
+        <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="orgname" property="orgname" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="sysuserid" property="sysuserid" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
+            <!--<if test="condition.xmobile==-1">
+                and A.mobile IS NULL or A.mobile = ''
+            </if>-->
+            <if test="condition.nicknamelike!=null">
+                and A.nickname like concat('%', #{condition.nicknamelike}, '%')
+            </if>
+            <if test="condition.isdownload!=null">
+                and A.isdownload=#{condition.isdownload}
+            </if>
+            <if test="condition.localurl!=null">
+                and A.localurl=#{condition.localurl}
+            </if>
+            <if test="condition.nickname!=null">
+                and A.nickname=#{condition.nickname}
+            </if>
+            <if test="condition.mobile!=null">
+                and A.mobile=#{condition.mobile}
+            </if>
+            <if test="condition.mobiletoken!=null">
+                and A.mobiletoken=#{condition.mobiletoken}
+            </if>
+            <if test="condition.Id != null">
+                and A.Id = #{condition.Id}
+            </if>
+            <if test="condition.openid != null">
+                and A.openid = #{condition.openid}
+            </if>
+            <if test="condition.headimgurl != null">
+                and A.headimgurl = #{condition.headimgurl}
+            </if>
+            <if test="condition.state != null">
+                and A.state = #{condition.state}
+            </if>
+            <if test="condition.createdBy != null">
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null">
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null">
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null">
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null">
+                and A.version = #{condition.version}
+            </if>
+            <if test="condition.userid != null">
+                and A.userid = #{condition.userid}
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List">
+        A.Id, A.openid, A.headimgurl,A.state, A.userid,A.createdBy, A.createdDt,
+        A.updatedBy, A.updatedDt, A.version,A.mobile,A.mobiletoken,A.nickname,A.localurl,A.isdownload
+    </sql>
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
+
+        select count(*) from td_weixin_users A
+
+        <if test="condition.roleId != null">
+            <!--INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})-->
+            INNER JOIN SysUsers C ON(C.phone=A.mobile and C.roleId = #{condition.roleId})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+    </select>
+
+    <delete id="deleteByParams" parameterType="com.alfa.web.util.pojo.Criteria">
+        delete from td_weixin_users A
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from td_weixin_users
+        where id = #{id}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.td_weixin_users">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into td_weixin_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="localurl != null">
+                localurl,
+            </if>
+            <if test="isdownload != null">
+                isdownload,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="openid != null">
+                openid,
+            </if>
+            <if test="headimgurl!=null">
+                headimgurl,
+            </if>
+            <if test="state!=null">
+                state,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="mobile!=null">
+                mobile,
+            </if>
+            <if test="mobiletoken!=null">
+                mobiletoken
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id},
+            <if test="nickname != null">
+                #{nickname},
+            </if>
+            <if test="localurl != null">
+                #{localurl},
+            </if>
+            <if test="isdownload != null">
+                #{isdownload},
+            </if>
+            <if test="userid != null">
+                #{userid},
+            </if>
+            <if test="openid != null">
+                #{openid},
+            </if>
+            <if test="headimgurl!=null">
+                #{headimgurl},
+            </if>
+            <if test="state!=null">
+                #{state},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
+            <if test="mobiletoken!=null">
+                #{mobiletoken}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        ,B.userid as sysuserid,B.address,B.orgname,B.realname,B.roleId
+
+        from td_weixin_users A
+
+        left join SysUsers B on(A.mobile = B.phone)
+        <!--left join SysRole D on(B.roleId=D.roleId)-->
+
+        <if test="condition.roleId != null">
+            <!--INNER JOIN SysRole C ON(C.roleId = B.roleId and B.roleId = #{condition.roleId})-->
+            INNER JOIN SysUsers C ON(C.phone= A.mobile and C.roleId = #{condition.roleId})
+        </if>
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+
+        <include refid="common.Mysql_Pagination_Limit"/>
+    </select>
+
+    <select id="selectByParamsForMobile" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
+
+        select
+
+        <if test="distinct">
+            distinct
+        </if>
+
+        <include refid="Base_Column_List"/>
+
+        ,B.userid as sysuserid,B.address,B.orgname,B.realname,B.roleId,E.role_name
+
+        ,SUM(C.realnum) as totalrealnum,SUM(D.average) as totalaverage,COUNT(D.Id) as commentnum
+
+        from td_weixin_users A
+
+        left join SysUsers B on(A.mobile = B.phone)
+        left join SysRole E on(B.roleId=E.roleId)
+        left join orders C on(B.userId=C.workerid)
+        left join ordercomment D on(B.phone=D.mobile and C.orderid=D.orderId)
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.id
+
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <include refid="common.Mysql_Pagination_Limit"/>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from td_weixin_users A
+        where id = #{id}
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.td_weixin_users">
+        update td_weixin_users
+        <set>
+            <if test="nickname!=null">
+                nickname=#{nickname},
+            </if>
+            <if test="headimgurl!=null">
+                headimgurl=#{headimgurl},
+            </if>
+            <if test="localurl != null">
+                localurl=#{localurl},
+            </if>
+            <if test="isdownload != null">
+                isdownload=#{isdownload},
+            </if>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="userid != null">
+                userid=#{userid},
+            </if>
+            <if test="createdBy != null">
+                createdBy=#{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt=#{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy=#{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt=#{updatedDt},
+            </if>
+            <if test="version != null">
+                version=#{version},
+            </if>
+            <if test="mobile != null">
+                mobile=#{mobile},
+            </if>
+            <if test="mobiletoken != null">
+                mobiletoken=#{mobiletoken}
+            </if>
+        </set>
+        where openid=#{openid}
+    </update>
+
+
+</mapper>

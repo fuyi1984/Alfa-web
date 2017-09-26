@@ -1,0 +1,119 @@
+[
+  {
+    "MenuId": 1,
+    "MenuName": "系统管理",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "菜单管理",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/emenu/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 2,
+        "MenuNames": "角色管理",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysrole/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 3,
+        "MenuNames": "用户管理",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysuser/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      },
+      {
+        "MenuId": 4,
+        "MenuNames": "注册统计",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/registerbehavior/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      },
+      {
+        "MenuId": 5,
+        "MenuNames": "系统配置",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/sysconfig/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      },
+      {
+        "MenuId": 6,
+        "MenuNames": "微信用户",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/openid/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 2,
+    "MenuName": "Api过滤",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "网站Api",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/url/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },{
+        "MenuId": 2,
+        "MenuNames": "手机Api",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/url/mobileindex.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 3,
+    "MenuName": "订单管理",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "废油回收",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/order/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },{
+        "MenuId": 2,
+        "MenuNames": "订单统计",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/horder/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      }
+      ,{
+        "MenuId": 3,
+        "MenuNames": "订单评论",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/OrderComment/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 4,
+    "MenuName": "消息管理",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames":"消息通知",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/message/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 2,
+        "MenuNames":"发件箱",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/message/outbox.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      }
+    ]
+  }
+]
