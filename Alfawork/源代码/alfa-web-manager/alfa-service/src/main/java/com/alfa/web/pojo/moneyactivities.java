@@ -46,10 +46,24 @@ public class moneyactivities extends Entity implements Serializable {
     private Date starttime;
 
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     /**
      * 活动结束时间
+
      */
     private Date endtime;
+
+    /**
+     * 活动状态
+     */
+    private String status;
 
     public String getTitle() {
         return title;

@@ -1,22 +1,26 @@
-package com.alfa.web.job;
+package com.alfa.web;
 
+import com.alfa.web.job.MoneySenderStatus;
 import com.alfa.web.pojo.aftersendmoney;
 import com.alfa.web.pojo.beforesendmoney;
 import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.service.money.aftersendmoneyService;
 import com.alfa.web.service.money.beforesendmoneyService;
 import com.alfa.web.service.money.moneyactivitiesServcie;
-import com.alfa.web.util.*;
+import com.alfa.web.util.HttpClientUtil;
+import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
+import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
-import com.alfa.web.vo.moneyvo;
 import com.alfa.web.vo.moneysendresultvo;
+import com.alfa.web.vo.moneyvo;
 import org.json.JSONException;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,11 +28,11 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 监控红包活动发送情况
+ * Created by Administrator on 2017/9/27.
  */
-public class MoneySenderStatus {
+public class MoneySendTest extends TestBase {
 
-    private final Logger logger = LoggerFactory.getLogger(MoneySenderStatus.class);
+    private static Logger logger = LoggerFactory.getLogger(MoneySendTest.class);
 
     /**
      * 红包活动
@@ -48,9 +52,11 @@ public class MoneySenderStatus {
     @Autowired
     private aftersendmoneyService aftersendmoneyService;
 
+
     /**
      * 红包发送
      */
+    @Test
     public void MoneySend() throws IOException, JSONException {
 
         logger.info("MoneySenderStatus Start !!!");
@@ -137,7 +143,7 @@ public class MoneySenderStatus {
 
                                 //region
 
-                                String result=client.connect(PropertiesUtil.getProperty("money.send.url"), "post",JsonUtil.toJson(mv));
+                                String result=client.connect(PropertiesUtil.getProperty("money.send.url"), "post", JsonUtil.toJson(mv));
 
                                 moneysendresultvo resultvo=JsonUtil.fromJson(result,moneysendresultvo.class);
 

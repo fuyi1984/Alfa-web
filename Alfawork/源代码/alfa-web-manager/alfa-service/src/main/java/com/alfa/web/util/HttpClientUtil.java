@@ -14,6 +14,7 @@ import java.net.URL;
  * Created by Administrator on 2017/4/26.
  */
 public class HttpClientUtil {
+
     private static Log log = LogFactory.getLog(HttpClientUtil.class);
 
     private Integer connectTimeout = 3000;

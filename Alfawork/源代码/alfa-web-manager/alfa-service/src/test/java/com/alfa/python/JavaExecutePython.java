@@ -1,5 +1,6 @@
 package com.alfa.python;
 
+import com.alfa.web.util.PropertiesUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.python.core.PyFunction;
@@ -7,13 +8,15 @@ import org.python.core.PyInteger;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
+import java.util.Properties;
+
 /**
  * jython库测试
  */
 public class JavaExecutePython {
 
     public PythonInterpreter interpreter ;
-    public String basePath = JavaExecutePython.class.getResource("").getPath();
+    //public String basePath = JavaExecutePython.class.getResource("").getPath();
 
     @Before
     public void start(){
@@ -23,7 +26,7 @@ public class JavaExecutePython {
     //在java中调用本机python脚本中的函数
     @Test
     public void test02(){
-        interpreter.execfile(basePath+"my_util.py");
+        interpreter.execfile(PropertiesUtil.getProperty("python.dir.location")+"/my_util.py");
         PyFunction func = (PyFunction) interpreter.get("adder",PyFunction.class);
 
         int a = 2010, b = 2;

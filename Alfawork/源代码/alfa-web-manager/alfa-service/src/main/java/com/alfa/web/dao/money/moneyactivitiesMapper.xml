@@ -13,6 +13,7 @@
         <result column="remainingnum" property="remainingnum" jdbcType="VARCHAR"/>
         <result column="starttime" property="starttime" jdbcType="VARCHAR"/>
         <result column="endtime" property="endtime" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -25,6 +26,10 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+
+            <if test="condition.status!=null">
+                and status = #{condition.status}
+            </if>
 
             <if test="condition.titlelike!=null">
                 and title like concat('%', #{condition.titlelike}, '%')
@@ -61,6 +66,13 @@
                 and endtime = #{condition.endtime}
             </if>
 
+            <if test="condition.createDtFrom != null">
+                and starttime <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null">
+                and endtime <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+
             <if test="condition.createdBy != null">
                 and createdBy = #{condition.createdBy}
             </if>
@@ -82,7 +94,7 @@
 
     <sql id="Base_Column_List">
         Id, title, content,money, totalnum,createdBy,createdDt,
-        updatedBy, updatedDt, version,sendednum,remainingnum,starttime,endtime
+        updatedBy, updatedDt, version,sendednum,remainingnum,starttime,endtime,status
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.moneyactivities">
@@ -91,6 +103,9 @@
         </selectKey>
         insert into moneyactivities
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="status!=null">
+                status,
+            </if>
             <if test="title != null">
                 title,
             </if>
@@ -132,6 +147,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="status!=null">
+                #{status},
+            </if>
             <if test="title != null">
                 #{title},
             </if>
@@ -192,6 +210,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.moneyactivities">
         update moneyactivities
         <set>
+            <if test="status!=null">
+                status=#{status},
+            </if>
             <if test="title != null">
                 title=#{title},
             </if>
