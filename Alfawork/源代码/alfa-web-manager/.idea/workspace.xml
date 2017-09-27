@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties" afterPath="$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java" afterPath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -50,93 +49,7 @@
     <favorites_list name="alfa-web-manager" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MoneySendTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1910">
-              <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-              <folding>
-                <element signature="e#3479#3487#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moneyactivitiesServcie.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/money/moneyactivitiesServcie.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="34" column="40" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moneyactivitiesServcieImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/money/Impl/moneyactivitiesServcieImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="53" column="47" lean-forward="false" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysRoleServiceTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/SysRoleServiceTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Criteria.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/pojo/Criteria.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpClientUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moneyactivitiesMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="36" column="38" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moneyactivitiesMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="72" column="39" lean-forward="false" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
-              <folding>
-                <marker date="1506493443657" expanded="true" signature="7018:7054" ph="select count... moneyactivities" />
-                <marker date="1506493443657" expanded="true" signature="7557:8996" ph="update money... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -254,12 +167,12 @@
         <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/JavaExecutePython.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/moneyvo.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/moneyactivities.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/moneysendresultvo.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties" />
         <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java" />
       </list>
     </option>
   </component>
@@ -592,6 +505,108 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="redis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="others" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -624,6 +639,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-web-manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="alfa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -662,48 +715,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-web-manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="alfa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="money" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -798,32 +809,6 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.MoneySendTest.MoneySend">
-    <configuration default="false" name="beforesendmoneyServiceTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.alfa.web.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="alfa-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.alfa.web" />
-      <option name="MAIN_CLASS_NAME" value="com.alfa.web.beforesendmoneyServiceTest" />
-      <option name="METHOD_NAME" value="delete" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="JavaExecutePython.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -915,6 +900,32 @@
       <option name="PACKAGE_NAME" value="com.alfa.web" />
       <option name="MAIN_CLASS_NAME" value="com.alfa.web.MoneySendTest" />
       <option name="METHOD_NAME" value="beforesendmoneyAdd" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="MoneySendTest.doubleformat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.alfa.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="alfa-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.alfa.web" />
+      <option name="MAIN_CLASS_NAME" value="com.alfa.web.MoneySendTest" />
+      <option name="METHOD_NAME" value="doubleformat" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -1422,19 +1433,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 8.5.15" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.beforesendmoneyServiceTest.delete" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02 (1)" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.MoneySendTest.MoneySend" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.MoneySendTest.beforesendmoneyAdd" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02 (1)" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.MoneySendTest.MoneySend" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.MoneySendTest.beforesendmoneyAdd" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.MoneySendTest.doubleformat" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.MoneySendTest.MoneySend" />
         <item index="1" class="java.lang.String" itemvalue="JUnit.MoneySendTest.beforesendmoneyAdd" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02 (1)" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.beforesendmoneyServiceTest.delete" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.MoneySendTest.doubleformat" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02 (1)" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.JavaExecutePython.test02" />
       </list>
     </recent_temporary>
   </component>
@@ -1754,21 +1765,7 @@
       <workItem from="1506304301254" duration="24855000" />
       <workItem from="1506390304837" duration="1027000" />
       <workItem from="1506392353284" duration="20604000" />
-      <workItem from="1506476254195" duration="14626000" />
-    </task>
-    <task id="LOCAL-00237" summary="2017-8-29">
-      <created>1503976835404</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
-      <option name="project" value="LOCAL" />
-      <updated>1503976835405</updated>
-    </task>
-    <task id="LOCAL-00238" summary="2017-8-29">
-      <created>1503979554899</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
-      <option name="project" value="LOCAL" />
-      <updated>1503979554899</updated>
+      <workItem from="1506476254195" duration="18611000" />
     </task>
     <task id="LOCAL-00239" summary="2017-8-29">
       <created>1503998544173</created>
@@ -2099,43 +2096,57 @@
       <option name="project" value="LOCAL" />
       <updated>1506483871332</updated>
     </task>
-    <option name="localTasksCounter" value="286" />
+    <task id="LOCAL-00286" summary="2017-9-27">
+      <created>1506497269612</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1506497269613</updated>
+    </task>
+    <task id="LOCAL-00287" summary="2017-9-27">
+      <created>1506497695152</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1506497695152</updated>
+    </task>
+    <option name="localTasksCounter" value="288" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="JavaExecutePython_test02_(1) - 2017.09.26 at 16h 18m 36s.xml">
-      <configuration name="JavaExecutePython.test02 (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 19m 07s.xml">
+    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 16h 14m 15s.xml">
       <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 21m 01s.xml">
+    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 16h 15m 15s.xml">
       <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 32m 23s.xml">
+    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 16h 16m 01s.xml">
       <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 42m 59s.xml">
+    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 16h 20m 47s.xml">
       <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 53m 47s.xml">
+    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 16h 32m 59s.xml">
       <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 14h 55m 22s.xml">
-      <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 15h 23m 20s.xml">
-      <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoneySendTest_MoneySend - 2017.09.27 at 15h 25m 02s.xml">
-      <configuration name="MoneySendTest.MoneySend" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoneySendTest_beforesendmoneyAdd - 2017.09.27 at 15h 10m 36s.xml">
+    <history-entry file="MoneySendTest_beforesendmoneyAdd - 2017.09.27 at 16h 13m 34s.xml">
       <configuration name="MoneySendTest.beforesendmoneyAdd" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MoneySendTest_beforesendmoneyAdd - 2017.09.27 at 16h 15m 34s.xml">
+      <configuration name="MoneySendTest.beforesendmoneyAdd" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MoneySendTest_beforesendmoneyAdd - 2017.09.27 at 16h 20m 24s.xml">
+      <configuration name="MoneySendTest.beforesendmoneyAdd" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MoneySendTest_doubleformat - 2017.09.27 at 16h 18m 20s.xml">
+      <configuration name="MoneySendTest.doubleformat" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MoneySendTest_doubleformat - 2017.09.27 at 16h 19m 32s.xml">
+      <configuration name="MoneySendTest.doubleformat" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2617817000" />
+    <option name="totallyTimeSpent" value="2621802000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2147,14 +2158,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561985" sideWeight="0.5030349" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27996966" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27996966" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2173,7 +2183,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44793388" sideWeight="0.4848255" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.4969651" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30955994" sideWeight="0.48099172" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30955994" sideWeight="0.48099172" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24051593" sideWeight="0.5123967" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2936267" sideWeight="0.5190083" order="7" side_tool="true" content_ui="tabs" />
@@ -2281,8 +2291,14 @@
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java</url>
+          <line>153</line>
+          <properties />
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="117" />
+      <option name="time" value="120" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2645,34 +2661,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="58" lean-forward="false" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/pojo/Criteria.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/money/moneyactivitiesServcie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="34" column="40" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -2722,14 +2714,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar!/org/junit/runners/model/FrameworkMethod.class">
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/money/moneyactivitiesServcie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#728#922#0" expanded="true" />
-            <element signature="e#921#922#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="376">
+          <caret line="34" column="40" lean-forward="false" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2741,13 +2730,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar!/org/junit/runners/model/FrameworkMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/MoneySendTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1910">
-          <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+        <state relative-caret-position="525">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
             <element signature="e#3479#3487#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/HttpClientUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4517">
+          <caret line="21" column="36" lean-forward="false" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/resources/config/others/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="8" column="50" lean-forward="false" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>

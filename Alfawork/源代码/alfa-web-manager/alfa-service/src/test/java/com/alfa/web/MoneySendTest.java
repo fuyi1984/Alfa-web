@@ -136,7 +136,11 @@ public class MoneySendTest extends TestBase {
 
                                 Double randomprice=Double.valueOf(df.format(rand.nextDouble() * (price + 0.01 - 1.00) + 1.00));
 
-                                mv.setNum(WebUtil.encryptBase64(String.valueOf(randomprice)));
+                                System.out.println(randomprice);
+
+                                //mv.setNum(WebUtil.encryptBase64(String.valueOf(randomprice)));
+
+                                mv.setNum(WebUtil.encryptBase64("1.04"));
 
                                 //endregion
 
@@ -156,6 +160,8 @@ public class MoneySendTest extends TestBase {
                                     aftersendmoney.setOrderid(item.getOrderid());
                                     aftersendmoney.setOrderno(item.getOrderno());
                                     aftersendmoney.setMoney(String.valueOf(randomprice));
+
+                                    System.out.println(aftersendmoney.getMoney());
 
                                     this.aftersendmoneyService.insertSelective(aftersendmoney);
 
@@ -207,6 +213,16 @@ public class MoneySendTest extends TestBase {
         money.setOrderid(296l);
         money.setOrderno("SN20170925164519");
         this.beforesendmoneyService.insertSelective(money);
+    }
+
+    @Test
+    public void doubleformat(){
+      /*  DecimalFormat df= new DecimalFormat("######0.00");
+        double d1 = 3.23656;
+
+        System.out.println(df.format(d1));*/
+
+        System.out.println(WebUtil.decryptBase64(WebUtil.encryptBase64("1.06")));
     }
 
 }

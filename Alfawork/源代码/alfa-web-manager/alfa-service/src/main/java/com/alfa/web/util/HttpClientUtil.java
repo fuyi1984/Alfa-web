@@ -17,9 +17,9 @@ public class HttpClientUtil {
 
     private static Log log = LogFactory.getLog(HttpClientUtil.class);
 
-    private Integer connectTimeout = 3000;
+    private Integer connectTimeout = 60000;
 
-    private Integer readTimeout = 2000;
+    private Integer readTimeout = 60000;
 
     private String encoding = "UTF-8";
 
