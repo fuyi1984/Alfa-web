@@ -7,10 +7,7 @@ import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.service.money.aftersendmoneyService;
 import com.alfa.web.service.money.beforesendmoneyService;
 import com.alfa.web.service.money.moneyactivitiesServcie;
-import com.alfa.web.util.HttpClientUtil;
-import com.alfa.web.util.JsonUtil;
-import com.alfa.web.util.PropertiesUtil;
-import com.alfa.web.util.WebUtil;
+import com.alfa.web.util.*;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.vo.moneysendresultvo;
 import com.alfa.web.vo.moneyvo;
@@ -21,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,7 +67,8 @@ public class MoneySendTest extends TestBase {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
             Random rand = new Random();
-            HttpClientUtil client=new HttpClientUtil();
+            HttpClientUtil client = new HttpClientUtil();
+            DecimalFormat df= new DecimalFormat("######0.00");
 
             Criteria criteria = new Criteria();
             /**
@@ -89,8 +88,6 @@ public class MoneySendTest extends TestBase {
 
                 if (money.getId().equals(4l)) {
 
-                    int moneysum=0;
-
                     //活动启用
                     if (money.getStatus().equals("1")) {
 
@@ -105,11 +102,11 @@ public class MoneySendTest extends TestBase {
                         int totalnum = Integer.parseInt(money.getTotalnum());
 
                         //每个红包的最大金额数
-                        double price = totalmoney / totalnum;
+                        double price = Double.valueOf(df.format(totalmoney / totalnum));
 
                         //endregion
 
-                        if (price >= 1.00) {
+                        if (price >= 1.00 && price <= 200.00) {
 
                             //region 查询需要发红包的订单
 
@@ -136,38 +133,43 @@ public class MoneySendTest extends TestBase {
                                 //密钥
                                 mv.setPaykey(WebUtil.encryptBase64(PropertiesUtil.getProperty("weixin.money.send.key")));
 
-                                mv.setNum(WebUtil.encryptBase64(String.valueOf(rand.nextDouble()*(price+0.01-1.00)+1.00)));
+
+                                Double randomprice=Double.valueOf(df.format(rand.nextDouble() * (price + 0.01 - 1.00) + 1.00));
+
+                                mv.setNum(WebUtil.encryptBase64(String.valueOf(randomprice)));
 
                                 //endregion
 
 
                                 //region
 
-                                String result=client.connect(PropertiesUtil.getProperty("money.send.url"), "post", JsonUtil.toJson(mv));
+                                String result = client.connect(PropertiesUtil.getProperty("money.send.url"), "post", JsonUtil.toJson(mv));
 
-                                moneysendresultvo resultvo=JsonUtil.fromJson(result,moneysendresultvo.class);
+                                moneysendresultvo resultvo = JsonUtil.fromJson(result, moneysendresultvo.class);
 
-                                if(resultvo.getCode()==0) {
+                                if (resultvo.getCode() == 0) {
 
-                                    /**
-                                     * 红包发送成功
-                                     */
-
+                                    //红包发送成功
                                     aftersendmoney aftersendmoney = new aftersendmoney();
                                     aftersendmoney.setActivitiesid(item.getActivitiesid());
                                     aftersendmoney.setOpenid(item.getOpenid());
                                     aftersendmoney.setOrderid(item.getOrderid());
                                     aftersendmoney.setOrderno(item.getOrderno());
-                                    aftersendmoney.setMoney(mv.getNum());
+                                    aftersendmoney.setMoney(String.valueOf(randomprice));
 
                                     this.aftersendmoneyService.insertSelective(aftersendmoney);
 
                                     idlist.add(String.valueOf(item.getId()));
 
-                                    moneysum+=1;
+                                    if(StringUtil.isNullOrEmpty(money.getSendednum()))
+                                    {
+                                        money.setSendednum("1");
+                                    }else{
+                                        money.setSendednum(String.valueOf(Integer.parseInt(money.getSendednum())+1));
+                                    }
 
-                                    money.setSendednum(String.valueOf(moneysum));
-                                    money.setRemainingnum(String.valueOf(Integer.parseInt(money.getTotalnum())-moneysum));
+                                    money.setRemainingnum(String.valueOf(Integer.parseInt(money.getTotalnum())-Integer.parseInt(money.getSendednum())));
+
                                     this.moneyactivitiesServcie.updateByPrimaryKeySelective(money);
                                 }
 
@@ -191,6 +193,20 @@ public class MoneySendTest extends TestBase {
         }
 
         logger.info("MoneySenderStatus End !!!");
+    }
+
+
+    /**
+     * 红包发送的订单
+     */
+    @Test
+    public void beforesendmoneyAdd(){
+        beforesendmoney money=new beforesendmoney();
+        money.setOpenid("oZr2WwVrs0MqAGxPIzk1RNtuXsqE");
+        money.setActivitiesid(4l);
+        money.setOrderid(296l);
+        money.setOrderno("SN20170925164519");
+        this.beforesendmoneyService.insertSelective(money);
     }
 
 }
