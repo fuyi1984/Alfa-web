@@ -25,43 +25,43 @@
         <trim prefix="where" prefixOverrides="and|or">
 
             <if test="condition.money!=null">
-                and money = #{condition.money}
+                and A.money = #{condition.money}
             </if>
             <if test="condition.orderno!=null">
-                and orderno = #{condition.orderno}
+                and A.orderno = #{condition.orderno}
             </if>
             <if test="condition.openid!=null">
-                and openid = #{condition.openid}
+                and A.openid = #{condition.openid}
             </if>
             <if test="condition.orderid!=null">
-                and orderid=#{condition.orderid}
+                and A.orderid=#{condition.orderid}
             </if>
             <if test="condition.activitiesid!=null">
-                and activitiesid=#{condition.activitiesid}
+                and A.activitiesid=#{condition.activitiesid}
             </if>
 
             <if test="condition.createdBy != null">
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null">
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null">
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null">
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null">
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
-        Id, openid, orderid,activitiesid,createdBy,createdDt,
-        updatedBy, updatedDt, version,orderno,money
+        A.Id, A.openid,A.activitiesid,A.createdDt,
+        A.money
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.aftersendmoney">
@@ -194,7 +194,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from aftersendmoney
+        from aftersendmoney A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>

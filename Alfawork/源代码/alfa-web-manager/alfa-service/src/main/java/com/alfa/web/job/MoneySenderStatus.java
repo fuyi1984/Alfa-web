@@ -63,7 +63,8 @@ public class MoneySenderStatus {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
             Random rand = new Random();
-            HttpClientUtil client=new HttpClientUtil();
+            HttpClientUtil client = new HttpClientUtil();
+            DecimalFormat df = new DecimalFormat("######0.00");
 
             Criteria criteria = new Criteria();
             /**
@@ -83,27 +84,31 @@ public class MoneySenderStatus {
 
                 if (money.getId().equals(4l)) {
 
-                    int moneysum=0;
-
                     //活动启用
                     if (money.getStatus().equals("1")) {
 
-                        //region 新人红包活动
+                        //剩余红包数不能为0
+                        if (StringUtil.isNullOrEmpty(money.getRemainingnum())||!money.getRemainingnum().equals("0")) {
 
-                        //region 红包金额的计算
+                            //region 新人红包活动
 
-                        //总金额
-                        double totalmoney = Double.parseDouble(money.getMoney());
+                            //region 红包金额的计算
 
-                        //红包总数
-                        int totalnum = Integer.parseInt(money.getTotalnum());
+                            //总金额
+                            //double totalmoney = Double.parseDouble(money.getMoney());
 
-                        //每个红包的最大金额数
-                        double price = totalmoney / totalnum;
+                            //红包总数
+                            //int totalnum = Integer.parseInt(money.getTotalnum());
 
-                        //endregion
+                            //每个红包的最大金额数
+                            //double price = Double.valueOf(df.format(totalmoney / totalnum));
 
-                        if (price >= 1.00) {
+                            double maxprice = Double.valueOf(df.format(Double.valueOf(money.getMaxprice())));
+                            double minprice = Double.valueOf(df.format(Double.valueOf(money.getMinprice())));
+
+                            //endregion
+
+                            //if (price >= 1.00 && price <= 200.00) {
 
                             //region 查询需要发红包的订单
 
@@ -130,38 +135,48 @@ public class MoneySenderStatus {
                                 //密钥
                                 mv.setPaykey(WebUtil.encryptBase64(PropertiesUtil.getProperty("weixin.money.send.key")));
 
-                                mv.setNum(WebUtil.encryptBase64(String.valueOf(rand.nextDouble()*(price+0.01-1.00)+1.00)));
+
+                                //Double randomprice = Double.valueOf(df.format(rand.nextDouble() * (price + 0.01 - 1.00) + 1.00));
+
+                                //System.out.println(randomprice);
+
+                                //mv.setNum(WebUtil.encryptBase64(String.valueOf(randomprice)));
+
+                                double randomprice = rand.nextDouble() * (maxprice + 0.01 - minprice) + minprice;
+
+                                mv.setNum(WebUtil.encryptBase64(df.format(randomprice)));
 
                                 //endregion
 
 
                                 //region
 
-                                String result=client.connect(PropertiesUtil.getProperty("money.send.url"), "post",JsonUtil.toJson(mv));
+                                String result = client.connect(PropertiesUtil.getProperty("money.send.url"), "post", JsonUtil.toJson(mv));
 
-                                moneysendresultvo resultvo=JsonUtil.fromJson(result,moneysendresultvo.class);
+                                moneysendresultvo resultvo = JsonUtil.fromJson(result, moneysendresultvo.class);
 
-                                if(resultvo.getCode()==0) {
+                                if (resultvo.getCode() == 0) {
 
-                                    /**
-                                     * 红包发送成功
-                                     */
-
+                                    //红包发送成功
                                     aftersendmoney aftersendmoney = new aftersendmoney();
-                                    aftersendmoney.setActivitiesid(item.getActivitiesid());
+                                    aftersendmoney.setActivitiesid(money.getId());
                                     aftersendmoney.setOpenid(item.getOpenid());
-                                    aftersendmoney.setOrderid(item.getOrderid());
-                                    aftersendmoney.setOrderno(item.getOrderno());
-                                    aftersendmoney.setMoney(mv.getNum());
+                                    aftersendmoney.setMoney(df.format(randomprice));
+
+                                    System.out.println(aftersendmoney.getMoney());
 
                                     this.aftersendmoneyService.insertSelective(aftersendmoney);
 
                                     idlist.add(String.valueOf(item.getId()));
 
-                                    moneysum+=1;
+                                    if (StringUtil.isNullOrEmpty(money.getSendednum())) {
+                                        money.setSendednum("1");
+                                    } else {
+                                        money.setSendednum(String.valueOf(Integer.parseInt(money.getSendednum()) + 1));
+                                    }
 
-                                    money.setSendednum(String.valueOf(moneysum));
-                                    money.setRemainingnum(String.valueOf(Integer.parseInt(money.getTotalnum())-moneysum));
+                                    money.setRemainingnum(String.valueOf(Integer.parseInt(money.getTotalnum()) - Integer.parseInt(money.getSendednum())));
+
                                     this.moneyactivitiesServcie.updateByPrimaryKeySelective(money);
                                 }
 
@@ -175,9 +190,10 @@ public class MoneySenderStatus {
 
                             //endregion
 
-                        }
+                            //}
 
-                        //endregion
+                            //endregion
+                        }
                     }
                 }
             }
