@@ -56,9 +56,9 @@
     </sql>
 
     <sql id="Base_Column_List">
-        <!--A.Id, A.openid, A.orderid,A.activitiesid,A.createdBy,A.createdDt,
-        A.updatedBy, A.updatedDt, A.version,A.orderno-->
-        A.Id,A.openid
+        A.Id, A.openid, A.orderid,A.activitiesid,A.createdBy,A.createdDt,
+        A.updatedBy, A.updatedDt, A.version,A.orderno
+        <!--A.Id,A.openid-->
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.beforesendmoney">
