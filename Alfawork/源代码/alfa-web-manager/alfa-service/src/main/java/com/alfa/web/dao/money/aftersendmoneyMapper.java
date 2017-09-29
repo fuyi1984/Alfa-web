@@ -6,7 +6,7 @@ import com.alfa.web.util.pojo.Criteria;
 import java.util.List;
 
 /**
- * 红包发送后的成功
+ * 红包发送成功
  */
 public interface aftersendmoneyMapper {
 

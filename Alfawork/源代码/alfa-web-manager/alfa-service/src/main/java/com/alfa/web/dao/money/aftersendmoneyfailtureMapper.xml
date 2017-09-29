@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.alfa.web.dao.money.activitiesorderMapper">
+<mapper namespace="com.alfa.web.dao.money.aftersendmoneyfailtureMapper">
 
-
-    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.activitiesorder">
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.aftersendmoneyfailture">
 
         <id column="Id" property="id" jdbcType="BIGINT"/>
 
@@ -11,11 +10,7 @@
         <result column="orderid" property="orderid" jdbcType="BIGINT"/>
         <result column="activitiesid" property="activitiesid" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
-
-        <result column="isfollow" property="isfollow" jdbcType="VARCHAR"/>
-        <result column="issubmit" property="issubmit" jdbcType="VARCHAR"/>
-        <result column="isfinish" property="isfinish" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="errormessage" property="errormessage" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -25,67 +20,58 @@
 
     </resultMap>
 
+
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
-            <if test="condition.status!=null">
-                and status = #{condition.status}
+            <if test="condition.errormessage!=null">
+                and A.errormessage = #{condition.errormessage}
             </if>
             <if test="condition.orderno!=null">
-                and orderno = #{condition.orderno}
+                and A.orderno = #{condition.orderno}
             </if>
             <if test="condition.openid!=null">
-                and openid = #{condition.openid}
+                and A.openid = #{condition.openid}
             </if>
             <if test="condition.orderid!=null">
-                and orderid=#{condition.orderid}
+                and A.orderid=#{condition.orderid}
             </if>
             <if test="condition.activitiesid!=null">
-                and activitiesid=#{condition.activitiesid}
-            </if>
-
-            <if test="condition.isfollow!=null">
-                and isfollow=#{condition.isfollow}
-            </if>
-            <if test="condition.issubmit!=null">
-                and issubmit=#{condition.issubmit}
-            </if>
-            <if test="condition.isfinish!=null">
-                and isfinish=#{condition.isfinish}
+                and A.activitiesid=#{condition.activitiesid}
             </if>
 
             <if test="condition.createdBy != null">
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null">
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null">
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null">
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null">
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
-        Id, openid, orderid,activitiesid, isfollow,issubmit,isfinish,createdBy,createdDt,
-        updatedBy, updatedDt, version, orderno,status
+        A.Id, A.openid,A.activitiesid,A.createdDt,
+        A.errormessage
     </sql>
 
-    <insert id="insertSelective" parameterType="com.alfa.web.pojo.activitiesorder">
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.aftersendmoneyfailture">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into activitiesorder
+        insert into aftersendmoneyfailture
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="status!=null">
-                status,
+            <if test="errormessage != null">
+                errormessage,
             </if>
             <if test="orderno != null">
                 orderno,
@@ -98,15 +84,6 @@
             </if>
             <if test="activitiesid != null">
                 activitiesid,
-            </if>
-            <if test="isfollow != null">
-                isfollow,
-            </if>
-            <if test="issubmit != null">
-                issubmit,
-            </if>
-            <if test="isfinish != null">
-                isfinish,
             </if>
             <if test="createdBy != null">
                 createdBy,
@@ -125,8 +102,8 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="status!=null">
-                #{status},
+            <if test="errormessage != null">
+                #{errormessage},
             </if>
             <if test="orderno != null">
                 #{orderno},
@@ -139,15 +116,6 @@
             </if>
             <if test="activitiesid != null">
                 #{activitiesid},
-            </if>
-            <if test="isfollow != null">
-                #{isfollow},
-            </if>
-            <if test="issubmit != null">
-                #{issubmit},
-            </if>
-            <if test="isfinish != null">
-                #{isfinish},
             </if>
             <if test="createdBy != null">
                 #{createdBy},
@@ -168,25 +136,25 @@
     </insert>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from activitiesorder
+        select count(*) from aftersendmoneyfailture
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
 
     <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
-        delete from activitiesorder
+        delete from aftersendmoneyfailture
         where id in
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </delete>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.activitiesorder">
-        update activitiesorder
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.aftersendmoneyfailture">
+        update aftersendmoneyfailture
         <set>
-            <if test="status!=null">
-                status=#{status},
+            <if test="errormessage != null">
+                errormessage=#{errormessage},
             </if>
             <if test="orderno != null">
                 orderno=#{orderno},
@@ -200,15 +168,7 @@
             <if test="activitiesid != null">
                 activitiesid=#{activitiesid},
             </if>
-            <if test="isfollow != null">
-                isfollow=#{isfollow},
-            </if>
-            <if test="issubmit != null">
-                issubmit=#{issubmit},
-            </if>
-            <if test="isfinish != null">
-                isfinish=#{isfinish},
-            </if>
+
             <if test="createdBy != null">
                 createdBy = #{createdBy},
             </if>
@@ -228,56 +188,13 @@
         where id = #{id}
     </update>
 
-    <update id="updateByOrderid" parameterType="com.alfa.web.pojo.activitiesorder">
-        update activitiesorder
-        <set>
-            <if test="status!=null">
-                status=#{status},
-            </if>
-            <if test="orderno != null">
-                orderno=#{orderno},
-            </if>
-            <if test="openid != null">
-                openid=#{openid},
-            </if>
-            <if test="activitiesid != null">
-                activitiesid=#{activitiesid},
-            </if>
-            <if test="isfollow != null">
-                isfollow=#{isfollow},
-            </if>
-            <if test="issubmit != null">
-                issubmit=#{issubmit},
-            </if>
-            <if test="isfinish != null">
-                isfinish=#{isfinish},
-            </if>
-            <if test="createdBy != null">
-                createdBy = #{createdBy},
-            </if>
-            <if test="createdDt != null">
-                createdDt = #{createdDt},
-            </if>
-            <if test="updatedBy != null">
-                updatedBy = #{updatedBy},
-            </if>
-            <if test="updatedDt != null">
-                updatedDt = #{updatedDt},
-            </if>
-            <if test="version != null">
-                version = #{version},
-            </if>
-        </set>
-        where orderid=#{orderid}
-    </update>
-
     <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
         select
         <if test="distinct">
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from activitiesorder
+        from aftersendmoneyfailture A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -286,6 +203,7 @@
         </if>
         <include refid="common.Mysql_Pagination_Limit"/>
     </select>
+
 
 
 </mapper>

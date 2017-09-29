@@ -1,18 +1,18 @@
-package com.alfa.web.service.money;
+package com.alfa.web.dao.money;
 
-import com.alfa.web.pojo.aftersendmoney;
+import com.alfa.web.pojo.aftersendmoneyfailture;
 import com.alfa.web.util.pojo.Criteria;
 
 import java.util.List;
 
 /**
- * 红包发送成功
+ * 红包发送失败
  */
-public interface aftersendmoneyService {
+public interface aftersendmoneyfailtureMapper {
     /**
      * 保存属性不为空的记录
      */
-    int insertSelective(aftersendmoney record);
+    int insertSelective(aftersendmoneyfailture record);
 
     /**
      * 根据条件查询记录总数
@@ -27,10 +27,10 @@ public interface aftersendmoneyService {
     /**
      * 根据主键更新属性不为空的记录
      */
-    int updateByPrimaryKeySelective(aftersendmoney record);
+    int updateByPrimaryKeySelective(aftersendmoneyfailture record);
 
     /**
      * 根据条件查询记录集
      */
-    List<aftersendmoney> selectByParams(Criteria example);
+    List<aftersendmoneyfailture> selectByParams(Criteria example);
 }

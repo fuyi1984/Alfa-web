@@ -3,7 +3,7 @@ package com.alfa.web.pojo;
 import java.io.Serializable;
 
 /**
- * 红包发送成功表
+ * 红包发送成功
  */
 public class aftersendmoney extends Entity implements Serializable {
 

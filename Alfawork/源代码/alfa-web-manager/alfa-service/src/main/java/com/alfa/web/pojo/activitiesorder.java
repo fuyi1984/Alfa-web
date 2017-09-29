@@ -99,4 +99,17 @@ public class activitiesorder extends Entity implements Serializable {
     public void setIsfinish(String isfinish) {
         this.isfinish = isfinish;
     }
+
+    /**
+     * 状态
+     */
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

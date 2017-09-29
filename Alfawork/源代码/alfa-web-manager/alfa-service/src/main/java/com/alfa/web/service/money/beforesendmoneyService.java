@@ -6,7 +6,7 @@ import com.alfa.web.util.pojo.Criteria;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/22.
+ * 红包发送前的准备
  */
 public interface beforesendmoneyService {
     /**

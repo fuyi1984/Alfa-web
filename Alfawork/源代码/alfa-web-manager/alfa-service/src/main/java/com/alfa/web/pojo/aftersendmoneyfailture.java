@@ -3,9 +3,9 @@ package com.alfa.web.pojo;
 import java.io.Serializable;
 
 /**
- * 红包发送前的准备
+ * 红包发送失败
  */
-public class beforesendmoney extends Entity implements Serializable {
+public class aftersendmoneyfailture extends Entity implements Serializable {
 
     /**
      * openid
@@ -23,19 +23,18 @@ public class beforesendmoney extends Entity implements Serializable {
      */
     private Long orderid;
 
-    public String getOrderno() {
-        return orderno;
-    }
-
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
-    }
-
     /**
      * 订单号
 
      */
     private String orderno;
+
+
+    /**
+     * 错误信息
+     */
+    private String errormessage;
+
 
     public String getOpenid() {
         return openid;
@@ -59,5 +58,21 @@ public class beforesendmoney extends Entity implements Serializable {
 
     public void setOrderid(Long orderid) {
         this.orderid = orderid;
+    }
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno;
+    }
+
+    public String getErrormessage() {
+        return errormessage;
+    }
+
+    public void setErrormessage(String errormessage) {
+        this.errormessage = errormessage;
     }
 }
