@@ -29,7 +29,7 @@ public class registerbehaviorvo {
     public String phone;
 
     /**
-     * 地址
+     * 单位地址
      */
     private String address;
 

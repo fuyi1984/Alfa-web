@@ -49,7 +49,7 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
     @Override
     public Response insertUser(registerbehaviorvo user) throws Exception {
 
-        //region
+        //region 添加文件信息
 
         fileinfo fileinfo=new fileinfo();
 
@@ -147,6 +147,7 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
 
             //region 添加收油地址历史记录
 
+            /*
             criteria.clear();
             criteria.put("iphone", user.getPhone());
             criteria.put("address", user.getTargetaddress());
@@ -166,6 +167,7 @@ public class registerbehaviorRestImpl implements registerbehaviorRest {
                 }
 
             }
+            */
 
             //endregion
 
