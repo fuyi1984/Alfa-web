@@ -648,6 +648,7 @@ public class SysUserRestImpl implements SysUserRest {
                             //region 用户信息关联微信账号信息
 
                             td_weixin_users weixin = weixinlist.get(0);
+
                             weixin.setMobile(phone);
                             weixin.setMobiletoken(token);
 

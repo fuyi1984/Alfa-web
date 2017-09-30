@@ -178,7 +178,7 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             criteria.put("roleId",  map.get("roleId").toString());
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+        WebUtil.preparePageParams(request, pager, criteria, null);
 
         List<td_weixin_users> td_weixin_usersList = this.weixin_usersService.selectByParams(criteria);
         int count = this.weixin_usersService.countByParams(criteria);
