@@ -126,3 +126,87 @@ function initdatagrid() {
         });
     }
 }
+
+
+/**
+ * 新增
+ */
+function doAdd(){
+
+}
+
+/**
+ * 修改
+ */
+function doEdit(){
+
+}
+
+/**
+ * 删除
+ */
+function doDelete(){
+    var rows = $('#moneygrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要删除的数据');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].id);
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.id);
+    });
+
+
+    $.messager.confirm('提示', '是否删除这些数据?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/money/batchdeletemoneyactivities?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '删除成功！', "info", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '删除失败！', "error", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#moneygrid').datagrid("clearSelections");
+                $.messager.alert('错误', '删除失败！', "error");
+            }
+        });
+    });
+}
+
+/**
+ * 停用
+ */
+function doStop() {
+    
+}
+
+/**
+ * 启用
+ */
+function doStart(){
+
+}
