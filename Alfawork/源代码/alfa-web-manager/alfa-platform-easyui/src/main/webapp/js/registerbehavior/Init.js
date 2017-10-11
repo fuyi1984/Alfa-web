@@ -15,7 +15,7 @@ $(function () {
 
 function initdatagrid() {
     $('#registerbehaviorgrid').datagrid({
-        title: '注册统计 ',
+        title: '产废单位注册信息统计',
         singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,

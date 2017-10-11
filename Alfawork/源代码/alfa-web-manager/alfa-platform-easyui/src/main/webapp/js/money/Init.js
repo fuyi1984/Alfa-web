@@ -17,8 +17,8 @@ $(function () {
 });
 
 function initdatagrid() {
-    $('#openidgrid').datagrid({
-        title: '微信用户',
+    $('#moneygrid').datagrid({
+        title: '红包活动',
         singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
@@ -50,56 +50,47 @@ function initdatagrid() {
 
         toolbar: "#tb",
 
-        idField: 'Id',
+        idField: 'id',
 
         frozenColumns: [[
-            {field: 'Id', checkbox: true}
+            {field: 'id', checkbox: true}
         ]],
 
         columns: [[
 
-            {field: 'openid', title: 'openid', width: 150, align: 'center'},
+            {field: 'title', title: '标题', width: 150, align: 'center'},
 
-            {
-                field: 'headimgurl', title: '微信头像', width: 60, align: 'center',
+            {field: 'content', title: '内容', width: 200, align: 'center'},
+
+            {field: 'status', title: '状态', width: 50, align: 'center',
                 formatter: function (value, rec) {
-                    if (isNull(value)) {
-                        return '<img src="' + value + '" width="60" height="60" border="0">';
-                    }
-                    else{
-                        return '';
+                    switch (value) {
+                        case "0":
+                            return '<span style="color:red;">停用</span>';
+                        case "1":
+                            return '<span style="color:green;">启用</span>';
                     }
                 }
             },
 
-            {field: 'nickname', title: '微信昵称', width: 80, align: 'center'},
+            {field: 'money', title: '总金额', width: 80, align: 'center'},
 
-            {field: 'realname', title: '真实姓名', width: 80, align: 'center'},
+            {field: 'minprice', title: '每笔红包最小金额', width: 80, align: 'center'},
 
-            {field: 'roleId', title: '角色名', width: 80, align: 'center',
-                formatter: function (value, rec) {
-                    if(isNull(value)){
-                        switch (value) {
-                            case 15:
-                                return '网络运营部';
-                            case 9:
-                                return '收运人员';
-                            case 10:
-                                return '产废单位';
-                            case 28:
-                                return '超级管理员';
-                            case 27:
-                                return '系统管理员';
-                            default:
-                                return '';
-                        }
-                    }else{
-                        return ''
-                    }
-                }
-            },
+            {field: 'maxprice', title: '每笔红包最大金额', width: 80, align: 'center'},
+
+            {field: 'totalnum', title: '红包总数', width: 80, align: 'center'},
+
+            {field: 'sendednum', title: '已发送红包数', width: 100, align: 'center'},
+
+            {field: 'remainingnum', title: '剩余红包数', width: 80, align: 'center'},
+
             {
-                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
+                field: 'starttime', title: '活动开始时间', width: 100, align: 'center'
+            },
+
+            {
+                field: 'endtime', title: '活动结束时间', width: 100, align: 'center'
             }
         ]],
         pagination: true,
@@ -118,13 +109,13 @@ function initdatagrid() {
 
         $.ajax({
             cache:true,
-            url: ws_url + '/rest/OpenId/findlist?token=' + gtoken,
+            url: ws_url + '/rest/money/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&nickname=' + $("#nickname").val() + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#openidgrid').datagrid('clearSelections')
+                $('#moneygrid').datagrid('clearSelections')
                 //$('#form3').form('clear');
                 success(data);
             },

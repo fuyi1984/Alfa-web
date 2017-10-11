@@ -27,23 +27,9 @@
       },
       {
         "MenuId": 4,
-        "MenuNames": "注册统计",
-        "Icon": "icon-add",
-        "Url": "/alfa-platform/pages/registerbehavior/index.html",
-        "CreateTime": "\/Date(1496293241000)\/"
-      },
-      {
-        "MenuId": 5,
         "MenuNames": "系统配置",
         "Icon": "icon-add",
         "Url": "/alfa-platform/pages/sysconfig/index.html",
-        "CreateTime": "\/Date(1496293241000)\/"
-      },
-      {
-        "MenuId": 6,
-        "MenuNames": "微信用户",
-        "Icon": "icon-add",
-        "Url": "/alfa-platform/pages/openid/index.html",
         "CreateTime": "\/Date(1496293241000)\/"
       }
     ]
@@ -70,12 +56,26 @@
   },
   {
     "MenuId": 3,
-    "MenuName": "订单管理",
+    "MenuName": "业务人员板块",
     "Icon": "icon-sys",
     "MenuInfos": [
       {
         "MenuId": 1,
-        "MenuNames": "废油回收",
+        "MenuNames": "产废单位注册信息统计",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/registerbehavior/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 4,
+    "MenuName": "废油回收",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames": "订单管理",
         "Icon": "icon-add",
         "Url": "/alfa-platform/pages/order/index.html",
         "CreateTime": "\/Date(1496293240000)\/"
@@ -96,7 +96,7 @@
     ]
   },
   {
-    "MenuId": 4,
+    "MenuId": 5,
     "MenuName": "消息管理",
     "Icon": "icon-sys",
     "MenuInfos": [
@@ -113,6 +113,27 @@
         "Icon": "icon-add",
         "Url": "/alfa-platform/pages/message/outbox.html",
         "CreateTime": "\/Date(1496293240000)\/"
+      }
+    ]
+  },
+  {
+    "MenuId": 6,
+    "MenuName": "微信板块",
+    "Icon": "icon-sys",
+    "MenuInfos": [
+      {
+        "MenuId": 1,
+        "MenuNames":"微信红包活动",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/money/index.html",
+        "CreateTime": "\/Date(1496293240000)\/"
+      },
+      {
+        "MenuId": 2,
+        "MenuNames": "微信用户绑定",
+        "Icon": "icon-add",
+        "Url": "/alfa-platform/pages/openid/index.html",
+        "CreateTime": "\/Date(1496293241000)\/"
       }
     ]
   }
