@@ -138,6 +138,7 @@ function initdatagrid() {
  * 新增
  */
 function doAdd() {
+    $('#form1').form('clear');
     $('#moneyadd').panel({title: '添加红包活动'});
     $('#moneyadd').window('open');
 }
@@ -146,8 +147,35 @@ function doAdd() {
  * 修改
  */
 function doEdit() {
-    $('#moneyadd').panel({title: '修改红包活动'});
-    $('#moneyadd').window('open');
+
+    var rows = $('#moneygrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要修改的数据');
+        return;
+    } else {
+        if (rows.length > 1) {
+            $.messager.alert('提示', '请选择一条数据');
+            $('#moneygrid').datagrid("clearSelections");
+            return;
+        } else {
+
+            $('#form1').form('load', {
+                id: rows[0].id,
+                title: rows[0].title,
+                content: rows[0].content,
+                money: rows[0].money,
+                minprice: rows[0].minprice,
+                maxprice: rows[0].maxprice,
+                totalnum: rows[0].totalnum,
+                starttime: rows[0].starttime,
+                endtime: rows[0].endtime
+            });
+
+            $('#moneyadd').panel({title: '修改红包活动'});
+            $('#moneyadd').window('open');
+        }
+    }
 }
 
 /**
@@ -246,7 +274,7 @@ function submitForm() {
                 "totalnum": $("#totalnum").val(),
                 "starttime": $("#starttime").datebox('getValue'),
                 "endtime": $("#endtime").datebox('getValue'),
-                "status": "0" //提交
+                "status": "0" //停用
             }
 
 
@@ -301,6 +329,56 @@ function submitForm() {
         } else {
 
             //region 修改
+
+            var params = {
+                "id": $('#id').val(),
+                "title": $("#title").val(),
+                "content": $("#content").val(),
+                "money": parseFloat($("#money").val()).toFixed(2),
+                "minprice": parseFloat($("#minprice").val()).toFixed(2),
+                "maxprice": parseFloat($("#maxprice").val()).toFixed(2),
+                "totalnum": $("#totalnum").val(),
+                "starttime": $("#starttime").datebox('getValue'),
+                "endtime": $("#endtime").datebox('getValue'),
+                "status": "3" //手动停用
+            }
+
+            console.log(params);
+
+            $.ajax({
+                url: ws_url + '/rest/money/updatemoneyactivities?token=' + gtoken,
+                contentType: 'application/json;charset=UTF-8',
+                type: 'post',
+                datatype: 'json',
+                data: JSON.stringify(params),
+                cache: false,
+                success: function (data) {
+
+                    console.log(data.status);
+                    console.log(data.message);
+
+                    $('#form1').form('clear');
+
+                    if (data.status == 'success') {
+                        $.messager.alert('提示', '修改成功！', 'info', function () {
+                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                            $('#moneyadd').window('close');
+                            $('#moneygrid').datagrid("clearSelections");
+                            $('#moneygrid').datagrid("reload");
+                        });
+                    } else if (data.status == 'failure') {
+                        $.messager.alert('提示', '修改失败！', 'error', function () {
+                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                            $('#moneyadd').window('close');
+                            $('#moneygrid').datagrid("clearSelections");
+                            $('#moneygrid').datagrid("reload");
+                        });
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
 
             //endregion
 
