@@ -23,7 +23,7 @@ $(function () {
 
 function initdatagrid() {
     $('#openidgrid').datagrid({
-        title: '微信用户',
+        title: '微信用户绑定管理员',
         singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,

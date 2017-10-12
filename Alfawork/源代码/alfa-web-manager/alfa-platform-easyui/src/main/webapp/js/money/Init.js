@@ -138,7 +138,7 @@ function initdatagrid() {
  * 新增
  */
 function doAdd() {
-    $('#moneyadd').panel({title:'添加红包活动'});
+    $('#moneyadd').panel({title: '添加红包活动'});
     $('#moneyadd').window('open');
 }
 
@@ -146,7 +146,7 @@ function doAdd() {
  * 修改
  */
 function doEdit() {
-    $('#moneyadd').panel({title:'修改红包活动'});
+    $('#moneyadd').panel({title: '修改红包活动'});
     $('#moneyadd').window('open');
 }
 
@@ -222,7 +222,7 @@ function doStart() {
 /**
  * 退出
  */
-function cancel(){
+function cancel() {
     $('#moneyadd').window('close');
     $("#moneygrid").datagrid("clearSelections");
 }
@@ -230,21 +230,23 @@ function cancel(){
 /**
  * 提交
  */
-function submitForm(){
+function submitForm() {
+    if (ValidatorIsNotNull()) {
 
-    if(Validator()){
-        if($('#id').val()==""){
+        if ($('#id').val() == "") {
+
+            //region 添加
 
             var params = {
                 "title": $("#title").val(),
                 "content": $("#content").val(),
                 "money": parseFloat($("#money").val()).toFixed(2),
                 "minprice": parseFloat($("#minprice").val()).toFixed(2),
-                "maxprice":parseFloat($("#maxprice").val()).toFixed(2),
-                "totalnum":$("#totalnum").val(),
-                "starttime":$("#starttime").datebox('getValue'),
-                "endtime":$("#endtime").datebox('getValue'),
-                "status":"0" //提交
+                "maxprice": parseFloat($("#maxprice").val()).toFixed(2),
+                "totalnum": $("#totalnum").val(),
+                "starttime": $("#starttime").datebox('getValue'),
+                "endtime": $("#endtime").datebox('getValue'),
+                "status": "0" //提交
             }
 
 
@@ -294,18 +296,24 @@ function submitForm(){
                 }
             });
 
-        }else{
+            //endregion
+
+        } else {
+
+            //region 修改
+
+            //endregion
 
         }
-    }
 
+    }
 }
 
 /**
  * 判断
  * @constructor
  */
-function Validator(){
+function ValidatorIsNotNull() {
 
     if ($("#title").val() == "") {
         $.messager.alert('提示', '活动标题不能为空');
@@ -322,9 +330,11 @@ function Validator(){
         return false;
     }
 
-    if(!ValidatorMoney($("#money").val())){
-        $.messager.alert('提示', '总金额的输入格式不正确');
-        return false;
+    if ($("#money").val() != "") {
+        if (!ValidatorMoney($("#money").val())) {
+            $.messager.alert('提示', '总金额的输入格式不正确');
+            return false;
+        }
     }
 
     if ($("#minprice").val() == "") {
@@ -332,9 +342,11 @@ function Validator(){
         return false;
     }
 
-    if(!ValidatorMoney($("#minprice").val())){
-        $.messager.alert('提示', '每笔红包最小金额的输入格式不正确');
-        return false;
+    if ($("#minprice").val() != "") {
+        if (!ValidatorMoney($("#minprice").val())) {
+            $.messager.alert('提示', '每笔红包最小金额的输入格式不正确');
+            return false;
+        }
     }
 
     if ($("#maxprice").val() == "") {
@@ -342,9 +354,17 @@ function Validator(){
         return false;
     }
 
-    if(!ValidatorMoney($("#maxprice").val())){
-        $.messager.alert('提示', '每笔红包最大金额的输入格式不正确');
-        return false;
+    if ($("#maxprice").val() != "") {
+        if (!ValidatorMoney($("#maxprice").val())) {
+            $.messager.alert('提示', '每笔红包最大金额的输入格式不正确');
+            return false;
+        }
+    }
+
+    if ($("#totalnum").val() != "" && $("#minprice").val() != "" && $("#maxprice").val() != "") {
+        if (!validatorMaxMoneyandMinMoney()) {
+            return false;
+        }
     }
 
     if ($("#totalnum").val() == "") {
@@ -352,9 +372,11 @@ function Validator(){
         return false;
     }
 
-    if(!ValidatorMoneyTotalnum()){
-        $.messager.alert('提示', '红包总数的输入格式不正确');
-        return false;
+    if ($("#totalnum").val() != "") {
+        if (!ValidatorMoneyTotalnum($("#totalnum").val())) {
+            $.messager.alert('提示', '红包总数的输入格式不正确');
+            return false;
+        }
     }
 
     if ($("#starttime").val() == "") {
@@ -375,12 +397,12 @@ function Validator(){
  * 验证红包总数是否为正整数
  * @constructor
  */
-function ValidatorMoneyTotalnum(){
+function ValidatorMoneyTotalnum(v) {
 
     var a = /^[1-9]\d*$/;
 
-    if(!$("#totalnum").val().match(a))
-    {
+    if (!v.match(a)) {
+        //$.messager.alert('提示', '红包总数的输入格式不正确');
         return false;
     }
 
@@ -391,11 +413,62 @@ function ValidatorMoneyTotalnum(){
  * 验证金额格式
  * @constructor
  */
-function ValidatorMoney(v){
+function ValidatorMoney(v) {
     var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
 
-    if(!v.match(reg))
-    {
+    if (!v.match(reg)) {
+        return false;
+    }
+
+    /*if (!$("#money").val().match(reg)) {
+        $.messager.alert('提示', '总金额的输入格式不正确');
+        return false;
+    }
+
+    if (!$("#minprice").val().match(reg)) {
+        $.messager.alert('提示', '每笔红包最小金额的输入格式不正确');
+        return false;
+    }
+
+    if (!$("#maxprice").val().match(reg)) {
+        $.messager.alert('提示', '每笔红包最大金额的输入格式不正确');
+        return false;
+    }*/
+
+    return true;
+}
+
+/**
+ * 判断金额符合腾讯标准不
+ */
+function validatorMaxMoneyandMinMoney() {
+
+    var totalMoney = parseFloat($("#money").val());
+    var minprice = parseFloat($("#minprice").val());
+    var maxprice = parseFloat($("#maxprice").val());
+
+    if (minprice > totalMoney) {
+        $.messager.alert('提示', '每笔红包最小金额不能大于金额总数');
+        return false;
+    }
+
+    if (maxprice > totalMoney) {
+        $.messager.alert('提示', '每笔红包最大金额不能大于金额总数');
+        return false;
+    }
+
+    if (minprice >= maxprice) {
+        $.messager.alert('提示', '每笔红包最小金额不能大于等于每笔红包最大金额');
+        return false;
+    }
+
+    if (minprice < 1.00 || minprice > 200.00) {
+        $.messager.alert('提示', '每笔红包最小金额没有在1元到200元的范围内');
+        return false;
+    }
+
+    if (maxprice < 1.00 || maxprice > 200.00) {
+        $.messager.alert('提示', '每笔红包最大金额没有在1元到200元的范围内');
         return false;
     }
 
