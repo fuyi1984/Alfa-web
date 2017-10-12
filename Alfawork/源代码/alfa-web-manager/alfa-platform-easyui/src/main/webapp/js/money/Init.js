@@ -8,6 +8,8 @@ $(function () {
     if (gtoken != "") {
         setCurrentUser();
 
+        $('#moneyadd').window('close');
+
         initdatagrid();
     } else {
         //window.location.href = platform_url + "/pages/home/login.html";
@@ -62,7 +64,8 @@ function initdatagrid() {
 
             {field: 'content', title: '内容', width: 200, align: 'center'},
 
-            {field: 'status', title: '状态', width: 50, align: 'center',
+            {
+                field: 'status', title: '状态', width: 50, align: 'center',
                 formatter: function (value, rec) {
                     switch (value) {
                         case "0":
@@ -108,7 +111,7 @@ function initdatagrid() {
         var recordendindex = param.rows * param.page;
 
         $.ajax({
-            cache:true,
+            cache: true,
             url: ws_url + '/rest/money/findlist?token=' + gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
@@ -131,21 +134,23 @@ function initdatagrid() {
 /**
  * 新增
  */
-function doAdd(){
-
+function doAdd() {
+    $('#moneyadd').panel({title:'添加红包活动'});
+    $('#moneyadd').window('open');
 }
 
 /**
  * 修改
  */
-function doEdit(){
-
+function doEdit() {
+    $('#moneyadd').panel({title:'修改红包活动'});
+    $('#moneyadd').window('open');
 }
 
 /**
  * 删除
  */
-function doDelete(){
+function doDelete() {
     var rows = $('#moneygrid').datagrid('getSelections');
 
     if (!rows || rows.length == 0) {
@@ -201,12 +206,21 @@ function doDelete(){
  * 停用
  */
 function doStop() {
-    
+
 }
 
 /**
  * 启用
  */
-function doStart(){
+function doStart() {
+
+}
+
+
+function cancel(){
+    $('#moneyadd').window('close');
+}
+
+function submitForm(){
 
 }

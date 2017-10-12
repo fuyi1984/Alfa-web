@@ -20,10 +20,14 @@
 
 </head>
 <body class="easyui-layout">
+
+<!--主窗体-->
 <div region="center" style="padding: 5px;" border="false">
     <table id="moneygrid">
     </table>
 </div>
+
+<!--工具栏-->
 <div id="tb" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
@@ -35,16 +39,148 @@
     <div>
         业务人员姓名:<input id="brealname" class="easyui-textbox" style="width:80px">
         业务人员电话:<input id="bphone" class="easyui-textbox" style="width: 80px">
-        状态:<input id="status" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/sysuserstatus.json',
-					method:'get',
-					valueField:'id',
-					textField:'text',
-					panelHeight:'auto'">
-        地址:<input id="address" class="easyui-textbox" style="width:80px">
         开始时间: <input id="startDt" class="easyui-datebox" style="width:80px">
         结束时间: <input id="endDt" class="easyui-datebox" style="width:80px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
+</div>
+
+
+<!--红包活动的添加-->
+<div id="moneyadd" class="easyui-window" title="添加红包活动"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+     style="width:500px;height:470px;padding:10px;">
+
+    <form id="form1" method="post">
+        <div style="padding: 15px 10px 10px 25px;">
+
+            <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
+                   data-options="required:true"
+                   id="id"/>
+
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        活动标题:
+                    </td>
+                    <td>
+                        <input style="width: 250px" class="easyui-textbox" type="text" data-options="required:true"
+                               id="title"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        活动内容:
+                    </td>
+                    <td>
+                        <input style="width: 250px; height:40px"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="content"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        总金额:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="money"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        每笔红包最小金额:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="minprice"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        每笔红包最大金额:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="maxprice"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        红包总数:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="totalnum"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        已发送红包数:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="sendednum"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        剩余红包数:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="remainingnum"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        活动开始日期:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="starttime"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        活动结束日期:
+                    </td>
+                    <td>
+                        <input style="width: 250px;"
+                               class="easyui-textbox" type="text" data-options="required:true"
+                               id="endtime"/>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
+               iconcls="icon-save">确定</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="javascript:cancel()"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+
+
 </div>
 </body>
 </html>
