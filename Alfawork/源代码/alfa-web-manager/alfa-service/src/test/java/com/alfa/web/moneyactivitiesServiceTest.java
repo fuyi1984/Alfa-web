@@ -8,7 +8,10 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,15 +21,32 @@ public class moneyactivitiesServiceTest extends TestBase {
 
     private static Logger logger = Logger.getLogger(moneyactivitiesServiceTest.class);
 
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     @Autowired
     private moneyactivitiesServcie moneyactivitiesService;
 
     @Test
-    public void insert(){
+    public void insert() throws ParseException {
 
         moneyactivities money=new moneyactivities();
         money.setTitle("4411");
         money.setContent("442222");
+
+        money.setStarttime(new Date());
+        money.setEndtime(new Date());
+
+        System.out.println(sdf.format(money.getStarttime()));
+        System.out.println(sdf.format(money.getStarttime()));
+
+        String starttime=sdf.format(money.getStarttime())+" 00:00:00";
+        String endtime=sdf.format(money.getStarttime())+" 23:59:59";
+
+        money.setStarttime(fullsdf.parse(starttime));
+        money.setEndtime(fullsdf.parse(endtime));
+
         this.moneyactivitiesService.insertSelective(money);
     }
 

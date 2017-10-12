@@ -11,8 +11,8 @@
         <result column="totalnum" property="totalnum" jdbcType="VARCHAR"/>
         <result column="sendednum" property="sendednum" jdbcType="VARCHAR"/>
         <result column="remainingnum" property="remainingnum" jdbcType="VARCHAR"/>
-        <result column="starttime" property="starttime" jdbcType="VARCHAR"/>
-        <result column="endtime" property="endtime" jdbcType="VARCHAR"/>
+        <result column="starttime" property="starttime" jdbcType="TIMESTAMP"/>
+        <result column="endtime" property="endtime" jdbcType="TIMESTAMP"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="maxprice" property="maxprice" jdbcType="VARCHAR"/>
         <result column="minprice" property="minprice" jdbcType="VARCHAR"/>
@@ -157,15 +157,15 @@
                 updatedDt,
             </if>
             <if test="version != null">
-                version,
+                version
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="minprice!=null">
-                #{minprice}
+                #{minprice},
             </if>
             <if test="maxprice!=null">
-                #{maxprice}
+                #{maxprice},
             </if>
             <if test="status!=null">
                 #{status},
@@ -207,7 +207,7 @@
                 #{updatedDt},
             </if>
             <if test="version != null">
-                #{version},
+                #{version}
             </if>
         </trim>
     </insert>

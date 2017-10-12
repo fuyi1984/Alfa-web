@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,17 +88,28 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
     }
 
     @Override
-    public Response insertmoneyactivities(moneyactivities money) {
+    public Response insertmoneyactivities(moneyactivities money) throws ParseException {
         //region
 
         Criteria criteria = new Criteria();
-        criteria.put("titlelike", money.getTitle());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        criteria.put("title", money.getTitle());
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);
 
         if (moneyactivitiesList.size() > 0) {
             //数据已存在
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
         } else {
+
+            log.info(money.getStarttime());
+            log.info(money.getEndtime());
+
+            money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime())+" 00:00:00"));
+            money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime())+" 23:59:59"));
+
             int result = this.moneyactivitiesService.insertSelective(money);
             if (result > 0) {
                 //插入成功

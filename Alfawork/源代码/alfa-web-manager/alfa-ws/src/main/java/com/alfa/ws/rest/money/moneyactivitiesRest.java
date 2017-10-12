@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public interface moneyactivitiesRest  {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/insertmoneyactivities")
-    public Response insertmoneyactivities(moneyactivities money);
+    public Response insertmoneyactivities(moneyactivities money) throws ParseException;
 
 
     /**

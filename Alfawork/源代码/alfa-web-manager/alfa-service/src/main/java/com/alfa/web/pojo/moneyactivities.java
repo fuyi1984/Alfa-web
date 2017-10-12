@@ -1,5 +1,8 @@
 package com.alfa.web.pojo;
 
+import com.alfa.web.util.jackson.CustomJsonDateDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -117,6 +120,7 @@ public class moneyactivities extends Entity implements Serializable {
         return starttime;
     }
 
+    //@JsonDeserialize(using = CustomJsonDateDeserializer.class)
     public void setStarttime(Date starttime) {
         this.starttime = starttime;
     }
@@ -125,6 +129,7 @@ public class moneyactivities extends Entity implements Serializable {
         return endtime;
     }
 
+    //@JsonDeserialize(using = CustomJsonDateDeserializer.class)
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
     }

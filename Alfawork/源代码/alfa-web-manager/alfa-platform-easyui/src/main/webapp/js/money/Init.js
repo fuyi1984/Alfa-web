@@ -73,7 +73,7 @@ function initdatagrid() {
                         case "1":
                             return '<span style="color:green;">启用</span>';
                         case "2":
-                            return '<span style="color:green;">手动停用</span>';
+                            return '<span style="color:red;">停用</span>';
 
                     }
                 }
@@ -242,8 +242,8 @@ function submitForm(){
                 "minprice": $("#minprice").val(),
                 "maxprice":$("#maxprice").val(),
                 "totalnum":$("#totalnum").val(),
-                "starttime":$("#starttime").val(),
-                "endtime":$("#endtime").val(),
+                "starttime":$("#starttime").datebox('getValue'),
+                "endtime":$("#endtime").datebox('getValue'),
                 "status":"0" //提交
             }
 
@@ -267,20 +267,23 @@ function submitForm(){
                     if (data.status == 'success') {
                         $.messager.alert('提示', '添加成功！', 'info', function () {
                             //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                            $('#moneygrid').window('close');
+                            $('#moneyadd').window('close');
+                            $('#moneygrid').datagrid("clearSelections");
                             $('#moneygrid').datagrid("reload");
                         });
                     } else if (data.status == 'failure') {
                         if (data.message == '1') {
                             $.messager.alert('提示', '数据已经存在！', 'warning', function () {
                                 //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                                $('#moneygrid').window('close');
+                                $('#moneyadd').window('close');
+                                $('#moneygrid').datagrid("clearSelections");
                                 $('#moneygrid').datagrid("reload");
                             });
                         } else {
                             $.messager.alert('提示', '添加失败！', 'error', function () {
                                 //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                                $('#moneygrid').window('close');
+                                $('#moneyadd').window('close');
+                                $('#moneygrid').datagrid("clearSelections");
                                 $('#moneygrid').datagrid("reload");
                             });
                         }
@@ -334,6 +337,11 @@ function Validator(){
         return false;
     }
 
+    if(!ValidatorMoneyTotalnum()){
+        $.messager.alert('提示', '红包总数非正整数');
+        return false;
+    }
+
     if ($("#starttime").val() == "") {
         $.messager.alert('提示', '活动开始日期不能为空');
         return false;
@@ -345,5 +353,29 @@ function Validator(){
     }
 
     return true;
+
+}
+
+/**
+ * 验证红包总数是否为正整数
+ * @constructor
+ */
+function ValidatorMoneyTotalnum(){
+
+    var a = /^[1-9]\d*$/;
+
+    if(!$("#totalnum").val().match(a))
+    {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * 验证金额格式
+ * @constructor
+ */
+function ValidatorMoney(v){
 
 }
