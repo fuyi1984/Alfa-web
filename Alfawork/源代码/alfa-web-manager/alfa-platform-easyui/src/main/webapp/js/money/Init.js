@@ -72,6 +72,9 @@ function initdatagrid() {
                             return '<span style="color:red;">停用</span>';
                         case "1":
                             return '<span style="color:green;">启用</span>';
+                        case "2":
+                            return '<span style="color:green;">手动停用</span>';
+
                     }
                 }
             },
@@ -216,11 +219,131 @@ function doStart() {
 
 }
 
-
+/**
+ * 退出
+ */
 function cancel(){
     $('#moneyadd').window('close');
+    $("#moneygrid").datagrid("clearSelections");
 }
 
+/**
+ * 提交
+ */
 function submitForm(){
+
+    if(Validator()){
+        if($('#id').val()==""){
+
+            var params = {
+                "title": $("#title").val(),
+                "content": $("#content").val(),
+                "money": $("#money").val(),
+                "minprice": $("#minprice").val(),
+                "maxprice":$("#maxprice").val(),
+                "totalnum":$("#totalnum").val(),
+                "starttime":$("#starttime").val(),
+                "endtime":$("#endtime").val(),
+                "status":"0" //提交
+            }
+
+
+            console.log(params);
+
+            $.ajax({
+                url: ws_url + '/rest/money/insertmoneyactivities?token=' + gtoken,
+                contentType: 'application/json;charset=UTF-8',
+                type: 'post',
+                datatype: 'json',
+                data: JSON.stringify(params),
+                cache: false,
+                success: function (data) {
+
+                    console.log(data.status);
+                    console.log(data.message);
+
+                    $('#form1').form('clear');
+
+                    if (data.status == 'success') {
+                        $.messager.alert('提示', '添加成功！', 'info', function () {
+                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                            $('#moneygrid').window('close');
+                            $('#moneygrid').datagrid("reload");
+                        });
+                    } else if (data.status == 'failure') {
+                        if (data.message == '1') {
+                            $.messager.alert('提示', '数据已经存在！', 'warning', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#moneygrid').window('close');
+                                $('#moneygrid').datagrid("reload");
+                            });
+                        } else {
+                            $.messager.alert('提示', '添加失败！', 'error', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#moneygrid').window('close');
+                                $('#moneygrid').datagrid("reload");
+                            });
+                        }
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+
+        }else{
+
+        }
+    }
+
+}
+
+/**
+ * 判断
+ * @constructor
+ */
+function Validator(){
+
+    if ($("#title").val() == "") {
+        $.messager.alert('提示', '活动标题不能为空');
+        return false;
+    }
+
+    /*if ($("#content").val() == "") {
+        $.messager.alert('提示', '活动内容不能为空');
+        return false;
+    }
+*/
+    if ($("#money").val() == "") {
+        $.messager.alert('提示', '总金额不能为空');
+        return false;
+    }
+
+    if ($("#minprice").val() == "") {
+        $.messager.alert('提示', '每笔红包最小金额不能为空');
+        return false;
+    }
+
+    if ($("#maxprice").val() == "") {
+        $.messager.alert('提示', '每笔红包最大金额不能为空');
+        return false;
+    }
+
+    if ($("#totalnum").val() == "") {
+        $.messager.alert('提示', '红包总数不能为空');
+        return false;
+    }
+
+    if ($("#starttime").val() == "") {
+        $.messager.alert('提示', '活动开始日期不能为空');
+        return false;
+    }
+
+    if ($("#endtime").val() == "") {
+        $.messager.alert('提示', '活动结束日期不能为空');
+        return false;
+    }
+
+    return true;
 
 }
