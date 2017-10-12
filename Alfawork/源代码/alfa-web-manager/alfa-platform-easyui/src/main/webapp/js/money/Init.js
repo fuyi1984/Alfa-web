@@ -377,5 +377,12 @@ function ValidatorMoneyTotalnum(){
  * @constructor
  */
 function ValidatorMoney(v){
+    var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
 
+    if(!$("#totalnum").val().match(a))
+    {
+        return false;
+    }
+
+    return true;
 }
