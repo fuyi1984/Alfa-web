@@ -25,6 +25,20 @@ public interface moneyactivitiesServcie {
     int batchdeleteByPrimaryKey(List<String> list);
 
     /**
+     * 根据主键批量启用微信红包活动
+     * @param list
+     * @return
+     */
+    int batchStartmoneyactivitiesByPrimaryKey(List<String> list);
+
+    /**
+     * 根据主键批量停用微信红包活动
+     * @param list
+     * @return
+     */
+    int batchStopmoneyactivitiesByPrimaryKey(List<String> list);
+
+    /**
      * 根据主键更新属性不为空的记录
      */
     int updateByPrimaryKeySelective(moneyactivities record);

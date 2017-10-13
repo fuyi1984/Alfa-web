@@ -44,6 +44,16 @@ public class moneyactivitiesServcieImpl implements moneyactivitiesServcie {
     }
 
     @Override
+    public int batchStartmoneyactivitiesByPrimaryKey(List<String> list) {
+        return this.moneyactivitiesMapper.batchStartmoneyactivitiesByPrimaryKey(list);
+    }
+
+    @Override
+    public int batchStopmoneyactivitiesByPrimaryKey(List<String> list) {
+        return this.moneyactivitiesMapper.batchStopmoneyactivitiesByPrimaryKey(list);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(moneyactivities record) {
         WebUtil.prepareUpdateParams(record);
         return this.moneyactivitiesMapper.updateByPrimaryKeySelective(record);

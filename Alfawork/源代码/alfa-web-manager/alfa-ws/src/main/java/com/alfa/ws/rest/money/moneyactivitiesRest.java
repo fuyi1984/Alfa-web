@@ -76,4 +76,30 @@ public interface moneyactivitiesRest  {
     @Path("/batchdeletemoneyactivities")
     public Response batchdeletemoneyactivities(List<String> list);
 
+
+    /**
+     * 批量启用红包活动
+     * @param list
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchStartmoneyactivities")
+    public Response batchStartmoneyactivities(List<String> list);
+
+
+    /**
+     * 批量停用红包活动
+     * @param list
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchStopmoneyactivities")
+    public Response batchStopmoneyactivities(List<String> list);
+
 }

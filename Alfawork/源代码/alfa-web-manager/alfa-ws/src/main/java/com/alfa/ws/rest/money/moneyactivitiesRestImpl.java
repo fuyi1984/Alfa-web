@@ -161,4 +161,34 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         }
         //endregion
     }
+
+    @Override
+    public Response batchStartmoneyactivities(List<String> list) {
+        int result = 0;
+
+        result=this.moneyactivitiesService.batchStartmoneyactivitiesByPrimaryKey(list);
+
+        if (result >= 1) {
+            //更新成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+        } else {
+            //更新失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+    }
+
+    @Override
+    public Response batchStopmoneyactivities(List<String> list) {
+        int result = 0;
+
+        result=this.moneyactivitiesService.batchStopmoneyactivitiesByPrimaryKey(list);
+
+        if (result >= 1) {
+            //删除成功
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+        } else {
+            //删除失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+    }
 }

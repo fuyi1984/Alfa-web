@@ -20,7 +20,7 @@ $(function () {
 
 function initdatagrid() {
     $('#moneygrid').datagrid({
-        title: '红包活动',
+        title: '微信红包活动',
         singleSelect: false,
         iconCls: 'icon-save',
         collapsible: true,
@@ -173,6 +173,8 @@ function doEdit() {
             });
 
             $('#moneyadd').panel({title: '修改红包活动'});
+            $('#title').textbox('textbox').attr('readonly', true);
+            $('#title').textbox({disabled:true});
             $('#moneyadd').window('open');
         }
     }
@@ -238,6 +240,55 @@ function doDelete() {
  */
 function doStop() {
 
+    var rows = $('#moneygrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择需要停用的微信红包活动');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].id);
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.id);
+    });
+
+
+    $.messager.confirm('提示', '是否停用这些微信红包活动?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/money/batchStopmoneyactivities?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '停用成功！', "info", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '停用失败！', "error", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#moneygrid').datagrid("clearSelections");
+                $.messager.alert('错误', '停用失败！', "error");
+            }
+        });
+    });
 }
 
 /**
@@ -245,6 +296,55 @@ function doStop() {
  */
 function doStart() {
 
+    var rows = $('#moneygrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择需要启用的微信红包活动');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].id);
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.id);
+    });
+
+
+    $.messager.confirm('提示', '是否启用这些微信红包活动?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/money/batchStartmoneyactivities?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '启用成功！', "info", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '启用失败！', "error", function () {
+                        $('#moneygrid').datagrid("clearSelections");
+                        $('#moneygrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#moneygrid').datagrid("clearSelections");
+                $.messager.alert('错误', '启用失败！', "error");
+            }
+        });
+    });
 }
 
 /**
@@ -340,7 +440,7 @@ function submitForm() {
                 "totalnum": $("#totalnum").val(),
                 "starttime": $("#starttime").datebox('getValue'),
                 "endtime": $("#endtime").datebox('getValue'),
-                "status": "3" //手动停用
+                "status": "2" //手动停用
             }
 
             console.log(params);
