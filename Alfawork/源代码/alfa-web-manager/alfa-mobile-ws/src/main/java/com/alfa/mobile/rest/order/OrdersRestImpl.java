@@ -229,6 +229,7 @@ public class OrdersRestImpl implements OrdersRest {
 
                 for (activitiesorder orderitem:activitiesorderlist) {
                     orderitem.setIsfinish("3");
+                    orderitem.setVisible("4");
                     this.activitiesorderService.updateByPrimaryKeySelective(orderitem);
                 }
             }

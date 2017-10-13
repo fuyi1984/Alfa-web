@@ -231,6 +231,7 @@ public class MoneySenderStatus {
 
                                 activitiesorder aorder=activitiesorderlst.get(0);
                                 aorder.setStatus(resultvo.getContent());
+                                aorder.setVisible("-4");
 
                                 this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                             }

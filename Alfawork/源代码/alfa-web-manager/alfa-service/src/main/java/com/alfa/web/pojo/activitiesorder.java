@@ -17,6 +17,18 @@ public class activitiesorder extends Entity implements Serializable {
      */
     private Long activitiesid;
 
+    /**
+     * 活动标题
+     */
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     /**
      * 订单ID
@@ -37,6 +49,19 @@ public class activitiesorder extends Entity implements Serializable {
      * 是否完成
      */
     private String isfinish;
+
+    /**
+     * 是否显示
+     */
+    private String visible;
+
+    public String getVisible() {
+        return visible;
+    }
+
+    public void setVisible(String visible) {
+        this.visible = visible;
+    }
 
     public String getOrderno() {
         return orderno;

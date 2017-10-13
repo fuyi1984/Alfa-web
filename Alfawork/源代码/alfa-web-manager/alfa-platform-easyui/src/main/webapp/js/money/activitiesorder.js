@@ -57,43 +57,20 @@ function initdatagrid() {
 
         columns: [[
 
-            {field: 'title', title: '标题', width: 100, align: 'center'},
+            {field: 'openid', title: 'openid', width: 100, align: 'center'},
 
-            {field: 'content', title: '内容', width: 100, align: 'center'},
+            {field: 'orderno', title: '订单号', width: 100, align: 'center'},
+
+            {field: 'title', title: '活动标题', width: 100, align: 'center'},
 
             {
-                field: 'status', title: '状态', width: 50, align: 'center',
-                formatter: function (value, rec) {
-                    switch (value) {
-                        case "0":
-                            return '<span style="color:red;">停用</span>';
-                        case "1":
-                            return '<span style="color:green;">启用</span>';
-                        case "2":
-                            return '<span style="color:red;">停用</span>';
-
-                    }
-                }
+                field: 'status', title: '红包发送状态', width: 100, align: 'center'
             },
-
-            {field: 'money', title: '总金额(元)', width: 80, align: 'center'},
-
-            {field: 'minprice', title: '每笔红包最小金额(元)', width: 80, align: 'center'},
-
-            {field: 'maxprice', title: '每笔红包最大金额(元)', width: 80, align: 'center'},
-
-            {field: 'totalnum', title: '红包总数', width: 50, align: 'center'},
-
-            {field: 'sendednum', title: '已发送红包数', width: 60, align: 'center'},
-
-            {field: 'remainingnum', title: '剩余红包数', width: 50, align: 'center'},
-
             {
-                field: 'starttime', title: '活动开始时间', width: 70, align: 'center'
+                field: 'createdDt', title: '创建时间', width: 100, align: 'center'
             },
-
             {
-                field: 'endtime', title: '活动结束时间', width: 70, align: 'center'
+                field: 'updatedDt', title: '更新时间', width: 100, align: 'center',
             }
         ]],
         pagination: true,
@@ -112,13 +89,13 @@ function initdatagrid() {
 
         $.ajax({
             cache: true,
-            url: ws_url + '/rest/money/findlist?token=' + gtoken,
+            url: ws_url + '/rest/activitiesorder/findlist?token=' + gtoken,
             type: "post",
             data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#moneygrid').datagrid('clearSelections')
+                $('#activitiesordergrid').datagrid('clearSelections')
                 //$('#form3').form('clear');
                 success(data);
             },

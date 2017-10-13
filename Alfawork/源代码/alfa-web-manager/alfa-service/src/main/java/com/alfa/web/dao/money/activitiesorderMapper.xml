@@ -16,6 +16,7 @@
         <result column="issubmit" property="issubmit" jdbcType="VARCHAR"/>
         <result column="isfinish" property="isfinish" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="visible" property="visible" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -28,54 +29,57 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.visible!=null">
+                and A.visible=#{condition.visible}
+            </if>
             <if test="condition.status!=null">
-                and status = #{condition.status}
+                and A.status = #{condition.status}
             </if>
             <if test="condition.orderno!=null">
-                and orderno = #{condition.orderno}
+                and A.orderno = #{condition.orderno}
             </if>
             <if test="condition.openid!=null">
-                and openid = #{condition.openid}
+                and A.openid = #{condition.openid}
             </if>
             <if test="condition.orderid!=null">
-                and orderid=#{condition.orderid}
+                and A.orderid=#{condition.orderid}
             </if>
             <if test="condition.activitiesid!=null">
-                and activitiesid=#{condition.activitiesid}
+                and A.activitiesid=#{condition.activitiesid}
             </if>
 
             <if test="condition.isfollow!=null">
-                and isfollow=#{condition.isfollow}
+                and A.isfollow=#{condition.isfollow}
             </if>
             <if test="condition.issubmit!=null">
-                and issubmit=#{condition.issubmit}
+                and A.issubmit=#{condition.issubmit}
             </if>
             <if test="condition.isfinish!=null">
-                and isfinish=#{condition.isfinish}
+                and A.isfinish=#{condition.isfinish}
             </if>
 
             <if test="condition.createdBy != null">
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null">
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null">
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null">
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null">
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
-        Id, openid, orderid,activitiesid, isfollow,issubmit,isfinish,createdBy,createdDt,
-        updatedBy, updatedDt, version, orderno,status
+        A.id, A.openid, A.orderid,A.activitiesid, A.isfollow,A.issubmit,A.isfinish,A.createdBy,A.createdDt,
+        A.updatedBy, A.updatedDt, A.version, A.orderno,A.status,A.visible
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.activitiesorder">
@@ -84,6 +88,9 @@
         </selectKey>
         insert into activitiesorder
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="visible!=null">
+                visible,
+            </if>
             <if test="status!=null">
                 status,
             </if>
@@ -125,6 +132,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="visible!=null">
+                #{visible},
+            </if>
             <if test="status!=null">
                 #{status},
             </if>
@@ -168,7 +178,7 @@
     </insert>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from activitiesorder
+        select count(*) from activitiesorder A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -185,6 +195,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.activitiesorder">
         update activitiesorder
         <set>
+            <if test="visible!=null">
+                visible=#{visible},
+            </if>
             <if test="status!=null">
                 status=#{status},
             </if>
@@ -231,6 +244,9 @@
     <update id="updateByOrderid" parameterType="com.alfa.web.pojo.activitiesorder">
         update activitiesorder
         <set>
+            <if test="visible!=null">
+                visible=#{visible},
+            </if>
             <if test="status!=null">
                 status=#{status},
             </if>
@@ -277,7 +293,13 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from activitiesorder
+
+        ,B.title
+
+        from activitiesorder A
+
+        left join moneyactivities B on(A.activitiesid = B.id)
+
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
