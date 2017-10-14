@@ -12,6 +12,7 @@ import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -69,7 +70,10 @@ public class activitiesorderServiceTest extends TestBase {
     @Test
     public void sendmoney(){
 
-        String param="idlist=4";
+        List<String> list=new ArrayList<String>();
+        list.add("4");
+
+        //String param="idlist=4";
 
         Criteria criteria = new Criteria();
 
@@ -77,10 +81,12 @@ public class activitiesorderServiceTest extends TestBase {
 
         if(beforesendmoneyList.size()==0) {
 
-            Map map = WebUtil.getParamsMap(param, "utf-8");
+            //Map map = WebUtil.getParamsMap(param, "utf-8");
 
-            if (!StringUtil.isNullOrEmpty(map.get("idlist"))) {
-                criteria.put("idlist", map.get("idlist").toString().split(","));
+            String idlist= StringUtils.collectionToDelimitedString(list, ",");
+
+            if (!StringUtil.isNullOrEmpty(idlist)) {
+                criteria.put("idlist", idlist.split(","));
             }
 
             List<activitiesorder> activitiesorderlist = this.activitiesorderService.selectByParams(criteria);
@@ -109,5 +115,16 @@ public class activitiesorderServiceTest extends TestBase {
             //数据已经存在
             System.out.println("3");
         }
+    }
+
+    @Test
+    public void testConvertListtoString(){
+        List<String> list=new ArrayList<String>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        System.out.println(StringUtils.collectionToDelimitedString(list, ","));
+
+
     }
 }

@@ -41,5 +41,5 @@ public interface activitiesorderRest {
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/sendmoney")
-    public Response sendmoney(String param, HttpServletRequest request, HttpServletResponse response);
+    public Response sendmoney(List<String> list);
 }

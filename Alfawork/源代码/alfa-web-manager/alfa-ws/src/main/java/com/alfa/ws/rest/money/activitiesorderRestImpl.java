@@ -12,6 +12,7 @@ import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,7 +85,7 @@ public class activitiesorderRestImpl implements activitiesorderRest {
     }
 
     @Override
-    public Response sendmoney(String param, HttpServletRequest request, HttpServletResponse response) {
+    public Response sendmoney(List<String> list) {
 
         Criteria criteria = new Criteria();
 
@@ -92,10 +93,12 @@ public class activitiesorderRestImpl implements activitiesorderRest {
 
         if(beforesendmoneyList.size()==0) {
 
-            Map map = WebUtil.getParamsMap(param, "utf-8");
+            //Map map = WebUtil.getParamsMap(param, "utf-8");
 
-            if (!StringUtil.isNullOrEmpty(map.get("idlist"))) {
-                criteria.put("idlist", map.get("idlist").toString().split(","));
+            String idlist= StringUtils.collectionToDelimitedString(list, ",");
+
+            if (!StringUtil.isNullOrEmpty(idlist)) {
+                criteria.put("idlist",idlist.split(","));
             }
 
             List<activitiesorder> activitiesorderlist = this.activitiesorderService.selectByParams(criteria);

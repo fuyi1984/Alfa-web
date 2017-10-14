@@ -121,12 +121,12 @@ function doSendMoney(){
     console.log(rows);
     console.log(rows[0].id);
 
-    //var assetList = new Array();
-    //$.each(rows, function (i, n) {
-    //    assetList.push(n.id);
-    //});
+    var assetList = new Array();
+    $.each(rows, function (i, n) {
+        assetList.push(n.id);
+    });
 
-    var assetList="";
+   /* var assetList="";
 
     for(var i=0;i<rows.length;i++)
     {
@@ -136,7 +136,7 @@ function doSendMoney(){
              assetList+=","+rows[i].id;
          }
 
-    }
+    }*/
 
     $.messager.confirm('提示', '是否选择这些微信红包订单?', function (r) {
         if (!r) {
@@ -149,7 +149,8 @@ function doSendMoney(){
             contentType: 'application/json;charset=UTF-8',
             type: "POST",
             url: ws_url + '/rest/activitiesorder/sendmoney?token=' + gtoken,
-            data:'idlist='+assetList+'',
+            //data:'idlist='+assetList+'',
+            data: JSON.stringify(assetList),
             success: function (msg) {
                 if (msg.status == 'success') {
                     $.messager.alert('提示', '微信红包已经发送,请耐心等待！', "info", function () {

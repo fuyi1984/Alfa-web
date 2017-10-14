@@ -8,6 +8,7 @@ import org.python.core.PyInteger;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Properties;
 public class JavaExecutePython {
 
     public PythonInterpreter interpreter ;
-    //public String basePath = JavaExecutePython.class.getResource("").getPath();
+    public String basePath = JavaExecutePython.class.getResource("").getPath();
 
     @Before
     public void start(){
@@ -25,13 +26,16 @@ public class JavaExecutePython {
 
     //在java中调用本机python脚本中的函数
     @Test
-    public void test02(){
-        interpreter.execfile(PropertiesUtil.getProperty("python.dir.location")+"/my_util.py");
+    public void test02() throws IOException {
+        InputStream filepy = new FileInputStream(new File("d:\\my_util.py"))
+                ;
+        interpreter.execfile(filepy);
         PyFunction func = (PyFunction) interpreter.get("adder",PyFunction.class);
 
         int a = 2010, b = 2;
         PyObject pyobj = func.__call__(new PyInteger(a), new PyInteger(b));
         System.out.println("anwser = " + pyobj.toString());
+        filepy.close();
     }
 
 }
