@@ -29,6 +29,12 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.idlist!=null">
+                and A.id in
+                <foreach collection="condition.idlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="condition.visible!=null">
                 and A.visible=#{condition.visible}
             </if>

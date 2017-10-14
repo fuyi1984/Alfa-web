@@ -1,13 +1,15 @@
 package com.alfa.ws.rest.money;
 
 import com.alfa.web.pojo.activitiesorder;
-import com.alfa.web.pojo.moneyactivities;
+import com.alfa.web.pojo.beforesendmoney;
 import com.alfa.web.service.money.activitiesorderService;
+import com.alfa.web.service.money.beforesendmoneyService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.util.pojo.RestResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,6 +29,9 @@ public class activitiesorderRestImpl implements activitiesorderRest {
      */
     @Autowired
     private activitiesorderService activitiesorderService;
+
+    @Autowired
+    private beforesendmoneyService beforesendmoneyService;
 
 
     @Override
@@ -76,5 +81,48 @@ public class activitiesorderRestImpl implements activitiesorderRest {
         String json = JsonUtil.toJson(data);
 
         return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
+    public Response sendmoney(String param, HttpServletRequest request, HttpServletResponse response) {
+
+        Criteria criteria = new Criteria();
+
+        List<beforesendmoney> beforesendmoneyList=this.beforesendmoneyService.selectByParams(criteria);
+
+        if(beforesendmoneyList.size()==0) {
+
+            Map map = WebUtil.getParamsMap(param, "utf-8");
+
+            if (!StringUtil.isNullOrEmpty(map.get("idlist"))) {
+                criteria.put("idlist", map.get("idlist").toString().split(","));
+            }
+
+            List<activitiesorder> activitiesorderlist = this.activitiesorderService.selectByParams(criteria);
+
+            if (activitiesorderlist.size() > 0) {
+
+                beforesendmoney money = new beforesendmoney();
+
+                for (activitiesorder item : activitiesorderlist) {
+
+                    money.setOpenid(item.getOpenid());
+                    money.setActivitiesid(item.getActivitiesid());
+                    money.setOrderid(item.getOrderid());
+                    money.setOrderno(item.getOrderno());
+
+                    this.beforesendmoneyService.insertSelective(money);
+                }
+
+                //发送成功
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+            }
+
+            //没有发送的订单
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }else{
+            //数据已经存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+        }
     }
 }

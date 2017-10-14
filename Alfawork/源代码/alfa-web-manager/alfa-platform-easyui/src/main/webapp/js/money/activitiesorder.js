@@ -106,3 +106,75 @@ function initdatagrid() {
         });
     }
 }
+
+/**
+ * 发送红包
+ */
+function doSendMoney(){
+    var rows = $('#activitiesordergrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择需要发送的微信红包订单');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].id);
+
+    //var assetList = new Array();
+    //$.each(rows, function (i, n) {
+    //    assetList.push(n.id);
+    //});
+
+    var assetList="";
+
+    for(var i=0;i<rows.length;i++)
+    {
+         if(i==0){
+             assetList+=rows[i].id;
+         }else{
+             assetList+=","+rows[i].id;
+         }
+
+    }
+
+    $.messager.confirm('提示', '是否选择这些微信红包订单?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/activitiesorder/sendmoney?token=' + gtoken,
+            data:'idlist='+assetList+'',
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '微信红包已经发送,请耐心等待！', "info", function () {
+                        $('#activitiesordergrid').datagrid("clearSelections");
+                        $('#activitiesordergrid').datagrid("reload");
+                    });
+                } else {
+                    if(msg.message=="3"){
+                        $.messager.alert('提示', '上次发送的微信红包没有发送完毕,请耐心等待！', "warning", function () {
+                            $('#activitiesordergrid').datagrid("clearSelections");
+                            $('#activitiesordergrid').datagrid("reload");
+                        });
+                    }else {
+                        $.messager.alert('错误', '微信红包发送失败！', "error", function () {
+                            $('#activitiesordergrid').datagrid("clearSelections");
+                            $('#activitiesordergrid').datagrid("reload");
+                        });
+                    }
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#activitiesordergrid').datagrid("clearSelections");
+                $.messager.alert('错误', '微信红包发送失败！', "error");
+            }
+        });
+    });
+}
