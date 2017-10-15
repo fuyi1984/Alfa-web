@@ -1,6 +1,7 @@
 package com.alfa.pay.schedule.main;
 
 
+import org.python.util.PythonInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,5 +23,9 @@ public class Main {
             logger.debug("alfa-pay-schedule is alive.");
             Thread.sleep(60000);
         }
+
+
+        //PythonInterpreter interpreter=new PythonInterpreter();
+        //interpreter.execfile("d:\\my_util.py");
     }
 }

@@ -48,4 +48,25 @@ public class JavaExecutePython {
         //interpreter.exec("print days;");
     }
 
+    @Test
+    public void test03(){
+        try{
+            System.out.println("start");
+            Process pr = Runtime.getRuntime().exec("python d:/my_util.py");
+
+            BufferedReader in = new BufferedReader(new
+                    InputStreamReader(pr.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
+            in.close();
+            pr.waitFor();
+            System.out.println("end");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
+
+
