@@ -19,6 +19,19 @@ public class aftersendmoney extends Entity implements Serializable {
 
 
     /**
+     * 活动标题
+     */
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
      * 订单ID
      */
     private Long orderid;

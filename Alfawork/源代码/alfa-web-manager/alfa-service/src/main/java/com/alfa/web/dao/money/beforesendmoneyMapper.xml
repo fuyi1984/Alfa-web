@@ -127,7 +127,7 @@
     </insert>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from beforesendmoney
+        select count(*) from beforesendmoney A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -182,7 +182,9 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
+
         from beforesendmoney A
+
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>

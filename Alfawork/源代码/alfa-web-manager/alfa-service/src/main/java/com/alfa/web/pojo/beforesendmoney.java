@@ -17,6 +17,11 @@ public class beforesendmoney extends Entity implements Serializable {
      */
     private Long activitiesid;
 
+    /**
+     * 活动标题
+     */
+    private String title;
+
 
     /**
      * 订单ID
@@ -59,5 +64,13 @@ public class beforesendmoney extends Entity implements Serializable {
 
     public void setOrderid(Long orderid) {
         this.orderid = orderid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
