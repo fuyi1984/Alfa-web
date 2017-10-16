@@ -55,7 +55,17 @@ public class aftersendmoneyRestImpl implements aftersendmoneyRest {
 
         Criteria criteria = new Criteria();
 
-        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+        //提交开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        //提交结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
 
         List<aftersendmoney> aftersendmoneyList = this.aftersendmoneyService.selectByParams(criteria);
 

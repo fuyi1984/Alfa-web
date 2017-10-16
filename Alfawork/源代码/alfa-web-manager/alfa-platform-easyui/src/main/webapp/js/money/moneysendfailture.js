@@ -57,7 +57,7 @@ function initdatagrid() {
 
         columns: [[
 
-            {field: 'openid', title: 'openid', width: 100, align: 'center'},
+            {field: 'openid', title: 'openid', width: 120, align: 'center'},
 
             {field: 'orderno', title: '订单号', width: 100, align: 'center'},
 
@@ -91,7 +91,7 @@ function initdatagrid() {
             cache: true,
             url: ws_url + '/rest/aftersendmoneyfailture/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -105,4 +105,11 @@ function initdatagrid() {
             }
         });
     }
+}
+
+/**
+ * 查询
+ */
+function doSearch() {
+    initdatagrid();
 }

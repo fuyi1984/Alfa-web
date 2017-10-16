@@ -57,7 +57,7 @@ function initdatagrid() {
 
         columns: [[
 
-            {field: 'openid', title: 'openid', width: 100, align: 'center'},
+            {field: 'openid', title: 'openid', width: 120, align: 'center'},
 
             {field: 'orderno', title: '订单号', width: 100, align: 'center'},
 

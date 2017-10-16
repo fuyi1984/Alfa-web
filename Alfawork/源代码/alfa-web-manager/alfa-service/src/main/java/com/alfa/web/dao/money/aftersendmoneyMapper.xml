@@ -56,6 +56,13 @@
                 and A.version = #{condition.version}
             </if>
 
+            <if test="condition.createDtFrom != null">
+                and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null">
+                and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+
         </trim>
     </sql>
 
