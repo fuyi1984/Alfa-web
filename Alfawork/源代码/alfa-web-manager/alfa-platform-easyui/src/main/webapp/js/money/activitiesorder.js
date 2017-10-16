@@ -57,6 +57,8 @@ function initdatagrid() {
 
         columns: [[
 
+            {field: 'mobile', title: '手机号', width: 100, align: 'center'},
+
             {field: 'openid', title: 'openid', width: 120, align: 'center'},
 
             {field: 'orderno', title: '订单号', width: 100, align: 'center'},
@@ -91,7 +93,7 @@ function initdatagrid() {
             cache: true,
             url: ws_url + '/rest/activitiesorder/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -110,7 +112,7 @@ function initdatagrid() {
 /**
  * 发送红包
  */
-function doSendMoney(){
+function doSendMoney() {
     var rows = $('#activitiesordergrid').datagrid('getSelections');
 
     if (!rows || rows.length == 0) {
@@ -126,17 +128,17 @@ function doSendMoney(){
         assetList.push(n.id);
     });
 
-   /* var assetList="";
+    /* var assetList="";
 
-    for(var i=0;i<rows.length;i++)
-    {
-         if(i==0){
-             assetList+=rows[i].id;
-         }else{
-             assetList+=","+rows[i].id;
-         }
+     for(var i=0;i<rows.length;i++)
+     {
+          if(i==0){
+              assetList+=rows[i].id;
+          }else{
+              assetList+=","+rows[i].id;
+          }
 
-    }*/
+     }*/
 
     $.messager.confirm('提示', '是否选择这些微信红包订单?', function (r) {
         if (!r) {
@@ -158,12 +160,12 @@ function doSendMoney(){
                         $('#activitiesordergrid').datagrid("reload");
                     });
                 } else {
-                    if(msg.message=="3"){
+                    if (msg.message == "3") {
                         $.messager.alert('提示', '上次发送的微信红包没有发送完毕,请耐心等待！', "warning", function () {
                             $('#activitiesordergrid').datagrid("clearSelections");
                             $('#activitiesordergrid').datagrid("reload");
                         });
-                    }else {
+                    } else {
                         $.messager.alert('错误', '微信红包发送失败！', "error", function () {
                             $('#activitiesordergrid').datagrid("clearSelections");
                             $('#activitiesordergrid').datagrid("reload");
@@ -178,4 +180,38 @@ function doSendMoney(){
             }
         });
     });
+}
+
+/**
+ * 查询
+ */
+function doSearch() {
+
+    var startDt = $('#startDt').datebox('getValue');
+    var endDt = $('#endDt').datebox('getValue');
+
+
+    if (startDt == "") {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '开始时间不能为空！');
+        return;
+    }
+
+    if (endDt == "") {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '结束时间不能为空！');
+        return;
+    }
+
+    var d1 = new Date(startDt.replace(/\-/g, "\/"));
+    var d2 = new Date(endDt.replace(/\-/g, "\/"));
+
+    if (d1 > d2) {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '开始时间不能大于结束时间！');
+        return;
+    }
+
+    initdatagrid();
+
 }

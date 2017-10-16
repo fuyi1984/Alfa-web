@@ -11,6 +11,7 @@
         <result column="orderid" property="orderid" jdbcType="BIGINT"/>
         <result column="activitiesid" property="activitiesid" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
 
         <result column="isfollow" property="isfollow" jdbcType="VARCHAR"/>
         <result column="issubmit" property="issubmit" jdbcType="VARCHAR"/>
@@ -29,6 +30,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.mobile!=null">
+                and A.mobile=#{condition.mobile}
+            </if>
             <if test="condition.idlist!=null">
                 and A.id in
                 <foreach collection="condition.idlist" item="item" index="index" open="(" separator="," close=")">
@@ -79,13 +83,19 @@
             <if test="condition.version != null">
                 and A.version = #{condition.version}
             </if>
+            <if test="condition.createDtFrom != null">
+                and A.createdDt <![CDATA[ >=str_to_date(#{condition.createDtFrom},'%Y-%m-%d %H:%i:%S')]]>
+            </if>
+            <if test="condition.createDtTo != null">
+                and A.createdDt <![CDATA[ <=str_to_date(#{condition.createDtTo} ,'%Y-%m-%d %H:%i:%S')]]>
+            </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List">
         A.id, A.openid, A.orderid,A.activitiesid, A.isfollow,A.issubmit,A.isfinish,A.createdBy,A.createdDt,
-        A.updatedBy, A.updatedDt, A.version, A.orderno,A.status,A.visible
+        A.updatedBy, A.updatedDt, A.version, A.orderno,A.status,A.visible,A.mobile
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.activitiesorder">
@@ -94,6 +104,9 @@
         </selectKey>
         insert into activitiesorder
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile!=null">
+                mobile,
+            </if>
             <if test="visible!=null">
                 visible,
             </if>
@@ -138,6 +151,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
             <if test="visible!=null">
                 #{visible},
             </if>
@@ -201,6 +217,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.activitiesorder">
         update activitiesorder
         <set>
+            <if test="mobile!=null">
+                mobile=#{mobile},
+            </if>
             <if test="visible!=null">
                 visible=#{visible},
             </if>
@@ -250,6 +269,9 @@
     <update id="updateByOrderid" parameterType="com.alfa.web.pojo.activitiesorder">
         update activitiesorder
         <set>
+            <if test="mobile!=null">
+                mobile=#{mobile},
+            </if>
             <if test="visible!=null">
                 visible=#{visible},
             </if>

@@ -11,6 +11,7 @@
         <result column="activitiesid" property="activitiesid" jdbcType="BIGINT"/>
         <result column="orderno" property="orderno" jdbcType="VARCHAR"/>
         <result column="money" property="money" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -24,6 +25,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.mobile!=null">
+                and A.mobile=#{condition.mobile}
+            </if>
             <if test="condition.money!=null">
                 and A.money = #{condition.money}
             </if>
@@ -68,7 +72,7 @@
 
     <sql id="Base_Column_List">
         A.Id, A.openid,A.activitiesid,A.createdDt,
-        A.money,A.orderno,A.orderid,A.createdBy,A.updatedBy,A.updatedDt,A.version
+        A.money,A.orderno,A.orderid,A.createdBy,A.updatedBy,A.updatedDt,A.version,A.mobile
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.aftersendmoney">
@@ -77,6 +81,9 @@
         </selectKey>
         insert into aftersendmoney
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobile!=null">
+                mobile,
+            </if>
             <if test="money != null">
                 money,
             </if>
@@ -109,6 +116,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobile!=null">
+                #{mobile},
+            </if>
             <if test="money != null">
                 #{money},
             </if>
@@ -160,6 +170,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.aftersendmoney">
         update aftersendmoney
         <set>
+            <if test="mobile!=null">
+                mobile=#{mobile},
+            </if>
             <if test="money != null">
                 money=#{money},
             </if>

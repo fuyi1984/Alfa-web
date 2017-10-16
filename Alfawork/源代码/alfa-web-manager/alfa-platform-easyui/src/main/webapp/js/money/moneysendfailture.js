@@ -57,6 +57,8 @@ function initdatagrid() {
 
         columns: [[
 
+            {field: 'mobile', title: '手机号', width: 100, align: 'center'},
+
             {field: 'openid', title: 'openid', width: 120, align: 'center'},
 
             {field: 'orderno', title: '订单号', width: 100, align: 'center'},
@@ -111,5 +113,32 @@ function initdatagrid() {
  * 查询
  */
 function doSearch() {
+
+    var startDt = $('#startDt').datebox('getValue');
+    var endDt = $('#endDt').datebox('getValue');
+
+
+    if (startDt == "") {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '开始时间不能为空！');
+        return;
+    }
+
+    if (endDt == "") {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '结束时间不能为空！');
+        return;
+    }
+
+    var d1 = new Date(startDt.replace(/\-/g, "\/"));
+    var d2 = new Date(endDt.replace(/\-/g, "\/"));
+
+    if (d1 > d2) {
+        //alert("开始时间不能大于结束时间！");
+        $.messager.alert('提示', '开始时间不能大于结束时间！');
+        return;
+    }
+
     initdatagrid();
+
 }

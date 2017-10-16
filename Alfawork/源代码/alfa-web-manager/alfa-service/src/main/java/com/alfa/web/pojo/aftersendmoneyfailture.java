@@ -87,4 +87,17 @@ public class aftersendmoneyfailture extends Entity implements Serializable {
     public void setErrormessage(String errormessage) {
         this.errormessage = errormessage;
     }
+
+    /**
+     * 手机号
+     */
+    public String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 }

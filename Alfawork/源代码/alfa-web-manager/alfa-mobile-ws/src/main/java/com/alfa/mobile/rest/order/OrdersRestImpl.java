@@ -101,7 +101,8 @@ public class OrdersRestImpl implements OrdersRest {
                     criteria.clear();
                     criteria.put("openid", order.getCopenid());
 
-                    //获取用户关注的红包活动
+                    //region 获取用户关注的红包活动
+
                     List<moneyactivitiesconcern> moneyactivitiesconcernlist=this.moneyactivitiesconcernServcie.selectByParams(criteria);
 
                     for (moneyactivitiesconcern item:moneyactivitiesconcernlist) {
@@ -118,11 +119,14 @@ public class OrdersRestImpl implements OrdersRest {
                             {
                                 aorder.setOrderid(order.getOrderid());
                                 aorder.setOrderno(order.getOrderno());
+                                aorder.setMobile(order.getIphone());
                                 aorder.setIssubmit("1");
                                 this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                             }
                         }
                     }
+
+                    //endregion
 
                 }
 

@@ -86,4 +86,18 @@ public class aftersendmoney extends Entity implements Serializable {
     public void setMoney(String money) {
         this.money = money;
     }
+
+    /**
+     * 手机号
+     */
+    public String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
 }

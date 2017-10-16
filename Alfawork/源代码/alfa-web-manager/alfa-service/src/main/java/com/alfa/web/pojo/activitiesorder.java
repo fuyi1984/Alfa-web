@@ -137,4 +137,17 @@ public class activitiesorder extends Entity implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    /**
+     * 手机号
+     */
+    public String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 }

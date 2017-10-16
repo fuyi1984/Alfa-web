@@ -73,4 +73,17 @@ public class beforesendmoney extends Entity implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * 手机号
+     */
+    public String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 }

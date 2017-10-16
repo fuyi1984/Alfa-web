@@ -69,6 +69,16 @@ public class activitiesorderRestImpl implements activitiesorderRest {
         criteria.put("isfinish","3");
         criteria.put("visible","4");
 
+        //提交开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        //提交结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
         List<activitiesorder> activitiesorderList = this.activitiesorderService.selectByParams(criteria);
@@ -113,6 +123,7 @@ public class activitiesorderRestImpl implements activitiesorderRest {
                     money.setActivitiesid(item.getActivitiesid());
                     money.setOrderid(item.getOrderid());
                     money.setOrderno(item.getOrderno());
+                    money.setMobile(item.getMobile());
 
                     this.beforesendmoneyService.insertSelective(money);
                 }
