@@ -62,6 +62,7 @@
     <sql id="Base_Column_List">
         A.Id, A.openid,A.activitiesid,A.createdDt,
         A.errormessage
+        ,A.orderno,A.orderid,A.createdBy,A.updatedBy,A.updatedDt,A.version
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.aftersendmoneyfailture">
