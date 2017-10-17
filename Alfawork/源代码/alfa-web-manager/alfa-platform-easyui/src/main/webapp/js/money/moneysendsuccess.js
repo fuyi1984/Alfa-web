@@ -93,7 +93,7 @@ function initdatagrid() {
             cache: true,
             url: ws_url + '/rest/aftersendmoney/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '&mobile=' + $('#mobile').val() + '&title=' + $('#title').val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -117,14 +117,13 @@ function doSearch() {
     var startDt = $('#startDt').datebox('getValue');
     var endDt = $('#endDt').datebox('getValue');
 
-
-    if (startDt == "") {
+    if (startDt == "" && endDt != "") {
         //alert("开始时间不能大于结束时间！");
         $.messager.alert('提示', '开始时间不能为空！');
         return;
     }
 
-    if (endDt == "") {
+    if (endDt == "" && startDt != "") {
         //alert("开始时间不能大于结束时间！");
         $.messager.alert('提示', '结束时间不能为空！');
         return;
@@ -133,11 +132,12 @@ function doSearch() {
     var d1 = new Date(startDt.replace(/\-/g, "\/"));
     var d2 = new Date(endDt.replace(/\-/g, "\/"));
 
-    if (d1 > d2) {
+    if (startDt != "" && endDt != "" & d1 > d2) {
         //alert("开始时间不能大于结束时间！");
         $.messager.alert('提示', '开始时间不能大于结束时间！');
         return;
     }
 
     initdatagrid();
+
 }

@@ -65,6 +65,17 @@ public class aftersendmoneyfailtureRestImpl implements aftersendmoneyfailtureRes
             criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
         }
 
+        //手机号
+        if(!StringUtil.isNullOrEmpty(map.get("mobile"))){
+            criteria.put("mobileLike",map.get("mobile").toString());
+        }
+
+        //活动标题
+        if(!StringUtil.isNullOrEmpty(map.get("title"))){
+            criteria.put("titleLike",map.get("title").toString());
+        }
+
+
         WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
 
         List<aftersendmoneyfailture> aftersendmoneyfailtureList = this.aftersendmoneyfailtureService.selectByParams(criteria);

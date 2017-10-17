@@ -30,6 +30,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.mobileLike != null">
+                and A.mobile like concat('%', #{condition.mobileLike}, '%')
+            </if>
             <if test="condition.mobile!=null">
                 and A.mobile=#{condition.mobile}
             </if>
@@ -327,6 +330,11 @@
         from activitiesorder A
 
         left join moneyactivities B on(A.activitiesid = B.id)
+
+        <!--活动标题-->
+        <if test="condition.titleLike != null ">
+            INNER JOIN moneyactivities DD ON(DD.id = A.activitiesid and DD.title like concat('%',#{condition.titleLike},'%') )
+        </if>
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>

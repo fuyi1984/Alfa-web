@@ -93,7 +93,7 @@ function initdatagrid() {
             cache: true,
             url: ws_url + '/rest/aftersendmoneyfailture/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'&mobile='+$('#mobile').val()+'&title='+$('#title').val()+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);

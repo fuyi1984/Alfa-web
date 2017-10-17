@@ -79,7 +79,17 @@ public class activitiesorderRestImpl implements activitiesorderRest {
             criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
+        //手机号
+        if(!StringUtil.isNullOrEmpty(map.get("mobile"))){
+            criteria.put("mobileLike",map.get("mobile").toString());
+        }
+
+        //活动标题
+        if(!StringUtil.isNullOrEmpty(map.get("title"))){
+            criteria.put("titleLike",map.get("title").toString());
+        }
+
+        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
 
         List<activitiesorder> activitiesorderList = this.activitiesorderService.selectByParams(criteria);
         int count = this.activitiesorderService.countByParams(criteria);
