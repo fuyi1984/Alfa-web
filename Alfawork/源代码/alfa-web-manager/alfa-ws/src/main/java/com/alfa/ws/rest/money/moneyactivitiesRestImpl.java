@@ -70,6 +70,21 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //过滤
         Criteria criteria = new Criteria();
 
+        //提交开始时间
+        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        }
+
+        //提交结束时间
+        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        }
+
+        //活动标题
+        if(!StringUtil.isNullOrEmpty(map.get("title"))){
+            criteria.put("titlelike",map.get("title").toString());
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);

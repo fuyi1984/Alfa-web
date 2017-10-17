@@ -157,6 +157,10 @@
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
         select count(*) from aftersendmoney A
+        <!--活动标题-->
+        <if test="condition.titleLike != null ">
+            INNER JOIN moneyactivities DD ON(DD.id = A.activitiesid and DD.title like concat('%',#{condition.titleLike},'%') )
+        </if>
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
