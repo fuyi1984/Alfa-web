@@ -85,6 +85,12 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
             criteria.put("titlelike",map.get("title").toString());
         }
 
+
+        //活动状态
+        if(!StringUtil.isNullOrEmpty(map.get("statuslist"))){
+            criteria.put("statuslist",map.get("statuslist").toString());
+        }
+
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);

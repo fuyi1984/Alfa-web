@@ -98,11 +98,17 @@ public class MoneySenderStatus {
             /**
              * 开始时间
              */
-            criteria.put("createDtFrom", sdf.format(dt));
+            //criteria.put("createDtFrom", sdf.format(dt));
             /**
              * 结束时间
              */
-            criteria.put("createDtTo", sdf.format(dt));
+            //criteria.put("createDtTo", sdf.format(dt));
+
+            /**
+             * 活动状态
+             */
+            criteria.put("statuslist", "0,1".split(","));
+
 
             //查询红包活动
             List<moneyactivities> activitieslist = this.moneyactivitiesServcie.selectByParams(criteria);
@@ -118,16 +124,30 @@ public class MoneySenderStatus {
 
             for (moneyactivities money : activitieslist) {
 
-                //活动启用
-                if(money.getStatus().equals(1)) {
-                    //region 新人红包活动
-                    if (money.getId().equals(4l)) {
-                        PeopleMoneySend(money);
-                    }
-                }
-                //活动停用
-                else if(money.getStatus().equals(0)){
+                if (money.getStarttime().compareTo(dt)==-1&& money.getEndtime().compareTo(dt)==1) {
 
+                    String Status=money.getStatus();
+
+                    //活动启用
+                    if (Status.equals("1")) {
+
+
+                        //region 新人红包活动
+                        if (money.getId().equals(4l)) {
+                            PeopleMoneySend(money);
+                        }
+
+                    }
+                    //活动停用
+                    else if (Status.equals("0")) {
+                        money.setStatus("1");
+                        this.moneyactivitiesServcie.updateByPrimaryKeySelective(money);
+                    }
+
+                }else{
+                    //活动强制停用
+                    money.setStatus("2");
+                    this.moneyactivitiesServcie.updateByPrimaryKeySelective(money);
                 }
 
                 //endregion

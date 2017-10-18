@@ -38,6 +38,12 @@
             <if test="condition.status!=null">
                 and status = #{condition.status}
             </if>
+            <if test="condition.statuslist!=null">
+                and status in
+                <foreach collection="condition.statuslist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
 
             <if test="condition.titlelike!=null">
                 and title like concat('%', #{condition.titlelike}, '%')

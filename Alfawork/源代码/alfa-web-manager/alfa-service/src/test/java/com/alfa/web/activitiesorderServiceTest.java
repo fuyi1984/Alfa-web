@@ -1,23 +1,25 @@
 package com.alfa.web;
 
-import com.alfa.web.pojo.activitiesorder;
-import com.alfa.web.pojo.beforesendmoney;
-import com.alfa.web.service.money.activitiesorderService;
-import com.alfa.web.service.money.beforesendmoneyService;
-import com.alfa.web.util.JsonUtil;
-import com.alfa.web.util.StringUtil;
-import com.alfa.web.util.WebUtil;
+import com.alfa.web.pojo.*;
+import com.alfa.web.service.money.*;
+import com.alfa.web.util.*;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.vo.moneysendresultvo;
+import com.alfa.web.vo.moneyvo;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2017/9/22.
@@ -26,11 +28,21 @@ public class activitiesorderServiceTest extends TestBase {
 
     private static Logger logger = Logger.getLogger(activitiesorderServiceTest.class);
 
-    @Autowired
-    private activitiesorderService activitiesorderService;
+    private Criteria criteria = new Criteria();
 
+
+    /**
+     * 发送前的红包订单
+     */
     @Autowired
     private beforesendmoneyService beforesendmoneyService;
+
+
+    /**
+     * 参加了红包活动的订单
+     */
+    @Autowired
+    private activitiesorderService activitiesorderService;
 
     @Test
     public void insert(){
@@ -44,7 +56,6 @@ public class activitiesorderServiceTest extends TestBase {
 
     @Test
     public void search(){
-        Criteria criteria=new Criteria();
         List<activitiesorder> list=this.activitiesorderService.selectByParams(criteria);
         System.out.println(JsonUtil.toJson(list));
     }
@@ -127,4 +138,5 @@ public class activitiesorderServiceTest extends TestBase {
 
 
     }
+
 }
