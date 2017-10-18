@@ -53,6 +53,15 @@ public class moneyactivitiesServiceTest extends TestBase {
     @Test
     public void search(){
         Criteria criteria = new Criteria();
+        /**
+         * 开始时间
+         */
+        criteria.put("createDtFrom", "2017-10-17 00:00:00");
+        /**
+         * 结束时间
+         */
+        criteria.put("createDtTo", "2017-10-17 23:59:59");
+
         List<moneyactivities> list=this.moneyactivitiesService.selectByParams(criteria);
         System.out.println(JsonUtil.toJson(list));
     }
