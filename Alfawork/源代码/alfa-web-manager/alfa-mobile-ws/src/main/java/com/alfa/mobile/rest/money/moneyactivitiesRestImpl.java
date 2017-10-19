@@ -196,37 +196,37 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
                         //用户已经关注过红包活动
                         if (count > 0) {
-                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "用户已经关注过红包活动"))).build();
                         } else {
                             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
                         }
                     }
                     //活动的红包总数已经领完
                     else {
-                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动的红包总数已经领完"))).build();
                     }
 
                     //endregion
                 }
                 //活动手动停用
                 else if (activities.getStatus().equals("2")) {
-                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动手动停用"))).build();
                 }
                 //活动停用
                 else {
-                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动停用"))).build();
                 }
 
                 //endregion
             }else{
                 //region 时间有效期范围外
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "时间有效期范围外"))).build();
                 //endregion
             }
 
         }else {
             //活动不存在
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动不存在"))).build();
         }
     }
 }
