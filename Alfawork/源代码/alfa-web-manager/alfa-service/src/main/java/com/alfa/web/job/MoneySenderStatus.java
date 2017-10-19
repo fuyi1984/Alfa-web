@@ -298,7 +298,7 @@ public class MoneySenderStatus {
 
                     activitiesorder aorder=activitiesorderlst.get(0);
                     aorder.setStatus(resultvo.getContent());
-                    aorder.setVisible("-4");
+                    aorder.setVisible("-4"); //把订单置于隐藏状态
 
                     this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                 }

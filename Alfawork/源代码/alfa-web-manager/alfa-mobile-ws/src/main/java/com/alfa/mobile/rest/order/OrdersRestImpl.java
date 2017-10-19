@@ -120,7 +120,7 @@ public class OrdersRestImpl implements OrdersRest {
                                 aorder.setOrderid(order.getOrderid());
                                 aorder.setOrderno(order.getOrderno());
                                 aorder.setMobile(order.getIphone());
-                                aorder.setIssubmit("1");
+                                aorder.setIssubmit("1"); //提交了红包订单
                                 this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                             }
                         }
@@ -232,8 +232,8 @@ public class OrdersRestImpl implements OrdersRest {
                 List<activitiesorder> activitiesorderlist=this.activitiesorderService.selectByParams(criteria);
 
                 for (activitiesorder orderitem:activitiesorderlist) {
-                    orderitem.setIsfinish("3");
-                    orderitem.setVisible("4");
+                    orderitem.setIsfinish("3"); //完成了订单
+                    orderitem.setVisible("4");  //把订单置于显示状态
                     this.activitiesorderService.updateByPrimaryKeySelective(orderitem);
                 }
             }

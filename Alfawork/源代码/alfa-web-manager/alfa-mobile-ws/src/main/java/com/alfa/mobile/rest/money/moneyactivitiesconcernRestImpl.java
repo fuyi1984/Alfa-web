@@ -1,6 +1,8 @@
 package com.alfa.mobile.rest.money;
 
+import com.alfa.web.pojo.activitiesorder;
 import com.alfa.web.pojo.moneyactivitiesconcern;
+import com.alfa.web.service.money.activitiesorderService;
 import com.alfa.web.service.money.moneyactivitiesconcernServcie;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/9/21.
+ * 红包活动关注
  */
 public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRest {
 
@@ -30,6 +32,9 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
      */
     @Autowired
     private moneyactivitiesconcernServcie moneyactivitiesconcernService;
+
+    @Autowired
+    private activitiesorderService activitiesorderService;
 
 
 
@@ -92,14 +97,27 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
         criteria.put("openid", money.getOpenid());
         criteria.put("activitiesid",money.getActivitiesid());
 
+        //查询红包活动关注表
         List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
 
         if (moneyactivitiesconcernList.size() > 0) {
-            //数据已存在
+            //活动已经关注
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
         } else {
             int result = this.moneyactivitiesconcernService.insertSelective(money);
             if (result > 0) {
+
+                //region 插入红包关注的订单
+
+                activitiesorder activitiesorder=new activitiesorder();
+                activitiesorder.setOpenid(money.getOpenid());
+                activitiesorder.setActivitiesid(money.getActivitiesid());
+                activitiesorder.setIsfollow("2"); //关注了红包活动
+
+                this.activitiesorderService.insertSelective(activitiesorder);
+
+                //endregion
+
                 //插入成功
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
             } else {

@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/20.
+ * 红包活动
  */
 @Path("/money")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
