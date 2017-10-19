@@ -1,6 +1,7 @@
 package com.alfa.mobile.rest.money;
 
 import com.alfa.web.pojo.moneyactivities;
+import com.alfa.web.pojo.moneyactivitiesconcern;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -73,5 +74,18 @@ public interface moneyactivitiesRest  {
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/batchdeletemoneyactivities")
     public Response batchdeletemoneyactivities(List<String> list);
+
+
+    /**
+     * 判断红包是否已经领取
+     * @param money
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/isNotGetRedMoeny")
+    public Response isNotGetRedMoeny(moneyactivitiesconcern money);
 
 }

@@ -29,6 +29,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.id!=null">
+                and Id = #{condition.id}
+            </if>
             <if test="condition.minprice!=null">
                 and minprice = #{condition.minprice}
             </if>

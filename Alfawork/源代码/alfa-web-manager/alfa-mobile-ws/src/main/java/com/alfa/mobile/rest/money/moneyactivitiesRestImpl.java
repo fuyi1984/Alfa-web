@@ -1,7 +1,9 @@
 package com.alfa.mobile.rest.money;
 
 import com.alfa.web.pojo.moneyactivities;
+import com.alfa.web.pojo.moneyactivitiesconcern;
 import com.alfa.web.service.money.moneyactivitiesServcie;
+import com.alfa.web.service.money.moneyactivitiesconcernServcie;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -30,6 +32,9 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
      */
     @Autowired
     private moneyactivitiesServcie moneyactivitiesService;
+
+    @Autowired
+    private moneyactivitiesconcernServcie moneyactivitiesconcernService;
 
 
     @Override
@@ -144,5 +149,66 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
         //endregion
+    }
+
+    @Override
+    public Response isNotGetRedMoeny(moneyactivitiesconcern money) {
+
+        Criteria criteria = new Criteria();
+
+        criteria.put("id", money.getActivitiesid());
+
+        List<moneyactivities> moneyactivitieslist=this.moneyactivitiesService.selectByParams(criteria);
+
+        if(moneyactivitieslist.size()>0){
+
+            moneyactivities activities=moneyactivitieslist.get(0);
+
+            //活动启用
+            if(activities.getStatus().equals("1")){
+
+                criteria.clear();
+                //criteria.put("openid", money.getOpenid());
+                criteria.put("activitiesid",money.getActivitiesid());
+
+                int count=this.moneyactivitiesconcernService.countByParams(criteria);
+
+                if(count<Integer.parseInt(activities.getTotalnum())){
+
+                    //region 判断用户是否已经关注了红包活动
+
+                    criteria.clear();
+                    criteria.put("openid", money.getOpenid());
+                    criteria.put("activitiesid",money.getActivitiesid());
+
+                    count=this.moneyactivitiesconcernService.countByParams(criteria);
+
+                    //endregion
+
+                    //用户已经关注过红包活动
+                    if(count>0){
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                    }else{
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                    }
+                }
+                //活动的红包总数已经领完
+                else{
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                }
+            }
+            //活动手动停用
+            else if(activities.getStatus().equals("2")){
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            }
+            //活动停用
+            else{
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            }
+
+        }else {
+            //活动不存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
     }
 }

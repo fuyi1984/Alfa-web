@@ -8,6 +8,11 @@ $(function () {
         setCurrentUser();
         $('#orderadd').window('close');
         $('#orderAllocating').window('close');
+
+        // var tab = $('#tbs').tabs('getSelected');
+        // var index = $('#tbs').tabs('getTabIndex',tab);
+        // alert(index);
+
         initdatagrid();
         initcombobox();
         //Accesscontrol();
