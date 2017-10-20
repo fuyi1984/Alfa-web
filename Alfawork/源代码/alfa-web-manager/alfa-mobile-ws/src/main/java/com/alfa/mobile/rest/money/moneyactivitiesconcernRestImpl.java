@@ -1,8 +1,10 @@
 package com.alfa.mobile.rest.money;
 
 import com.alfa.web.pojo.activitiesorder;
+import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.pojo.moneyactivitiesconcern;
 import com.alfa.web.service.money.activitiesorderService;
+import com.alfa.web.service.money.moneyactivitiesServcie;
 import com.alfa.web.service.money.moneyactivitiesconcernServcie;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +38,9 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
 
     @Autowired
     private activitiesorderService activitiesorderService;
+
+    @Autowired
+    private moneyactivitiesServcie moneyactivitiesServcie;
 
 
 
@@ -94,38 +100,82 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
         //region
 
         Criteria criteria = new Criteria();
-        criteria.put("openid", money.getOpenid());
-        criteria.put("activitiesid",money.getActivitiesid());
 
-        //查询红包活动关注表
-        List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
+        Date dt = new Date();
 
-        if (moneyactivitiesconcernList.size() > 0) {
-            //活动已经关注
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
-        } else {
-            int result = this.moneyactivitiesconcernService.insertSelective(money);
-            if (result > 0) {
+        criteria.put("id",money.getActivitiesid());
 
-                //region 插入红包关注的订单
+        List<moneyactivities> moneyactivitiesList=this.moneyactivitiesServcie.selectByParams(criteria);
 
-                activitiesorder activitiesorder=new activitiesorder();
-                activitiesorder.setOpenid(money.getOpenid());
-                activitiesorder.setActivitiesid(money.getActivitiesid());
-                activitiesorder.setIsfollow("2"); //关注了红包活动
+        if(moneyactivitiesList.size()>0) {
 
-                this.activitiesorderService.insertSelective(activitiesorder);
+            moneyactivities activities=moneyactivitiesList.get(0);
+
+            if (activities.getStarttime().compareTo(dt)==-1&& activities.getEndtime().compareTo(dt)==1) {
+
+                //region 时间有效期范围内
+
+                //活动启用
+                if (activities.getStatus().equals("1")) {
+                    //region 添加关注
+
+                    criteria.clear();
+
+                    criteria.put("activitiesid",money.getActivitiesid());
+                    criteria.put("openid", money.getOpenid());
+
+                    //查询红包活动关注表
+                    List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
+
+                    if (moneyactivitiesconcernList.size() > 0) {
+                        //活动已经关注
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动已经关注"))).build();
+                    } else {
+                        int result = this.moneyactivitiesconcernService.insertSelective(money);
+                        if (result > 0) {
+
+                            //region 插入红包关注的订单
+
+                            activitiesorder activitiesorder = new activitiesorder();
+                            activitiesorder.setOpenid(money.getOpenid());
+                            activitiesorder.setActivitiesid(money.getActivitiesid());
+                            activitiesorder.setIsfollow("2"); //关注了红包活动
+
+                            this.activitiesorderService.insertSelective(activitiesorder);
+
+                            //endregion
+
+                            //插入成功
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                        } else {
+                            //插入失败
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "数据添加失败"))).build();
+                        }
+                    }
+
+                    //endregion
+                }
+                //活动手动停用
+                else if (activities.getStatus().equals("2")) {
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动手动停用"))).build();
+                }
+                //活动停用
+                else {
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动停用"))).build();
+                }
 
                 //endregion
 
-                //插入成功
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();
-            } else {
-                //插入失败
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
+            }else{
+                //region 时间有效期范围外
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "时间有效期范围外"))).build();
+                //endregion
             }
-        }
 
+        }else{
+            //活动不存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动不存在"))).build();
+        }
         //endregion
     }
 

@@ -6,6 +6,7 @@ import com.alfa.web.pojo.aftersendmoney;
 import com.alfa.web.service.money.aftersendmoneyService;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.vo.calculatemoneyandcount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class aftersendmoneyServiceImpl implements aftersendmoneyService {
     @Override
     public List<aftersendmoney> selectByParams(Criteria example) {
         return this.aftersendmoneyMapper.selectByParams(example);
+    }
+
+    @Override
+    public List<calculatemoneyandcount> selectmoneycountByParams(Criteria example) {
+        return this.aftersendmoneyMapper.selectmoneycountByParams(example);
     }
 }

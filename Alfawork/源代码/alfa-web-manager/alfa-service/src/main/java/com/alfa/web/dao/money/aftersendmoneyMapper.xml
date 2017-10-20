@@ -21,6 +21,13 @@
 
     </resultMap>
 
+    <!--统一每个用户发送的红包总数和红包总金额-->
+    <resultMap id="calculatemoneyandcountMap" type="com.alfa.web.vo.calculatemoneyandcount">
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="totalcount" property="totalcount" jdbcType="VARCHAR"/>
+        <result column="totalmoney" property="totalmoney" jdbcType="VARCHAR"/>
+    </resultMap>
+
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
@@ -240,6 +247,21 @@
             order by ${orderByClause}
         </if>
         <include refid="common.Mysql_Pagination_Limit"/>
+    </select>
+
+    <select id="selectmoneycountByParams" resultMap="calculatemoneyandcountMap" parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+
+        A.openid,count(openid) as totalcount,ROUND(SUM(money),2) as totalmoney
+
+        from aftersendmoney A
+
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+
+        GROUP BY A.openid
+
     </select>
 
 

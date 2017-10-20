@@ -2,6 +2,7 @@ package com.alfa.web.service.money;
 
 import com.alfa.web.pojo.aftersendmoney;
 import com.alfa.web.util.pojo.Criteria;
+import com.alfa.web.vo.calculatemoneyandcount;
 
 import java.util.List;
 
@@ -33,4 +34,11 @@ public interface aftersendmoneyService {
      * 根据条件查询记录集
      */
     List<aftersendmoney> selectByParams(Criteria example);
+
+    /**
+     * 根据条件查询红包总数和红包总金额
+     * @param example
+     * @return
+     */
+    List<calculatemoneyandcount> selectmoneycountByParams(Criteria example);
 }

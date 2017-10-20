@@ -26,6 +26,7 @@
             <bean class="com.alfa.mobile.rest.order.FileResourceRestImpl"/>
             <bean class="com.alfa.mobile.rest.money.moneyactivitiesRestImpl"/>
             <bean class="com.alfa.mobile.rest.money.moneyactivitiesconcernRestImpl"/>
+            <bean class="com.alfa.mobile.rest.money.aftersendmoneyRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
