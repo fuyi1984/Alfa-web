@@ -61,7 +61,7 @@ public interface moneyactivitiesRest  {
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     @Path("/updatemoneyactivities")
-    public Response updatemoneyactivities(moneyactivities money);
+    public Response updatemoneyactivities(moneyactivities money) throws ParseException;
 
     /**
      * 批量删除红包活动

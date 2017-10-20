@@ -71,24 +71,24 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         Criteria criteria = new Criteria();
 
         //提交开始时间
-        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
-            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+        if (!StringUtil.isNullOrEmpty(map.get("startDt"))) {
+            criteria.put("createDtFrom", map.get("startDt").toString() + " 00:00:00");
         }
 
         //提交结束时间
-        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
-            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+        if (!StringUtil.isNullOrEmpty(map.get("endDt"))) {
+            criteria.put("createDtTo", map.get("endDt").toString() + " 23:59:59");
         }
 
         //活动标题
-        if(!StringUtil.isNullOrEmpty(map.get("title"))){
-            criteria.put("titlelike",map.get("title").toString());
+        if (!StringUtil.isNullOrEmpty(map.get("title"))) {
+            criteria.put("titlelike", map.get("title").toString());
         }
 
 
         //活动状态
-        if(!StringUtil.isNullOrEmpty(map.get("statuslist"))){
-            criteria.put("statuslist",map.get("statuslist").toString());
+        if (!StringUtil.isNullOrEmpty(map.get("statuslist"))) {
+            criteria.put("statuslist", map.get("statuslist").toString());
         }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
@@ -128,8 +128,8 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
             log.info(money.getStarttime());
             log.info(money.getEndtime());
 
-            money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime())+" 00:00:00"));
-            money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime())+" 23:59:59"));
+            money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime()) + " 00:00:00"));
+            money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime()) + " 23:59:59"));
 
             int result = this.moneyactivitiesService.insertSelective(money);
             if (result > 0) {
@@ -145,20 +145,26 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
     }
 
     @Override
-    public Response updatemoneyactivities(moneyactivities money) {
+    public Response updatemoneyactivities(moneyactivities money) throws ParseException {
 
         //region
 
-        String Json="";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        int result=this.moneyactivitiesService.updateByPrimaryKeySelective(money);
+        money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime()) + " 00:00:00"));
+        money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime()) + " 23:59:59"));
 
-        if(result==1){
+        String Json = "";
+
+        int result = this.moneyactivitiesService.updateByPrimaryKeySelective(money);
+
+        if (result == 1) {
             //更新成功
-            Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1",null));
-        }else{
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+        } else {
             //更新失败
-            Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,"2",null));
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
@@ -171,7 +177,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //region
         int result = 0;
 
-        result=this.moneyactivitiesService.batchdeleteByPrimaryKey(list);
+        result = this.moneyactivitiesService.batchdeleteByPrimaryKey(list);
 
         if (result >= 1) {
             //删除成功
@@ -187,7 +193,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
     public Response batchStartmoneyactivities(List<String> list) {
         int result = 0;
 
-        result=this.moneyactivitiesService.batchStartmoneyactivitiesByPrimaryKey(list);
+        result = this.moneyactivitiesService.batchStartmoneyactivitiesByPrimaryKey(list);
 
         if (result >= 1) {
             //更新成功
@@ -202,7 +208,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
     public Response batchStopmoneyactivities(List<String> list) {
         int result = 0;
 
-        result=this.moneyactivitiesService.batchStopmoneyactivitiesByPrimaryKey(list);
+        result = this.moneyactivitiesService.batchStopmoneyactivitiesByPrimaryKey(list);
 
         if (result >= 1) {
             //删除成功

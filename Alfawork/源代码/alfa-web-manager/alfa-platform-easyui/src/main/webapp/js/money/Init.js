@@ -138,8 +138,11 @@ function initdatagrid() {
  * 新增
  */
 function doAdd() {
+    $('#moneygrid').datagrid("clearSelections");
     $('#form1').form('clear');
     $('#moneyadd').panel({title: '添加红包活动'});
+    $('#title').textbox('textbox').attr('readonly', false);
+    $('#title').textbox({disabled: false});
     $('#moneyadd').window('open');
 }
 

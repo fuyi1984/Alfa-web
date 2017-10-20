@@ -165,7 +165,7 @@
     </select>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from moneyactivitiesconcern
+        select count(*) from moneyactivitiesconcern A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
