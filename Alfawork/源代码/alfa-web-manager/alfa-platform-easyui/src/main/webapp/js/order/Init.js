@@ -9,19 +9,67 @@ $(function () {
         $('#orderadd').window('close');
         $('#orderAllocating').window('close');
 
-        // var tab = $('#tbs').tabs('getSelected');
-        // var index = $('#tbs').tabs('getTabIndex',tab);
-        // alert(index);
+        var tab = $('#tbs').tabs('getSelected');
+        var index = $('#tbs').tabs('getTabIndex', tab);
 
-        initdatagrid();
+        if (index == 0) {
+            $('#tbs1').append($('#data'))
+        }
+
+        initdatagrid(index+1);
         initcombobox();
+
+        $('#tbs').tabs({
+            onSelect: function (title) {
+                //alert(title+' is selected');   
+                var tabs = $('#tbs').tabs('getSelected');
+                var indexs = $('#tbs').tabs('getTabIndex', tabs);
+
+                switch (indexs) {
+                    case 0:
+                        $('#tbs1').append($('#data'))
+                        $('#tbs2').empty();
+                        $('#tbs3').empty();
+                        $('#tbs4').empty();
+                        break;
+                    case 1:
+                        $('#tbs2').append($('#data'))
+                        $('#tbs1').empty();
+                        $('#tbs3').empty();
+                        $('#tbs4').empty();
+                        break;
+                    case 2:
+                        $('#tbs3').append($('#data'))
+                        $('#tbs1').empty();
+                        $('#tbs2').empty();
+                        $('#tbs4').empty();
+                        break;
+                    case 3:
+                        $('#tbs4').append($('#data'))
+                        $('#tbs2').empty();
+                        $('#tbs3').empty();
+                        $('#tbs1').empty();
+                        break;
+                }
+
+                initdatagrid(indexs+1);
+                initcombobox();
+
+            }
+        });
+
+
+
+
         //Accesscontrol();
     } else {
-        top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href = platform_url + "/pages/home/login.html";
     }
 });
 
-function initdatagrid() {
+function initdatagrid(index) {
+
+    //alert(index);
 
     $('#ordergrid').datagrid({
         title: '废油回收',
@@ -357,42 +405,42 @@ function initdatagrid() {
 */
         //endregion
 
-        toolbar:"#tb",
+        toolbar: "#tb",
 
         idField: 'orderid',
 
         frozenColumns: [[
-            {field: 'orderid', checkbox: true}
+            { field: 'orderid', checkbox: true }
         ]],
 
         columns: [[
-            {field: 'orderno', title: '订单号', width: 80, align: 'center'},
-            {field: 'username', title: '申报人姓名', width: 80, align: 'center'},
-            {field: 'iphone', title: '申报人电话', width: 80, align: 'center'},
-            {field: 'address', title: '收油地址', width: 80, align: 'center'},
-            {field: 'num', title: '预收数量(桶)', width: 80, align: 'center'},
-            {field: 'realnum', title: '实收数量(桶)', width: 80, align: 'center'},
-            {field: 'orgname', title: '单位名称', width: 80, align: 'center'},
+            { field: 'orderno', title: '订单号', width: 80, align: 'center' },
+            { field: 'username', title: '申报人姓名', width: 80, align: 'center' },
+            { field: 'iphone', title: '申报人电话', width: 80, align: 'center' },
+            { field: 'address', title: '收油地址', width: 80, align: 'center' },
+            { field: 'num', title: '预收数量(桶)', width: 80, align: 'center' },
+            { field: 'realnum', title: '实收数量(桶)', width: 80, align: 'center' },
+            { field: 'orgname', title: '单位名称', width: 80, align: 'center' },
             {
                 field: 'orgstatus', title: '订单状态', width: 80, align: 'center', formatter: function (value, rec) {
-                switch (value) {
-                    //订单提交
-                    case "1":
-                        return '<span style="color:red;">订单提交</span>';
-                    //订单分配
-                    case "2":
-                        return '<span style="color:blue;">订单分配</span>';
-                    //订单确认
-                    case "3":
-                        return '<span style="color:blueviolet;">订单确认</span>';
-                    //订单完成
-                    case "4":
-                        return '<span style="color:green;">订单完成</span>';
+                    switch (value) {
+                        //订单提交
+                        case "1":
+                            return '<span style="color:red;">订单提交</span>';
+                        //订单分配
+                        case "2":
+                            return '<span style="color:blue;">订单分配</span>';
+                        //订单确认
+                        case "3":
+                            return '<span style="color:blueviolet;">订单确认</span>';
+                        //订单完成
+                        case "4":
+                            return '<span style="color:green;">订单完成</span>';
+                    }
                 }
-            }
             },
-            {field: 'realname', title: '收运人员姓名', width: 80, align: 'center'},
-            {field: 'phone', title: '收运人员电话', width: 80, align: 'center'},
+            { field: 'realname', title: '收运人员姓名', width: 80, align: 'center' },
+            { field: 'phone', title: '收运人员电话', width: 80, align: 'center' },
             /* {field: 'createdBy', title: '创建人', width: 80, align: 'center'},*/
             {
                 field: 'createdDt', title: '申报时间', width: 100, align: 'center'
@@ -429,7 +477,8 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/order/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleId=' + groleid + '&phone=' + gphone + '&iphone=' + gphone + '&realname='+$('#brealname').val()+'&orgstatus='+$('#orderstatus').combobox('getValue')+'&startDt='+$('#startDt').datebox('getValue')+'&endDt='+$('#endDt').datebox('getValue')+'&sendername='+$('#sendername').val()+'&orgname='+$('#orgname').val()+'',
+            //data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleId=' + groleid + '&phone=' + gphone + '&iphone=' + gphone + '&realname=' + $('#brealname').val() + '&orgstatus=' + $('#orderstatus').combobox('getValue') + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '&sendername=' + $('#sendername').val() + '&orgname=' + $('#orgname').val() + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&roleId=' + groleid + '&phone=' + gphone + '&iphone=' + gphone + '&realname=' + $('#brealname').val() + '&orgstatus=' + index + '&startDt=' + $('#startDt').datebox('getValue') + '&endDt=' + $('#endDt').datebox('getValue') + '&sendername=' + $('#sendername').val() + '&orgname=' + $('#orgname').val() + '', 
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -451,12 +500,12 @@ function initcombobox() {
         method: 'get',
         idField: 'userId',
         textField: 'realname',
-        panelWidth:450,
-        panelHeight:400,
+        panelWidth: 450,
+        panelHeight: 400,
         columns: [[
-            {field: 'realname', title: '真实姓名', width: 150},
-            {field: 'phone', title: ' 联系电话', width: 100},
-            {field: 'address', title: '单位地址', width: 200},
+            { field: 'realname', title: '真实姓名', width: 150 },
+            { field: 'phone', title: ' 联系电话', width: 100 },
+            { field: 'address', title: '单位地址', width: 200 },
         ]]
     })
 }
@@ -503,7 +552,7 @@ function Accesscontrol() {
 /**
  * 添加
  */
-function doAdd(){
+function doAdd() {
     //region 添加订单
 
     if (groleid == 10) {
@@ -527,7 +576,7 @@ function doAdd(){
 /**
  * 删除
  */
-function doDelete(){
+function doDelete() {
     //region 删除订单
 
     var rows = $('#ordergrid').datagrid('getSelections');
@@ -597,7 +646,7 @@ function doDelete(){
 /**
  * 分配
  */
-function doAllocat(){
+function doAllocat() {
     //region 分配订单
 
     //var row = $('#ordergrid').datagrid('getSelected');
@@ -725,7 +774,7 @@ function doConfirm() {
 /**
  * 完成
  */
-function doComplete(){
+function doComplete() {
     //region 完成订单
     var rows = $('#ordergrid').datagrid('getSelections');
 
@@ -800,6 +849,6 @@ function doComplete(){
 /**
  * 查询
  */
-function doSearch(){
+function doSearch() {
     initdatagrid();
 }
