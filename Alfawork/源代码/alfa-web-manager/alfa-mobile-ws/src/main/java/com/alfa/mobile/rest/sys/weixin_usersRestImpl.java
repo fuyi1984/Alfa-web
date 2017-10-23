@@ -1,7 +1,9 @@
 package com.alfa.mobile.rest.sys;
 
+import com.alfa.web.pojo.SysUsers;
 import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.order.OrdersService;
+import com.alfa.web.service.sys.SysUsersService;
 import com.alfa.web.service.weixin.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
@@ -38,6 +40,9 @@ public class weixin_usersRestImpl implements weixin_usersRest {
     @Autowired
     private OrdersService ordersService;
 
+    @Autowired
+    private SysUsersService sysUsersService;
+
     @Override
     public Response insertOpenId(td_weixin_users td_weixin_users) throws Exception {
 
@@ -50,7 +55,11 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             //OpenId已存在
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
         }else{
+
             td_weixin_users.setIsdownload("0");
+            td_weixin_users.setMobiletoken("");
+            td_weixin_users.setMobile("");
+
             int result=this.weixin_usersService.insertSelective(td_weixin_users);
             if(result>=1){
                 //OpenId插入成功
@@ -112,6 +121,44 @@ public class weixin_usersRestImpl implements weixin_usersRest {
             //查询失败
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
+    }
+
+    @Override
+    public Response GetSingleOpenIdForMoney(td_weixin_users td_weixin_users) throws UnsupportedEncodingException {
+
+        Criteria criteria = new Criteria();
+        criteria.put("openid", td_weixin_users.getOpenid());
+
+        List<td_weixin_users> list=this.weixin_usersService.selectByParams(criteria);
+
+        if(list.size()>0) {
+            td_weixin_users users=list.get(0);
+
+            if(!StringUtil.isNullOrEmpty(users.getMobiletoken())){
+
+                criteria.clear();
+
+                criteria.put("mobiletoken", users.getMobiletoken());
+
+                List<SysUsers> userslist = sysUsersService.selectByParams(criteria);
+
+                if(userslist.size()>0){
+                    //查询成功
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", users))).build();
+                }else{
+                    //查询失败
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+                }
+
+            }else{
+                //查询失败
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+            }
+        }else{
+            //查询失败
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
+        }
+
     }
 
     @Override

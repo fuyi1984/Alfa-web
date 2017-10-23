@@ -63,6 +63,19 @@ public interface weixin_usersRest {
     @Path("/GetSingleOpenId")
     public Response GetSingleOpenId(td_weixin_users td_weixin_users) throws UnsupportedEncodingException;
 
+
+    /**
+     * 验证准备发送红包的openid用户合法性
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/GetSingleOpenIdForMoney")
+    public Response GetSingleOpenIdForMoney(td_weixin_users td_weixin_users) throws UnsupportedEncodingException;
+
     /**
      * 获取OpenId
      * @param order

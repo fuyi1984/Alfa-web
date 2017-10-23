@@ -147,29 +147,60 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
     @Override
     public Response updatemoneyactivities(moneyactivities money) throws ParseException {
 
-        //region
+        Criteria criteria = new Criteria();
+        criteria.put("id", money.getId());
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);
 
-        money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime()) + " 00:00:00"));
-        money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime()) + " 23:59:59"));
+        if (moneyactivitiesList.size() > 0) {
 
-        String Json = "";
+            moneyactivities moneyactivities = moneyactivitiesList.get(0);
 
-        int result = this.moneyactivitiesService.updateByPrimaryKeySelective(money);
+            //已发送的红包数
+            int Sendednum = Integer.parseInt(moneyactivities.getSendednum());
 
-        if (result == 1) {
-            //更新成功
-            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+            //准备设置的红包总数
+            int totalnum = Integer.parseInt(money.getTotalnum());
+
+
+            if (totalnum >= Sendednum) {
+
+                //region
+
+                int remainingnum=totalnum-Sendednum;
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                money.setStarttime(fullsdf.parse(sdf.format(money.getStarttime()) + " 00:00:00"));
+                money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime()) + " 23:59:59"));
+                //剩余红包数
+                money.setRemainingnum(String.valueOf(remainingnum));
+
+                String Json = "";
+
+                int result = this.moneyactivitiesService.updateByPrimaryKeySelective(money);
+
+                if (result == 1) {
+                    //更新成功
+                    Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+                } else {
+                    //更新失败
+                    Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+                }
+
+                return Response.status(Response.Status.OK).entity(Json).build();
+
+                //endregion
+
+            } else {
+                //红包总数小于已发送的红包数
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "4", null))).build();
+            }
         } else {
-            //更新失败
-            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
+            //数据不存在
+            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "3", null))).build();
         }
-
-        return Response.status(Response.Status.OK).entity(Json).build();
-
-        //endregion
     }
 
     @Override

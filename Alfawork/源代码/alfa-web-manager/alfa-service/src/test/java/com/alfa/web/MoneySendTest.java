@@ -1,6 +1,5 @@
 package com.alfa.web;
 
-import com.alfa.web.job.MoneySenderStatus;
 import com.alfa.web.pojo.*;
 import com.alfa.web.service.money.*;
 import com.alfa.web.util.*;
@@ -265,6 +264,7 @@ public class MoneySendTest extends TestBase {
 
                 //region
 
+                System.out.println(JsonUtil.toJson(mv));
                 //红包发送
                 String result = client.connect(PropertiesUtil.getProperty("money.send.url"), "post", JsonUtil.toJson(mv));
 
@@ -281,6 +281,7 @@ public class MoneySendTest extends TestBase {
                     aftersendmoney.setOpenid(item.getOpenid());
                     aftersendmoney.setOrderid(item.getOrderid());
                     aftersendmoney.setOrderno(item.getOrderno());
+                    aftersendmoney.setMobile(item.getMobile());
                     aftersendmoney.setMoney(df.format(randomprice));
 
                     System.out.println(aftersendmoney.getMoney());
@@ -308,6 +309,7 @@ public class MoneySendTest extends TestBase {
                     aftersendmoneyfailture.setOpenid(item.getOpenid());
                     aftersendmoneyfailture.setOrderid(item.getOrderid());
                     aftersendmoneyfailture.setOrderno(item.getOrderno());
+                    aftersendmoneyfailture.setMobile(item.getMobile());
                     aftersendmoneyfailture.setErrormessage(resultvo.getContent());
 
                     System.out.println(resultvo.getContent());

@@ -29,14 +29,14 @@ public class JavaExecutePython {
     public void test02() throws IOException {
         //InputStream filepy = new FileInputStream(new File("d:\\my_util.py"));
 
-        Properties props = new Properties();
-        props.put("python.home","D:/Python27/Lib");
-        props.put("python.console.encoding", "UTF-8");
-        props.put("python.security.respectJavaAccessibility", "false");
-        props.put("python.import.site","false");
-        Properties preprops = System.getProperties();
-        PythonInterpreter.initialize(preprops, props, new String[0]);
-        interpreter.execfile("d:/my_util.py");
+//        Properties props = new Properties();
+//        props.put("python.home","D:/Python27/Lib");
+//        props.put("python.console.encoding", "UTF-8");
+//        props.put("python.security.respectJavaAccessibility", "false");
+//        props.put("python.import.site","false");
+//        Properties preprops = System.getProperties();
+//        PythonInterpreter.initialize(preprops, props, new String[0]);
+//        interpreter.execfile("d:/my_util.py");
 //        PyFunction func = (PyFunction) interpreter.get("adder",PyFunction.class);
 //
 //        int a = 2010, b = 2;
@@ -46,6 +46,8 @@ public class JavaExecutePython {
 
         //interpreter.exec("days=('mod','Tue','Wed','Thu','Fri','Sat','Sun'); ");
         //interpreter.exec("print days;");
+
+        interpreter.execfile("d:/my_util.py");
     }
 
     @Test

@@ -470,12 +470,30 @@ function submitForm() {
                             $('#moneygrid').datagrid("reload");
                         });
                     } else if (data.status == 'failure') {
-                        $.messager.alert('提示', '修改失败！', 'error', function () {
-                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                            $('#moneyadd').window('close');
-                            $('#moneygrid').datagrid("clearSelections");
-                            $('#moneygrid').datagrid("reload");
-                        });
+                        if (data.message == '3'){
+                            $.messager.alert('提示', '数据不存在！', 'warning', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#moneyadd').window('close');
+                                $('#moneygrid').datagrid("clearSelections");
+                                $('#moneygrid').datagrid("reload");
+                            });
+                        }
+                        if (data.message == '4'){
+                            $.messager.alert('提示', '红包总数小于已发送的红包数！', 'warning', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#moneyadd').window('close');
+                                $('#moneygrid').datagrid("clearSelections");
+                                $('#moneygrid').datagrid("reload");
+                            });
+                        }
+                        else {
+                            $.messager.alert('提示', '修改失败！', 'error', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#moneyadd').window('close');
+                                $('#moneygrid').datagrid("clearSelections");
+                                $('#moneygrid').datagrid("reload");
+                            });
+                        }
                     }
                 },
                 error: function (xhr) {

@@ -70,7 +70,7 @@ public class MoneySenderStatus {
     /**
      * 红包发送
      */
-    public void MoneySend() throws IOException, JSONException {
+    public void MoneySend() throws Exception {
 
         logger.info("MoneySenderStatus Start !!!");
 
@@ -163,9 +163,12 @@ public class MoneySenderStatus {
      * @param money
      * @throws IOException
      */
-    private void PeopleMoneySend(moneyactivities money) throws IOException {
+    private void PeopleMoneySend(moneyactivities money) throws Exception {
 
         //Criteria criteria = new Criteria();
+
+        //红包发送状态的结果
+        boolean sendstatus=true;
 
         //剩余红包数不能为0
         if (StringUtil.isNullOrEmpty(money.getRemainingnum()) || !money.getRemainingnum().equals("0")) {
@@ -209,7 +212,8 @@ public class MoneySenderStatus {
 
                 moneyvo mv = new moneyvo();
                 //openid
-                mv.setOpenid(WebUtil.encryptBase64(item.getOpenid()));
+                //mv.setOpenid(WebUtil.encryptBase64(item.getOpenid()));
+                mv.setOpenid(WebUtil.encryptBase64("oZr2WwVrs0MqAGxPIzk1RNtuXsqE"));
                 //商户号
                 mv.setKey(WebUtil.encryptBase64(PropertiesUtil.getProperty("weixin.money.send.bussinessnum")));
                 //密钥
@@ -247,10 +251,12 @@ public class MoneySenderStatus {
                     aftersendmoney.setOpenid(item.getOpenid());
                     aftersendmoney.setOrderid(item.getOrderid());
                     aftersendmoney.setOrderno(item.getOrderno());
+                    aftersendmoney.setMobile(item.getMobile());
                     aftersendmoney.setMoney(df.format(randomprice));
 
                     System.out.println(aftersendmoney.getMoney());
 
+                    //插入成功记录
                     this.aftersendmoneyService.insertSelective(aftersendmoney);
 
                     idlist.add(String.valueOf(item.getId()));
@@ -263,7 +269,10 @@ public class MoneySenderStatus {
 
                     money.setRemainingnum(String.valueOf(Integer.parseInt(money.getTotalnum()) - Integer.parseInt(money.getSendednum())));
 
+                    //更新活动
                     this.moneyactivitiesServcie.updateByPrimaryKeySelective(money);
+
+                    sendstatus=true;
 
                     //endregion
                 } else {
@@ -274,13 +283,17 @@ public class MoneySenderStatus {
                     aftersendmoneyfailture.setOpenid(item.getOpenid());
                     aftersendmoneyfailture.setOrderid(item.getOrderid());
                     aftersendmoneyfailture.setOrderno(item.getOrderno());
+                    aftersendmoneyfailture.setMobile(item.getMobile());
                     aftersendmoneyfailture.setErrormessage(resultvo.getContent());
 
                     System.out.println(resultvo.getContent());
 
+                    //插入失败记录
                     this.aftersendmoneyfailtureService.insertSelective(aftersendmoneyfailture);
 
                     idlist.add(String.valueOf(item.getId()));
+
+                    sendstatus=false;
 
                     //endregion
                 }
@@ -292,13 +305,19 @@ public class MoneySenderStatus {
                 criteria.put("openid",item.getOpenid());
                 criteria.put("orderid",item.getOrderid());
 
+
                 List<activitiesorder> activitiesorderlst=this.activitiesorderService.selectByParams(criteria);
 
                 if(activitiesorderlst.size()>0){
 
                     activitiesorder aorder=activitiesorderlst.get(0);
+
                     aorder.setStatus(resultvo.getContent());
-                    aorder.setVisible("-4"); //把订单置于隐藏状态
+
+                    //发送成功
+                    if(sendstatus==true) {
+                        aorder.setVisible("-4"); //把订单置于隐藏状态
+                    }
 
                     this.activitiesorderService.updateByPrimaryKeySelective(aorder);
                 }
@@ -308,6 +327,7 @@ public class MoneySenderStatus {
                 //endregion
             }
 
+            //清空中间表
             if (idlist.size() > 0) {
                 this.beforesendmoneyService.batchdeleteByPrimaryKey(idlist);
                 idlist.clear();
