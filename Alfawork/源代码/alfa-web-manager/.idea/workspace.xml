@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRestImpl.java" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRestImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesconcernRestImpl.java" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesconcernRestImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/money/Init.js" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/money/Init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/activitiesorderRestImpl.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/activitiesorderRestImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/moneyactivitiesRestImpl.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/moneyactivitiesRestImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -77,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="moneyactivitiesRestImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="moneyactivitiesRestImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/moneyactivitiesRestImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-851">
@@ -85,6 +78,16 @@
               <folding>
                 <element signature="e#5726#5734#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoneySenderStatus.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -207,7 +210,6 @@
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/money/moneyactivitiesServcie.java" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/money/index.html" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/moneyactivitiesRestImpl.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/money/Init.js" />
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRestImpl.java" />
         <option value="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesconcernRestImpl.java" />
@@ -215,6 +217,7 @@
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/activitiesorderRestImpl.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" />
       </list>
     </option>
   </component>
@@ -431,19 +434,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="alfa" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="money" type="462c0819:PsiDirectoryNode" />
+              <item name="job" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -497,17 +488,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ws" type="462c0819:PsiDirectoryNode" />
               <item name="rest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-ws" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ws" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-              <item name="money" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -1603,14 +1583,7 @@
       <workItem from="1508648971906" duration="9470000" />
       <workItem from="1508722475496" duration="24242000" />
       <workItem from="1508759462918" duration="8911000" />
-      <workItem from="1508809169821" duration="21528000" />
-    </task>
-    <task id="LOCAL-00277" summary="2017-9-25">
-      <created>1506316723894</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1506316723894</updated>
+      <workItem from="1508809169821" duration="22523000" />
     </task>
     <task id="LOCAL-00278" summary="2017-9-25">
       <created>1506329328812</created>
@@ -1948,7 +1921,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508825975785</updated>
     </task>
-    <option name="localTasksCounter" value="326" />
+    <task id="LOCAL-00326" summary="2017-10-24">
+      <created>1508836322871</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1508836322872</updated>
+    </task>
+    <option name="localTasksCounter" value="327" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1984,7 +1964,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2910205000" />
+    <option name="totallyTimeSpent" value="2911200000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1997,12 +1977,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2993421" sideWeight="0.5151286" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19591528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19591528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2319,14 +2298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="346" column="5" lean-forward="true" selection-start-line="346" selection-start-column="5" selection-end-line="346" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/python/myutil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2607,6 +2578,14 @@
           <folding>
             <element signature="e#5726#5734#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

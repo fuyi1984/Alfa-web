@@ -217,7 +217,8 @@ public class MoneySenderStatus {
                     moneyvo mv = new moneyvo();
                     //openid
                     //mv.setOpenid(WebUtil.encryptBase64(item.getOpenid()));
-                    mv.setOpenid(WebUtil.encryptBase64("oZr2WwVrs0MqAGxPIzk1RNtuXsqE"));
+                    //mv.setOpenid(WebUtil.encryptBase64("oZr2WwVrs0MqAGxPIzk1RNtuXsqE"));
+                    mv.setOpenid(WebUtil.encryptBase64("fuyi"));
                     //商户号
                     mv.setKey(WebUtil.encryptBase64(PropertiesUtil.getProperty("weixin.money.send.bussinessnum")));
                     //密钥
