@@ -34,7 +34,7 @@
                 and isvisible=#{condition.isvisible}
             </if>
             <if test="condition.id!=null">
-                and Id = #{condition.id}
+                and id = #{condition.id}
             </if>
             <if test="condition.minprice!=null">
                 and minprice = #{condition.minprice}

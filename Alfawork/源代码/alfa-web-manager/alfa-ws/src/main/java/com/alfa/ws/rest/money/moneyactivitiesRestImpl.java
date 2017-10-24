@@ -91,7 +91,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
         //活动状态
         if (!StringUtil.isNullOrEmpty(map.get("statuslist"))) {
-            criteria.put("statuslist", map.get("statuslist").toString());
+            criteria.put("statuslist", map.get("statuslist").toString().split(","));
         }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");

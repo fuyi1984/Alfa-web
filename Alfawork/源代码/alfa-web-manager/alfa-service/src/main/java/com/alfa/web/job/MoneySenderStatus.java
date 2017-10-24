@@ -133,9 +133,9 @@ public class MoneySenderStatus {
 
 
                         //region 新人红包活动
-                        if (money.getId().equals(4l)) {
+                        //if (money.getId().equals(4l)) {
                             PeopleMoneySend(money);
-                        }
+                        //}
 
                     }
                     //活动停用

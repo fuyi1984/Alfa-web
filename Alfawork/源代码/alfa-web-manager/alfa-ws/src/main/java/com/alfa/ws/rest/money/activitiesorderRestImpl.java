@@ -2,8 +2,10 @@ package com.alfa.ws.rest.money;
 
 import com.alfa.web.pojo.activitiesorder;
 import com.alfa.web.pojo.beforesendmoney;
+import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.service.money.activitiesorderService;
 import com.alfa.web.service.money.beforesendmoneyService;
+import com.alfa.web.service.money.moneyactivitiesServcie;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
@@ -33,6 +35,9 @@ public class activitiesorderRestImpl implements activitiesorderRest {
 
     @Autowired
     private beforesendmoneyService beforesendmoneyService;
+
+    @Autowired
+    private moneyactivitiesServcie moneyactivitiesServcie;
 
 
     @Override
@@ -66,42 +71,81 @@ public class activitiesorderRestImpl implements activitiesorderRest {
 
         Criteria criteria = new Criteria();
 
-        criteria.put("isfinish","3");
-        criteria.put("visible","4");
+        //显示状态
+        criteria.put("isvisible","4");
+        //启用，停用
+        criteria.put("statuslist", "1".split(","));
 
-        //提交开始时间
-        if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
-            criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
-        }
+        //查询正常启用的红包活动
+        List<moneyactivities> moneyactivitiesList=this.moneyactivitiesServcie.selectByParams(criteria);
 
-        //提交结束时间
-        if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
-            criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
-        }
 
-        //手机号
-        if(!StringUtil.isNullOrEmpty(map.get("mobile"))){
-            criteria.put("mobileLike",map.get("mobile").toString());
-        }
-
-        //活动标题
-        if(!StringUtil.isNullOrEmpty(map.get("title"))){
-            criteria.put("titleLike",map.get("title").toString());
-        }
-
-        WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
-
-        List<activitiesorder> activitiesorderList = this.activitiesorderService.selectByParams(criteria);
-        int count = this.activitiesorderService.countByParams(criteria);
+        String activitiesidlist="";
 
         Map<String, Object> data = new HashMap<String, Object>();
 
-        data.put("total", count);
-        data.put("rows", activitiesorderList );
+        if(moneyactivitiesList.size()>0){
+
+             for(int i=0;i<moneyactivitiesList.size();i++){
+                 if(i==moneyactivitiesList.size()-1){
+                     activitiesidlist+=moneyactivitiesList.get(i).getId().toString();
+                 }else{
+                     activitiesidlist+=moneyactivitiesList.get(i).getId().toString()+",";
+                 }
+             }
+
+            //region
+
+            criteria.clear();
+
+            criteria.put("isfinish","3");
+            criteria.put("visible","4");
+
+            //提交开始时间
+            if(!StringUtil.isNullOrEmpty(map.get("startDt"))){
+                criteria.put("createDtFrom",map.get("startDt").toString()+" 00:00:00");
+            }
+
+            //提交结束时间
+            if(!StringUtil.isNullOrEmpty(map.get("endDt"))){
+                criteria.put("createDtTo",map.get("endDt").toString()+" 23:59:59");
+            }
+
+            //手机号
+            if(!StringUtil.isNullOrEmpty(map.get("mobile"))){
+                criteria.put("mobileLike",map.get("mobile").toString());
+            }
+
+            //活动标题
+            if(!StringUtil.isNullOrEmpty(map.get("title"))){
+                criteria.put("titleLike",map.get("title").toString());
+            }
+
+            //活动ID
+            if(!StringUtil.isNullOrEmpty(activitiesidlist)){
+                criteria.put("activitiesidlist",activitiesidlist.split(","));
+            }
+
+            WebUtil.preparePageParams(request, pager, criteria, "A.createdDt desc");
+
+            List<activitiesorder> activitiesorderList = this.activitiesorderService.selectByParams(criteria);
+            int count = this.activitiesorderService.countByParams(criteria);
+
+            data.put("total", count);
+            data.put("rows", activitiesorderList);
+
+            //endregion
+        }
+
+        if(data.isEmpty()){
+            data.put("total", "");
+            data.put("rows", "");
+        }
 
         String json = JsonUtil.toJson(data);
 
         return Response.status(Response.Status.OK).entity(json).build();
+
     }
 
     @Override

@@ -42,6 +42,12 @@
                     #{item}
                 </foreach>
             </if>
+            <if test="condition.activitiesidlist!=null">
+                and A.activitiesid in
+                <foreach collection="condition.activitiesidlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="condition.visible!=null">
                 and A.visible=#{condition.visible}
             </if>

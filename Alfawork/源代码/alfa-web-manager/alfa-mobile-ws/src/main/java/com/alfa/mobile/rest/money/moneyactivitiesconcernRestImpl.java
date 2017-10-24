@@ -105,6 +105,9 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
 
         criteria.put("id",money.getActivitiesid());
 
+        //显示状态
+        criteria.put("isvisible","4");
+
         List<moneyactivities> moneyactivitiesList=this.moneyactivitiesServcie.selectByParams(criteria);
 
         if(moneyactivitiesList.size()>0) {

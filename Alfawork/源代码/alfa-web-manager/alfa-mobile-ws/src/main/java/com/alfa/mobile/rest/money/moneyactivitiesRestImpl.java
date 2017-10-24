@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/9/20.
+ * 红包活动
  */
 public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
@@ -70,6 +70,30 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
         //过滤
         Criteria criteria = new Criteria();
+
+        //显示状态
+        criteria.put("isvisible","4");
+
+        //提交开始时间
+        if (!StringUtil.isNullOrEmpty(map.get("startDt"))) {
+            criteria.put("createDtFrom", map.get("startDt").toString() + " 00:00:00");
+        }
+
+        //提交结束时间
+        if (!StringUtil.isNullOrEmpty(map.get("endDt"))) {
+            criteria.put("createDtTo", map.get("endDt").toString() + " 23:59:59");
+        }
+
+        //活动标题
+        if (!StringUtil.isNullOrEmpty(map.get("title"))) {
+            criteria.put("titlelike", map.get("title").toString());
+        }
+
+
+        //活动状态
+        if (!StringUtil.isNullOrEmpty(map.get("statuslist"))) {
+            criteria.put("statuslist", map.get("statuslist").toString().split(","));
+        }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
@@ -160,6 +184,9 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         Date dt = new Date();
 
         criteria.put("id", money.getActivitiesid());
+
+        //显示状态
+        criteria.put("isvisible","4");
 
         List<moneyactivities> moneyactivitieslist=this.moneyactivitiesService.selectByParams(criteria);
 
