@@ -41,6 +41,13 @@ public interface moneyactivitiesMapper {
     int batchStopmoneyactivitiesByPrimaryKey(List<String> list);
 
     /**
+     * 根据主键批量软删除微信红包活动
+     * @param list
+     * @return
+     */
+    int batchDeletemoneyactivitiesByPrimaryKey(List<String> list);
+
+    /**
      * 根据主键更新属性不为空的记录
      */
     int updateByPrimaryKeySelective(moneyactivities record);

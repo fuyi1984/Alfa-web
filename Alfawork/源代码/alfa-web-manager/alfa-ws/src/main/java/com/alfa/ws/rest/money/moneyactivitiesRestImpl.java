@@ -70,6 +70,9 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //过滤
         Criteria criteria = new Criteria();
 
+        //显示状态
+        criteria.put("isvisible","4");
+
         //提交开始时间
         if (!StringUtil.isNullOrEmpty(map.get("startDt"))) {
             criteria.put("createDtFrom", map.get("startDt").toString() + " 00:00:00");
@@ -117,12 +120,16 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        criteria.put("title", money.getTitle());
+        //criteria.put("title", money.getTitle());
+        //是否显示
+        criteria.put("isvisible","4");
+        //启用，停用
+        criteria.put("statuslist", "0,1".split(","));
 
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);
 
         if (moneyactivitiesList.size() > 0) {
-            //数据已存在
+            //数据已经存在
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "1", null))).build();
         } else {
 
@@ -157,6 +164,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         if (moneyactivitiesList.size() > 0) {
 
             moneyactivities moneyactivities = moneyactivitiesList.get(0);
+
 
             //已发送的红包数
             int Sendednum = Integer.parseInt(moneyactivities.getSendednum());
@@ -210,7 +218,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //region
         int result = 0;
 
-        result = this.moneyactivitiesService.batchdeleteByPrimaryKey(list);
+        result = this.moneyactivitiesService.batchDeletemoneyactivitiesByPrimaryKey(list);
 
         if (result >= 1) {
             //删除成功

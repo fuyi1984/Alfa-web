@@ -16,6 +16,7 @@
         <result column="status" property="status" jdbcType="VARCHAR"/>
         <result column="maxprice" property="maxprice" jdbcType="VARCHAR"/>
         <result column="minprice" property="minprice" jdbcType="VARCHAR"/>
+        <result column="isvisible" property="isvisible" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -29,6 +30,9 @@
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
 
+            <if test="condition.isvisible!=null">
+                and isvisible=#{condition.isvisible}
+            </if>
             <if test="condition.id!=null">
                 and Id = #{condition.id}
             </if>
@@ -111,7 +115,7 @@
 
     <sql id="Base_Column_List">
         Id, title, content,money, totalnum,createdBy,createdDt,
-        updatedBy, updatedDt, version,sendednum,remainingnum,starttime,endtime,status,maxprice,minprice
+        updatedBy, updatedDt, version,sendednum,remainingnum,starttime,endtime,status,maxprice,minprice,isvisible
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.moneyactivities">
@@ -120,6 +124,9 @@
         </selectKey>
         insert into moneyactivities
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="isvisible!=null">
+                isvisible,
+            </if>
             <if test="minprice!=null">
                 minprice,
             </if>
@@ -170,6 +177,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="isvisible!=null">
+                #{isvisible},
+            </if>
             <if test="minprice!=null">
                 #{minprice},
             </if>
@@ -256,9 +266,24 @@
         </foreach>
     </update>
 
+    <!--根据主键批量软删除微信红包活动-->
+
+    <update id="batchDeletemoneyactivitiesByPrimaryKey" parameterType="java.util.List">
+        update moneyactivities
+        set
+        isvisible=-4
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.moneyactivities">
         update moneyactivities
         <set>
+            <if test="isvisible!=null">
+                isvisible=#{isvisible},
+            </if>
             <if test="minprice!=null">
                 minprice = #{minprice},
             </if>

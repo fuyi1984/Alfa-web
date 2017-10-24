@@ -159,4 +159,17 @@ public class moneyactivities extends Entity implements Serializable {
     public void setMinprice(String minprice) {
         this.minprice = minprice;
     }
+
+    /**
+     * 是否显示
+     */
+    private String isvisible;
+
+    public String getIsvisible() {
+        return isvisible;
+    }
+
+    public void setIsvisible(String isvisible) {
+        this.isvisible = isvisible;
+    }
 }

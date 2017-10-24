@@ -73,7 +73,7 @@ function initdatagrid() {
                         case "1":
                             return '<span style="color:green;">启用</span>';
                         case "2":
-                            return '<span style="color:red;">停用</span>';
+                            return '<span style="color:red;">手动停用</span>';
 
                     }
                 }
@@ -377,7 +377,8 @@ function submitForm() {
                 "totalnum": $("#totalnum").val(),
                 "starttime": $("#starttime").datebox('getValue'),
                 "endtime": $("#endtime").datebox('getValue'),
-                "status": "0" //停用
+                "status": "0",//停用
+                "isvisible":"4"
             }
 
 
@@ -406,7 +407,7 @@ function submitForm() {
                         });
                     } else if (data.status == 'failure') {
                         if (data.message == '1') {
-                            $.messager.alert('提示', '数据已经存在！', 'warning', function () {
+                            $.messager.alert('提示', '活动已经存在,需停用已有活动后才能添加！', 'warning', function () {
                                 //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                                 $('#moneyadd').window('close');
                                 $('#moneygrid').datagrid("clearSelections");

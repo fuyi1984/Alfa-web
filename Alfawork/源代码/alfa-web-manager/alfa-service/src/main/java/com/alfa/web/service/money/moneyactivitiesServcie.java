@@ -20,7 +20,7 @@ public interface moneyactivitiesServcie {
     int countByParams(Criteria example);
 
     /**
-     * 根据主键批量删除记录
+     * 根据主键批量硬删除记录
      */
     int batchdeleteByPrimaryKey(List<String> list);
 
@@ -37,6 +37,15 @@ public interface moneyactivitiesServcie {
      * @return
      */
     int batchStopmoneyactivitiesByPrimaryKey(List<String> list);
+
+
+    /**
+     * 根据主键批量软删除微信红包活动
+     * @param list
+     * @return
+     */
+    int batchDeletemoneyactivitiesByPrimaryKey(List<String> list);
+
 
     /**
      * 根据主键更新属性不为空的记录
