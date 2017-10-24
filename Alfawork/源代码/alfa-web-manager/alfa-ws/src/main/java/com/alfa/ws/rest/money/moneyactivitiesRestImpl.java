@@ -118,6 +118,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         SimpleDateFormat fullsdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         criteria.put("title", money.getTitle());
+
         List<moneyactivities> moneyactivitiesList = this.moneyactivitiesService.selectByParams(criteria);
 
         if (moneyactivitiesList.size() > 0) {
@@ -132,6 +133,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
             money.setEndtime(fullsdf.parse(sdf.format(money.getEndtime()) + " 23:59:59"));
 
             int result = this.moneyactivitiesService.insertSelective(money);
+
             if (result > 0) {
                 //插入成功
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "2", null))).build();

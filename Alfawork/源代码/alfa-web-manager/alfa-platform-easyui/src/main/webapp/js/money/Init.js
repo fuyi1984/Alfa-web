@@ -479,7 +479,7 @@ function submitForm() {
                             });
                         }
                         if (data.message == '4'){
-                            $.messager.alert('提示', '红包总数小于已发送的红包数！', 'warning', function () {
+                            $.messager.alert('提示', '红包总数不能小于已发送红包总数！', 'warning', function () {
                                 //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                                 $('#moneyadd').window('close');
                                 $('#moneygrid').datagrid("clearSelections");

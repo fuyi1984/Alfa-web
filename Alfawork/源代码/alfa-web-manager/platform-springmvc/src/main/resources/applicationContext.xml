@@ -7,5 +7,7 @@
     <!-- 加载dashBoard系统Spring配置 -->
     <import resource="classpath:/config/spring/spring-common.xml"/>
 
+    <!--加载Springmvc配置-->
+    <!--<import resource="spring-mvc.xml"/>-->
 
 </beans>

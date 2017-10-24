@@ -117,43 +117,54 @@ public class moneyactivitiesconcernRestImpl implements moneyactivitiesconcernRes
 
                 //活动启用
                 if (activities.getStatus().equals("1")) {
-                    //region 添加关注
 
                     criteria.clear();
+                    criteria.put("activitiesid", money.getActivitiesid());
 
-                    criteria.put("activitiesid",money.getActivitiesid());
-                    criteria.put("openid", money.getOpenid());
+                    int count = this.moneyactivitiesconcernService.countByParams(criteria);
 
-                    //查询红包活动关注表
-                    List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
+                    if (count < Integer.parseInt(activities.getTotalnum())) {
+                        //region 添加关注
 
-                    if (moneyactivitiesconcernList.size() > 0) {
-                        //活动已经关注
-                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动已经关注"))).build();
-                    } else {
-                        int result = this.moneyactivitiesconcernService.insertSelective(money);
-                        if (result > 0) {
+                        criteria.clear();
 
-                            //region 插入红包关注的订单
+                        criteria.put("activitiesid", money.getActivitiesid());
+                        criteria.put("openid", money.getOpenid());
 
-                            activitiesorder activitiesorder = new activitiesorder();
-                            activitiesorder.setOpenid(money.getOpenid());
-                            activitiesorder.setActivitiesid(money.getActivitiesid());
-                            activitiesorder.setIsfollow("2"); //关注了红包活动
+                        //查询红包活动关注表
+                        List<moneyactivitiesconcern> moneyactivitiesconcernList = this.moneyactivitiesconcernService.selectByParams(criteria);
 
-                            this.activitiesorderService.insertSelective(activitiesorder);
-
-                            //endregion
-
-                            //插入成功
-                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                        if (moneyactivitiesconcernList.size() > 0) {
+                            //活动已经关注
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动已经关注"))).build();
                         } else {
-                            //插入失败
-                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "数据添加失败"))).build();
+                            int result = this.moneyactivitiesconcernService.insertSelective(money);
+                            if (result > 0) {
+
+                                //region 插入红包关注的订单
+
+                                activitiesorder activitiesorder = new activitiesorder();
+                                activitiesorder.setOpenid(money.getOpenid());
+                                activitiesorder.setActivitiesid(money.getActivitiesid());
+                                activitiesorder.setIsfollow("2"); //关注了红包活动
+
+                                this.activitiesorderService.insertSelective(activitiesorder);
+
+                                //endregion
+
+                                //插入成功
+                                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                            } else {
+                                //插入失败
+                                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "数据添加失败"))).build();
+                            }
                         }
+
+                        //endregion
+                    }else{
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动的红包总数已经领完"))).build();
                     }
 
-                    //endregion
                 }
                 //活动手动停用
                 else if (activities.getStatus().equals("2")) {
