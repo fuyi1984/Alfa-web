@@ -25,6 +25,7 @@ function initdatagrid() {
         //pageList: [6,12,18],
         nowrap: false,
         striped: true,
+        onLoadSuccess: computer,//加载完毕后执行计算
         loader: ajaxfindlist,
         sortName: 'createdDt',
         sortOrder: 'desc',
@@ -106,6 +107,24 @@ function initdatagrid() {
                 error(xhr.responseText);
             }
         });
+    }
+
+    function computer(){ //计算函数
+
+        //region
+
+        var rows =  $('#moneysendsuccessgrid').datagrid('getRows');
+
+        var ptotal = 0
+
+        for (var i = 0; i < rows.length; i++) {
+            ptotal += parseFloat(rows[i]['money']);
+        }
+
+        $('#moneysendsuccessgrid').datagrid('appendRow', { money:"统计:"+ptotal.toFixed(2) });
+
+
+        //endregion
     }
 }
 
