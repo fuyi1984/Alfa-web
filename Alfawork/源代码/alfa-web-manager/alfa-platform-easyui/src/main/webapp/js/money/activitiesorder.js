@@ -113,6 +113,9 @@ function initdatagrid() {
  * 发送红包
  */
 function doSendMoney() {
+
+    //$('#activitiesordergrid').datagrid('reload');
+
     var rows = $('#activitiesordergrid').datagrid('getSelections');
 
     if (!rows || rows.length == 0) {
@@ -165,7 +168,13 @@ function doSendMoney() {
                             $('#activitiesordergrid').datagrid("clearSelections");
                             $('#activitiesordergrid').datagrid("reload");
                         });
-                    } else {
+                    }else if(msg.message=="4"){
+                        $.messager.alert('提示', msg.data, "warning", function () {
+                            $('#activitiesordergrid').datagrid("clearSelections");
+                            $('#activitiesordergrid').datagrid("reload");
+                        });
+                    }
+                    else {
                         $.messager.alert('错误', '微信红包发送失败！', "error", function () {
                             $('#activitiesordergrid').datagrid("clearSelections");
                             $('#activitiesordergrid').datagrid("reload");

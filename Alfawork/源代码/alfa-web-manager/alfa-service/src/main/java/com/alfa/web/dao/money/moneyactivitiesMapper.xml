@@ -33,9 +33,25 @@
             <if test="condition.isvisible!=null">
                 and isvisible=#{condition.isvisible}
             </if>
+
+            <if test="condition.isvisiblelist!=null">
+                and isvisible in
+                <foreach collection="condition.isvisiblelist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+
             <if test="condition.id!=null">
                 and id = #{condition.id}
             </if>
+
+            <if test="condition.idlist!=null">
+                and id in
+                <foreach collection="condition.idlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+
             <if test="condition.minprice!=null">
                 and minprice = #{condition.minprice}
             </if>
@@ -267,10 +283,10 @@
     </update>
 
     <!--根据主键批量软删除微信红包活动-->
-
     <update id="batchDeletemoneyactivitiesByPrimaryKey" parameterType="java.util.List">
         update moneyactivities
         set
+        status=2,
         isvisible=-4
         where id in
         <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">

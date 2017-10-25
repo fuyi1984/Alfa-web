@@ -169,6 +169,51 @@ public class activitiesorderRestImpl implements activitiesorderRest {
 
             if (activitiesorderlist.size() > 0) {
 
+                //region 查询可用的红包活动
+
+                String activitiesidlist="";
+
+                for(int i=0;i<activitiesorderlist.size();i++){
+                    if(i==activitiesorderlist.size()-1){
+                        activitiesidlist+=activitiesorderlist.get(i).getActivitiesid().toString();
+                    }else{
+                        activitiesidlist+=activitiesorderlist.get(i).getActivitiesid().toString()+",";
+                    }
+                }
+
+                criteria.clear();
+
+                //隐藏状态
+                criteria.put("isvisiblelist","-4,4".split(","));
+                //停用,手动停用
+                criteria.put("statuslist", "0,2".split(","));
+                //活动id列表
+                criteria.put("idlist",activitiesidlist.split(","));
+
+                //查询活动
+                List<moneyactivities> moneyactivitiesList=this.moneyactivitiesServcie.selectByParams(criteria);
+
+                if(moneyactivitiesList.size()>0){
+
+                    String activitiestitlelist="";
+
+                    for(int i=0;i<moneyactivitiesList.size();i++){
+                        if(i==moneyactivitiesList.size()-1){
+                            activitiestitlelist+=moneyactivitiesList.get(i).getTitle().toString();
+                        }else{
+                            activitiestitlelist+=moneyactivitiesList.get(i).getTitle().toString()+",";
+                        }
+                    }
+
+                    //活动已经停用
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "4", "\""+activitiestitlelist+"\" 活动已停用或者删除"))).build();
+                }
+
+                //endregion
+
+
+                //region
+
                 beforesendmoney money = new beforesendmoney();
 
                 for (activitiesorder item : activitiesorderlist) {
@@ -181,6 +226,8 @@ public class activitiesorderRestImpl implements activitiesorderRest {
 
                     this.beforesendmoneyService.insertSelective(money);
                 }
+
+                //endregionidlistcricri
 
                 //发送成功
                 return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
