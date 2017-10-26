@@ -83,8 +83,8 @@ public interface moneyactivitiesRest  {
      */
     @WebMethod
     @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Path("/isNotGetRedMoeny")
     public Response isNotGetRedMoeny(moneyactivitiesconcern money);
 
