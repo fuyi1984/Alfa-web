@@ -2,9 +2,12 @@ package com.alfa.mobile.rest.money;
 
 import com.alfa.web.pojo.moneyactivities;
 import com.alfa.web.pojo.moneyactivitiesconcern;
+import com.alfa.web.pojo.td_weixin_users;
 import com.alfa.web.service.money.moneyactivitiesServcie;
 import com.alfa.web.service.money.moneyactivitiesconcernServcie;
+import com.alfa.web.service.weixin.weixin_usersService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.PropertiesUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
@@ -16,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 红包活动
@@ -36,6 +36,9 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
     @Autowired
     private moneyactivitiesconcernServcie moneyactivitiesconcernService;
+
+    @Autowired
+    private weixin_usersService weixin_usersService;
 
 
     @Override
@@ -72,7 +75,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         Criteria criteria = new Criteria();
 
         //显示状态
-        criteria.put("isvisible","4");
+        criteria.put("isvisible", "4");
 
         //提交开始时间
         if (!StringUtil.isNullOrEmpty(map.get("startDt"))) {
@@ -142,16 +145,16 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
         //region
 
-        String Json="";
+        String Json = "";
 
-        int result=this.moneyactivitiesService.updateByPrimaryKeySelective(money);
+        int result = this.moneyactivitiesService.updateByPrimaryKeySelective(money);
 
-        if(result==1){
+        if (result == 1) {
             //更新成功
-            Json=JsonUtil.toJson(new RestResult(RestResult.SUCCESS,"1",null));
-        }else{
+            Json = JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null));
+        } else {
             //更新失败
-            Json=JsonUtil.toJson(new RestResult(RestResult.FAILURE,"2",null));
+            Json = JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null));
         }
 
         return Response.status(Response.Status.OK).entity(Json).build();
@@ -164,7 +167,7 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
         //region
         int result = 0;
 
-        result=this.moneyactivitiesService.batchdeleteByPrimaryKey(list);
+        result = this.moneyactivitiesService.batchdeleteByPrimaryKey(list);
 
         if (result >= 1) {
             //删除成功
@@ -183,77 +186,202 @@ public class moneyactivitiesRestImpl implements moneyactivitiesRest {
 
         Date dt = new Date();
 
-        criteria.put("id", money.getActivitiesid());
+        String phonelist = PropertiesUtil.getProperty("money.send.phonelist");
 
-        //显示状态
-        criteria.put("isvisible","4");
+        if (StringUtil.isNullOrEmpty(phonelist)) {
 
-        List<moneyactivities> moneyactivitieslist=this.moneyactivitiesService.selectByParams(criteria);
+            //region phonelist为空
 
-        if(moneyactivitieslist.size()>0){
+            criteria.clear();
 
-            moneyactivities activities=moneyactivitieslist.get(0);
+            criteria.put("id", money.getActivitiesid());
 
-            if (activities.getStarttime().compareTo(dt)==-1&& activities.getEndtime().compareTo(dt)==1) {
+            //显示状态
+            criteria.put("isvisible", "4");
 
-                //region 时间有效期范围内
+            List<moneyactivities> moneyactivitieslist = this.moneyactivitiesService.selectByParams(criteria);
 
-                //活动启用
-                if (activities.getStatus().equals("1")) {
+            if (moneyactivitieslist.size() > 0) {
 
-                    //region
+                moneyactivities activities = moneyactivitieslist.get(0);
 
-                    criteria.clear();
-                    //criteria.put("openid", money.getOpenid());
-                    criteria.put("activitiesid", money.getActivitiesid());
+                if (activities.getStarttime().compareTo(dt) == -1 && activities.getEndtime().compareTo(dt) == 1) {
 
-                    int count = this.moneyactivitiesconcernService.countByParams(criteria);
+                    //region 时间有效期范围内
 
-                    if (count < Integer.parseInt(activities.getTotalnum())) {
+                    //活动启用
+                    if (activities.getStatus().equals("1")) {
 
-                        //region 判断用户是否已经关注了红包活动
+                        //region
 
                         criteria.clear();
-                        criteria.put("openid", money.getOpenid());
+                        //criteria.put("openid", money.getOpenid());
                         criteria.put("activitiesid", money.getActivitiesid());
 
-                        count = this.moneyactivitiesconcernService.countByParams(criteria);
+                        int count = this.moneyactivitiesconcernService.countByParams(criteria);
+
+                        if (count < Integer.parseInt(activities.getTotalnum())) {
+
+                            //region 判断用户是否已经关注了红包活动
+
+                            criteria.clear();
+                            criteria.put("openid", money.getOpenid());
+                            criteria.put("activitiesid", money.getActivitiesid());
+
+                            count = this.moneyactivitiesconcernService.countByParams(criteria);
+
+                            //endregion
+
+                            //用户已经关注过红包活动
+                            if (count > 0) {
+                                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "用户已经关注过红包活动"))).build();
+                            } else {
+                                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                            }
+                        }
+                        //活动的红包总数已经领完
+                        else {
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动的红包总数已经领完"))).build();
+                        }
 
                         //endregion
-
-                        //用户已经关注过红包活动
-                        if (count > 0) {
-                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "用户已经关注过红包活动"))).build();
-                        } else {
-                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
-                        }
                     }
-                    //活动的红包总数已经领完
+                    //活动手动停用
+                    else if (activities.getStatus().equals("2")) {
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动手动停用"))).build();
+                    }
+                    //活动停用
                     else {
-                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动的红包总数已经领完"))).build();
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动停用"))).build();
                     }
 
                     //endregion
-                }
-                //活动手动停用
-                else if (activities.getStatus().equals("2")) {
-                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动手动停用"))).build();
-                }
-                //活动停用
-                else {
-                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动停用"))).build();
+                } else {
+                    //region 时间有效期范围外
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "时间有效期范围外"))).build();
+                    //endregion
                 }
 
-                //endregion
-            }else{
-                //region 时间有效期范围外
-                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "时间有效期范围外"))).build();
-                //endregion
+            } else {
+                //活动不存在
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动不存在"))).build();
             }
 
-        }else {
-            //活动不存在
-            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动不存在"))).build();
+            //endregion
+
+        } else {
+
+            //region phonelist不为空
+
+            String[] phonelists = phonelist.split(",");
+
+            criteria.clear();
+
+            criteria.put("openid", money.getOpenid());
+
+            List<td_weixin_users> td_weixin_userslist = this.weixin_usersService.selectByParams(criteria);
+
+
+            if (td_weixin_userslist.size() > 0) {
+
+                td_weixin_users users = td_weixin_userslist.get(0);
+
+                if (!StringUtil.isNullOrEmpty(users.getMobile()) && !StringUtil.isNullOrEmpty(users.getMobiletoken())) {
+                    if (Arrays.asList(phonelists).contains(users.getMobile())) {
+                        //region 手机号匹配
+
+                        criteria.clear();
+
+                        criteria.put("id", money.getActivitiesid());
+
+                        //显示状态
+                        criteria.put("isvisible", "4");
+
+                        List<moneyactivities> moneyactivitieslist = this.moneyactivitiesService.selectByParams(criteria);
+
+                        if (moneyactivitieslist.size() > 0) {
+
+                            moneyactivities activities = moneyactivitieslist.get(0);
+
+                            if (activities.getStarttime().compareTo(dt) == -1 && activities.getEndtime().compareTo(dt) == 1) {
+
+                                //region 时间有效期范围内
+
+                                //活动启用
+                                if (activities.getStatus().equals("1")) {
+
+                                    //region
+
+                                    criteria.clear();
+                                    //criteria.put("openid", money.getOpenid());
+                                    criteria.put("activitiesid", money.getActivitiesid());
+
+                                    int count = this.moneyactivitiesconcernService.countByParams(criteria);
+
+                                    if (count < Integer.parseInt(activities.getTotalnum())) {
+
+                                        //region 判断用户是否已经关注了红包活动
+
+                                        criteria.clear();
+                                        criteria.put("openid", money.getOpenid());
+                                        criteria.put("activitiesid", money.getActivitiesid());
+
+                                        count = this.moneyactivitiesconcernService.countByParams(criteria);
+
+                                        //endregion
+
+                                        //用户已经关注过红包活动
+                                        if (count > 0) {
+                                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "用户已经关注过红包活动"))).build();
+                                        } else {
+                                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
+                                        }
+                                    }
+                                    //活动的红包总数已经领完
+                                    else {
+                                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动的红包总数已经领完"))).build();
+                                    }
+
+                                    //endregion
+                                }
+                                //活动手动停用
+                                else if (activities.getStatus().equals("2")) {
+                                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动手动停用"))).build();
+                                }
+                                //活动停用
+                                else {
+                                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动停用"))).build();
+                                }
+
+                                //endregion
+                            } else {
+                                //region 时间有效期范围外
+                                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "时间有效期范围外"))).build();
+                                //endregion
+                            }
+
+                        } else {
+                            //活动不存在
+                            return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "活动不存在"))).build();
+                        }
+
+                        //endregion
+                    } else {
+                        //手机号不匹配
+                        return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "手机号不匹配"))).build();
+                    }
+                } else {
+                    //手机号不能为空
+                    return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "手机号不能为空"))).build();
+                }
+
+            } else {
+                //openid不存在
+                return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", "openid不存在"))).build();
+            }
+
+            //endregion
+
         }
     }
 }
