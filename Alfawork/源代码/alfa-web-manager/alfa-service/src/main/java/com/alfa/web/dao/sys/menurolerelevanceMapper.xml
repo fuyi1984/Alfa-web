@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.alfa.web.dao.sys.menurolerelevanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.menurolerelevance">
+
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <!--基本信息-->
+        <result column="menuid" property="menuid" jdbcType="BIGINT"/>
+        <result column="roleid" property="roleid" jdbcType="BIGINT"/>
+
+        <!--附加信息-->
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+
+    <sql id="Example_Where_Clause" >
+        <trim prefix="where" prefixOverrides="and|or" >
+
+           <!-- <if test="condition.id != null" >
+                and id = #{condition.id}
+            </if>-->
+            <if test="condition.menuid != null" >
+                and menuid = #{condition.menuid}
+            </if>
+
+            <if test="condition.roleid != null" >
+                and roleid = #{condition.roleid}
+            </if>
+            <if test="condition.createdBy != null" >
+                and createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, menuid,roleid,createdBy,createdDt,updatedBy,updatedDt,
+        version
+    </sql>
+
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.menurolerelevance">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into menurolerelevance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuid  != null">
+                menuid ,
+            </if>
+            <if test="roleid != null">
+                roleid,
+            </if>
+            <if test="createdBy != null">
+                createdBy,
+            </if>
+            <if test="createdDt != null">
+                createdDt,
+            </if>
+            <if test="updatedBy != null">
+                updatedBy,
+            </if>
+            <if test="updatedDt != null">
+                updatedDt,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="menuid  != null">
+                #{menuid},
+            </if>
+            <if test="roleid != null">
+                #{roleid},
+            </if>
+            <if test="createdBy != null">
+                #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                #{updatedDt},
+            </if>
+            <if test="version != null">
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
+        select count(*) from menurolerelevance
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.menurolerelevance">
+        update menurolerelevance
+        <set>
+            <if test="menuid != null">
+                menuid = #{menuid},
+            </if>
+            <if test="roleid != null">
+                roleid = #{roleid},
+            </if>
+            <if test="createdBy != null">
+                createdBy = #{createdBy},
+            </if>
+            <if test="createdDt != null">
+                createdDt = #{createdDt},
+            </if>
+            <if test="updatedBy != null">
+                updatedBy = #{updatedBy},
+            </if>
+            <if test="updatedDt != null">
+                updatedDt = #{updatedDt},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="batchdeleteByPrimaryKey" parameterType="java.util.List">
+        delete from menurolerelevance
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="com.alfa.web.util.pojo.Criteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from menurolerelevance
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <include refid="common.Mysql_Pagination_Limit"/>
+    </select>
+
+</mapper>

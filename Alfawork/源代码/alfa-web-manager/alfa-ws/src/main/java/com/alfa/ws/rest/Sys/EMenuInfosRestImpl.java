@@ -36,6 +36,7 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
     public Response insertmenu(EMenuInfos menu) throws Exception {
 
         Criteria criteria = new Criteria();
+        criteria.put("cascadeid",menu.getCascadeid());
         criteria.put("menuname", menu.getMenuname());
         //criteria.put("url", menu.getUrl());
 

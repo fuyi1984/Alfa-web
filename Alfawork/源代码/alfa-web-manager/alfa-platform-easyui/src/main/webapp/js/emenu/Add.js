@@ -3,8 +3,14 @@
  */
 
 function menusubmitValidator(){
+
     if ($("#CascadeId_add").val() == "") {
         $.messager.alert('提示', '节点不能为空');
+        return false;
+    }
+
+    if ($("#CascadeId_add").val() == "0") {
+        $.messager.alert('提示', '节点不能为0');
         return false;
     }
 
