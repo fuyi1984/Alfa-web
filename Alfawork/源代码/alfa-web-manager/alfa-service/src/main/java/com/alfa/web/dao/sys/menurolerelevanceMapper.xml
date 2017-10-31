@@ -21,39 +21,39 @@
     </resultMap>
 
 
-    <sql id="Example_Where_Clause" >
-        <trim prefix="where" prefixOverrides="and|or" >
+    <sql id="Example_Where_Clause">
+        <trim prefix="where" prefixOverrides="and|or">
 
-           <!-- <if test="condition.id != null" >
-                and id = #{condition.id}
-            </if>-->
-            <if test="condition.menuid != null" >
+            <!-- <if test="condition.id != null" >
+                 and id = #{condition.id}
+             </if>-->
+            <if test="condition.menuid != null">
                 and A.menuid = #{condition.menuid}
             </if>
 
-            <if test="condition.roleid != null" >
+            <if test="condition.roleid != null">
                 and A.roleid = #{condition.roleid}
             </if>
-            <if test="condition.createdBy != null" >
+            <if test="condition.createdBy != null">
                 and A.createdBy = #{condition.createdBy}
             </if>
-            <if test="condition.createdDt != null" >
+            <if test="condition.createdDt != null">
                 and A.createdDt = #{condition.createdDt}
             </if>
-            <if test="condition.updatedBy != null" >
+            <if test="condition.updatedBy != null">
                 and A.updatedBy = #{condition.updatedBy}
             </if>
-            <if test="condition.updatedDt != null" >
+            <if test="condition.updatedDt != null">
                 and A.updatedDt = #{condition.updatedDt}
             </if>
-            <if test="condition.version != null" >
+            <if test="condition.version != null">
                 and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
         A.id,A.menuid,A.roleid,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
         A.version
     </sql>
@@ -172,9 +172,11 @@
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
-        <if test="orderByClause != null">
-            order by ${orderByClause}
-        </if>
+        <!--  <if test="orderByClause != null">
+              order by ${orderByClause}
+          </if>-->
+        order by B.parentid
+
         <include refid="common.Mysql_Pagination_Limit"/>
     </select>
 

@@ -30,6 +30,7 @@
             <bean class="com.alfa.ws.rest.money.activitiesorderRestImpl"/>
             <bean class="com.alfa.ws.rest.money.aftersendmoneyRestImpl"/>
             <bean class="com.alfa.ws.rest.money.aftersendmoneyfailtureRestImpl"/>
+            <bean class="com.alfa.ws.rest.Sys.menurolerelevanceRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
