@@ -28,34 +28,34 @@
                 and id = #{condition.id}
             </if>-->
             <if test="condition.menuid != null" >
-                and menuid = #{condition.menuid}
+                and A.menuid = #{condition.menuid}
             </if>
 
             <if test="condition.roleid != null" >
-                and roleid = #{condition.roleid}
+                and A.roleid = #{condition.roleid}
             </if>
             <if test="condition.createdBy != null" >
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null" >
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null" >
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null" >
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null" >
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List" >
-        id, menuid,roleid,createdBy,createdDt,updatedBy,updatedDt,
-        version
+        A.id,A.menuid,A.roleid,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
+        A.version
     </sql>
 
 
@@ -114,7 +114,7 @@
 
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
-        select count(*) from menurolerelevance
+        select count(*) from menurolerelevance A
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -162,7 +162,13 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from menurolerelevance
+
+        ,B.menuname,B.icon,B.url,B.parentid,B.cascadeid
+
+        from menurolerelevance A
+
+        left join EMenuInfos B on(A.menuid = B.cascadeid)
+
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
