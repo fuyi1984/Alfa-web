@@ -26,7 +26,7 @@ public interface menurolerelevanceRest {
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("/findlist")
-    public Response findist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+    @Path("/findMenu")
+    public Response findMenu(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
 }

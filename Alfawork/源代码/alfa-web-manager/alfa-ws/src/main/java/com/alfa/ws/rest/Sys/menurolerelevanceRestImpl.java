@@ -4,6 +4,7 @@ import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.service.sys.EMenuInfosService;
 import com.alfa.web.service.sys.menurolerelevanceService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.MenuUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
@@ -16,10 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
@@ -36,7 +34,7 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
 
     @Override
-    public Response findist(String param, HttpServletRequest request, HttpServletResponse response) {
+    public Response findMenu(String param, HttpServletRequest request, HttpServletResponse response) {
 
         Map map= WebUtil.getParamsMap(param,"utf-8");
 
@@ -44,7 +42,7 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
         //region
 
-        if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
+        /*if (!StringUtil.isNullOrEmpty(map.get("pagenum"))) {
             pager.setPageIndex(Integer.parseInt(map.get("pagenum").toString()));
         }
 
@@ -62,7 +60,7 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
         if (!StringUtil.isNullOrEmpty(map.get("sortorder"))) {
             pager.setSortOrder(map.get("sortorder").toString());
-        }
+        }*/
 
         //endregion
 
@@ -78,44 +76,18 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
         List<Menus> MenusList=new ArrayList<Menus>();
 
-        Menus menus=new Menus();
-
-        for(menurolerelevance item:menurolerelevanceServiceList){
-
-            if(item.getParentid().equals("0")){
-
-                //region  菜单目录
-
-                menus.setMenuId(Long.parseLong(item.getCascadeid()));
-                menus.setMenuName(item.getMenuname());
-                menus.setIcon(item.getIcon());
-                menus.setUrl(item.getUrl());
-
-                MenusList.add(menus);
-
-                //endregion
-
-            }else{
-
-                //region 菜单
-
-                for(Menus items:MenusList){
-                    if(items.getMenuId().equals(item.getParentid())){
-
-                        MenuInfo menuInfo=new MenuInfo();
-                        menuInfo.setMenuId(Long.parseLong(item.getCascadeid()));
-                        menuInfo.setMenuName(item.getMenuname());
-                        menuInfo.setIcon(item.getIcon());
-                        menuInfo.setUrl(item.getUrl());
-
-                        menus.getMenuInfos().add(menuInfo);
-                    }
-                }
-                //endregion
-            }
+        for (menurolerelevance item : menurolerelevanceServiceList) {
+            Menus menus=new Menus();
+            menus.setMenuId(Long.parseLong(item.getCascadeid()));
+            menus.setParentId(Long.parseLong(item.getParentid()));
+            menus.setMenuName(item.getMenuname());
+            menus.setIcon(item.getIcon());
+            menus.setUrl(item.getUrl());
+            menus.setCreateTime(new Date());
+            MenusList.add(menus);
         }
 
-        String json = JsonUtil.toJson(MenusList);
+        String json = JsonUtil.toJson(MenuUtil.buildByRecursive(MenusList));
 
         return Response.status(Response.Status.OK).entity(json).build();
     }

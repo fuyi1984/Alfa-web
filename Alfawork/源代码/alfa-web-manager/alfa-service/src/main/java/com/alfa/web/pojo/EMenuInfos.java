@@ -2,6 +2,8 @@ package com.alfa.web.pojo;
 
 import java.io.Serializable;
 
+import java.util.List;
+
 /**
  * EasyUi目录
  * Created by Administrator on 2017/6/28.
@@ -38,6 +40,7 @@ public class EMenuInfos extends Entity implements Serializable
      */
     private String cascadeid;
 
+    
     public Long getMenuid() {
         return menuid;
     }
