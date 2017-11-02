@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/treedata.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/Permission/init.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/Permission/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysrole/Init.js" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysrole/Init.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysrole/index.html" afterPath="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysrole/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/EMenuInfosMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/EMenuInfosMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/Impl/menurolerelevanceServiceImpl.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/Impl/menurolerelevanceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/menurolerelevanceService.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/menurolerelevanceService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/MenuUtil.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/MenuUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRest.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRestImpl.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRestImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/menurolerelevance.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/menurolerelevance.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/menurolerelevanceServiceTest.java" afterPath="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/menurolerelevanceServiceTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java" afterPath="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java" />
     </list>
@@ -67,110 +63,125 @@
       <file leaf-file-name="menurolerelevanceRestImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="moneyactivitiesRest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachmentMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/AttachmentMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachmentMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/AttachmentMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileinfoMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/fileinfoMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fileinfoMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/fileinfoMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="290">
+              <caret line="227" column="31" lean-forward="false" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="31" />
               <folding>
-                <marker date="1502961610242" expanded="true" signature="4175:4220" ph="delete from " />
-                <marker date="1502961610242" expanded="true" signature="4333:5157" ph="update filei... " />
+                <element signature="method#findMenu#0;class#menurolerelevanceRestImpl#0" expanded="false" />
+                <element signature="method#BatchInsertMenu#0;class#menurolerelevanceRestImpl#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menurolerelevanceMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menurolerelevanceMapper.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menurolerelevanceMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+            <state relative-caret-position="756">
+              <caret line="171" column="67" lean-forward="false" selection-start-line="171" selection-start-column="67" selection-end-line="171" selection-end-column="67" />
               <folding>
                 <element signature="n#selectKey#0;n#insert#1;n#mapper#0;n#!!top" expanded="false" />
-                <marker date="1509594853184" expanded="true" signature="4219:4257" ph="select count... menurolerelevance" />
-                <marker date="1509594853184" expanded="true" signature="4219:4259" ph="select count... menurolerelevance" />
-                <marker date="1509594853184" expanded="true" signature="4486:5254" ph="update menur... " />
-                <marker date="1509594853184" expanded="true" signature="5665:6129" ph="select disti... " />
+                <marker date="1509612169962" expanded="true" signature="4220:4258" ph="select count... menurolerelevance" />
+                <marker date="1509612169962" expanded="true" signature="4220:4260" ph="select count... menurolerelevance" />
+                <marker date="1509612169962" expanded="true" signature="4487:5255" ph="update menur... " />
+                <marker date="1509612169962" expanded="true" signature="5666:6193" ph="select disti... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="moneyactivitiesMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml">
+      <file leaf-file-name="Init.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="51" column="26" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="51" selection-end-column="26" />
+            <state relative-caret-position="306">
+              <caret line="329" column="179" lean-forward="false" selection-start-line="329" selection-start-column="130" selection-end-line="329" selection-end-column="179" />
               <folding>
-                <marker date="1508911054771" expanded="true" signature="9071:9107" ph="select count... moneyactivities" />
-                <marker date="1508911054771" expanded="true" signature="10617:12348" ph="update money... " />
+                <marker date="1505270912607" expanded="true" signature="7492:7502" ph="..." />
+                <marker date="1505270912607" expanded="true" signature="7600:7612" ph="..." />
+                <marker date="1505270912607" expanded="true" signature="7711:7727" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="moneyactivitiesRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRestImpl.java">
+      <file leaf-file-name="Init.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+            <state relative-caret-position="432">
+              <caret line="285" column="3" lean-forward="false" selection-start-line="285" selection-start-column="3" selection-end-line="285" selection-end-column="3" />
+              <folding>
+                <element signature="e#880#888#0" expanded="false" />
+                <element signature="e#7732#8871#0" expanded="false" />
+                <element signature="n#!!block;n#initcombobox#0" expanded="false" />
+                <marker date="1509610756027" expanded="false" signature="924:1114" ph="{&quot;id&quot;: 'btnSave'...}" />
+                <marker date="1509610756027" expanded="false" signature="1119:2225" ph="{&quot;id&quot;: 'btnUpdate'...}" />
+                <marker date="1509610756027" expanded="false" signature="1238:2215" ph="{...}" />
+                <marker date="1509610756027" expanded="false" signature="2381:4430" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Update.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Update.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysuser/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="718">
+              <caret line="232" column="44" lean-forward="false" selection-start-line="232" selection-start-column="44" selection-end-line="232" selection-end-column="44" />
+              <folding>
+                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cancel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/Permission/init.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="175" column="182" lean-forward="false" selection-start-line="175" selection-start-column="182" selection-end-line="175" selection-end-column="182" />
+              <folding>
+                <element signature="e#706#714#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/Permission/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="32" column="77" lean-forward="false" selection-start-line="32" selection-start-column="77" selection-end-line="32" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Menu_one.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -182,11 +193,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -251,10 +262,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/platform-springmvc/src/main/java/com/alfa/web/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/platform-springmvc/pom.xml" />
-        <option value="$PROJECT_DIR$/platform-springmvc/src/main/webapp/WEB-INF/jsp/user/list.jsp" />
-        <option value="$PROJECT_DIR$/platform-springmvc/src/main/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/platform-springmvc/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/moneyactivities.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.java" />
@@ -277,7 +284,6 @@
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Add.js" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/CommonComment/Init.js" />
-        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/menurolerelevance.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/resources/rest-services.xml" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/MenuInfos.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/Menu.java" />
@@ -286,22 +292,27 @@
         <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/TreeBuilder.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/Menus.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/EMenuInfos.java" />
-        <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/menurolerelevanceServiceTest.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/vo/treedata.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/util/MenuUtil.java" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRest.java" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysrole/Init.js" />
         <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysrole/index.html" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/EMenuInfosMapper.xml" />
-        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js" />
         <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRestImpl.java" />
-        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html" />
-        <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/menurolerelevanceService.java" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/Impl/menurolerelevanceServiceImpl.java" />
-        <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java" />
+        <option value="$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/menurolerelevanceServiceTest.java" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html" />
         <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.xml" />
+        <option value="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/menurolerelevance.java" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/Permission/index.html" />
+        <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java" />
+        <option value="$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java" />
+        <option value="$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/Permission/init.js" />
       </list>
     </option>
   </component>
@@ -352,8 +363,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="286" />
-    <option name="y" value="130" />
+    <option name="x" value="-119" />
+    <option name="y" value="350" />
     <option name="width" value="1382" />
     <option name="height" value="743" />
   </component>
@@ -392,25 +403,20 @@
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -418,71 +424,57 @@
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
+              <item name="filter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="money" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="Permission" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="sysuser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-platform-easyui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -528,17 +520,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ws" type="462c0819:PsiDirectoryNode" />
               <item name="rest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="alfa-ws" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ws" type="462c0819:PsiDirectoryNode" />
-              <item name="rest" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -550,6 +531,13 @@
               <item name="ws" type="462c0819:PsiDirectoryNode" />
               <item name="rest" type="462c0819:PsiDirectoryNode" />
               <item name="Sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="alfa-web-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="alfa-web-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="alfa-ws" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1618,14 +1606,7 @@
       <workItem from="1509431142377" duration="3728000" />
       <workItem from="1509435804113" duration="6407000" />
       <workItem from="1509500593881" duration="22859000" />
-      <workItem from="1509587652649" duration="7158000" />
-    </task>
-    <task id="LOCAL-00289" summary="2017-9-27">
-      <created>1506501653640</created>
-      <option name="number" value="00289" />
-      <option name="presentableId" value="LOCAL-00289" />
-      <option name="project" value="LOCAL" />
-      <updated>1506501653641</updated>
+      <workItem from="1509587652649" duration="21814000" />
     </task>
     <task id="LOCAL-00290" summary="2017-9-28">
       <created>1506590336068</created>
@@ -1963,7 +1944,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509516476125</updated>
     </task>
-    <option name="localTasksCounter" value="338" />
+    <task id="LOCAL-00338" summary="2017-11-2">
+      <created>1509594948152</created>
+      <option name="number" value="00338" />
+      <option name="presentableId" value="LOCAL-00338" />
+      <option name="project" value="LOCAL" />
+      <updated>1509594948153</updated>
+    </task>
+    <option name="localTasksCounter" value="339" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1999,7 +1987,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3012763000" />
+    <option name="totallyTimeSpent" value="3027419000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2012,12 +2000,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2993421" sideWeight="0.5151286" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19591528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19591528" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2032,11 +2019,12 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31578946" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3569079" sideWeight="0.48487142" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3569079" sideWeight="0.48487142" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969651" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.290469" sideWeight="0.47058824" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22163388" sideWeight="0.47058824" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2655068" sideWeight="0.5294118" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561985" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27769348" sideWeight="0.52718675" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2047,7 +2035,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3223684" sideWeight="0.4969651" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561985" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2099,7 +2086,6 @@
       <path value="$PROJECT_DIR$/alfa-platform-test" />
       <path value="$PROJECT_DIR$/alfa-schedule" />
     </ignored-roots>
-    <MESSAGE value="2017-9-22" />
     <MESSAGE value="2017-9-25" />
     <MESSAGE value="2017-9-26" />
     <MESSAGE value="2017-9-27" />
@@ -2124,7 +2110,8 @@
     <MESSAGE value="2017-10-30" />
     <MESSAGE value="2017-10-31" />
     <MESSAGE value="2017-11-1" />
-    <option name="LAST_COMMIT_MESSAGE" value="2017-11-1" />
+    <MESSAGE value="2017-11-2" />
+    <option name="LAST_COMMIT_MESSAGE" value="2017-11-2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2172,7 +2159,7 @@
           <option name="timeStamp" value="152" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="170" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2181,300 +2168,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysuser/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="232" column="0" lean-forward="false" selection-start-line="232" selection-start-column="0" selection-end-line="254" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#4;n#table#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Search.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/EMenuInfosMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-594">
-          <caret line="273" column="23" lean-forward="false" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="23" />
-          <folding>
-            <marker date="1505270912607" expanded="true" signature="7492:7502" ph="..." />
-            <marker date="1505270912607" expanded="true" signature="7600:7612" ph="..." />
-            <marker date="1505270912607" expanded="true" signature="7711:7727" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="178" column="211" lean-forward="false" selection-start-line="178" selection-start-column="211" selection-end-line="178" selection-end-column="211" />
-          <folding>
-            <element signature="e#802#810#0" expanded="false" />
-            <marker date="1509589772681" expanded="false" signature="846:1036" ph="{&quot;id&quot;: 'btnSave'...}" />
-            <marker date="1509589772681" expanded="false" signature="1041:2147" ph="{&quot;id&quot;: 'btnUpdate'...}" />
-            <marker date="1509589772681" expanded="false" signature="1160:2137" ph="{...}" />
-            <marker date="1509589772681" expanded="false" signature="2303:4352" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="168" column="45" lean-forward="true" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
-          <folding>
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="78" column="14" lean-forward="false" selection-start-line="78" selection-start-column="14" selection-end-line="78" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/CompanyinfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/SysRelevanceMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/CompanyinfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-810">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502961694855" expanded="true" signature="2040:2184" ph="select disti... Companyinfo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/SysRelevanceMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1134">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1502961544183" expanded="true" signature="3480:3504" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3888">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508830586292" expanded="true" signature="8604:10133" ph="update activ... " />
-            <marker date="1508830586292" expanded="true" signature="10241:11684" ph="update activ... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/comment/CommentReplyMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/EMenuInfosMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="35" column="41" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="41" />
-          <folding>
-            <element signature="n#insert#0;n#mapper#0;n#!!top" expanded="false" />
-            <marker date="1509589635562" expanded="true" signature="5911:5944" ph="select count... EMenuInfos" />
-            <marker date="1509589635562" expanded="true" signature="6144:6199" ph="delete from " />
-            <marker date="1509589635562" expanded="true" signature="6315:7372" ph="update EMenu... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/comment/OrderCommentMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="257" column="13" lean-forward="true" selection-start-line="226" selection-start-column="3" selection-end-line="257" selection-end-column="13" />
-          <folding>
-            <element signature="n#insert#0;n#mapper#0;n#!!top" expanded="false" />
-            <element signature="n#selectKey#0;n#insert#1;n#mapper#0;n#!!top" expanded="false" />
-            <element signature="n#foreach#0;n#insert#1;n#mapper#0;n#!!top" expanded="false" />
-            <marker date="1504164882435" expanded="true" signature="3821:4016" ph="select count... ordercomment" />
-            <marker date="1504164882435" expanded="true" signature="4227:4253" ph="delete from " />
-            <marker date="1504164882435" expanded="true" signature="4450:4507" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/comment/OrderCommentMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="39" column="48" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="39" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/comment/Impl/CommonCommentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/comment/Impl/CommentReplyServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/comment/OrderCommentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="36" column="50" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="36" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/menurolerelevanceService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="43" column="42" lean-forward="false" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/comment/Impl/OrderCommentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="58" column="56" lean-forward="true" selection-start-line="52" selection-start-column="8" selection-end-line="58" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/Impl/menurolerelevanceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="58" column="29" lean-forward="false" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
-          <folding>
-            <element signature="e#2010#2026#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="124" column="64" lean-forward="false" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/SysMobileUserRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/SysMobileUserRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/UrlFilterRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/weixin_usersRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/weixin_usersRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1224">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/SysUserRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-216">
-          <caret line="327" column="0" lean-forward="true" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/registerbehaviorRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/registerbehaviorRestImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2574">
@@ -2507,22 +2200,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/order/publishmessageRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-130">
-          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/order/publishmessageRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1926">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/moneyactivitiesconcernRestImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-414">
@@ -2539,26 +2216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRestImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/AttachmentMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -2582,26 +2243,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/money/moneyactivitiesRest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2616,7 +2261,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/moneyactivitiesMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
+        <state relative-caret-position="378">
           <caret line="51" column="26" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="51" selection-end-column="26" />
           <folding>
             <marker date="1508911054771" expanded="true" signature="9071:9107" ph="select count... moneyactivities" />
@@ -2625,17 +2270,362 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/order/publishmessageRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234">
+          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/order/publishmessageRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="221" column="120" lean-forward="true" selection-start-line="221" selection-start-column="16" selection-end-line="221" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/test/java/com/alfa/web/menurolerelevanceServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="154" column="0" lean-forward="true" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/home/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/home/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MoneySenderStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorOrderStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/job/MonitorSmsStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1544">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/SysUserRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-378">
+          <caret line="327" column="0" lean-forward="false" selection-start-line="327" selection-start-column="0" selection-end-line="327" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/horder/Init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/money/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/openid/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1508830586292" expanded="true" signature="8604:10133" ph="update activ... " />
+            <marker date="1508830586292" expanded="true" signature="10241:11684" ph="update activ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/CompanyinfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/CompanyinfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/SysRelevanceMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/common/SysRelevanceMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/file/AttachmentMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1134">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/SysconfigRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="200" column="75" lean-forward="false" selection-start-line="200" selection-start-column="61" selection-end-line="200" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/menurolerelevance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="27" />
+          <folding>
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#326#327#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/emenu/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="919">
+          <caret line="215" column="7" lean-forward="true" selection-start-line="215" selection-start-column="7" selection-end-line="215" selection-end-column="7" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#form#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="50" column="55" lean-forward="true" selection-start-line="39" selection-start-column="4" selection-end-line="50" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/menurolerelevanceService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="43" column="8" lean-forward="false" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/service/sys/Impl/menurolerelevanceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="58" column="60" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="60" column="11" lean-forward="false" selection-start-line="60" selection-start-column="11" selection-end-line="60" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/EMenuInfosRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="73" column="9" lean-forward="false" selection-start-line="63" selection-start-column="6" selection-end-line="73" selection-end-column="9" />
+          <folding>
+            <element signature="method#insertmenu#0;class#EMenuInfosRestImpl#0" expanded="false" />
+            <element signature="method#editmenu#0;class#EMenuInfosRestImpl#0" expanded="false" />
+            <element signature="method#findtreeMenu#0;class#EMenuInfosRestImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/sys/menurolerelevanceMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="34" column="57" lean-forward="false" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+        <state relative-caret-position="756">
+          <caret line="171" column="67" lean-forward="false" selection-start-line="171" selection-start-column="67" selection-end-line="171" selection-end-column="67" />
           <folding>
             <element signature="n#selectKey#0;n#insert#1;n#mapper#0;n#!!top" expanded="false" />
-            <marker date="1509594853184" expanded="true" signature="4219:4257" ph="select count... menurolerelevance" />
-            <marker date="1509594853184" expanded="true" signature="4219:4259" ph="select count... menurolerelevance" />
-            <marker date="1509594853184" expanded="true" signature="4486:5254" ph="update menur... " />
-            <marker date="1509594853184" expanded="true" signature="5665:6129" ph="select disti... " />
+            <marker date="1509612169962" expanded="true" signature="4220:4258" ph="select count... menurolerelevance" />
+            <marker date="1509612169962" expanded="true" signature="4220:4260" ph="select count... menurolerelevance" />
+            <marker date="1509612169962" expanded="true" signature="4487:5255" ph="update menur... " />
+            <marker date="1509612169962" expanded="true" signature="5666:6193" ph="select disti... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/cancel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/sysuser/Init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="329" column="179" lean-forward="false" selection-start-line="329" selection-start-column="130" selection-end-line="329" selection-end-column="179" />
+          <folding>
+            <marker date="1505270912607" expanded="true" signature="7492:7502" ph="..." />
+            <marker date="1505270912607" expanded="true" signature="7600:7612" ph="..." />
+            <marker date="1505270912607" expanded="true" signature="7711:7727" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/emenu/Init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="285" column="3" lean-forward="false" selection-start-line="285" selection-start-column="3" selection-end-line="285" selection-end-column="3" />
+          <folding>
+            <element signature="e#880#888#0" expanded="false" />
+            <element signature="e#7732#8871#0" expanded="false" />
+            <element signature="n#!!block;n#initcombobox#0" expanded="false" />
+            <marker date="1509610756027" expanded="false" signature="924:1114" ph="{&quot;id&quot;: 'btnSave'...}" />
+            <marker date="1509610756027" expanded="false" signature="1119:2225" ph="{&quot;id&quot;: 'btnUpdate'...}" />
+            <marker date="1509610756027" expanded="false" signature="1238:2215" ph="{...}" />
+            <marker date="1509610756027" expanded="false" signature="2381:4430" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/js/Permission/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="175" column="182" lean-forward="false" selection-start-line="175" selection-start-column="182" selection-end-line="175" selection-end-column="182" />
+          <folding>
+            <element signature="e#706#714#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/Sys/menurolerelevanceRestImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="227" column="31" lean-forward="false" selection-start-line="227" selection-start-column="20" selection-end-line="227" selection-end-column="31" />
+          <folding>
+            <element signature="method#findMenu#0;class#menurolerelevanceRestImpl#0" expanded="false" />
+            <element signature="method#BatchInsertMenu#0;class#menurolerelevanceRestImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/sysuser/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="718">
+          <caret line="232" column="44" lean-forward="false" selection-start-line="232" selection-start-column="44" selection-end-line="232" selection-end-column="44" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/pages/Permission/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="32" column="77" lean-forward="false" selection-start-line="32" selection-start-column="77" selection-end-line="32" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alfa-platform-easyui/src/main/webapp/menu/Menu_one.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="38" column="58" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

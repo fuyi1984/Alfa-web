@@ -17,6 +17,20 @@ public class menurolerelevance extends Entity implements Serializable {
      */
     private Long roleid;
 
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
+    }
+
+    /**
+     * 角色名
+
+     */
+    private String role_name;
+
     /**
      * 目录名
      */

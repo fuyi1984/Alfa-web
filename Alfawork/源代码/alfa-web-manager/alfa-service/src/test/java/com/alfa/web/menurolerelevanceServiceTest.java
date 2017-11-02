@@ -151,4 +151,6 @@ public class menurolerelevanceServiceTest extends TestBase {
 
         System.out.println(json);
     }
+
+
 }

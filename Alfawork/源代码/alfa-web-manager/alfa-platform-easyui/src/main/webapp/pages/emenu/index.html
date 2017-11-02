@@ -166,16 +166,50 @@
     </form>
 </div>
 
+<!--权限分配-->
+<div id="doPermissionAssignment" class="easyui-window" title="权限分配"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
+     style="width:380px;height:180px;padding:10px;">
+    <form id="form3">
+        <div style="padding: 15px 10px 10px 25px;">
+            <table style="text-align: center; width: auto" cellpadding="2px">
+                <tr>
+                    <td>
+                        角色:
+                    </td>
+                    <td>
+                        <input id="rolename" class="easyui-combogrid" style="width:230px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:doPermissionAssignment()" id="Assignment"
+               iconcls="icon-save">分配</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="javascript:menucancel()"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+
+<!--工具栏-->
 <div id="tb" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="doUpdate()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="doDelete()">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="doPermission()">权限分配</a>
     </div>
     <div>
         菜单名称:<input id="bmenuname" class="easyui-textbox" style="width:90px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
+   <!-- <div>
+        角色:<input id="rolename" class="easyui-combogrid" style="width:110px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doPermissionAssignment()">权限分配</a>
+    </div>-->
 </div>
 
 </body>

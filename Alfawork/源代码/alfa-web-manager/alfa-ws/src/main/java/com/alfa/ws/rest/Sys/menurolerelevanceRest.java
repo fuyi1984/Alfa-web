@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/menurole")
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
@@ -20,7 +21,7 @@ import javax.ws.rs.core.Response;
 public interface menurolerelevanceRest {
 
     /**
-     * 查询分页目录角色关系
+     * 获取左侧树形菜单
      */
     @WebMethod
     @POST
@@ -44,4 +45,28 @@ public interface menurolerelevanceRest {
     @Path("/BatchInsertMenu")
     public Response BatchInsertMenu(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
+
+    /**
+     * 查询分页目录角色关系
+     */
+    @WebMethod
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/findlist")
+    public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+
+    /**
+     * 批量删除
+     *
+     * @param order
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("/batchdelete")
+    public Response batchdelete(List<String> list);
 }

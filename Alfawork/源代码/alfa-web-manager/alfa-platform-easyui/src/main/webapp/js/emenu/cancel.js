@@ -4,5 +4,6 @@
 function menucancel() {
     $('#menuadd').window('close');
     $('#menuedit').window('close');
+    $('#doPermissionAssignment').window('close');
     $('#menugrid').datagrid("clearSelections");
 }

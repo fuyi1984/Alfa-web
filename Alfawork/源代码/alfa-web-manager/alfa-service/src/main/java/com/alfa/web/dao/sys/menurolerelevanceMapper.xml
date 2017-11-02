@@ -32,7 +32,8 @@
             </if>
             <if test="condition.menuidlist != null">
                 and A.menuid in
-                <foreach collection="condition.menuidlist" item="item" index="index" open="(" separator="," close=")">
+                <foreach collection="condition.menuidlist
+" item="item" index="index" open="(" separator="," close=")">
                     #{item}
                 </foreach>
             </if>
@@ -168,11 +169,13 @@
         </if>
         <include refid="Base_Column_List"/>
 
-        ,B.menuname,B.icon,B.url,B.parentid,B.cascadeid
+        ,B.menuname,B.icon,B.url,B.parentid,B.cascadeid,C.role_name
 
         from menurolerelevance A
 
         left join EMenuInfos B on(A.menuid = B.cascadeid)
+
+        left join sysrole C on(A.roleid=C.roleId)
 
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -190,7 +193,7 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
 
-        insert into ordercomment (menuid,roleid,createdBy,createdDt,updatedBy,updatedDt,version)
+        insert into menurolerelevance (menuid,roleid,createdBy,createdDt,updatedBy,updatedDt,version)
 
         values
 
