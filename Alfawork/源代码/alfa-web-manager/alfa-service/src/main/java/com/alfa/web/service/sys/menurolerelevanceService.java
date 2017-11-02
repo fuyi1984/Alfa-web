@@ -1,5 +1,6 @@
 package com.alfa.web.service.sys;
 
+import com.alfa.web.pojo.OrderComment;
 import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.util.pojo.Criteria;
 
@@ -34,4 +35,11 @@ public interface menurolerelevanceService {
      * 根据主键更新属性不为空的记录
      */
     int updateByPrimaryKeySelective(menurolerelevance record);
+
+    /**
+     * 批量插入记录
+     * @param recordlst
+     * @return
+     */
+    int Batchinsert(List<menurolerelevance> recordlst);
 }

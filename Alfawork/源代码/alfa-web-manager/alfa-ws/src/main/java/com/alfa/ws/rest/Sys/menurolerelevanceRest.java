@@ -29,4 +29,19 @@ public interface menurolerelevanceRest {
     @Path("/findMenu")
     public Response findMenu(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
+
+    /**
+     * 批量插入
+     * @param param
+     * @param request
+     * @param response
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/BatchInsertMenu")
+    public Response BatchInsertMenu(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
 }

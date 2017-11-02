@@ -33,6 +33,10 @@
             <if test="condition.menuname != null" >
                 and menuname = #{condition.menuname}
             </if>
+            <if test="condition.bmenuname != null">
+                and menuname like concat('%',
+                #{condition.bmenuname}, '%')
+            </if>
             <if test="condition.url != null" >
                 and url = #{condition.url}
             </if>

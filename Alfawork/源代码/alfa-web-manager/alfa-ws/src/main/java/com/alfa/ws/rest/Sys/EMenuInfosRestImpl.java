@@ -1,22 +1,24 @@
 package com.alfa.ws.rest.Sys;
 
 import com.alfa.web.pojo.EMenuInfos;
+import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.service.sys.EMenuInfosService;
 import com.alfa.web.util.JsonUtil;
+import com.alfa.web.util.MenuUtil;
 import com.alfa.web.util.StringUtil;
 import com.alfa.web.util.WebUtil;
 import com.alfa.web.util.pojo.BasePager;
 import com.alfa.web.util.pojo.Criteria;
 import com.alfa.web.util.pojo.RestResult;
+import com.alfa.web.vo.Menus;
+import com.alfa.web.vo.treedata;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/7/30.
@@ -125,12 +127,13 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
 
         Criteria criteria = new Criteria();
 
-        if (!StringUtil.isNullOrEmpty(map.get("menuname"))) {
-            criteria.put("menuname",  map.get("menuname").toString());
+        if (!StringUtil.isNullOrEmpty(map.get("bmenuname"))) {
+            criteria.put("bmenuname",  map.get("bmenuname").toString());
         }
-        if (!StringUtil.isNullOrEmpty(map.get("url"))) {
+
+       /* if (!StringUtil.isNullOrEmpty(map.get("url"))) {
             criteria.put("urlLike",  map.get("url").toString());
-        }
+        }*/
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
 
@@ -143,6 +146,37 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
         data.put("rows", eMenuInfosList);
 
         String json = JsonUtil.toJson(data);
+
+        return Response.status(Response.Status.OK).entity(json).build();
+    }
+
+    @Override
+    public Response findtreeMenu(String param, HttpServletRequest request, HttpServletResponse response) {
+
+        Map map= WebUtil.getParamsMap(param,"utf-8");
+
+        BasePager pager=new BasePager();
+
+        Criteria criteria = new Criteria();
+
+        WebUtil.preparePageParams(request, pager, criteria, "parentid");
+
+        List<EMenuInfos> eMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
+
+        List<treedata> treedataList=new ArrayList<treedata>();
+
+        for (EMenuInfos item : eMenuInfosList) {
+
+            treedata tree=new treedata();
+
+            tree.setId(Long.parseLong(item.getCascadeid()));
+            tree.setParentId(Long.parseLong(item.getParentid()));
+            tree.setText(item.getMenuname());
+
+            treedataList.add(tree);
+        }
+
+        String json = JsonUtil.toJson(MenuUtil.buildTreeByRecursive(treedataList));
 
         return Response.status(Response.Status.OK).entity(json).build();
     }

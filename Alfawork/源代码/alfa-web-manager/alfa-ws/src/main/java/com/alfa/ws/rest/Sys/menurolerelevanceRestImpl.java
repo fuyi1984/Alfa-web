@@ -91,4 +91,30 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
 
         return Response.status(Response.Status.OK).entity(json).build();
     }
+
+    @Override
+    public Response BatchInsertMenu(String param, HttpServletRequest request, HttpServletResponse response) {
+
+        Map map= WebUtil.getParamsMap(param,"utf-8");
+
+        BasePager pager=new BasePager();
+
+        Criteria criteria = new Criteria();
+
+        if (!StringUtil.isNullOrEmpty(map.get("menuidlist"))) {
+            criteria.put("menuidlist",  map.get("menuidlist").toString());
+        }
+
+        if (!StringUtil.isNullOrEmpty(map.get("roleid"))) {
+            criteria.put("roleid",  map.get("roleid").toString());
+        }
+
+        List<menurolerelevance> menurolerelevanceList=this.menurolerelevanceService.selectByParams(criteria);
+
+
+
+
+
+        return null;
+    }
 }

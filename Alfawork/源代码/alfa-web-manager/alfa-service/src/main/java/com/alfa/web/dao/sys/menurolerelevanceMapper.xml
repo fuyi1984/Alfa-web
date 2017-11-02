@@ -30,7 +30,12 @@
             <if test="condition.menuid != null">
                 and A.menuid = #{condition.menuid}
             </if>
-
+            <if test="condition.menuidlist != null">
+                and A.menuid in
+                <foreach collection="condition.menuidlist" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
             <if test="condition.roleid != null">
                 and A.roleid = #{condition.roleid}
             </if>
@@ -177,5 +182,30 @@
         </if>
         <include refid="common.Mysql_Pagination_Limit"/>
     </select>
+
+    <!--批量插入-->
+    <insert id="insertBatch" parameterType="java.util.HashMap">
+
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+
+        insert into ordercomment (menuid,roleid,createdBy,createdDt,updatedBy,updatedDt,version)
+
+        values
+
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.menuid},
+            #{item.roleid},
+            #{item.createdBy},
+            #{item.createdDt},
+            #{item.updatedBy},
+            #{item.updatedDt},
+            #{item.version}
+            )
+        </foreach>
+
+    </insert>
 
 </mapper>

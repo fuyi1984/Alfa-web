@@ -3,6 +3,7 @@ package com.alfa.web.dao.sys;
 import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.util.pojo.Criteria;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,5 +35,12 @@ public interface menurolerelevanceMapper {
      * 根据主键更新属性不为空的记录
      */
     int updateByPrimaryKeySelective(menurolerelevance record);
+
+    /**
+     * 批量插入记录
+     * @param recordlst
+     * @return
+     */
+    int insertBatch(HashMap<String,Object> map);
 
 }

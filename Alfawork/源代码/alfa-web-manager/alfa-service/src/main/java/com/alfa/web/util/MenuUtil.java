@@ -3,11 +3,14 @@ package com.alfa.web.util;
 import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.vo.Menus;
 import com.alfa.web.vo.TreeNode;
+import com.alfa.web.vo.treedata;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuUtil {
+
+    //region 左边导航菜单
 
     /**
      * 使用递归方法建树
@@ -44,4 +47,37 @@ public class MenuUtil {
 
         return treeNode;
     }
+
+    //endregion
+
+    //region 树形导航菜单
+
+    public static List<treedata> buildTreeByRecursive(List<treedata> treeNodes) {
+        List<treedata> trees = new ArrayList<treedata>();
+        for (treedata treeNode : treeNodes) {
+            if (treeNode.getParentId().equals(0l)) {
+                trees.add(findtreeChildren(treeNode,treeNodes));
+            }
+        }
+        return trees;
+    }
+
+    public static treedata findtreeChildren(treedata treeNode, List<treedata> treeNodes) {
+
+        for (treedata it : treeNodes) {
+
+            if(treeNode.getId().equals(it.getParentId())) {
+                if (treeNode.getChildren()== null) {
+                    treeNode.setChildren(new ArrayList<treedata>());
+                }
+
+                treeNode.getChildren().add(findtreeChildren(it,treeNodes));
+            }
+        }
+
+        return treeNode;
+    }
+
+    //endregion
+
 }

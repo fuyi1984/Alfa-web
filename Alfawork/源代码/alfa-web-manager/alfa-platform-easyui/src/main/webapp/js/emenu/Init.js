@@ -7,7 +7,8 @@ $(function () {
 
     if (gtoken != "") {
         setCurrentUser();
-
+        $('#menuadd').window('close');
+        $('#menuedit').window('close');
         initdatagrid();
     } else {
         //window.location.href = platform_url + "/pages/home/login.html";
@@ -33,6 +34,9 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
+        //region
+
+        /*
         toolbar: ['-', {
             id: 'btnSave',
             text: '添加',
@@ -126,6 +130,11 @@ function initdatagrid() {
                 });
             }
         }, '-'],
+        */
+
+        //endregion
+
+        toolbar: "#tb",
 
         idField: 'menuid',
 
@@ -167,7 +176,7 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/menu/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&bmenuname='+$('#bmenuname').val()+'',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -181,4 +190,100 @@ function initdatagrid() {
             }
         });
     }
+}
+
+/**
+ * 添加
+ */
+function doAdd(){
+    $('#menuadd').window('open');
+}
+
+/**
+ * 修改
+ */
+function doUpdate(){
+    var rows = $('#menugrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要修改的数据');
+        return;
+    }else{
+        if(rows.length>1){
+            $.messager.alert('提示', '请选择一条数据');
+            $('#menugrid').datagrid("clearSelections");
+            return;
+        }else {
+            $('#form2').form('load', {
+                Idedit: rows[0].menuid,
+                CascadeIdedit: rows[0].cascadeid,
+                MenuNameedit: rows[0].menuname,
+                Iconedit: rows[0].icon,
+                Urledit:rows[0].url,
+                ParentIdedit: rows[0].parentid
+            });
+            $('#menuedit').window('open');
+        }
+    }
+}
+
+/**
+ * 删除
+ */
+function doDelete(){
+    var rows = $('#menugrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要删除的数据');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].menuid);
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.menuid);
+    });
+
+    $.messager.confirm('提示', '是否删除这些数据?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/menu/batchdeletemenu?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '删除成功！', "info", function () {
+                        $('#menugrid').datagrid("clearSelections");
+                        $('#menugrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '删除失败！', "error", function () {
+                        $('#menugrid').datagrid("clearSelections");
+                        $('#menugrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#menugrid').datagrid("clearSelections");
+                $.messager.alert('错误', '删除失败！', "error");
+            }
+        });
+    });
+}
+
+/**
+ * 查询
+ */
+function doSearch(){
+    initdatagrid();
 }

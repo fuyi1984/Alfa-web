@@ -70,4 +70,18 @@ public interface EMenuInfosRest {
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/findlist")
     public Response findist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
+
+    /**
+     * 树形菜单
+     * @param param
+     * @param request
+     * @param response
+     * @return
+     */
+    @WebMethod
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/findtreeMenu")
+    public Response findtreeMenu(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 }

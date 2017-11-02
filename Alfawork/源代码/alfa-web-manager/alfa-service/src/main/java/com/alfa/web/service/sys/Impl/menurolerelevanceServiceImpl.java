@@ -1,6 +1,7 @@
 package com.alfa.web.service.sys.Impl;
 
 import com.alfa.web.dao.sys.menurolerelevanceMapper;
+import com.alfa.web.pojo.OrderComment;
 import com.alfa.web.pojo.menurolerelevance;
 import com.alfa.web.service.sys.menurolerelevanceService;
 import com.alfa.web.util.WebUtil;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -51,5 +53,18 @@ public class menurolerelevanceServiceImpl implements menurolerelevanceService {
     public int updateByPrimaryKeySelective(menurolerelevance record) {
         WebUtil.prepareUpdateParams(record);
         return this.menurolerelevanceMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int Batchinsert(List<menurolerelevance> recordlst) {
+
+        for(menurolerelevance menurolerelevance:recordlst){
+            WebUtil.prepareInsertParams(menurolerelevance);
+        }
+
+        HashMap<String,Object> map=new HashMap<String, Object>();
+        map.put("list",recordlst);
+        return this.menurolerelevanceMapper.insertBatch(map);
+
     }
 }
