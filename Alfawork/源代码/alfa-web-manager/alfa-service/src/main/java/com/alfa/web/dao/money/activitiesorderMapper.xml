@@ -338,7 +338,7 @@
         </if>
         <include refid="Base_Column_List"/>
 
-        ,B.title
+        ,B.title,B.status as astatus
 
         from activitiesorder A
 

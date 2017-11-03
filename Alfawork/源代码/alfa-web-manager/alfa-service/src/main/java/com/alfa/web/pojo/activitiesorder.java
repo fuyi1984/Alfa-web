@@ -130,6 +130,20 @@ public class activitiesorder extends Entity implements Serializable {
      */
     private String status;
 
+    public String getaStatus() {
+        return aStatus;
+    }
+
+    public void setaStatus(String aStatus) {
+        this.aStatus = aStatus;
+    }
+
+    /**
+     * 活动状态
+
+     */
+    private String aStatus;
+
     public String getStatus() {
         return status;
     }

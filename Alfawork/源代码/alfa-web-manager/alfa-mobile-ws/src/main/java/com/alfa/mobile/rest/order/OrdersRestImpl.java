@@ -1,10 +1,8 @@
 package com.alfa.mobile.rest.order;
 
-import com.alfa.web.pojo.HostoryOrderStatus;
-import com.alfa.web.pojo.Orders;
-import com.alfa.web.pojo.activitiesorder;
-import com.alfa.web.pojo.moneyactivitiesconcern;
+import com.alfa.web.pojo.*;
 import com.alfa.web.service.money.activitiesorderService;
+import com.alfa.web.service.money.beforesendmoneyService;
 import com.alfa.web.service.money.moneyactivitiesconcernServcie;
 import com.alfa.web.service.order.HistoryAddressService;
 import com.alfa.web.service.order.HostoryOrderStatusService;
@@ -58,6 +56,9 @@ public class OrdersRestImpl implements OrdersRest {
 
     @Autowired
     private moneyactivitiesconcernServcie moneyactivitiesconcernServcie;
+
+    @Autowired
+    private beforesendmoneyService beforesendmoneyService;
 
     //region 单项操作
 
@@ -207,6 +208,8 @@ public class OrdersRestImpl implements OrdersRest {
 
             if(order.getOrgstatus().equals("4")){
 
+                result=0;
+
                 HostoryOrderStatus hostoryOrderStatus=new HostoryOrderStatus();
                 hostoryOrderStatus.setRealnum(order.getRealnum());
                 hostoryOrderStatus.setOrderid(order.getOrderid());
@@ -226,15 +229,44 @@ public class OrdersRestImpl implements OrdersRest {
 
             if(order.getOrgstatus().equals("4")){
 
+                result=0;
+
                 Criteria criteria=new Criteria();
                 criteria.put("orderid",order.getOrderid());
 
                 List<activitiesorder> activitiesorderlist=this.activitiesorderService.selectByParams(criteria);
 
                 for (activitiesorder orderitem:activitiesorderlist) {
-                    orderitem.setIsfinish("3"); //完成了订单
-                    orderitem.setVisible("4");  //把订单置于显示状态
-                    this.activitiesorderService.updateByPrimaryKeySelective(orderitem);
+
+                    //活动启用
+                    if(orderitem.getaStatus().equals("1")) {
+
+                        orderitem.setIsfinish("3"); //完成了订单
+                        orderitem.setVisible("4");  //把订单置于显示状态
+                        result = this.activitiesorderService.updateByPrimaryKeySelective(orderitem);
+
+                        if(result==1){
+
+                            log.info("更新成功!");
+
+                            //region 往发送红包的中间表插入数据
+
+                            beforesendmoney money = new beforesendmoney();
+
+                            money.setOpenid(orderitem.getOpenid());
+                            money.setActivitiesid(orderitem.getActivitiesid());
+                            money.setOrderid(orderitem.getOrderid());
+                            money.setOrderno(orderitem.getOrderno());
+                            money.setMobile(orderitem.getMobile());
+
+                            this.beforesendmoneyService.insertSelective(money);
+
+                            //endregion
+
+                        }else{
+                            log.info("更新失败!");
+                        }
+                    }
                 }
             }
 
