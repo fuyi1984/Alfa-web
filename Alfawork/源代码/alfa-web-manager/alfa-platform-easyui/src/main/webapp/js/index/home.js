@@ -9,9 +9,9 @@ $(function () {
 
     //alert(ReadCookie("token"));
 
-    gtoken=ReadCookie("token");
+    gtoken = ReadCookie("token");
 
-    if(gtoken!="") {
+    if (gtoken != "") {
 
         setCurrentUser();
 
@@ -35,9 +35,9 @@ $(function () {
             }
         });
 
-    }else{
-       //top.location.href=platform_url + "/pages/home/login.html";
-        top.location.href=platform_url + "/pages/home/login.html";
+    } else {
+        //top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href = platform_url + "/pages/home/login.html";
     }
 })
 
@@ -45,12 +45,12 @@ $(function () {
     top.location="/login.html";
 }*/
 
-function InitServerInfo(){
+function InitServerInfo() {
     $.ajax({
-        url: ws_url+'/rest/server/getsysteminfo?token='+gtoken,
+        url: ws_url + '/rest/server/getsysteminfo?token=' + gtoken,
         type: "get",
         contentType: 'application/json;charset=UTF-8',
-        async:true,
+        async: true,
         success: function (data) {
             console.log(data);
             if (typeof data != "undefined" && null != data) {
@@ -99,12 +99,12 @@ function showChangePasswordWin() {
 }
 
 //退出
-function logoutUser(){
-    $.post(ws_url+"/rest/user/logout?token="+gtoken,function(data){
+function logoutUser() {
+    $.post(ws_url + "/rest/user/logout?token=" + gtoken, function (data) {
         //alert("logout:"+data);
-        SetCookie("token","");
-       //top.location.href=platform_url + "/pages/home/login.html";
-        top.location.href=platform_url + "/pages/home/login.html";
+        SetCookie("token", "");
+        //top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href = platform_url + "/pages/home/login.html";
     });
 }
 
@@ -131,19 +131,23 @@ function add(e) {
 }
 
 function changePassword() {
+
     var oldPassword = $("#iptOldPassword").val();
+
     if (oldPassword == "") {
         $.messager.alert('提示', '请输入旧密码！');
         return;
     }
 
     var password = $("#iptPassword").val();
+
     if (password == "") {
         $.messager.alert('提示', '请输入新密码！');
         return;
     }
 
     var newPassword = $("#iptNewPassword").val();
+
     if (newPassword == "") {
         $.messager.alert('提示', '请确认密码！');
         return;
@@ -159,11 +163,11 @@ function changePassword() {
 
     $.ajax({
         type: "post",
-        url: ws_url + "/rest/user/modifyPassword?token="+gtoken,
+        url: ws_url + "/rest/user/modifyPassword?token=" + gtoken,
         contentType: 'application/json;charset=UTF-8',
         data: JSON.stringify(parm),
-        async:false,
-        success: function(data) {
+        async: false,
+        success: function (data) {
             console.log(data);
             if (data.status == "success") {
                 $.messager.alert('提示', '修改成功！', "info", function () {
@@ -172,13 +176,13 @@ function changePassword() {
                     $("#iptPassword").val("");
                     $("#iptNewPassword").val("");
                     //top.location.href=platform_url + "/pages/home/login.html";
-                    top.location.href=platform_url + "/pages/home/login.html";
+                    top.location.href = platform_url + "/pages/home/login.html";
                 });
             } else {
                 $.messager.alert('提示', '密码错误，请重新输入！', "info");
             }
         },
-        error: function(xhr) {
+        error: function (xhr) {
             console.log(xhr);
             $.messager.alert('错误', '修改失败！', "error");
         }
@@ -191,6 +195,10 @@ var _menus = {};
 function InitLeftMenu() {
 
     $("#nav").accordion({animate: false});
+
+    //region
+
+    /*
 
     $.get(platform_url + gmenuitem, function (data) {
 
@@ -215,6 +223,49 @@ function InitLeftMenu() {
                 iconCls: 'icon ' + n.Icon
             });
         });
+
+    });
+
+    */
+
+    //endregion
+
+    var parm={roleid: groleid};
+
+    $.ajax({
+        cache:true,
+        type: "post",
+        url: ws_url + "/rest/menurole/findMenu?token=" + gtoken,
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify(parm),
+        async: false,
+        success: function (data) {
+
+            _menus = data;
+
+            $.each(data, function (i, n) {
+
+                var menulist = '';
+                menulist += '<ul>';
+
+                $.each(n.menuInfos, function (j, o) {
+                    menulist += '<li><div><a ref="' + o.menuId + '" href="#" rel="' + o.url + '"  onclick="add(this)" >' +
+                        '<span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">'
+                        + o.menuName + '</span></a></div></li> ';
+                });
+
+                menulist += '</ul>';
+
+                $('#nav').accordion('add', {
+                    title: n.menuName,
+                    content: menulist,
+                    iconCls: 'icon ' + n.icon
+                });
+            });
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        }
     });
 
     //选中第一个
@@ -227,9 +278,9 @@ function InitLeftMenu() {
 function getIcon(menuid) {
     var icon = 'icon ';
     $.each(_menus, function (i, n) {
-        $.each(n.MenuInfos, function (j, o) {
-            if (o.MenuId == menuid) {
-                icon += o.Icon;
+        $.each(n.menuInfos, function (j, o) {
+            if (o.menuId == menuid) {
+                icon += o.icon;
             }
         });
     });

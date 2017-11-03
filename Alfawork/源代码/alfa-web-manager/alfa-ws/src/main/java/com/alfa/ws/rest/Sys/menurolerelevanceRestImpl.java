@@ -72,7 +72,7 @@ public class menurolerelevanceRestImpl implements menurolerelevanceRest {
             criteria.put("roleid", map.get("roleid").toString());
         }
 
-        WebUtil.preparePageParams(request, pager, criteria, "B.parentid");
+        WebUtil.preparePageParams(request, pager, criteria, "B.cascadeid");
 
         List<menurolerelevance> menurolerelevanceServiceList = this.menurolerelevanceService.selectByParams(criteria);
 
