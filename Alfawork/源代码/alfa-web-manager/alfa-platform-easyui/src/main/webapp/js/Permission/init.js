@@ -133,7 +133,7 @@ function initdatagrid() {
 
         //endregion
 
-        //toolbar: "#tb",
+        toolbar: "#tb",
 
         idField: 'id',
 
