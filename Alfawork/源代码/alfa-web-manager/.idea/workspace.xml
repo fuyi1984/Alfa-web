@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f72b7442-2082-4385-bba9-be537328636e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/order/OrdersRestImpl.java" afterPath="$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/order/OrdersRestImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/dao/money/activitiesorderMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/activitiesorder.java" afterPath="$PROJECT_DIR$/alfa-service/src/main/java/com/alfa/web/pojo/activitiesorder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml" afterPath="$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,49 +48,7 @@
     <favorites_list name="alfa-web-manager" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="activitiesorderRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/java/com/alfa/ws/rest/money/activitiesorderRestImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="226" column="71" lean-forward="false" selection-start-line="226" selection-start-column="19" selection-end-line="226" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrdersRestImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alfa-mobile-ws/src/main/java/com/alfa/mobile/rest/order/OrdersRestImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="62" column="4" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="4" />
-              <folding>
-                <element signature="e#1880#1893#0" expanded="false" />
-                <element signature="method#updateorder#0;class#OrdersRestImpl#0" expanded="false" />
-                <element signature="e#5965#5993#0" expanded="false" />
-                <element signature="e#7993#8015#0" expanded="false" />
-                <element signature="method#findOrder#0;class#OrdersRestImpl#0" expanded="false" />
-                <element signature="e#14343#14356#0" expanded="false" />
-                <element signature="method#batchupdateorderStatus#0;class#OrdersRestImpl#0" expanded="false" />
-                <element signature="method#batchcompleteorderStatus#0;class#OrdersRestImpl#0" expanded="false" />
-                <element signature="method#batchupdateorderWorker#0;class#OrdersRestImpl#0" expanded="false" />
-                <element signature="method#batchdeleteorder#0;class#OrdersRestImpl#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-schedule.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="73" column="51" lean-forward="false" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1371,14 +1325,7 @@
       <workItem from="1509500593881" duration="22859000" />
       <workItem from="1509587652649" duration="22104000" />
       <workItem from="1509673199870" duration="8848000" />
-      <workItem from="1509691335379" duration="2997000" />
-    </task>
-    <task id="LOCAL-00294" summary="2017-9-30">
-      <created>1506752538364</created>
-      <option name="number" value="00294" />
-      <option name="presentableId" value="LOCAL-00294" />
-      <option name="project" value="LOCAL" />
-      <updated>1506752538364</updated>
+      <workItem from="1509691335379" duration="3202000" />
     </task>
     <task id="LOCAL-00295" summary="2017-10-12">
       <created>1507775471349</created>
@@ -1716,7 +1663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509692085812</updated>
     </task>
-    <option name="localTasksCounter" value="343" />
+    <task id="LOCAL-00343" summary="2017-11-3">
+      <created>1509694367051</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1509694367051</updated>
+    </task>
+    <option name="localTasksCounter" value="344" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1752,7 +1706,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3039554000" />
+    <option name="totallyTimeSpent" value="3039759000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2402,7 +2356,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alfa-ws/src/main/resources/spring-schedule.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="44">
           <caret line="73" column="51" lean-forward="false" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
           <folding />
         </state>
