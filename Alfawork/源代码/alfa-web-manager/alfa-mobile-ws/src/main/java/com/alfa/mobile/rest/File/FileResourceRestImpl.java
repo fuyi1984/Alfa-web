@@ -1,4 +1,4 @@
-package com.alfa.mobile.rest.order;
+package com.alfa.mobile.rest.File;
 
 import com.alfa.web.service.common.FileResourceService;
 import com.alfa.web.util.JsonUtil;

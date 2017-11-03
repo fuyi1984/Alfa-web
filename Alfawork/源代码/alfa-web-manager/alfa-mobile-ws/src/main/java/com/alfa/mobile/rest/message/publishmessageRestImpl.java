@@ -1,4 +1,4 @@
-package com.alfa.mobile.rest.order;
+package com.alfa.mobile.rest.message;
 
 import com.alfa.web.pojo.messageuser;
 import com.alfa.web.pojo.publishmessage;

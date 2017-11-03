@@ -1,7 +1,6 @@
-package com.alfa.mobile.rest.order;
+package com.alfa.mobile.rest.message;
 
-import com.alfa.web.pojo.OrderComment;
-import com.alfa.web.pojo.Orders;
+import com.alfa.web.pojo.messageuser;
 import org.springframework.context.annotation.Scope;
 
 import javax.jws.WebMethod;
@@ -14,33 +13,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 /**
- * Created by Administrator on 2017/7/12.
+ * Created by Administrator on 2017/7/20.
  */
-@Path("/ordercomment")
+@Path("/message")
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 @Scope("singleton")
-public interface OrderCommentRest {
+public interface publishmessageRest {
 
     /**
-     * 批量新增订单评论
-     *
-     * @param order
-     * @return
-     */
-    @WebMethod
-    @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/batchinsertordercomment")
-    public Response batchinsertordercomment(List<OrderComment> commentlist) throws Exception;
-
-
-    /**
-     * 查询分页订单评论
+     * 查询分页消息
      */
     @WebMethod
     @POST
@@ -50,15 +34,12 @@ public interface OrderCommentRest {
     public Response findlist(String param, @Context HttpServletRequest request, @Context HttpServletResponse response);
 
     /**
-     * 批量删除订单评论
-     * @param list
-     * @return
+     * 消息已读未读
      */
     @WebMethod
     @POST
-    @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    @Path("/batchdeleteordercomment")
-    public Response batchdeleteordercomment(List<String> list);
-
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/isread")
+    public Response isread(messageuser user);
 }

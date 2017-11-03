@@ -1,4 +1,4 @@
-package com.alfa.mobile.rest.order;
+package com.alfa.mobile.rest.Comment;
 
 import com.alfa.web.pojo.CommonComment;
 import com.alfa.web.service.comment.CommonCommentService;

@@ -1,4 +1,4 @@
-package com.alfa.mobile.rest.sys;
+package com.alfa.mobile.rest.weixin;
 
 import com.alfa.web.pojo.Orders;
 import com.alfa.web.pojo.td_weixin_users;

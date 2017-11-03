@@ -1,4 +1,4 @@
-package com.alfa.mobile.rest.order;
+package com.alfa.mobile.rest.File;
 
 import com.alfa.web.vo.Base64;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
