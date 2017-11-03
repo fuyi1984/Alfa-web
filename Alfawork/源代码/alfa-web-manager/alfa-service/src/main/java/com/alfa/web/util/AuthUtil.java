@@ -42,6 +42,7 @@ public class AuthUtil {
      * @author zharong
      */
     private static HttpSession getUserSession() {
+
         HttpServletRequest request = null;
         try {
             request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
@@ -49,6 +50,7 @@ public class AuthUtil {
             return null;
         }
         return request.getSession();
+
     }
 
     /**
