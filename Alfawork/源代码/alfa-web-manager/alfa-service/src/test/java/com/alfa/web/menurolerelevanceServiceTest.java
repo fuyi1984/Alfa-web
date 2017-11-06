@@ -1,6 +1,8 @@
 package com.alfa.web;
 
+import com.alfa.web.pojo.EMenuInfos;
 import com.alfa.web.pojo.menurolerelevance;
+import com.alfa.web.service.sys.EMenuInfosService;
 import com.alfa.web.service.sys.menurolerelevanceService;
 import com.alfa.web.util.JsonUtil;
 import com.alfa.web.util.MenuUtil;
@@ -28,6 +30,9 @@ public class menurolerelevanceServiceTest extends TestBase {
     @Autowired
     private menurolerelevanceService menurolerelevanceService;
 
+    @Autowired
+    private EMenuInfosService eMenuInfosService;
+
 
     @Test
     public void selectParam() {
@@ -39,6 +44,15 @@ public class menurolerelevanceServiceTest extends TestBase {
 
         System.out.println(JsonUtil.toJson(menurolerelevanceServiceList));
 
+    }
+
+    @Test
+    public void selectMenu(){
+        Criteria criteria = new Criteria();
+
+        List<EMenuInfos> EMenuInfosList = this.eMenuInfosService.selectByParams(criteria);
+
+        System.out.println(JsonUtil.toJson(EMenuInfosList));
     }
 
     @Test

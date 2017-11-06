@@ -60,7 +60,7 @@
         <property name="cronExpression" value="0 /4 * * * ?"/>
     </bean>
 
-    <!--监控微信红包的发送状态，每3分钟执行一次-->
+    <!--监控微信红包的发送状态，每1分钟执行一次-->
     <bean id="MoneySenderStatusObject" class="com.alfa.web.job.MoneySenderStatus"/>
     <bean id="MoneySenderStatusJob"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -71,7 +71,7 @@
     <bean id="MoneySenderStatusTrigger"
           class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="MoneySenderStatusJob"/>
-        <property name="cronExpression" value="0 /3 * * * ?"/>
+        <property name="cronExpression" value="0 /1 * * * ?"/>
     </bean>
 
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">

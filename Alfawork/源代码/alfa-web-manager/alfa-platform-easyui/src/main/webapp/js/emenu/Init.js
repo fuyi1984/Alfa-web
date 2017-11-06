@@ -150,7 +150,7 @@ function initdatagrid() {
             {field: 'menuname', title: '菜单名称', width: 80, align: 'center'},
             {field: 'icon', title: '图标', width: 80, align: 'center'},
             {field: 'url', title: 'Url', width: 80, align: 'center'},
-            {field: 'parentid', title: '父节点', width: 80, align: 'center'},
+            {field: 'parentmenuname', title: '父菜单', width: 80, align: 'center'},
 
             {field: 'createdBy', title: '创建人', width: 80, align: 'center'},
             {

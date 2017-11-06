@@ -35,6 +35,20 @@ public class EMenuInfos extends Entity implements Serializable
      */
     private String parentid;
 
+    public String getParentmenuname() {
+        return parentmenuname;
+    }
+
+    public void setParentmenuname(String parentmenuname) {
+        this.parentmenuname = parentmenuname;
+    }
+
+    /**
+     * 父目录名
+     */
+
+    private String parentmenuname;
+
     /**
      * 节点
      */

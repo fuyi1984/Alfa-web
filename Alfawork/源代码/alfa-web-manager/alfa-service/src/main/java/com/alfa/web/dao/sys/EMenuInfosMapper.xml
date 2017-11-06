@@ -27,55 +27,55 @@
         <trim prefix="where" prefixOverrides="and|or" >
 
             <if test="condition.menuid != null" >
-                and menuid = #{condition.menuid}
+                and A.menuid = #{condition.menuid}
             </if>
 
             <if test="condition.menuname != null" >
-                and menuname = #{condition.menuname}
+                and A.menuname = #{condition.menuname}
             </if>
             <if test="condition.bmenuname != null">
-                and menuname like concat('%',
+                and A.menuname like concat('%',
                 #{condition.bmenuname}, '%')
             </if>
             <if test="condition.url != null" >
-                and url = #{condition.url}
+                and A.url = #{condition.url}
             </if>
             <if test="condition.urlLike != null">
-                and url like concat('%',
+                and A.url like concat('%',
                 #{condition.urlLike}, '%')
             </if>
             <if test="condition.icon != null" >
-                and icon = #{condition.icon}
+                and A.icon = #{condition.icon}
             </if>
             <if test="condition.parentid != null" >
-                and parentid = #{condition.parentid}
+                and A.parentid = #{condition.parentid}
             </if>
             <if test="condition.cascadeid != null" >
-                and cascadeid = #{condition.cascadeid}
+                and A.cascadeid = #{condition.cascadeid}
             </if>
 
             <if test="condition.createdBy != null" >
-                and createdBy = #{condition.createdBy}
+                and A.createdBy = #{condition.createdBy}
             </if>
             <if test="condition.createdDt != null" >
-                and createdDt = #{condition.createdDt}
+                and A.createdDt = #{condition.createdDt}
             </if>
             <if test="condition.updatedBy != null" >
-                and updatedBy = #{condition.updatedBy}
+                and A.updatedBy = #{condition.updatedBy}
             </if>
             <if test="condition.updatedDt != null" >
-                and updatedDt = #{condition.updatedDt}
+                and A.updatedDt = #{condition.updatedDt}
             </if>
             <if test="condition.version != null" >
-                and version = #{condition.version}
+                and A.version = #{condition.version}
             </if>
 
         </trim>
     </sql>
 
     <sql id="Base_Column_List" >
-        menuid, menuname,url,icon,parentid,cascadeid,createdBy,createdDt,updatedBy,updatedDt,
-        version
+        A.menuid, A.menuname,A.url,A.icon,A.parentid,A.cascadeid,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
+        A.version
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.EMenuInfos" >
@@ -163,7 +163,11 @@
 
         <include refid="Base_Column_List" />
 
-        from EMenuInfos
+        ,B.menuname as parentmenuname
+
+        from EMenuInfos A
+
+        left join EMenuInfos B on(A.parentid=B.cascadeid)
 
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
