@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alfa.web.dao.news.newstopMapper">
+
+    <resultMap id="BaseResultMap" type="com.alfa.web.pojo.newstop">
+
+        <!--id-->
+        <id column="id" property="id" jdbcType="BIGINT"/>
+
+        <!--基本信息-->
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="publishDt" property="publishDt" jdbcType="TIMESTAMP"/>
+
+        <!--附加信息-->
+        <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
+        <result column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="updatedDt" property="updatedDt" jdbcType="TIMESTAMP"/>
+        <result column="version" property="version" jdbcType="BIGINT"/>
+
+    </resultMap>
+
+
+    <sql id="Example_Where_Clause" >
+        <trim prefix="where" prefixOverrides="and|or" >
+
+            <if test="condition.title != null" >
+                and A.title = #{condition.title}
+            </if>
+
+            <if test="condition.content != null" >
+                and A.content = #{condition.content}
+            </if>
+
+            <if test="condition.publishDt != null" >
+                and A.publishDt = #{condition.publishDt}
+            </if>
+
+            <if test="condition.createdBy != null" >
+                and A.createdBy = #{condition.createdBy}
+            </if>
+            <if test="condition.createdDt != null" >
+                and A.createdDt = #{condition.createdDt}
+            </if>
+            <if test="condition.updatedBy != null" >
+                and A.updatedBy = #{condition.updatedBy}
+            </if>
+            <if test="condition.updatedDt != null" >
+                and A.updatedDt = #{condition.updatedDt}
+            </if>
+            <if test="condition.version != null" >
+                and A.version = #{condition.version}
+            </if>
+
+        </trim>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        A.id,A.title,A.content,A.publishDt,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
+        A.version
+    </sql>
+
+    <insert id="insertSelective" parameterType="com.alfa.web.pojo.newstop" >
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into newstop
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="publishDt != null" >
+                publishDt,
+            </if>
+
+            <if test="createdBy != null" >
+                createdBy,
+            </if>
+            <if test="createdDt != null" >
+                createdDt,
+            </if>
+            <if test="updatedBy != null" >
+                updatedBy,
+            </if>
+            <if test="updatedDt != null" >
+                updatedDt,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="title != null" >
+                #{title},
+            </if>
+            <if test="content != null" >
+                #{content},
+            </if>
+            <if test="publishDt != null" >
+                #{publishDt},
+            </if>
+
+            <if test="createdBy != null" >
+                #{createdBy},
+            </if>
+            <if test="createdDt != null" >
+                #{createdDt},
+            </if>
+            <if test="updatedBy != null" >
+                #{updatedBy},
+            </if>
+            <if test="updatedDt != null" >
+                #{updatedDt},
+            </if>
+            <if test="version != null" >
+                #{version},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
