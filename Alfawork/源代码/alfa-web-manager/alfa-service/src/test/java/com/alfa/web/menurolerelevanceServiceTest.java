@@ -33,6 +33,7 @@ public class menurolerelevanceServiceTest extends TestBase {
     public void selectParam() {
 
         Criteria criteria = new Criteria();
+        criteria.put("roleid", "27");
 
         List<menurolerelevance> menurolerelevanceServiceList = this.menurolerelevanceService.selectByParams(criteria);
 

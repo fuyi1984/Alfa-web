@@ -230,14 +230,14 @@ function InitLeftMenu() {
 
     //endregion
 
-    var parm={roleid: groleid};
+    //var parm={roleid: groleid};
 
     $.ajax({
-        cache:true,
+        cache: true,
         type: "post",
         url: ws_url + "/rest/menurole/findMenu?token=" + gtoken,
         contentType: 'application/json;charset=UTF-8',
-        data: JSON.stringify(parm),
+        data: 'roleid=' + groleid + '',
         async: false,
         success: function (data) {
 
@@ -248,11 +248,13 @@ function InitLeftMenu() {
                 var menulist = '';
                 menulist += '<ul>';
 
-                $.each(n.menuInfos, function (j, o) {
-                    menulist += '<li><div><a ref="' + o.menuId + '" href="#" rel="' + o.url + '"  onclick="add(this)" >' +
-                        '<span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">'
-                        + o.menuName + '</span></a></div></li> ';
-                });
+                if (n.menuInfos != null) {
+                    $.each(n.menuInfos, function (j, o) {
+                        menulist += '<li><div><a ref="' + o.menuId + '" href="#" rel="' + o.url + '"  onclick="add(this)" >' +
+                            '<span class="icon ' + o.icon + '" >&nbsp;</span><span class="nav">'
+                            + o.menuName + '</span></a></div></li> ';
+                    });
+                }
 
                 menulist += '</ul>';
 
