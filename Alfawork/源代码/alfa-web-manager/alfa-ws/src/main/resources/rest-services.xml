@@ -31,6 +31,7 @@
             <bean class="com.alfa.ws.rest.money.aftersendmoneyRestImpl"/>
             <bean class="com.alfa.ws.rest.money.aftersendmoneyfailtureRestImpl"/>
             <bean class="com.alfa.ws.rest.Sys.menurolerelevanceRestImpl"/>
+            <bean class="com.alfa.ws.rest.news.newstopRestImpl"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>

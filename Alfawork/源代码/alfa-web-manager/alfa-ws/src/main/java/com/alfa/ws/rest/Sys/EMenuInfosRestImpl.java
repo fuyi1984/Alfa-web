@@ -66,10 +66,10 @@ public class EMenuInfosRestImpl implements EMenuInfosRest {
         result=this.eMenuInfosService.batchdeleteByPrimaryKey(list);
 
         if (result >= 1) {
-            //插入成功
+            //删除成功
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.SUCCESS, "1", null))).build();
         } else {
-            //插入失败
+            //删除失败
             return Response.status(Response.Status.OK).entity(JsonUtil.toJson(new RestResult(RestResult.FAILURE, "2", null))).build();
         }
     }
