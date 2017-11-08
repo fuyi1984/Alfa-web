@@ -14,10 +14,10 @@ function menueditValidator()
         return false;
     }
 
-    if ($("#Urledit").val() == "") {
+    /*if ($("#Urledit").val() == "") {
         $.messager.alert('提示', 'Url不能为空');
         return false;
-    }
+    }*/
 
     if ($("#ParentIdedit").val() == "") {
         $.messager.alert('提示', '父节点不能为空');
