@@ -6,7 +6,8 @@
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.*" %>
 <%@ page import="org.json.JSONException" %>
-<%@ page import="com.alfa.web.util.JsonUtil" %><%--
+<%@ page import="com.alfa.web.util.JsonUtil" %>
+<%@ page import="com.alfa.web.util.PropertiesUtil" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/11/9 0009
@@ -26,10 +27,16 @@
      */
 
 //文件保存目录路径
-    String savePath = pageContext.getServletContext().getRealPath("/") + "attached/";
+    //String savePath = pageContext.getServletContext().getRealPath("/") + "attached/";
+
+    String savePath= PropertiesUtil.getProperty("platform.root")+"/attached/";
 
 //文件保存目录URL
-    String saveUrl = request.getContextPath() + "/attached/";
+    //String saveUrl = request.getContextPath() + "/attached/";
+
+    //String saveUrl = "/alfa-platform/attached/";
+
+    String saveUrl=PropertiesUtil.getProperty("platform.url.root")+"/attached/";
 
 //定义允许上传的文件扩展名
     HashMap<String, String> extMap = new HashMap<String, String>();
@@ -50,6 +57,7 @@
         out.println(getError("上传目录不存在。"));
         return;
     }
+
 //检查目录写权限
     if (!uploadDir.canWrite()) {
         out.println(getError("上传目录没有写权限。"));
@@ -114,7 +122,7 @@
 
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("error", 0);
-            data.put("url", saveUrl + newFileName);
+            data.put("url", saveUrl+newFileName);
             out.println(JsonUtil.toJson(data));
         }
     }

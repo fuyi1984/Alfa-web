@@ -16,12 +16,24 @@
 
     <script src="../../js/news/index.js" type="text/javascript"></script>
 
+    <link rel="stylesheet" href="../../kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="../../kindeditor/plugins/code/prettify.css" />
     <script src="../../kindeditor/kindeditor-all.js" type="text/javascript" charset="utf-8"></script>
     <script src="../../kindeditor/lang/zh-CN.js" type="text/javascript" charset="utf-8"></script>
+    <script charset="utf-8" src="../../kindeditor/plugins/code/prettify.js" type="text/javascript"></script>
 
     <script type="text/javascript">
+
+        KindEditor.options.filterMode=false;
+
         KindEditor.ready(function (K) {
             window.editor = K.create('#editor_id', {
+                cssPath : '../../kindeditor/plugins/code/prettify.css',
+                uploadJson : ws_url+'/upload_json.jsp?token='+gtoken,
+                fileManagerJson : ws_url+'/file_manager_json.jsp?token='+gtoken,
+                allowFileManager : true,
+                allowImageRemote : true,
+                formatUploadUrl : false,
                 resizeType: 0,
                 items: [
                     'source', '|', 'undo', 'redo', '|', 'preview', 'template', 'code', 'cut', 'copy', 'paste',
@@ -32,8 +44,23 @@
                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
                     'table', 'hr', 'emoticons', 'pagebreak',
                     'anchor', 'link', 'unlink'
-                ]
+                ],
+                afterCreate : function() {
+                    var self = this;
+                    K.ctrl(document, 13, function() {
+                        self.sync();
+                        document.forms['form1'].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function() {
+                        self.sync();
+                        document.forms['form1'].submit();
+                    });
+                },
+                afterBlur:function(){this.sync();}
             });
+
+            prettyPrint();
+
         });
     </script>
 
@@ -47,9 +74,11 @@
 </div>
 
 <!--工具栏-->
+
 <div id="tb" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="doDelete()">删除</a>
     </div>
     <div>
         新闻标题:<input id="busername" class="easyui-textbox" style="width:120px">
@@ -62,7 +91,7 @@
 <div id="newsadd" class="easyui-window" title="添加新闻"
      data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
      style="width:850px;height:510px;padding:6px;">
-    <form id="form1">
+    <form id="form1" method="post" action="index.html">
         <div style="padding: 10px 0px 10px 50px;">
             <table style="text-align: left; width: auto; border-spacing:0px 8px;">
                 <tr>
