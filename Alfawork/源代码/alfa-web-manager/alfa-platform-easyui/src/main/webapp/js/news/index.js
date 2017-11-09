@@ -4,7 +4,7 @@ $(function () {
 
     if (gtoken != "") {
         setCurrentUser();
-
+        $('#newsadd').window('close');
         initdatagrid();
     } else {
         top.location.href=platform_url + "/pages/home/login.html";
@@ -25,6 +25,8 @@ function initdatagrid() {
         remoteSort: true,
         fitColumns: true,
         fit: true,
+
+        toolbar:"#tb",
 
         idField: 'id',
 
@@ -71,6 +73,34 @@ function initdatagrid() {
         });
     }
 }
+
+/**
+ * 打开添加新闻窗口
+ */
+function doAdd(){
+    $('#newsadd').window('open');
+}
+
+
+function doSearch(){
+    initdatagrid();
+}
+
+/**
+ * 添加新闻
+ */
+function newssubmitForm() {
+    
+}
+
+/**
+ * 退出
+ */
+function newscancel(){
+
+}
+
+
 
 
 

@@ -15,6 +15,28 @@
     <script src="../../js/common/common.js" type="text/javascript"></script>
 
     <script src="../../js/news/index.js" type="text/javascript"></script>
+
+    <script src="../../kindeditor/kindeditor-all.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../kindeditor/lang/zh-CN.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor_id', {
+                resizeType: 0,
+                items: [
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'template', 'code', 'cut', 'copy', 'paste',
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                    'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
+                    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                    'table', 'hr', 'emoticons', 'pagebreak',
+                    'anchor', 'link', 'unlink'
+                ]
+            });
+        });
+    </script>
+
 </head>
 <body class="easyui-layout">
 
@@ -23,6 +45,66 @@
     <table id="newsgrid">
     </table>
 </div>
+
+<!--工具栏-->
+<div id="tb" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
+    </div>
+    <div>
+        新闻标题:<input id="busername" class="easyui-textbox" style="width:120px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
+    </div>
+</div>
+
+
+<!--添加新闻-->
+<div id="newsadd" class="easyui-window" title="添加新闻"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
+     style="width:850px;height:510px;padding:6px;">
+    <form id="form1">
+        <div style="padding: 10px 0px 10px 50px;">
+            <table style="text-align: left; width: auto; border-spacing:0px 8px;">
+                <tr>
+                    <td>
+                        新闻标题:
+                    </td>
+                    <td>
+                        <input style="width: 300px;" class="easyui-validatebox" type="text" data-options="required:true"
+                               name="title" id="title"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        新闻内容:
+                    </td>
+                    <td>
+                    <textarea id="editor_id" name="content" style="width:500px;height:300px;">
+                    </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        发布日期:
+                    </td>
+                    <td>
+                        <input style="width: auto;" class="easyui-datebox" type="text"
+                               name="publishDt" id="publishDt"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align: center; padding: 5px 5px 10px 10px">
+
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:newssubmitForm()" id="submit"
+               iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                             onclick="javascript:newscancel()"
+                                             iconcls="icon-cancel">返回</a>
+
+        </div>
+    </form>
+</div>
+
 
 </body>
 </html>
