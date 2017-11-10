@@ -40,7 +40,11 @@ function initdatagrid() {
         columns: [[
             {field: 'title', title: '新闻标题', width: 80, align: 'center'},
             {field: 'content', title: ' 新闻内容', width: 200, align: 'center'},
-            {field: 'publishDt', title: '发布日期', width: 80, align: 'center'},
+            {field: 'publishDt', title: '发布日期', width: 80, align: 'center',
+                formatter: function (value, rec) {
+                    return new Date(Date.parse(value)).Format('yyyy-MM-dd');
+                }
+            },
             {
                 field: 'createdDt', title: '创建时间', width: 100, align: 'center'
             }
