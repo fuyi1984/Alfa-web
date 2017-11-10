@@ -78,6 +78,7 @@
 <div id="tb" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="doAdd()">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="doEdit()">修改</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cut" plain="true" onclick="doDelete()">删除</a>
     </div>
     <div>
@@ -89,10 +90,13 @@
 
 <!--添加新闻-->
 <div id="newsadd" class="easyui-window" title="添加新闻"
-     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-add'"
+     data-options="modal:true,inline:true,closed:true,minimizable:false,maximizable:false,iconCls:'icon-save'"
      style="width:850px;height:510px;padding:6px;">
     <form id="form1" method="post" action="index.html">
         <div style="padding: 10px 0px 10px 50px;">
+            <input style="width: 250px; display:none" class="easyui-validatebox" type="text"
+                   data-options="required:true"
+                   id="id" name="id"/>
             <table style="text-align: left; width: auto; border-spacing:0px 8px;">
                 <tr>
                     <td>
@@ -126,7 +130,7 @@
         <div style="text-align: center; padding: 5px 5px 10px 10px">
 
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:newssubmitForm()" id="submit"
-               iconcls="icon-save">添加</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+               iconcls="icon-save">确定</a> <a href="javascript:void(0)" class="easyui-linkbutton"
                                              onclick="javascript:newscancel()"
                                              iconcls="icon-cancel">返回</a>
 

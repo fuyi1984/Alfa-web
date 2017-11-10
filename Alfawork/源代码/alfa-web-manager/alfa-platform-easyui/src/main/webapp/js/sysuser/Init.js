@@ -331,7 +331,7 @@ function initdatagrid() {
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#usergrid').datagrid('clearSelections')
+                $('#usergrid').datagrid('clearSelections');
                 $('#form3').form('clear');
                 success(data);
             },

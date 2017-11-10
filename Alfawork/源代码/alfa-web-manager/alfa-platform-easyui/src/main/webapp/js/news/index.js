@@ -10,7 +10,7 @@ $(function () {
 
         initdatagrid();
     } else {
-        top.location.href=platform_url + "/pages/home/login.html";
+        top.location.href = platform_url + "/pages/home/login.html";
     }
 });
 
@@ -29,7 +29,7 @@ function initdatagrid() {
         fitColumns: true,
         fit: true,
 
-        toolbar:"#tb",
+        toolbar: "#tb",
 
         idField: 'id',
 
@@ -62,11 +62,11 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/news/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex +'&titlelike='+$('#busername').val()+ '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&titlelike=' + $('#busername').val() + '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
-                $('#newsgrid').datagrid('clearSelections')
+                $('#newsgrid').datagrid('clearSelections');
                 success(data);
             },
             error: function (xhr) {
@@ -80,85 +80,169 @@ function initdatagrid() {
 /**
  * 打开添加新闻窗口
  */
-function doAdd(){
+function doAdd() {
     editor.sync();
     editor.html('');
-    $('#title').attr("value",'');
-    $('#publishDt').datebox('setValue','');
+    $('#newsgrid').datagrid("clearSelections");
+    $('#newsadd').panel({title: '添加新闻头条'});
+    //$('#title').attr("value",'');
+    //$('#publishDt').datebox('setValue','');
+    $('#form1').form('clear');
     $('#newsadd').window('open');
 }
 
 
-function doSearch(){
+function doSearch() {
     initdatagrid();
 }
 
 /**
- * 添加新闻
+ * 添加修改新闻
  */
 function newssubmitForm() {
 
-    if(Validator()) {
+    if (Validator()) {
 
         editor.sync();
 
-        //alert(editor.html());
+        if ($('#id').val() == "") {
 
-        var params = {
-            "title": $("#title").val(),
-            "content": editor.html(),
-            "publishDt":$("#publishDt").datebox('getValue')
-        }
+            //alert(editor.html());
 
-        console.log(params);
+            var params = {
+                "title": $("#title").val(),
+                "content": editor.html(),
+                "publishDt": $("#publishDt").datebox('getValue')
+            }
 
-        $.ajax({
-            url: ws_url + '/rest/news/insertnews?token=' + gtoken,
-            contentType: 'application/json;charset=UTF-8',
-            type: 'post',
-            datatype: 'json',
-            data: JSON.stringify(params),
-            cache: false,
-            success: function (data) {
+            console.log(params);
 
-                console.log(data.status);
-                console.log(data.message);
+            $.ajax({
+                url: ws_url + '/rest/news/insertnews?token=' + gtoken,
+                contentType: 'application/json;charset=UTF-8',
+                type: 'post',
+                datatype: 'json',
+                data: JSON.stringify(params),
+                cache: false,
+                success: function (data) {
 
-                $('#form1').form('clear');
+                    console.log(data.status);
+                    console.log(data.message);
 
-                if (data.status == 'success') {
-                    $.messager.alert('提示', '添加成功！', 'info', function () {
-                        //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
-                        $('#newsadd').window('close');
-                        $('#newsgrid').datagrid("reload");
-                    });
-                } else if (data.status == 'failure') {
-                    if (data.message == '1') {
-                        $.messager.alert('提示', '数据已存在！', 'warning', function () {
+                    $('#form1').form('clear');
+
+                    if (data.status == 'success') {
+                        $.messager.alert('提示', '添加成功！', 'info', function () {
                             //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                             $('#newsadd').window('close');
                             $('#newsgrid').datagrid("reload");
                         });
-                    } else {
-                        $.messager.alert('提示', '添加失败！', 'error', function () {
+                    } else if (data.status == 'failure') {
+                        if (data.message == '1') {
+                            $.messager.alert('提示', '数据已存在！', 'warning', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#newsadd').window('close');
+                                $('#newsgrid').datagrid("reload");
+                            });
+                        } else {
+                            $.messager.alert('提示', '添加失败！', 'error', function () {
+                                //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                                $('#newsadd').window('close');
+                                $('#newsgrid').datagrid("reload");
+                            });
+                        }
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+
+        } else {
+
+            var params = {
+                "id": $('#id').val(),
+                "title": $("#title").val(),
+                "content": editor.html(),
+                "publishDt": $("#publishDt").datebox('getValue')
+            }
+
+            console.log(params);
+
+            $.ajax({
+                url: ws_url + '/rest/news/editnews?token=' + gtoken,
+                contentType: 'application/json;charset=UTF-8',
+                type: 'post',
+                datatype: 'json',
+                data: JSON.stringify(params),
+                cache: false,
+                success: function (data) {
+
+                    console.log(data.status);
+                    console.log(data.message);
+
+                    $('#form1').form('clear');
+
+                    if (data.status == 'success') {
+                        $.messager.alert('提示', '修改成功！', 'info', function () {
+                            //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
+                            $('#newsadd').window('close');
+                            $('#newsgrid').datagrid("reload");
+                        });
+                    } else if (data.status == 'failure') {
+                        $.messager.alert('提示', '修改失败！', 'error', function () {
                             //this.href = 'alfa-platform-easyui/pages/sysconfig/index.html';
                             $('#newsadd').window('close');
                             $('#newsgrid').datagrid("reload");
                         });
                     }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
                 }
-            },
-            error: function (xhr) {
-                console.log(xhr);
-            }
-        });
+            });
+        }
+    }
+}
+
+
+/**
+ * 修改
+ */
+function doEdit() {
+    var rows = $('#newsgrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择要修改的数据');
+        return;
+    } else {
+        if (rows.length > 1) {
+            $.messager.alert('提示', '请选择一条数据');
+            $('#newsgrid').datagrid("clearSelections");
+            return;
+        } else {
+
+            $('#form1').form('load', {
+                id: rows[0].id,
+                title: rows[0].title,
+                publishDt: rows[0].publishDt
+            });
+
+            editor.sync();
+            editor.html(rows[0].content);
+
+            $('#newsadd').panel({title: '修改新闻头条'});
+            //$('#title').textbox('textbox').attr('readonly', true);
+            //$('#title').textbox({disabled: true});
+            $('#newsadd').window('open');
+        }
     }
 }
 
 /**
  * 退出
  */
-function newscancel(){
+function newscancel() {
     $('#newsadd').window('close');
     $("#newsgrid").datagrid("clearSelections");
 }
@@ -167,8 +251,8 @@ function newscancel(){
  * 验证
  * @constructor
  */
-function Validator(){
-    if($('#title').val()==''){
+function Validator() {
+    if ($('#title').val() == '') {
         $.messager.alert('提示', '新闻标题不能为空');
         return false;
     }
@@ -178,7 +262,7 @@ function Validator(){
 /**
  * 删除
  */
-function doDelete(){
+function doDelete() {
     var rows = $('#newsgrid').datagrid('getSelections');
 
     if (!rows || rows.length == 0) {
