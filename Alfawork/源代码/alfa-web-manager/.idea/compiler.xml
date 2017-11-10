@@ -16,6 +16,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="alfa-app-ws" />
         <module name="alfa-message-ws" />
         <module name="alfa-mobile" />
         <module name="alfa-mobile-ws" />
@@ -27,12 +28,14 @@
         <module name="alfa-schedule" />
         <module name="alfa-service" />
         <module name="alfa-ws" />
+        <module name="alfa-wx-ws" />
         <module name="platform-springmvc" />
         <module name="platform-struct2" />
         <module name="platform-strut2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="alfa-app-ws" target="1.6" />
       <module name="alfa-core" target="1.6" />
       <module name="alfa-log4j" target="1.6" />
       <module name="alfa-message-schedule" target="1.6" />
@@ -51,6 +54,7 @@
       <module name="alfa-timer" target="1.6" />
       <module name="alfa-web-manager" target="1.5" />
       <module name="alfa-ws" target="1.6" />
+      <module name="alfa-wx-ws" target="1.6" />
       <module name="platform-springmvc" target="1.6" />
       <module name="platform-struct2" target="1.6" />
       <module name="platform-strut2" target="1.6" />

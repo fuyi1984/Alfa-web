@@ -6,9 +6,9 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>alfa-pay-ws</artifactId>
+    <artifactId>alfa-wx-ws</artifactId>
     <packaging>war</packaging>
-    <name>alfa-pay-ws Maven Webapp</name>
+    <name>alfa-wx-ws Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -19,6 +19,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>alfa-pay-ws</finalName>
+        <finalName>alfa-wx-ws</finalName>
     </build>
 </project>

@@ -6,9 +6,9 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>alfa-message-ws</artifactId>
+    <artifactId>alfa-app-ws</artifactId>
     <packaging>war</packaging>
-    <name>alfa-message-ws Maven Webapp</name>
+    <name>alfa-app-ws Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -19,6 +19,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>alfa-message-ws</finalName>
+        <finalName>alfa-app-ws</finalName>
     </build>
 </project>
