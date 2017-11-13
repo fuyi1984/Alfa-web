@@ -366,6 +366,8 @@ public class SysUserRestImpl implements SysUserRest {
                         sysUsersService.updateByPrimaryKeySelective(currentUser);
 
                         currentUser.setMobiletoken("");
+                        currentUser.setWxtoken("");
+                        currentUser.setApptoken("");
 
                         //
                         // 保存Session和Cookie

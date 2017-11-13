@@ -12,30 +12,6 @@ public class td_weixin_users extends Entity implements Serializable {
 
     private String headimgurl;
 
-    @Override
-    public String toString() {
-        return "td_weixin_users{" +
-                "openid='" + openid + '\'' +
-                ", headimgurl='" + headimgurl + '\'' +
-                ", state='" + state + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", userid=" + userid +
-                ", mobile='" + mobile + '\'' +
-                ", mobiletoken='" + mobiletoken + '\'' +
-                ", realname='" + realname + '\'' +
-                ", sysuserid=" + sysuserid +
-                ", roleId=" + roleId +
-                ", orgname='" + orgname + '\'' +
-                ", address='" + address + '\'' +
-                ", totalrealnum='" + totalrealnum + '\'' +
-                ", totalaverage='" + totalaverage + '\'' +
-                ", realnum='" + realnum + '\'' +
-                ", average='" + average + '\'' +
-                ", commentnum='" + commentnum + '\'' +
-                ", nototalaverage='" + nototalaverage + '\'' +
-                '}';
-    }
-
     private String state;
 
     public String getNickname() {
@@ -56,6 +32,44 @@ public class td_weixin_users extends Entity implements Serializable {
     private String mobile;
 
     private String mobiletoken;
+
+    private String wxtoken;
+
+    @Override
+    public String toString() {
+        return "td_weixin_users{" +
+                "openid='" + openid + '\'' +
+                ", headimgurl='" + headimgurl + '\'' +
+                ", state='" + state + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", userid=" + userid +
+                ", mobile='" + mobile + '\'' +
+                ", mobiletoken='" + mobiletoken + '\'' +
+                ", wxtoken='" + wxtoken + '\'' +
+                ", realname='" + realname + '\'' +
+                ", sysuserid=" + sysuserid +
+                ", roleId=" + roleId +
+                ", role_name='" + role_name + '\'' +
+                ", orgname='" + orgname + '\'' +
+                ", address='" + address + '\'' +
+                ", totalrealnum='" + totalrealnum + '\'' +
+                ", totalaverage='" + totalaverage + '\'' +
+                ", realnum='" + realnum + '\'' +
+                ", average='" + average + '\'' +
+                ", commentnum='" + commentnum + '\'' +
+                ", nototalaverage='" + nototalaverage + '\'' +
+                ", isdownload='" + isdownload + '\'' +
+                ", localurl='" + localurl + '\'' +
+                '}';
+    }
+
+    public String getWxtoken() {
+        return wxtoken;
+    }
+
+    public void setWxtoken(String wxtoken) {
+        this.wxtoken = wxtoken;
+    }
 
     private String realname;
 

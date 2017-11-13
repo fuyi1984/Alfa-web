@@ -15,6 +15,7 @@
 
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="mobiletoken" property="mobiletoken" jdbcType="VARCHAR"/>
+        <result column="wxtoken" property="wxtoken" jdbcType="VARCHAR"/>
 
         <result column="createdBy" property="createdBy" jdbcType="VARCHAR"/>
         <result column="createdDt" property="createdDt" jdbcType="TIMESTAMP"/>
@@ -33,9 +34,9 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
-            <!--<if test="condition.xmobile==-1">
-                and A.mobile IS NULL or A.mobile = ''
-            </if>-->
+            <if test="condition.wxtoken!=null">
+                and A.wxtoken=#{condition.wxtoken}
+            </if>
             <if test="condition.nicknamelike!=null">
                 and A.nickname like concat('%', #{condition.nicknamelike}, '%')
             </if>
@@ -89,7 +90,7 @@
 
     <sql id="Base_Column_List">
         A.Id, A.openid, A.headimgurl,A.state, A.userid,A.createdBy, A.createdDt,
-        A.updatedBy, A.updatedDt, A.version,A.mobile,A.mobiletoken,A.nickname,A.localurl,A.isdownload
+        A.updatedBy, A.updatedDt, A.version,A.mobile,A.mobiletoken,A.nickname,A.localurl,A.isdownload,A.wxtoken
     </sql>
 
     <select id="countByParams" parameterType="com.alfa.web.util.pojo.Criteria" resultType="java.lang.Integer">
@@ -125,7 +126,9 @@
         </selectKey>
         insert into td_weixin_users
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            id,
+            <if test="wxtoken!=null">
+                wxtoken,
+            </if>
             <if test="nickname != null">
                 nickname,
             </if>
@@ -170,7 +173,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{id},
+            <if test="wxtoken!=null">
+                #{wxtoken},
+            </if>
             <if test="nickname != null">
                 #{nickname},
             </if>
@@ -291,6 +296,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.td_weixin_users">
         update td_weixin_users
         <set>
+            <if test="wxtoken!=null">
+                wxtoken=#{wxtoken},
+            </if>
             <if test="nickname!=null">
                 nickname=#{nickname},
             </if>

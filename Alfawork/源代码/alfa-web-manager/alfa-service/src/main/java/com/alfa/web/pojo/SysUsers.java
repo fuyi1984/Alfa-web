@@ -127,9 +127,37 @@ public class SysUsers extends Entity implements Serializable{
      */
     private String token;
     /**
-     * 手机端Web服务身份验证码
+     * 微信公众号Web服务身份验证码
      */
     private String mobiletoken;
+
+    public String getWxtoken() {
+        return wxtoken;
+    }
+
+    public void setWxtoken(String wxtoken) {
+        this.wxtoken = wxtoken;
+    }
+
+    public String getApptoken() {
+        return apptoken;
+    }
+
+    public void setApptoken(String apptoken) {
+        this.apptoken = apptoken;
+    }
+
+    /**
+     * 微信小程序Web服务身份验证码
+     */
+
+    private String wxtoken;
+
+    /**
+     * 手机APPWeb服务身份验证码
+     */
+    private String apptoken;
+
     /**
      * 密码输入错误次数
      */

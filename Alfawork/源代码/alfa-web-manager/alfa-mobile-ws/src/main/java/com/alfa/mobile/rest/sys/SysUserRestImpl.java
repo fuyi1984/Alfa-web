@@ -74,6 +74,7 @@ public class SysUserRestImpl implements SysUserRest {
             e.printStackTrace();
             return Response.status(Response.Status.OK).entity(new RestResult(RestResult.FAILURE, WebConstants.MsgCd.ERROR_MOBILE_GET_FAILURE)).build();
         }
+
         return Response.status(Response.Status.OK).entity(new RestResult(RestResult.SUCCESS, WebConstants.MsgCd.INFO_MOBILE_GET_SUCCESS, code)).build();
 
         //endregion
@@ -363,6 +364,9 @@ public class SysUserRestImpl implements SysUserRest {
 
             user.setToken(StringUtil.getUUID());
             user.setMobiletoken(StringUtil.getUUID());
+            user.setWxtoken(StringUtil.getUUID());
+            user.setApptoken(StringUtil.getUUID());
+
             user.setPassword(WebUtil.encrypt(user.getVerifyCode(), user.getUsername()));
             user.setRoleId(10L);
             //设置用户状态为未审核
@@ -495,6 +499,8 @@ public class SysUserRestImpl implements SysUserRest {
             currentUser.setCaptcha("");
             currentUser.setVerifyCode("");
             currentUser.setToken("");
+            currentUser.setApptoken("");
+            currentUser.setWxtoken("");
 
             String json = JsonUtil.toJson(currentUser);
 
@@ -693,6 +699,8 @@ public class SysUserRestImpl implements SysUserRest {
                         currentUser.setCaptcha("");
                         currentUser.setVerifyCode("");
                         currentUser.setToken("");
+                        currentUser.setApptoken("");
+                        currentUser.setWxtoken("");
 
                         //this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
@@ -851,6 +859,8 @@ public class SysUserRestImpl implements SysUserRest {
                             currentUser.setCaptcha("");
                             currentUser.setVerifyCode("");
                             currentUser.setToken("");
+                            currentUser.setWxtoken("");
+                            currentUser.setApptoken("");
 
                             //this.sysUsersService.createSession(session, servletResponse, WebConstants.CURRENT_PLATFORM_USER, currentUser);
 
@@ -981,6 +991,8 @@ public class SysUserRestImpl implements SysUserRest {
             currentuser.setVerifyCode("");
             currentuser.setToken("");
             currentuser.setMobiletoken("");
+            currentuser.setApptoken("");
+            currentuser.setWxtoken("");
 
             //endregion
 

@@ -18,6 +18,8 @@
         <result column="remarks" property="remarks" jdbcType="VARCHAR"/>
         <result column="token" property="token" jdbcType="VARCHAR"/>
         <result column="mobiletoken" property="mobiletoken" jdbcType="VARCHAR"/>
+        <result column="wxtoken" property="wxtoken" jdbcType="VARCHAR"/>
+        <result column="apptoken" property="apptoken" jdbcType="VARCHAR"/>
         <result column="errorCount" property="errorCount" jdbcType="BIGINT"/>
         <result column="errorCountformobile" property="errorCountformobile" jdbcType="BIGINT"/>
         <result column="LoginIp" property="LoginIp" jdbcType="VARCHAR"/>
@@ -53,6 +55,12 @@
 
     <sql id="Example_Where_Clause">
         <trim prefix="where" prefixOverrides="and|or">
+            <if test="condition.apptoken!=null">
+                and A.apptoken=#{condition.apptoken}
+            </if>
+            <if test="condition.wxtoken!=null">
+                and A.wxtoken=#{condition.wxtoken}
+            </if>
             <if test="condition.fileid!=null">
                 and A.fileid=#{condition.fileid}
             </if>
@@ -174,7 +182,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-        A.longitude,A.latitude,A.fileid,
+        A.longitude,A.latitude,A.fileid,A.wxtoken,A.apptoken,
         A.userId, A.username, A.password, A.phone, A.sexname, A.sex,
         A.statusname,A.status,A.typesname,A.types,A.address,A.remarks,
         A.token,A.mobiletoken,A.errorCount,A.errorCountformobile,A.LoginIp,
@@ -185,11 +193,11 @@
         <selectKey keyProperty="userId" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into sysusers (fileid,latitude,longitude,realname,username, password, phone,
+        insert into sysusers (wxtoken,apptoken,fileid,latitude,longitude,realname,username, password, phone,
         sexname,sex,statusname,status,typesname,types,
         address,remarks,token,mobiletoken,errorCount,errorCountformobile,LoginIp,
         createdBy, createdDt, updatedBy, updatedDt, version,roleId,orgname,captcha,weixinid)
-        values (#{fileid},#{latitude},#{longitude},#{realname},#{username}, #{password}, #{phone},
+        values (#{wxtoken},#{apptoken},#{fileid},#{latitude},#{longitude},#{realname},#{username}, #{password}, #{phone},
         #{sexname},#{sex},#{statusname},#{status},#{typesname},#{types},
         #{address},#{remarks},#{token},#{mobiletoken},#{errorCount},#{errorCountformobile},#{LoginIp},
         #{createdBy}, #{createdDt}, #{updatedBy}, #{updatedDt}, #{version},#{roleId},#{orgname},#{captcha},#{weixinid})
@@ -201,6 +209,12 @@
         </selectKey>
         insert into SysUsers
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="wxtoken!=null">
+                wxtoken,
+            </if>
+            <if test="apptoken!=null">
+                apptoken,
+            </if>
             <if test="fileid!=null">
                 fileid,
             </if>
@@ -293,6 +307,12 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="wxtoken!=null">
+                #{wxtoken},
+            </if>
+            <if test="apptoken!=null">
+                #{apptoken},
+            </if>
             <if test="fileid!=null">
                 #{fileid},
             </if>
@@ -511,6 +531,12 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.SysUsers">
         update SysUsers
         <set>
+            <if test="wxtoken!=null">
+                wxtoken=#{wxtoken},
+            </if>
+            <if test="apptoken!=null">
+                apptoken=#{apptoken},
+            </if>
             <if test="fileid!=null">
                 fileid=#{fileid},
             </if>
