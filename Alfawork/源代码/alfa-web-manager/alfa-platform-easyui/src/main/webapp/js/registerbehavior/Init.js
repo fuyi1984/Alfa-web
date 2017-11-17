@@ -182,6 +182,9 @@ function initdatagrid() {
     }
 }
 
+/**
+ * 删除
+ */
 function doDelete() {
 
     var rows = $('#registerbehaviorgrid').datagrid('getSelections');
@@ -226,6 +229,70 @@ function doDelete() {
                 console.log(xhr);
                 $('#registerbehaviorgrid').datagrid("clearSelections");
                 $.messager.alert('错误', '删除失败！', "error");
+            }
+        });
+    });
+}
+
+/**
+ * 审核
+ */
+function doIsCheck(){
+
+    var rows = $('#registerbehaviorgrid').datagrid('getSelections');
+
+    if (!rows || rows.length == 0) {
+        $.messager.alert('提示', '请选择需要审核的用户');
+        return;
+    }
+
+    console.log(rows);
+    console.log(rows[0].registerid);
+
+    for (var i = 0; i < rows.length; i++) {
+
+        if (rows[i].regstatus == '1') {
+            $.messager.alert('提示', '当前用户已审核,不需要二次审核!');
+            $('#registerbehaviorgrid').datagrid("clearSelections");
+            return;
+        }
+    }
+
+    var assetList = new Array();
+
+    $.each(rows, function (i, n) {
+        assetList.push(n.registerid);
+    });
+
+    $.messager.confirm('提示', '是否需要审核这些用户?', function (r) {
+        if (!r) {
+            return;
+        }
+
+        $.ajax({
+            cache: false,
+            datatype: 'json',
+            contentType: 'application/json;charset=UTF-8',
+            type: "POST",
+            url: ws_url + '/rest/user/batchUpdateUserStatus?token=' + gtoken,
+            data: JSON.stringify(assetList),
+            success: function (msg) {
+                if (msg.status == 'success') {
+                    $.messager.alert('提示', '审核成功！', "info", function () {
+                        $('#registerbehaviorgrid').datagrid("clearSelections");
+                        $('#registerbehaviorgrid').datagrid("reload");
+                    });
+                } else {
+                    $.messager.alert('错误', '审核失败！', "error", function () {
+                        $('#registerbehaviorgrid').datagrid("clearSelections");
+                        $('#registerbehaviorgrid').datagrid("reload");
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr);
+                $('#registerbehaviorgrid').datagrid("clearSelections");
+                $.messager.alert('错误', '审核失败！', "error");
             }
         });
     });
