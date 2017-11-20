@@ -83,6 +83,12 @@
     </div>
     <div>
         新闻标题:<input id="busername" class="easyui-textbox" style="width:120px">
+        新闻类型:
+          <input id="newtypes" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/newtypes.json',
+              method:'get',
+              valueField:'id',
+              textField:'text',
+              panelHeight:'auto'">
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
 </div>
@@ -105,6 +111,18 @@
                     <td>
                         <input style="width: 300px;" class="easyui-validatebox" type="text" data-options="required:true"
                                name="title" id="title"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        新闻类型:
+                    </td>
+                    <td>
+                        <input id="newtypes_add" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/newtypes.json',
+              method:'get',
+              valueField:'id',
+              textField:'text',
+              panelHeight:'auto'">
                     </td>
                 </tr>
                 <tr>

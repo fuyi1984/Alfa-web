@@ -19,8 +19,22 @@ public class newstop extends Entity implements Serializable {
     private String content;
 
     /**
+     * 类型
+     */
+    private String types;
+
+    public String getTypes() {
+        return types;
+    }
+
+    public void setTypes(String types) {
+        this.types = types;
+    }
+
+    /**
      * 发布日期
      */
+
     private Date publishDt;
 
     public String getTitle() {

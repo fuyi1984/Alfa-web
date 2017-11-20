@@ -40,6 +40,7 @@ function initdatagrid() {
         columns: [[
             {field: 'title', title: '新闻标题', width: 80, align: 'center'},
             {field: 'content', title: ' 新闻内容', width: 200, align: 'center'},
+            {field: 'types', title: ' 新闻类型', width: 80, align: 'center'},
             {field: 'publishDt', title: '发布日期', width: 80, align: 'center',
                 formatter: function (value, rec) {
                     return new Date(Date.parse(value)).Format('yyyy-MM-dd');
@@ -66,7 +67,7 @@ function initdatagrid() {
         $.ajax({
             url: ws_url + '/rest/news/findlist?token=' + gtoken,
             type: "post",
-            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&titlelike=' + $('#busername').val() + '',
+            data: 'filterscount=0&groupscount=0&pagenum=' + pagenum + '&pagesize=' + pagesize + '&recordstartindex=' + recordstartindex + '&recordendindex=' + recordendindex + '&titlelike=' + $('#busername').val() +'&types='+$('#newtypes').combobox('getValue')+ '',
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
                 console.log(data);
@@ -116,7 +117,8 @@ function newssubmitForm() {
             var params = {
                 "title": $("#title").val(),
                 "content": editor.html(),
-                "publishDt": $("#publishDt").datebox('getValue')
+                "publishDt": $("#publishDt").datebox('getValue'),
+                "types":$('#newtypes_add').combobox('getValue')
             }
 
             console.log(params);
@@ -168,7 +170,8 @@ function newssubmitForm() {
                 "id": $('#id').val(),
                 "title": $("#title").val(),
                 "content": editor.html(),
-                "publishDt": $("#publishDt").datebox('getValue')
+                "publishDt": $("#publishDt").datebox('getValue'),
+                "types":$('#newtypes_add').combobox('getValue')
             }
 
             console.log(params);
@@ -234,6 +237,8 @@ function doEdit() {
 
             editor.sync();
             editor.html(rows[0].content);
+
+            $('#newtypes_add').combogrid('setValue', rows[0].types);
 
             $('#newsadd').panel({title: '修改新闻头条'});
             //$('#title').textbox('textbox').attr('readonly', true);

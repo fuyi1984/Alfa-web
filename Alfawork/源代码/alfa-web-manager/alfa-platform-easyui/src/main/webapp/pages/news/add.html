@@ -37,7 +37,8 @@
     </script>
 </head>
 <body class="easyui-layout">
-<div region="center" class="easyui-panel" title="新增新闻头条" style="width: auto" data-options="collapsible:true,border:true">
+<div region="center" class="easyui-panel" title="新增新闻头条" style="width: auto"
+     data-options="collapsible:true,border:true">
     <div style="padding: 10px 0px 10px 70px;">
         <table style="text-align: left; width: auto; border-spacing:0px 10px;">
             <tr>
@@ -60,6 +61,18 @@
             </tr>
             <tr>
                 <td>
+                    新闻类型:
+                </td>
+                <td>
+                    <input id="newtypes" class="easyui-combobox" style="width:90px" data-options="					          url:'../../other/newtypes.json',
+              method:'get',
+              valueField:'id',
+              textField:'text',
+              panelHeight:'auto'">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     发布日期:
                 </td>
                 <td>
@@ -70,9 +83,11 @@
         </table>
     </div>
     <div style="text-align: center; padding: 5px 220px 10px 10px">
-        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit" iconcls="icon-save">
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:submitForm()" id="submit"
+           iconcls="icon-save">
             确定</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:cancel()" iconcls="icon-cancel">返回</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:cancel()"
+           iconcls="icon-cancel">返回</a>
     </div>
 </div>
 </body>

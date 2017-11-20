@@ -10,6 +10,7 @@
         <!--基本信息-->
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="types" property="types" jdbcType="VARCHAR"/>
         <result column="publishDt" property="publishDt" jdbcType="TIMESTAMP"/>
 
         <!--附加信息-->
@@ -24,6 +25,9 @@
     <sql id="Example_Where_Clause" >
         <trim prefix="where" prefixOverrides="and|or" >
 
+            <if test="condition.types != null" >
+                and A.types = #{condition.types}
+            </if>
             <if test="condition.title != null" >
                 and A.title = #{condition.title}
             </if>
@@ -62,7 +66,7 @@
 
     <sql id="Base_Column_List" >
         A.id,A.title,A.content,A.publishDt,A.createdBy,A.createdDt,A.updatedBy,A.updatedDt,
-        A.version
+        A.version,A.types
     </sql>
 
     <insert id="insertSelective" parameterType="com.alfa.web.pojo.newstop" >
@@ -72,6 +76,9 @@
         insert into newstop
         <trim prefix="(" suffix=")" suffixOverrides="," >
 
+            <if test="types!=null">
+                types,
+            </if>
             <if test="title != null" >
                 title,
             </if>
@@ -100,6 +107,9 @@
 
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="types!=null">
+                #{types},
+            </if>
             <if test="title != null" >
                 #{title},
             </if>
@@ -170,6 +180,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.alfa.web.pojo.newstop" >
         update newstop
         <set >
+            <if test="types!=null">
+                types=#{types},
+            </if>
             <if test="title != null" >
                 title=#{title},
             </if>

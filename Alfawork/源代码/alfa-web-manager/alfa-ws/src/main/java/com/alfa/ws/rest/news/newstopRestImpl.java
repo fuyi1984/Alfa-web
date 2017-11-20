@@ -54,8 +54,17 @@ public class newstopRestImpl implements newstopRest {
 
         Criteria criteria = new Criteria();
 
+        //新闻标题
         if (!StringUtil.isNullOrEmpty(map.get("titlelike"))) {
             criteria.put("titlelike",  map.get("titlelike").toString());
+        }
+
+        //新闻类型
+        if (!StringUtil.isNullOrEmpty(map.get("types"))) {
+
+            if(!map.get("types").toString().equals("0")) {
+                criteria.put("types", map.get("types").toString());
+            }
         }
 
         WebUtil.preparePageParams(request, pager, criteria, "createdDt desc");
