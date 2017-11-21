@@ -13,11 +13,7 @@
 </head>
 <body>
 <c:forEach items="${users }" var="um">
-    ${um.value.username }
-    ----<a href="${um.value.username }">${um.value.nickname }</a>
-    ----${um.value.password }
-    ----${um.value.email }--<a href="${um.value.username }/update">修改</a>
-    <a href="${um.value.username }/delete">删除</a><br/>
+    ${um.value.username } <br/>
 </c:forEach>
 </body>
 </html>
