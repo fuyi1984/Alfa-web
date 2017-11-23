@@ -19,5 +19,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean name="/welcome.html" class="com.alfa.web.controller.WelcomeController"></bean>
+
 
 </beans>

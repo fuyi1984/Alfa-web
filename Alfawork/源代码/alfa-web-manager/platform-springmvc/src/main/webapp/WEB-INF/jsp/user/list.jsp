@@ -10,10 +10,17 @@
 <html>
 <head>
     <title>用户列表</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css" type="text/css">
 </head>
 <body>
+<a href="add">添加</a>
+<br/>
 <c:forEach items="${users }" var="um">
-    ${um.value.username } <br/>
+    ${um.value.username }
+    ----<a href="${um.value.username }">${um.value.nickname }</a>
+    ----${um.value.password }
+    ----${um.value.email }--<a href="${um.value.username }/update">修改</a>
+    <a href="${um.value.username }/delete">删除</a><br/>
 </c:forEach>
 </body>
 </html>
