@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css" type="text/css">
 </head>
 <body>
-<a href="add">添加</a>
+<a href="add">添加</a>-->${loginUser.nickname }
 <br/>
 <c:forEach items="${users }" var="um">
     ${um.value.username }
