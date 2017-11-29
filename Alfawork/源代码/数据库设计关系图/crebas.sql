@@ -1,148 +1,153 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/5/25 13:09:27                           */
+/* Created on:     2017/11/29 星期三 下午 4:20:11                    */
 /*==============================================================*/
 
 
-drop table if exists Companyinfo;
+drop table if exists CommentReply;
 
 drop table if exists LogForLogin;
 
-drop table if exists LogForPay;
+drop table if exists MoneyPay;
 
-drop table if exists SysAccount;
+drop table if exists Orderforone;
 
-drop table if exists SysCategory;
+drop table if exists Orgs;
 
 drop table if exists SysConfig;
 
-drop table if exists SysDicDetail;
+drop table if exists fileinfo2;
 
-drop table if exists SysDicIndex;
+drop table if exists messagepublish;
 
-drop table if exists SysModuleElement;
+drop table if exists messageusers;
 
-drop table if exists SysModules;
+drop table if exists newrole;
 
-drop table if exists SysOrg;
+drop table if exists newstop;
 
-drop table if exists SysRelevance;
+drop table if exists newtype;
 
-drop table if exists SysRole;
+drop table if exists oiladdress;
 
-drop table if exists SysUsers;
+drop table if exists ordercomments;
 
-drop table if exists fileinfo;
+drop table if exists ordercontrollog;
+
+drop table if exists rolenew;
+
+drop table if exists td_weixin_users2;
+
+drop table if exists user_basic;
+
+drop table if exists user_login;
+
+drop table if exists userregisterbehavior;
+
+drop table if exists userregisterbehavior2;
+
+drop table if exists vfcode;
 
 /*==============================================================*/
-/* Table: Companyinfo                                           */
+/* Table: CommentReply                                          */
 /*==============================================================*/
-create table Companyinfo
+create table CommentReply
 (
-   Id                   bigint not null auto_increment,
-   company_name         varchar(255) not null,
-   company_code         varchar(300) not null,
-   company_eng          varchar(255),
-   company_typecode     varchar(255) not null,
-   company_type         varchar(255),
-   address              varchar(255) not null,
-   addr_lon             varchar(255) not null,
-   addr_lat             varchar(255) not null,
-   corporate            varchar(255) not null,
-   contacts             varchar(255),
-   phone                varchar(255) not null,
-   remark               varchar(500),
-   status               varchar(10) not null,
-   fileid               bigint,
-   checkstatus          varchar(10),
-   license_fileid       bigint,
-   createdBy            varchar(255) not null,
-   createdDt            datetime not null,
+   id                   bigint not null auto_increment,
+   content              varchar(500),
+   mobile               varchar(255),
+   phone                varchar(255),
+   commentid            bigint,
+   createdBy            varchar(255),
+   createdDt            datetime,
    updatedBy            varchar(255),
    updatedDt            datetime,
    version              bigint,
-   primary key (Id)
+   primary key (id)
 );
 
-alter table Companyinfo comment '企业信息表';
+alter table CommentReply comment '评论回复表';
 
 /*==============================================================*/
 /* Table: LogForLogin                                           */
 /*==============================================================*/
 create table LogForLogin
 (
-   Id                   bigint not null auto_increment,
-   username             varchar(255) not null,
-   description          varchar(300) not null,
-   createdBy            varchar(255) not null,
-   createdDt            datetime not null,
-   updatedBy            varchar(255),
-   updatedDt            datetime,
-   version              bigint,
+   Id                   int not null auto_increment,
+   userid               int,
+   description          varchar(50),
+   system_time          datetime,
    primary key (Id)
 );
 
 alter table LogForLogin comment '登录日志表';
 
 /*==============================================================*/
-/* Table: LogForPay                                             */
+/* Table: MoneyPay                                              */
 /*==============================================================*/
-create table LogForPay
+create table MoneyPay
 (
-   PayId                bigint not null auto_increment,
-   accountBalance       varchar(255) not null,
-   description          varchar(300) not null,
-   createdBy            varchar(255) not null,
-   createdDt            datetime not null,
-   updatedBy            varchar(255),
-   updatedDt            datetime,
-   version              bigint,
-   accountId            bigint not null,
+   PayId                int not null auto_increment,
+   accountBalance       decimal,
+   description          varchar(50),
+   types                tinyint,
+   orderid              int,
+   system_time          datetime,
    primary key (PayId)
 );
 
-alter table LogForPay comment '支付日志表';
+alter table MoneyPay comment '支付表';
 
 /*==============================================================*/
-/* Table: SysAccount                                            */
+/* Table: Orderforone                                           */
 /*==============================================================*/
-create table SysAccount
+create table Orderforone
 (
-   accountId            bigint not null auto_increment,
-   Account_name         varchar(255) not null,
-   Account_type         varchar(100) not null,
-   Account_typename     varchar(255) not null,
-   UsableCredit         bigint not null,
-   accountBalance       varchar(255) not null,
-   accountdeposit       varchar(255) not null,
-   version              bigint,
-   status               varchar(100) not null,
-   statusName           varchar(255) not null,
-   description          varchar(255),
-   createdBy            varchar(255) not null,
-   createdDt            datetime not null,
-   updatedBy            varchar(255),
-   updatedDt            datetime,
-   userId               bigint not null,
-   primary key (accountId)
+   id                   int not null auto_increment,
+   sn                   char(20),
+   pail_num             int,
+   real_pail_num        int,
+   workerid             int,
+   sellerid             int,
+   pail_amount          decimal,
+   delivery_amount      decimal,
+   discount_amount      decimal,
+   paild_amount         decimal,
+   real_amount          decimal,
+   status               tinyint,
+   dispatch_status      tinyint,
+   confirm_status       tinyint,
+   delivery_status      tinyint,
+   finish_status        tinyint,
+   pay_status           tinyint,
+   pay_time             datetime,
+   system_time          datetime,
+   addressid            int,
+   service_amount       decimal,
+   primary key (id)
 );
 
-alter table SysAccount comment '账户表';
+alter table Orderforone comment '新订单表';
 
 /*==============================================================*/
-/* Table: SysCategory                                           */
+/* Table: Orgs                                                  */
 /*==============================================================*/
-create table SysCategory
+create table Orgs
 (
-   Id                   bigint not null auto_increment,
-   Name                 varchar(255) not null,
-   Status               int not null,
-   SortNo               int not null,
-   Description          varchar(255),
-   primary key (Id)
+   orgid                int not null auto_increment,
+   orgname              varchar(50),
+   orgboss              char(8),
+   mobile               char(11),
+   address              varchar(255),
+   picture              int,
+   weixin               varchar(20),
+   system_time          datetime,
+   latitude             double,
+   longitude            double,
+   primary key (orgid)
 );
 
-alter table SysCategory comment '分类表';
+alter table Orgs comment '企业单位表';
 
 /*==============================================================*/
 /* Table: SysConfig                                             */
@@ -165,211 +170,255 @@ create table SysConfig
 alter table SysConfig comment '系统配置表';
 
 /*==============================================================*/
-/* Table: SysDicDetail                                          */
+/* Table: fileinfo2                                             */
 /*==============================================================*/
-create table SysDicDetail
+create table fileinfo2
 (
-   Id                   bigint not null auto_increment,
-   Val                  varchar(255) not null,
-   Text                 varchar(255) not null,
-   SortNo               int not null,
-   Status               int not null,
-   DicId                bigint not null,
-   Description          varchar(255) not null,
+   Id                   int not null auto_increment,
+   file_name            varchar(50),
+   url                  varchar(100),
+   type                 char(8),
+   system_time          datetime,
    primary key (Id)
 );
 
-alter table SysDicDetail comment '数据字典详情';
+alter table fileinfo2 comment '文件信息表';
 
 /*==============================================================*/
-/* Table: SysDicIndex                                           */
+/* Table: messagepublish                                        */
 /*==============================================================*/
-create table SysDicIndex
+create table messagepublish
 (
-   Id                   bigint not null auto_increment,
-   Name                 varchar(255) not null,
-   EKeys                varchar(255) not null,
-   SortNo               int not null,
-   Description          varchar(255) not null,
-   CategoryId           bigint,
+   id                   int not null auto_increment,
+   title                char(30),
+   content              varchar(100),
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table messagepublish comment '消息通知表';
+
+/*==============================================================*/
+/* Table: messageusers                                          */
+/*==============================================================*/
+create table messageusers
+(
+   id                   int not null auto_increment,
+   userid               int,
+   messageid            int,
+   isread               tinyint,
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table messageusers comment '消息用户表';
+
+/*==============================================================*/
+/* Table: newrole                                               */
+/*==============================================================*/
+create table newrole
+(
+   id                   int not null auto_increment,
+   newid                int,
+   roleid               int,
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table newrole comment '新闻角色关系表';
+
+/*==============================================================*/
+/* Table: newstop                                               */
+/*==============================================================*/
+create table newstop
+(
+   id                   int not null auto_increment,
+   title                char(30),
+   content              text,
+   publishDt            datetime,
+   typeid               int,
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table newstop comment '新闻头条';
+
+/*==============================================================*/
+/* Table: newtype                                               */
+/*==============================================================*/
+create table newtype
+(
+   typeid               int not null auto_increment,
+   typename             char(10),
+   system_time          datetime,
+   primary key (typeid)
+);
+
+alter table newtype comment '新闻类型';
+
+/*==============================================================*/
+/* Table: oiladdress                                            */
+/*==============================================================*/
+create table oiladdress
+(
+   id                   int not null auto_increment,
+   userid               int,
+   province             char(10),
+   city                 char(15),
+   area                 char(20),
+   townandstreets       varchar(50),
+   ischeck              int,
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table oiladdress comment '收油地址表';
+
+/*==============================================================*/
+/* Table: ordercomments                                         */
+/*==============================================================*/
+create table ordercomments
+(
+   replycontent         varchar(100),
+   id                   int not null,
+   content              varchar(100),
+   service_attitude     int,
+   receiving_speed      int,
+   oil_prices           int,
+   system_time          datetime,
+   average              int,
+   workerid             int,
+   sellerid             int,
+   primary key (id)
+);
+
+alter table ordercomments comment '订单评论回复表';
+
+/*==============================================================*/
+/* Table: ordercontrollog                                       */
+/*==============================================================*/
+create table ordercontrollog
+(
+   id                   int not null auto_increment,
+   orderid              int,
+   status               tinyint,
+   description          varchar(50),
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table ordercontrollog comment '订单操作日志表';
+
+/*==============================================================*/
+/* Table: rolenew                                               */
+/*==============================================================*/
+create table rolenew
+(
+   id                   int not null,
+   rolename             char(20),
+   description          varchar(50),
+   status               tinyint,
+   system_time          datetime,
+   primary key (id)
+);
+
+alter table rolenew comment '角色表(新)';
+
+/*==============================================================*/
+/* Table: td_weixin_users2                                      */
+/*==============================================================*/
+create table td_weixin_users2
+(
+   Id                   int not null auto_increment,
+   openid               varchar(100),
+   headimgurl           varchar(255),
+   status               tinyint,
+   userid               int,
+   system_time          datetime,
    primary key (Id)
 );
 
-alter table SysDicIndex comment '数据字典';
+alter table td_weixin_users2 comment '微信Openid表';
 
 /*==============================================================*/
-/* Table: SysModuleElement                                      */
+/* Table: user_basic                                            */
 /*==============================================================*/
-create table SysModuleElement
+create table user_basic
 (
-   ElementId            bigint not null,
-   DomId                varchar(255) not null,
-   Name                 varchar(255) not null,
-   Types                varchar(100) not null,
-   Attr                 varchar(500) not null,
-   Script               varchar(500) not null,
-   Icon                 varchar(255) not null,
-   Classs               varchar(255) not null,
-   Remark               varchar(200),
-   SortNo               int not null,
-   ModuleId             bigint not null,
-   primary key (ElementId)
+   id                   int not null,
+   name                 char(10),
+   mobile               char(11),
+   orgid                int,
+   roleid               int,
+   remark               varchar(50),
+   system_time          datetime,
+   primary key (id)
 );
 
-alter table SysModuleElement comment '模块元素表(需要权限控制的按钮)';
+alter table user_basic comment '用户基本信息表';
 
 /*==============================================================*/
-/* Table: SysModules                                            */
+/* Table: user_login                                            */
 /*==============================================================*/
-create table SysModules
+create table user_login
 (
-   ModulesId            bigint not null auto_increment,
-   CascadeId            varchar(255) not null,
-   Name                 varchar(255) not null,
-   Url                  varchar(255) not null,
-   IsLeaf               varchar(100) not null,
-   IsAutoExpand         varchar(100) not null,
-   IconName             varchar(255) not null,
-   Status               varchar(100) not null,
-   ParentName           varchar(255) not null,
-   Vector               varchar(255) not null,
-   SortNo               int not null,
-   ParentId             bigint,
-   primary key (ModulesId)
+   id                   int not null,
+   userid               int,
+   password             varchar(30),
+   status               tinyint,
+   token                varchar(64),
+   mobiletoken          varchar(64),
+   system_time          datetime,
+   ischeck              tinyint,
+   primary key (id)
 );
 
-alter table SysModules comment '功能模块表';
+alter table user_login comment '用户登录信息表';
 
 /*==============================================================*/
-/* Table: SysOrg                                                */
+/* Table: userregisterbehavior                                  */
 /*==============================================================*/
-create table SysOrg
+create table userregisterbehavior
 (
-   CascadeId            varchar(255) not null,
-   depart_fullname      varchar(255) not null,
-   Id                   bigint not null auto_increment,
-   depart_name          varchar(255),
-   depart_name_e        varchar(255),
-   depart_code          varchar(100),
-   status               varchar(100) not null,
-   types                varchar(100) not null,
-   createdDt            datetime not null,
-   createdBy            varchar(255) not null,
-   ParentName           varchar(255) not null,
-   ParentId             bigint,
-   IsLeaf               varchar(100) not null,
-   IsAutoExpand         varchar(100) not null,
-   IconName             varchar(255) not null,
-   sortno               int not null,
-   version              bigint,
-   updatedBy            varchar(255),
-   updatedDt            datetime,
-   statusname           varchar(255) not null,
-   typesname            varchar(255) not null,
-   primary key (Id)
-);
-
-alter table SysOrg comment '机构表';
-
-/*==============================================================*/
-/* Table: SysRelevance                                          */
-/*==============================================================*/
-create table SysRelevance
-(
-   RelevanceId          bigint not null auto_increment,
-   Description          varchar(255) not null,
-   MappKey              varchar(255) not null,
-   Status               varchar(100) not null,
-   OperatorTime         datetime not null,
-   OperatorId           varchar(255) not null,
-   FirstId              bigint not null,
-   SecondId             bigint not null,
-   Statusname           varchar(255) not null,
-   primary key (RelevanceId)
-);
-
-alter table SysRelevance comment '多对多关系集中映射';
-
-/*==============================================================*/
-/* Table: SysRole                                               */
-/*==============================================================*/
-create table SysRole
-(
-   roleId               bigint not null auto_increment,
-   role_name            varchar(255) not null,
-   types                varchar(100) not null,
-   status               varchar(100) not null,
-   createdDt            datetime not null,
-   createdBy            varchar(255) not null,
-   version              bigint,
-   updatedBy            varchar(255),
-   updatedDt            datetime,
-   typesname            varchar(255) not null,
-   statusname           varchar(255) not null,
-   roleDesc             varchar(255),
-   menuitem             varchar(255),
-   primary key (roleId)
-);
-
-alter table SysRole comment '角色表';
-
-/*==============================================================*/
-/* Table: SysUsers                                              */
-/*==============================================================*/
-create table SysUsers
-(
-   updatedBy            varchar(255),
-   userId               bigint not null auto_increment,
-   username             varchar(255) not null,
-   password             varchar(255) not null,
-   phone                varchar(255) not null,
-   sexname              varchar(255) not null,
-   sex                  varchar(100) not null,
-   statusname           varchar(255) not null,
-   status               varchar(100) not null,
-   typesname            varchar(255) not null,
-   types                varchar(100) not null,
-   address              varchar(255),
-   remarks              varchar(255),
-   token                varchar(255),
-   createdDt            datetime not null,
-   createdBy            varchar(255) not null,
-   version              bigint,
-   updatedDt            datetime,
-   errorCount           int,
-   LoginIp              varchar(255) not null,
-   mobiletoken          varchar(255),
-   errorCountformobile  int,
-   primary key (userId)
-);
-
-alter table SysUsers comment '用户表';
-
-/*==============================================================*/
-/* Table: fileinfo                                              */
-/*==============================================================*/
-create table fileinfo
-(
-   Id                   bigint not null auto_increment,
-   file_name            varchar(300) not null,
-   url                  varchar(500) not null,
-   type                 varchar(20) not null,
-   createdBy            varchar(255) not null,
-   createdDt            datetime not null,
+   id                   bigint not null auto_increment,
+   userid               bigint,
+   registerid           bigint,
+   createdBy            varchar(255),
+   createdDt            datetime,
    updatedBy            varchar(255),
    updatedDt            datetime,
    version              bigint,
-   primary key (Id)
+   primary key (id)
 );
 
-alter table fileinfo comment '文件信息表';
+alter table userregisterbehavior comment '用户注册行为表';
 
-alter table LogForPay add constraint FK_RF_ACCOUNT_LOGFORPAY foreign key (accountId)
-      references SysAccount (accountId) on delete restrict on update restrict;
+/*==============================================================*/
+/* Table: userregisterbehavior2                                 */
+/*==============================================================*/
+create table userregisterbehavior2
+(
+   id                   int not null auto_increment,
+   userid               int,
+   registerid           int,
+   system_time          datetime,
+   primary key (id)
+);
 
-alter table SysDicDetail add constraint FK_RF_DICDETAI_DICINDEX foreign key (DicId)
-      references SysDicIndex (Id) on delete restrict on update restrict;
+alter table userregisterbehavior2 comment '用户注册行为表(业务人员新增产废单位)';
 
-alter table SysModuleElement add constraint FK_FK_PAGEELEM_REFERENCE_MODULE foreign key (ModuleId)
-      references SysModules (ModulesId) on delete restrict on update restrict;
+/*==============================================================*/
+/* Table: vfcode                                                */
+/*==============================================================*/
+create table vfcode
+(
+   verifySid            int not null auto_increment,
+   code                 char(6),
+   type                 tinyint,
+   boundAccount         char(11),
+   system_time          datetime,
+   primary key (verifySid)
+);
+
+alter table vfcode comment '验证码';
 
